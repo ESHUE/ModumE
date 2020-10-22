@@ -83,6 +83,7 @@
     <script src="/js/index.js?aaa=2"></script>
     <script src="/js/login.js"></script>
     <script src="/js/boardList.js?ver=1"></script>
+    <script src="/js/boardDetail.js?ver=1"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- 트위치 채널 긁어오기(채널지정) -->
     <script src="https://embed.twitch.tv/embed/v1.js"></script>
