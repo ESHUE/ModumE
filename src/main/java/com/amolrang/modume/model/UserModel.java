@@ -18,6 +18,7 @@ public class UserModel implements UserDetails {
 	private boolean isAccountNonLocked;
 	private boolean isCredentialsNonExpired;
 	private boolean isEnabled;
+	private String sns;
 	private Collection<? extends GrantedAuthority> authorities;
 
 	@Override
