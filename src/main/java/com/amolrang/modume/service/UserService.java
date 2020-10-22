@@ -85,7 +85,7 @@ public class UserService implements UserDetailsService {
 	public SocialModel socialSave(SocialModel socialModel, String role) {
 		// TODO Auto-generated method stub
 		// userModel에서의 seq를 받아서 넣을 예정
-		socialModel.setSeq(56);
+		socialModel.setSeq(5);
 		return userDAO.socialSave(socialModel, role);
 	}
 
