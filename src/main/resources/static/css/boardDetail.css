@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+.boardContainer .board-detail-btn {
+    position: absolute;
+    bottom: 68px;
+    right: -35px;
+}
+
+.boardContainer .board-detail-option-box {
+    width: 100%;
+    height: 220px;
+    background: #FFF;
+    color: rgb(129, 129, 129);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.board-detail-table .board-date {
+    text-align: center;
+}
+
+.board-detail .board-detail-ctnt {
+    color: rgb(50, 50, 50) !important;
+}
+
+.board-detail .board-detail-img__box {
+    width: 100%;
+    min-width: 320px;
+    padding: 0;
+    margin: 5px 0;
+    text-align: center;
+    line-height: 0;
+}
+
+.board-detail .board-detail-img__box .board-detail__img {
+    width: 95%;
+}

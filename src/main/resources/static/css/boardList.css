@@ -1,0 +1,199 @@
+@charset "UTF-8";
+@import "reset.css";
+
+
+.boardContainer .boardContents {
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.board-btns {
+    width: 110px;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    right: 10%;
+    bottom: 5%;
+    z-index: 2;
+}
+
+.board-btns .go-to-top, .board-btns .new-post {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background: rgba(255, 175, 182, .8);
+}
+.board-btns .go-to-top {
+
+}
+
+.board-btns .go-to-top .material-icons {
+    font-size: 2em;
+}
+
+.board-btns .new-post {
+
+}
+
+.board-btns .new-post .material-icons {
+    font-size: 2em;
+}
+
+
+
+
+
+/* @Eunsil 게시판 중 테이블 CSS 시작 */
+.board-table {
+    font-size: 1em;
+    width: 95%;
+    min-width: 320px;
+    margin: 15px 0;
+    line-height: 140%;
+}
+
+
+.board-table td {
+    /* border: 1px solid black; */
+    vertical-align: middle;
+    padding: 3px 0;
+}
+
+.board-table .board-profile-td {
+    width: 40px;
+    padding-right: 5px;
+}
+
+.board-table .board-profile__box {
+    width: 40px;
+    height: 40px; 
+    border-radius: 70%;
+    overflow: hidden;
+    /* border 나중에 삭제 */
+    border: 1px solid black;
+}
+
+.board-table .board-profile__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.board-table .board-user-name {
+    font-size: 0.8em;
+    font-weight: bold;
+    color: rgb(73, 73, 73);
+    padding-bottom: 0;
+}
+
+.board-table .board-date td {
+    font-size: 0.8em;
+    color: rgb(161, 161, 161);
+    padding-top: 0;
+}
+
+.board-table .board-title {
+    
+}
+
+.board-table .board-title td {
+    font-size: 1.3em;
+    font-weight: bold;
+    padding: 15px 0;
+}
+
+.board-table .board-ctnt {
+    
+}
+
+.board-table .board-ctnt td {
+    font-size: 1em;
+    color: rgb(129, 129, 129);
+}
+
+.board-table .board__imgs {
+    
+}
+
+.board-table .board-ctnt__imgs td {
+    text-align: center;
+}
+
+/* ctnt 안에 이미지가 1개인 경우 */
+.board-table .board-ctnt__imgs .board-ctnt-img__box1 {
+    width: 95%;
+    min-width: 300px;
+    height: 150px;
+    border-radius: 5%;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.board-table .board-ctnt__imgs .board-ctnt-img__box1 .board-ctnt__img {
+    width: 200%;
+    position: relative;
+    top: -50%;
+    left: -50%;
+}
+
+/* ctnt 안에 이미지가 2개인 경우 */
+.board-table .board-ctnt__imgs .board-ctnt-img__box2 {
+    width: 45%;
+    min-width: 150px;
+    height: 150px;
+    border-radius: 5%;
+    overflow: hidden;
+    display: inline-block;
+    position: relative;
+}
+
+.board-table .board-ctnt__imgs .board-ctnt-img__box2 .board-ctnt__img {
+    width: 250%;
+    position: relative;
+    top: -30%;
+    left: -30%;
+}
+
+/* ctnt 안에 이미지가 3개 이상인 경우 */
+.board-table .board-ctnt__imgs .board-ctnt-img__box2 .remain-img {
+    width: 30px;
+    height: 30px;
+    background: rgba(110, 110, 110, .8);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    color: rgba(255, 255, 255, .7);
+}
+
+.board-table .board-ctnt__imgs .board-ctnt-img__box2 .board-ctnt__img2 {
+    
+}
+
+.board-table .board-foot td {
+    padding-top: 10px;
+}
+
+.board-table .board-foot .board-icons {
+    display: flex;
+    justify-content: space-around;
+    color: rgb(129, 129, 129);
+}
+
+.board-table .board-foot .board-hits {
+
+}
+
+.board-table .board-foot .board-comment {
+
+}
+
+.board-table .board-foot .board-like {
+
+}
