@@ -9,9 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title}</title>
     <link rel="icon" href="/img/favicon.png">
-    <link rel="stylesheet" href="/css/index.css?ver=4">
-    <link rel="stylesheet" href="/css/boardList.css?ver=2">
-    <link rel="stylesheet" href="/css/boardDetail.css?ver=2">
+    <link rel="stylesheet" href="/css/index.css?ver=5">
+    <link rel="stylesheet" href="/css/boardList.css?ver=3">
+    <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
     <link rel="stylesheet" href="/css/login.css?ver=1">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
      <!-- 아웃라인 material-icon 링크 추가 -->
@@ -121,36 +121,26 @@
         // only needed if your site is also embedded on embed.example.com and othersite.example.com 
         parent: ["embed.example.com", "othersite.example.com"]
       }); */
-	</script>
 
+    </script>
+
+    <script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
 
 	<sec:authorize access="isAuthenticated()">
-	<script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
-		<c:if test="${userInfo.sns == 'twitch'}">
-			<script type="text/javascript">
-			axios.get('/CallFollows',{}).then(function(res){
+		<script type="text/javascript">
+		console.log('${userInfo}')
+			axios.get('/CallVideo',{}).then(function(res){
+				const url = `\${res.data.data[0].url}`;
 				console.log(res)
-				axios.get('/CallVideo',{
-					params:{
-						follow : res.data.data[0].to_id
-						}
-				}).then(function(res){
-					console.log(res)
-					const url = `\${res.data.data[0].url}`;
-					 const container = document.getElementById('video')
-					 renderReactPlayer(container , {
-						 url,
-						 playing: true,
-						 controls: true
-					 })
-				})
+				console.log(res.data.data[0].url)
+				 const container = document.getElementById('video')
+				 renderReactPlayer(container , {
+					 url,
+					 playing: true,
+					 controls: true
+				 })
 			})
-			axios.get('/getStreams',{}).then(function(res){
-				console.log(res)
-			})
-			
 	    </script>
-		</c:if>
 	</sec:authorize>
 </body>
 </html>
