@@ -26,7 +26,7 @@
 					<input type="password" name="password_re" placeholder="비밀번호 확인">
 				</div>
 				<div>
-					<input type="text" name="userName" placeholder="이름">
+					<input type="text" name="username" placeholder="이름">
 				</div>
 				<div>
 					<input type="submit" value="회원가입">
@@ -34,6 +34,7 @@
 			</form>
 			<div>
 				<a href="${login}">로그인</a>
+				<a href="/">메인화면</a>
 			</div>
 		</div>
 
