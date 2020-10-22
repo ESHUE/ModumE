@@ -1,9 +1,12 @@
 @charset "UTF-8";
 
+.boardContainer .board-btns .go-to-back .material-icons {
+	font-size: 2em;
+}
+
 .boardContainer .board-detail-btn {
     position: absolute;
     bottom: 68px;
-    right: -35px;
 }
 
 .boardContainer .board-detail-option-box {

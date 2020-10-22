@@ -2,8 +2,8 @@
 @import "reset.css";
 
 /* @Eunsil 전역 스타일 추가 */
-.cursor-pointer {
-    cursor: pointer;
+.cursor{
+	cursor: pointer;
 }
 
 .flex-center {
@@ -14,6 +14,17 @@
 
 .mr5 {
 	margin-right: 5px;
+}
+
+.circle-btn50 {
+	width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background: rgba(255, 175, 182, .8);
 }
 
 
@@ -71,9 +82,7 @@
     top: 13px;
 }
 
-.cursor{
-	cursor: pointer;
-}
+
 
 .centralHeader{
     display: flex;
