@@ -9,6 +9,7 @@ import lombok.Data;
 
 @Data
 public class UserModel implements UserDetails {
+	private int seq;
 	private String id;
 	private String username;
 	private String password;
@@ -17,7 +18,6 @@ public class UserModel implements UserDetails {
 	private boolean isAccountNonLocked;
 	private boolean isCredentialsNonExpired;
 	private boolean isEnabled;
-	private String sns;
 	private Collection<? extends GrantedAuthority> authorities;
 
 	@Override
