@@ -1,0 +1,45 @@
+@charset "UTF-8";
+html, body {
+   padding: 0;
+   margin: 0;
+     width: 100%;
+   height: 100%;
+}
+#userInfoContainer {
+   width: 100%;
+   height: 100%;
+   padding-top: 50px;
+}
+#tabMenuContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+button {
+  background: none;
+  border: 0;
+  outline: 0;
+  cursor:pointer;
+}
+.tabMenuBtn {
+  width: 85px;
+  height: 30px;
+  transition:0.3s all;
+}
+.tabMenuBtn a {
+  text-decoration: none;
+  font-weight: bold;
+}
+#tabMenuContainer .tabMenuBtn a:hover {
+  color: #5d7599;
+}
+.underline {
+   display: block;
+     border-bottom: 2px solid #5d7599;
+}
+
+.tabBox {
+  display: none;
+}
+.tabBox.on {
+  display: block;
+}
