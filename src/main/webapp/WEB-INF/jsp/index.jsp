@@ -9,9 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title}</title>
     <link rel="icon" href="/img/favicon.png">
-    <link rel="stylesheet" href="/css/index.css?ver=5">
+    <link rel="stylesheet" href="/css/index.css?ver=6">
     <link rel="stylesheet" href="/css/boardList.css?ver=3">
     <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
+    <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
     <link rel="stylesheet" href="/css/login.css?ver=1">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
      <!-- 아웃라인 material-icon 링크 추가 -->
@@ -80,10 +81,11 @@
 	</main>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-    <script src="/js/index.js?aaa=2"></script>
+    <script src="/js/index.js?aaa=3"></script>
     <script src="/js/login.js"></script>
     <script src="/js/boardList.js?ver=1"></script>
     <script src="/js/boardDetail.js?ver=1"></script>
+    <script src="/js/boardRegMod.js?ver=1"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- 트위치 채널 긁어오기(채널지정) -->
     <script src="https://embed.twitch.tv/embed/v1.js"></script>

@@ -1,6 +1,6 @@
+/*
 function backToList() {
 	const boardContainer = document.querySelector('.boardContainer');
-	removeAllChild(boardContainer);
 	fetchBoardListToBack(boardContainer);
 }
 
@@ -11,3 +11,4 @@ function fetchBoardListToBack(ele) {
 		})
 	})
 }
+*/
