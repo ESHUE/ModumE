@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class CallApi {
+public class UserModelGetToToken {
 	@Autowired
 	private UserService userService;
 	
@@ -120,117 +120,5 @@ public class CallApi {
 			}
 		}
 		return socialModel;
-	}
-
-	public String callUserVideo(OAuth2AuthenticationToken authentication,
-			OAuth2AuthorizedClientService authAuthorizedClientService) {
-		String result = "";
-		switch (authentication.getAuthorizedClientRegistrationId()) {
-		case "twitch":
-			Gson gson = new Gson();
-			OAuth2AuthorizedClient client = authAuthorizedClientService
-					.loadAuthorizedClient(authentication.getAuthorizedClientRegistrationId(), authentication.getName());
-			RestTemplate restTemplate = new RestTemplate();
-			HttpHeaders headers = new HttpHeaders();
-			headers.add(HttpHeaders.AUTHORIZATION, "Bearer " + client.getAccessToken().getTokenValue());
-			headers.add("Client-Id", client.getClientRegistration().getClientId());
-			log.info("headers:{}", headers);
-			// 유저정보 조회
-			HttpEntity entity = new HttpEntity(headers);
-			ResponseEntity<Map> response = restTemplate.exchange(
-					"https://api.twitch.tv/helix/videos?user_id=" + authentication.getPrincipal().getName(),
-					HttpMethod.GET, entity, Map.class);
-
-			// log.info("response:{}", response);
-			log.info("userVideo{}", response.getBody());
-			Map data = response.getBody();
-			result = gson.toJson(data);
-			break;
-		}
-		return result;
-	}
-	
-	public String callTwitchMyFollows(OAuth2AuthenticationToken authentication,
-			OAuth2AuthorizedClientService auth2AuthorizedClientService) {
-		String result = "";
-		switch (authentication.getAuthorizedClientRegistrationId()) {
-		case "twitch":
-			Gson gson = new Gson();
-			OAuth2AuthorizedClient client = auth2AuthorizedClientService
-					.loadAuthorizedClient(authentication.getAuthorizedClientRegistrationId(), authentication.getName());
-			RestTemplate restTemplate = new RestTemplate();
-			HttpHeaders headers = new HttpHeaders();
-			headers.add(HttpHeaders.AUTHORIZATION, "Bearer " + client.getAccessToken().getTokenValue());
-			headers.add("Client-Id", client.getClientRegistration().getClientId());
-			log.info("headers:{}", headers);
-			// 유저정보 조회
-			HttpEntity entity = new HttpEntity(headers);
-			ResponseEntity<Map> response = restTemplate.exchange(
-					"https://api.twitch.tv/helix/users/follows?from_id=" + authentication.getPrincipal().getName(),
-					HttpMethod.GET, entity, Map.class);
-
-			// log.info("response:{}", response);
-			log.info("userVideo{}", response.getBody());
-			Map data = response.getBody();
-			result = gson.toJson(data);
-			break;
-		}
-		return result;
-	}
-	
-	public String callUserVideo(String follow, OAuth2AuthenticationToken authentication,
-			OAuth2AuthorizedClientService authorizedClientService) {
-		String result = "";
-		switch (authentication.getAuthorizedClientRegistrationId()) {
-		case "twitch":
-			Gson gson = new Gson();
-			OAuth2AuthorizedClient client = authorizedClientService
-					.loadAuthorizedClient(authentication.getAuthorizedClientRegistrationId(), authentication.getName());
-			RestTemplate restTemplate = new RestTemplate();
-			HttpHeaders headers = new HttpHeaders();
-			headers.add(HttpHeaders.AUTHORIZATION, "Bearer " + client.getAccessToken().getTokenValue());
-			headers.add("Client-Id", client.getClientRegistration().getClientId());
-			log.info("headers:{}", headers);
-			// 유저정보 조회
-			HttpEntity entity = new HttpEntity(headers);
-			ResponseEntity<Map> response = restTemplate.exchange(
-					"https://api.twitch.tv/helix/videos?user_id=" + follow,
-					HttpMethod.GET, entity, Map.class);
-
-			// log.info("response:{}", response);
-			log.info("userVideo{}", response.getBody());
-			Map data = response.getBody();
-			result = gson.toJson(data);
-			break;
-		}
-		return result;
-	}
-	
-	public String getStreams(OAuth2AuthenticationToken authentication,
-			OAuth2AuthorizedClientService authorizedClientService) {
-		String result = "";
-		switch (authentication.getAuthorizedClientRegistrationId()) {
-		case "twitch":
-			Gson gson = new Gson();
-			OAuth2AuthorizedClient client = authorizedClientService
-					.loadAuthorizedClient(authentication.getAuthorizedClientRegistrationId(), authentication.getName());
-			RestTemplate restTemplate = new RestTemplate();
-			HttpHeaders headers = new HttpHeaders();
-			headers.add(HttpHeaders.AUTHORIZATION, "Bearer " + client.getAccessToken().getTokenValue());
-			headers.add("Client-Id", client.getClientRegistration().getClientId());
-			log.info("headers:{}", headers);
-			// 유저정보 조회
-			HttpEntity entity = new HttpEntity(headers);
-			ResponseEntity<Map> response = restTemplate.exchange(
-					"https://api.twitch.tv/helix/streams?language=ko",
-					HttpMethod.GET, entity, Map.class);
-
-			// log.info("response:{}", response);
-			log.info("userVideo{}", response.getBody());
-			Map data = response.getBody();
-			result = gson.toJson(data);
-			break;
-		}
-		return result;
 	}
 }

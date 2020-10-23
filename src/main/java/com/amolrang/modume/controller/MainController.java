@@ -14,7 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.amolrang.modume.api.CallApi;
+import com.amolrang.modume.api.UserModelGetToToken;
 import com.amolrang.modume.utils.StringUtils;
 
 import lombok.extern.slf4j.Slf4j;

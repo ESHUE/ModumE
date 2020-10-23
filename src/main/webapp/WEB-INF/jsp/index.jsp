@@ -6,16 +6,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${title}</title>
-<link rel="icon" href="/img/favicon.png">
-<link rel="stylesheet" href="/css/index.css?ver=5">
-<link rel="stylesheet" href="/css/boardList.css?ver=3">
-<link rel="stylesheet" href="/css/boardDetail.css?ver=4">
-<link rel="stylesheet" href="/css/login.css?ver=1">
-<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
-<!-- 아웃라인 material-icon 링크 추가 -->
-<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${title}</title>
+    <link rel="icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/index.css?ver=4">
+    <link rel="stylesheet" href="/css/boardList.css?ver=2">
+    <link rel="stylesheet" href="/css/boardDetail.css?ver=2">
+    <link rel="stylesheet" href="/css/login.css?ver=1">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+     <!-- 아웃라인 material-icon 링크 추가 -->
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 </head>
 <body>
 	<div id="bg1">
@@ -80,15 +80,14 @@
 	</main>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-	<script src="/js/index.js?aaa=2"></script>
-	<script src="/js/login.js"></script>
-	<script src="/js/boardList.js?ver=1"></script>
-	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-	<!-- 트위치 채널 긁어오기(채널지정) -->
-	<script src="https://embed.twitch.tv/embed/v1.js"></script>
-	<script>
+    <script src="/js/index.js?aaa=2"></script>
+    <script src="/js/login.js"></script>
+    <script src="/js/boardList.js?ver=1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- 트위치 채널 긁어오기(채널지정) -->
+    <script src="https://embed.twitch.tv/embed/v1.js"></script>
+    <script>
     
-
     function connect(event){
     	username = '${userInfo.username}';
     	console.log(username)
@@ -101,7 +100,6 @@
     	}
     	/*event.preventDefault();*/
     }
-
     /* $.ajax({
     	 type: 'GET',
     	 url: 'https://api.twitch.tv/kraken/channels/twitch',
@@ -121,14 +119,48 @@
         // only needed if your site is also embedded on embed.example.com and othersite.example.com 
         parent: ["embed.example.com", "othersite.example.com"]
       }); */
+	</script>
 
-    </script>
+<script>
+  const underline = document.getElementsByClassName('tabMenuBtn')
+
+  function temp(idx) {
+    openMyPageDetails(idx)
+    addUnderLine(idx)
+    //removeUnderLine(idx)
+  }
+
+  function addUnderLine(idx) {
+    if(document.querySelector('.underline')) {
+      const under_element = document.querySelector('.underline')
+        under_element.classList.remove('underline')
+    }
+    underline[idx].classList.add('underline')
+  }
+
+  function openMyPageDetails(idx) {
+  const tabBoxContainer = document.querySelector('.tabBoxContainer');
+  
+	if(idx == 4) {
+	  location.href = 'http://localhost:8080/logout';
+	  return;
+	}
+
+	// jsp 파일 이름이 바뀌면 controller와 pageName이 변경되어야 한다.
+	const pageName = '/userinfo' + idx;
+	fetch(pageName).then(function(response) {
+		response.text().then(function(text) {
+			tabBoxContainer.innerHTML = text;
+		})
+	})
+  }
+
+</script>
 
 	<sec:authorize access="isAuthenticated()">
-		<script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
+	<script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
 		<c:if test="${userInfo.sns == 'twitch'}">
 			<script type="text/javascript">
-			console.log('${userInfo}')
 			axios.get('/CallFollows',{}).then(function(res){
 				console.log(res)
 				axios.get('/CallVideo',{
@@ -137,19 +169,12 @@
 						}
 				}).then(function(res){
 					console.log(res)
-					/* const url =`\${res.data.data[0].url}`; */
+					const url = `\${res.data.data[0].url}`;
 					 const container = document.getElementById('video')
-					 /* renderReactPlayer(container , {
-						 url,
-						 playing: true,
-						 controls: true
-					 }) */
-					 const url = 'https://www.twitch.tv/wpghd321'
 					 renderReactPlayer(container , {
 						 url,
 						 playing: true,
-						 controls: true,
-						 playerId: ${userInfo.s_id}
+						 controls: true
 					 })
 				})
 			})
