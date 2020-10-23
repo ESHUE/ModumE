@@ -15,6 +15,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.amolrang.modume.model.SocialModel;
+import com.amolrang.modume.model.TestModel;
 import com.amolrang.modume.model.UserModel;
 import com.amolrang.modume.repository.UserDAO;
 
@@ -30,13 +32,20 @@ public class UserService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String user_id) throws UsernameNotFoundException {
-		log.info(user_id);
 		UserModel userModel = userDAO.findById(user_id);
+		
 		if(userModel == null) {return userModel;};
 		userModel.setAuthorities(getAuthorities(user_id));
 		return userModel;
 	}
-
+	
+	//현재 마이페이지로 가는 페이지가 없으므로 소셜 로그인시 db에 정보가없으면 자동으로 검사
+	public UserDetails loadSocialUserName(String user_id) throws UsernameNotFoundException{
+		SocialModel socialModel = userDAO.findId(user_id);
+		if(socialModel == null) { return socialModel;};
+		return socialModel;
+	}
+	
 	public UserModel save(UserModel userModel, String role) {
 		// TODO Auto-generated method stublog.info(role);
 		UserModel result = userDAO.findById(userModel.getId());
@@ -48,10 +57,19 @@ public class UserService implements UserDetailsService {
 		userModel.setCredentialsNonExpired(true);
 		userModel.setEnabled(true);
 		userModel.setUsername(userModel.getUsername());
-		
-		log.info("userModel {}",userModel);
+		//saveUser(userModel);
 		
 		return userDAO.save(userModel, role);
+	}
+	
+	//userModel에서 뽑아온 정보에서 id / pw만 추출
+	public TestModel saveUser(UserModel userModel) {
+		TestModel testModel = new TestModel();
+		testModel.setSeq(userModel.getSeq());
+		testModel.setId(userModel.getId());
+		testModel.setPassword(userModel.getPassword());
+		log.info("testModel:{}",testModel);
+		return userDAO.saveUser(testModel);
 	}
 
 	public Collection<GrantedAuthority> getAuthorities(String id) {
@@ -61,6 +79,14 @@ public class UserService implements UserDetailsService {
 			authorities.add(new SimpleGrantedAuthority(authority));
 		}
 		return authorities;
+	}
+
+	//소셜 로그인시 
+	public SocialModel socialSave(SocialModel socialModel, String role) {
+		// TODO Auto-generated method stub
+		// userModel에서의 seq를 받아서 넣을 예정
+		socialModel.setSeq(5);
+		return userDAO.socialSave(socialModel, role);
 	}
 
 }

@@ -3,11 +3,11 @@ package com.amolrang.modume.controller;
 import java.security.Principal;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.amolrang.modume.api.CallApi;
+import com.amolrang.modume.api.UserModelGetToToken;
+import com.amolrang.modume.model.SocialModel;
+import com.amolrang.modume.model.TestModel;
 import com.amolrang.modume.model.UserModel;
 import com.amolrang.modume.service.UserService;
 import com.amolrang.modume.utils.StringUtils;
@@ -33,7 +35,7 @@ public class AuthenticationController {
 	private OAuth2AuthorizedClientService authorizedClientService;
 	
 	@Autowired
-	private CallApi callApi;
+	private UserModelGetToToken callApi;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model, Principal principal) {
@@ -50,18 +52,18 @@ public class AuthenticationController {
 		UserModel UserInfoJson = new UserModel();
 		UserInfoJson.setUsername(principal.getName());
 		hs.setAttribute("userInfo", UserInfoJson);
-		
 		return "redirect:/main";
 	}
 
 	@RequestMapping(value = "/login_success", method = RequestMethod.GET)
-	public String login_success(OAuth2AuthenticationToken authentication, HttpSession hs) {
+	public String login_success(Model model, OAuth2AuthenticationToken authentication, HttpSession hs) {
 		log.info("로그인 성공 페이지 GET접근 :{}", authentication);
+		model.addAttribute(StringUtils.TitleKey(), "로그인 성공 페이지");
 		
-		//UserModel 정보 받아오기 (CallApi으로부터)
-		UserModel UserInfoJson = callApi.CallUserInfoToJson(authentication, authorizedClientService);
-		
-		log.info("UserInfoJson:{}",UserInfoJson);
+		//SocialModel 정보 받아오기 (CallApi으로부터)
+		SocialModel UserInfoJson = callApi.CallUserInfoToJson(authentication, authorizedClientService);
+		log.info("socialModel:{}",UserInfoJson);
+		model.addAttribute("userInfo", UserInfoJson);
 		hs.setAttribute("userInfo", UserInfoJson);
 		
 		return "redirect:/main";
@@ -76,12 +78,14 @@ public class AuthenticationController {
 	}
 
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String joinAction(Model model, UserModel userModel) {
+	public String joinAction(Model model, UserModel userModel, TestModel testModel) {
 		log.info("회원가입 post 접근");
 		if( userService.save(userModel, "ROLE_MEMBER") == null ) {
 			return "/joinError";
+		}else {
+			//UserModel에서 저장된 정보를 site_auth에 저장하기 위해 재진입
+			userService.saveUser(userModel);
 		}
-
 		return "redirect:/main";
 	}
 
