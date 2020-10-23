@@ -16,7 +16,7 @@
 			<form id="frm" class="frm" action="/join" method="post">
 				<div id="idChkResult" class="msg"></div>
 				<div>
-					<input type="text" name="id" placeholder="아이디">
+					<input type="text" name="username" placeholder="아이디">
 					<button type="button" onclick="chkId()">아이디 중복체크</button>
 				</div>
 				<div>
@@ -26,7 +26,7 @@
 					<input type="password" name="password_re" placeholder="비밀번호 확인">
 				</div>
 				<div>
-					<input type="text" name="username" placeholder="이름">
+					<input type="text" name="nickname" placeholder="이름">
 				</div>
 				<div>
 					<input type="submit" value="회원가입">
