@@ -162,8 +162,7 @@
 		<c:if test="${userInfo.sns == 'twitch'}">
 			<script type="text/javascript">
 		
-			axios.get('/CallFollows',{}).then(function(res){
-				console.log(res)
+			function getVideo(res){
 				axios.get('/CallVideo',{
 					params:{
 						follow : res.data.data[0].to_id
@@ -178,6 +177,11 @@
 						 controls: true
 					 })
 				})	
+			}
+			
+			axios.get('/CallFollows',{}).then(function(res){
+				console.log(res)
+				getVideo(res)
 			})
 			axios.get('/getStreams',{}).then(function(res){
 				console.log(res)
