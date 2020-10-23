@@ -146,6 +146,7 @@
 	  return;
 	}
 
+	// jsp 파일 이름이 바뀌면 controller와 pageName이 변경되어야 한다.
 	const pageName = '/userinfo' + idx;
 	fetch(pageName).then(function(response) {
 		response.text().then(function(text) {
