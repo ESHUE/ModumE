@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service 
 public class twitchAPI {
 	private Gson gson = new Gson();
-	private RestTemplate restTemplate = new RestTemplate();
+	private RestTemplate restTemplate =null;
 	private ResponseEntity<Map> response = null;
 	private HttpHeaders headers = null;
 
@@ -68,6 +68,7 @@ public class twitchAPI {
 	}
 	
 	private ResponseEntity<Map> restTemplateExchange(String url, String query){
+		restTemplate = new RestTemplate();
 		return response = restTemplate.exchange(url+query, HttpMethod.GET, new HttpEntity(headers), Map.class);
 	}
 	
