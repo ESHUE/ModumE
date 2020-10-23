@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.amolrang.modume.api.CallApi;
+import com.amolrang.modume.api.UserModelGetToToken;
 import com.amolrang.modume.model.SocialModel;
 import com.amolrang.modume.model.TestModel;
 import com.amolrang.modume.model.UserModel;
@@ -35,7 +35,7 @@ public class AuthenticationController {
 	private OAuth2AuthorizedClientService authorizedClientService;
 	
 	@Autowired
-	private CallApi callApi;
+	private UserModelGetToToken callApi;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model, Principal principal) {
