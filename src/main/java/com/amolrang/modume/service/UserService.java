@@ -82,11 +82,24 @@ public class UserService implements UserDetailsService {
 	}
 
 	//소셜 로그인시 
+	//사이트 로그인 > 소셜 로그인 : UserService.socialSave > UserDAO.socialSave > UserMapper.insertSocialUser 
+	// (추가된 경로) : UserService.findUser > UserService updateSocialSeq > UserDAO.updateSocialSeq > 
+	// UserMapper.updateSocialSeq > UserMapper.findSelUser
+	//소셜로그인(단독) : UserService.socialSave > UserDAO.socialSave > UserMapper.insertSocialUser
 	public SocialModel socialSave(SocialModel socialModel, String role) {
 		// TODO Auto-generated method stub
 		// userModel에서의 seq를 받아서 넣을 예정
-		socialModel.setSeq(56);
 		return userDAO.socialSave(socialModel, role);
+	}
+	
+	public SocialModel updateSocialSeq(int seq) {
+		//userModel에서의 seq를 받아서 SocialModel에 업글한다
+		return userDAO.updateSocialSeq(seq);
+	}
+	
+	public int findUser(String userName) {
+		log.info("test00:{}",userName);
+		return userDAO.findUser(userName);
 	}
 
 }

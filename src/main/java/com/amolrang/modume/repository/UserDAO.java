@@ -49,4 +49,13 @@ public class UserDAO {
 		userMapper.insertSocialUser(socialModel);
 		return socialModel;
 	}
+	
+	public SocialModel updateSocialSeq(int seq) {
+		userMapper.updateSocialSeq(seq);
+		return userMapper.findSelUser(seq);
+	}
+	
+	public int findUser(String userName) {
+		return userMapper.findUser(userName);
+	}
 }

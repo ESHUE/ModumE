@@ -104,19 +104,13 @@ public class UserModelGetToToken {
 				sns = "twitch";
 				break;
 			}
-			//2020.10.20 마이페이지 넘어가는 곳 만들지 못해서 임시 생성한 구간
+			//2020.10.26 소셜 로그인시 정보  SocialModel에 담아버림
 			if(userService.loadSocialUserName(id)==null) {
 				//id를 db에서 찾지 못했을 때
-				
 				socialModel.setS_id(id);
 				socialModel.setUsername(name);
 				socialModel.setSns(sns);
-				userService.socialSave(socialModel,"ROLE_MEMBER");
 				log.info("socialModel:{}",socialModel);
-				//비밀번호.....
-				//userService.save(userModel, "ROLE_MEMBER");
-			}else {
-				//id가 같으면 정보 불러오기
 			}
 		}
 		return socialModel;

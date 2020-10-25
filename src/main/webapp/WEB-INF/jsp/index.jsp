@@ -80,7 +80,7 @@
 	</main>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-    <script src="/js/index.js?aaa=2"></script>
+    <script src="/js/index.js?aaa=3"></script>
     <script src="/js/login.js"></script>
     <script src="/js/boardList.js?ver=1"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

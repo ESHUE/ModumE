@@ -22,6 +22,7 @@ import com.amolrang.modume.model.TestModel;
 import com.amolrang.modume.model.UserModel;
 import com.amolrang.modume.service.UserService;
 import com.amolrang.modume.utils.StringUtils;
+import com.nimbusds.openid.connect.sdk.claims.UserInfo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -48,10 +49,19 @@ public class AuthenticationController {
 	public String login(Model model, HttpSession hs,Principal principal) {
 		log.info("로그인 성공페이지 GET접근 :{}", principal);
 		model.addAttribute(StringUtils.TitleKey(), "로그인페이지");
+		
 		//기존 데이터베이스에 있는 자료 들고오기
 		UserModel UserInfoJson = new UserModel();
 		UserInfoJson.setUsername(principal.getName());
+		
+		//사이트 로그인시 세션에 담겨있는 seq 뽑아오는 문장
+		UserInfoJson.setSeq(userService.findUser(principal.getName()));
+		
 		hs.setAttribute("userInfo", UserInfoJson);
+		
+		//seq만 따로 세션에 박는다 ( 추후에 따로 뽑아내기 위해서)
+		hs.setAttribute("userModelSeq", UserInfoJson.getSeq());
+		//System.out.println(UserInfoJson.getUsername());
 		return "redirect:/main";
 	}
 
@@ -62,6 +72,16 @@ public class AuthenticationController {
 		
 		//SocialModel 정보 받아오기 (CallApi으로부터)
 		SocialModel UserInfoJson = callApi.CallUserInfoToJson(authentication, authorizedClientService);
+		
+		//세션에서의 정보가 없을경우 소셜사이트 로그인으로 인식 (seq는 가져오지못하므로 기본값 0으로 박힌다)
+		if(hs.getAttribute("userInfo")==null) {
+			userService.socialSave(UserInfoJson,"ROLE_MEMBER");
+		}
+		else {
+		//사이트 로그인후 소셜사이트 로그인(seq를 가져올수있음)
+			userService.socialSave(UserInfoJson,"ROLE_MEMBER");
+			userService.updateSocialSeq((int)hs.getAttribute("userModelSeq"));
+		}
 		log.info("socialModel:{}",UserInfoJson);
 		model.addAttribute("userInfo", UserInfoJson);
 		hs.setAttribute("userInfo", UserInfoJson);
