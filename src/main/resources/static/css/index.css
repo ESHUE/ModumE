@@ -92,7 +92,6 @@
    justify-self: center;
    align-self: center;
    width: 700px;
-   height: 700px;
 }
 
 .userInfoContainer{
@@ -268,4 +267,5 @@
 .centralSidebar .material-icons{
     cursor: pointer;
     color: seashell;
-    font-size: 4em;}
+    font-size: 4em;
+}
