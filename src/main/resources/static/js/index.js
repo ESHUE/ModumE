@@ -61,17 +61,10 @@ function openboard() {
     const makeDiv = document.createElement('div');
     makeDiv.className = 'boardContainer';
     sectionContainer.append(makeDiv);
-   fetchBoardList();
+	changeLocation('/boardList');
 }
 
 
-function fetchBoardList() {
-   fetch('/boardList').then(function(response) {
-      response.text().then(function(text) {
-         document.querySelector('.boardContainer').innerHTML = text;
-      })
-   })
-}
 
 function closeContainer(ele) {
     ele.remove();

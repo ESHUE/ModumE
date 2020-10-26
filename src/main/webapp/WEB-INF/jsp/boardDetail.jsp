@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div class="board-btns board-detail-btn">
 	<!-- 뒤로가기 버튼 -->
-	<div class="go-to-back board-detail-back cursor circle-btn50">
+	<div class="go-to-back board-detail-back cursor circle-btn50" onclick="changeLocation('/boardList')">
 		<span class="material-icons">arrow_back</span>
 	</div>
     <!-- top 버튼 -->
