@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.amolrang.modume.api.UserModelGetToToken;
 import com.amolrang.modume.api.twitchAPI;
-import com.amolrang.modume.model.UserModel;
+import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -30,9 +30,9 @@ public class JsonController {
 	private twitchAPI twitchApi;
 	
 	@RequestMapping(value = "/IdChk", produces = "text/plain;charset=UTF-8")
-	public String IdChk(@RequestBody UserModel param) {
+	public String IdChk(@RequestBody User_JPA param) {
 		String result = "2";
-		if (userService.loadUserByUsername(param.getId()) != null) {
+		if (userService.loadUserByUsername(param.getUsername()) != null) {
 			result = "3";
 		}
 		return String.format("%s", result);

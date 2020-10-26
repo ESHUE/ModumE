@@ -18,7 +18,10 @@ import org.springframework.stereotype.Service;
 import com.amolrang.modume.model.SocialModel;
 import com.amolrang.modume.model.TestModel;
 import com.amolrang.modume.model.UserModel;
+import com.amolrang.modume.model.User_JPA;
+import com.amolrang.modume.repository.AuthRepository;
 import com.amolrang.modume.repository.UserDAO;
+import com.amolrang.modume.repository.UserRepository;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -29,13 +32,21 @@ public class UserService implements UserDetailsService {
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	UserRepository userRepository;
+	
+	@Autowired
+	AuthRepository authRepository;
 
 	@Override
-	public UserDetails loadUserByUsername(String user_id) throws UsernameNotFoundException {
-		UserModel userModel = userDAO.findById(user_id);
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		User_JPA userModel = userRepository.findByUsername(username);
+		log.info("userServiceModel:{}",userModel);
 		
 		if(userModel == null) {return userModel;};
-		userModel.setAuthorities(getAuthorities(user_id));
+		userModel.setAuthorities(getAuthorities(username));
+		log.info("userModel:{}",userModel);
 		return userModel;
 	}
 	
@@ -73,7 +84,10 @@ public class UserService implements UserDetailsService {
 	}
 
 	public Collection<GrantedAuthority> getAuthorities(String id) {
-		List<String> string_authorities = userDAO.findAuthoritiesByID(id);
+		//log.info(msg);
+		//User_JPA userModel = userRepository.findByUsername(id);
+		
+		List<String> string_authorities = authRepository.findAuthenticationByUsername(id);
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		for (String authority : string_authorities) {
 			authorities.add(new SimpleGrantedAuthority(authority));
