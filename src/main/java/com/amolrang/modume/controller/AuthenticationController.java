@@ -64,7 +64,11 @@ public class AuthenticationController {
 		model.addAttribute(StringUtils.TitleKey(), "로그인페이지");
 		
 		//기존 데이터베이스에 있는 자료 들고오기
-		User_JPA UserInfoJson = userRepository.findByNickname(principal.getName());
+		//----------------------------------
+		log.info(principal.getName());
+		log.info("userInfo:{}",userRepository.findByUsername(principal.getName()));
+		User_JPA UserInfoJson = userRepository.findByUsername(principal.getName());
+		//----------------------------------
 		log.info("UserInfoJson:{}",UserInfoJson);
 		
 		//User_JPA의 정보를 Session에 넣는다.
