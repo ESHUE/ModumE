@@ -67,7 +67,7 @@ function openboard() {
 }
 
 function changeLocation(location) {
-	const boardContainer = document.querySelector('.boardContainer');		
+	const boardContainer = document.querySelector('.boardContainer');
 	fetchBoard(boardContainer, location);
 }
 
@@ -79,6 +79,16 @@ function fetchBoard(ele, location) {
 	})
 }
 
+function goToEditor() {
+   const boardContainer = document.querySelector('.boardContainer');
+	fetch('/boardRegMod').then(function(response) {
+		response.text().then(function(text) {
+			boardContainer.innerHTML = text;
+		}).then(function() {
+         CKEDITOR.replace('board-regMod-ctnt__textarea');
+      })
+	})
+}
 
 function closeContainer(ele) {
     ele.remove();
