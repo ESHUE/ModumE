@@ -15,10 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.amolrang.modume.model.SocialModel;
-import com.amolrang.modume.model.UserModel;
 import com.amolrang.modume.service.UserService;
 import com.amolrang.modume.utils.StringUtils;
-import com.google.gson.Gson;
 
 import lombok.extern.slf4j.Slf4j;
 

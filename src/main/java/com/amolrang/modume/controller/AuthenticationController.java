@@ -5,7 +5,6 @@ import java.security.Principal;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
@@ -16,17 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.amolrang.modume.api.UserModelGetToToken;
 import com.amolrang.modume.model.Authorize_JPA;
-import com.amolrang.modume.model.SocialModel;
 import com.amolrang.modume.model.Social_JPA;
 import com.amolrang.modume.model.TestModel;
-import com.amolrang.modume.model.UserModel;
 import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.repository.AuthRepository;
 import com.amolrang.modume.repository.SocialRepository;
 import com.amolrang.modume.repository.UserRepository;
-import com.amolrang.modume.service.UserService;
 import com.amolrang.modume.utils.StringUtils;
-import com.nimbusds.openid.connect.sdk.claims.UserInfo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -64,7 +59,11 @@ public class AuthenticationController {
 		model.addAttribute(StringUtils.TitleKey(), "로그인페이지");
 		
 		//기존 데이터베이스에 있는 자료 들고오기
+		//----------------------------------
+		log.info(principal.getName());
+		log.info("userInfo:{}",userRepository.findByUsername(principal.getName()));
 		User_JPA UserInfoJson = userRepository.findByUsername(principal.getName());
+		//----------------------------------
 		log.info("UserInfoJson:{}",UserInfoJson);
 		
 		//User_JPA의 정보를 Session에 넣는다.

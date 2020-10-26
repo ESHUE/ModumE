@@ -86,8 +86,7 @@ public class UserService implements UserDetailsService {
 	public Collection<GrantedAuthority> getAuthorities(String id) {
 		//log.info(msg);
 		//User_JPA userModel = userRepository.findByUsername(id);
-		
-		List<String> string_authorities = authRepository.findAuthenticationByUsername(id);
+		List<String> string_authorities = authRepository.findUsername(id);
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		for (String authority : string_authorities) {
 			authorities.add(new SimpleGrantedAuthority(authority));
