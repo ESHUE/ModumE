@@ -1,4 +1,4 @@
-package com.amolrang.modume.repository;
+package com.amolrang.modume.model;
 
 import java.util.Collection;
 
@@ -20,19 +20,19 @@ public class User_JPA implements UserDetails{
 	private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int MAIN_JPA_SEQ;
+	private int MAIN_SEQ;
 	private int failCnt;
 	private String nickname; // 실제 이름
 	private String username; // 실제 ID
 	private String password; // 실제 PW
+	private String profileImg;
 	private boolean isAccountNonExpired;
 	private boolean isAccountNonLocked;
 	private boolean isCredentialsNonExpired;
 	private boolean isEnabled;
-	
 	@Transient // 테이블 생성할 때 이 컬럼은 제외하라는 어노테이션
 	private Collection<? extends GrantedAuthority> authorities;
-	
+
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub

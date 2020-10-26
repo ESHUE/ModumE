@@ -1,4 +1,4 @@
-package com.amolrang.modume.repository;
+package com.amolrang.modume.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,5 +12,5 @@ import lombok.Data;
 public class Chat_JPA {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int CHAT_ID;
+	private int CHAT_SEQ;
 }

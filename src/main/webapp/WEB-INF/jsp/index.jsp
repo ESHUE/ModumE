@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/css/boardList.css?ver=3">
     <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
     <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
-    <link rel="stylesheet" href="/css/login.css?ver=1">
+    <link rel="stylesheet" href="/css/login.css?ver=2">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
      <!-- 아웃라인 material-icon 링크 추가 -->
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
@@ -167,8 +167,7 @@
 		<c:if test="${userInfo.sns == 'twitch'}">
 			<script type="text/javascript">
 		
-			axios.get('/CallFollows',{}).then(function(res){
-				console.log(res)
+			function getVideo(res){
 				axios.get('/CallVideo',{
 					params:{
 						follow : res.data.data[0].to_id
@@ -183,6 +182,11 @@
 						 controls: true
 					 })
 				})	
+			}
+			
+			axios.get('/CallFollows',{}).then(function(res){
+				console.log(res)
+				getVideo(res)
 			})
 			axios.get('/getStreams',{}).then(function(res){
 				console.log(res)
