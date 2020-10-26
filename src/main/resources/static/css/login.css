@@ -6,7 +6,7 @@ body, fieldset, legend, form, input, a {
 }
 
 #container {
-  background-color: seashell;
+  background-color: #fff;
   border-radius: 5px;
   display:flex;
   justify-content: center;
@@ -26,8 +26,8 @@ body, fieldset, legend, form, input, a {
 
 .fld-login>.legend {
   margin-left: 110px;
+  color: #000;
   margin-bottom: 40px;
-  color: #5d7599;
   font-size: 2rem;
 }
 .fld-join>.legend {
@@ -76,9 +76,9 @@ body, fieldset, legend, form, input, a {
 }
 .active:focus {
   outline: 0;
-  border-color: #5d7599;
+  border-color: #2ad4af;
   border-width: 2px;
-  color: #5d7599;
+  color: #648170;
 }
 #frm.no-border {
   border: 0;
@@ -88,7 +88,7 @@ body, fieldset, legend, form, input, a {
   margin-top: 10px;
   margin-left: 20px;
   padding: 20px 110px;
-  background-color: #5d7599;
+  background-color: #b973a6;
   border-radius: 50px;
   color: #fff;
   text-align: center;
@@ -110,8 +110,34 @@ body, fieldset, legend, form, input, a {
 
 .sbm-join > a {
   text-decoration: none;
-  color: #5d7599;
+  color: #2ad4af;
   margin-left: 20px;
   text-align: center;
   font-size: 1.25rem;
+}
+.kakaoLogin img {
+	width:35px;
+	height: 35px;
+}
+.kakaoLogin a {
+	font-weight: bold;
+	font-size: 18px;
+	color: #000;
+	
+}
+.googleLogin img {
+	width:56px;
+	height: 20px;
+}
+.twitchLogin img {
+	position: relative;
+	top: 0;
+	right: 4px;
+	width:65px;
+	height: 25px;
+}
+.naverLogin a {
+	color: #19ce60;
+	font-weight: bold;
+	font-size: 18px;
 }
