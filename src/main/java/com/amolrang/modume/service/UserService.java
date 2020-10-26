@@ -16,12 +16,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.amolrang.modume.model.SocialModel;
-import com.amolrang.modume.model.TestModel;
 import com.amolrang.modume.model.UserModel;
 import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.repository.AuthRepository;
 import com.amolrang.modume.repository.UserDAO;
 import com.amolrang.modume.repository.UserRepository;
+import com.amolrang.modume.test.TestModel;
 
 @Service
 public class UserService implements UserDetailsService {

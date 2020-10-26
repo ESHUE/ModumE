@@ -1,4 +1,4 @@
-package com.amolrang.modume.model;
+package com.amolrang.modume.test;
 
 import com.amolrang.modume.type.MessageType;
 

@@ -1,4 +1,4 @@
-package com.amolrang.modume.mapper;
+package com.amolrang.modume.test;
 
 import org.apache.ibatis.annotations.Mapper;
 

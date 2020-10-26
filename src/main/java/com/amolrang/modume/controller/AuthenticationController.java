@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.amolrang.modume.api.UserModelGetToToken;
 import com.amolrang.modume.model.Authorize_JPA;
 import com.amolrang.modume.model.Social_JPA;
-import com.amolrang.modume.model.TestModel;
 import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.repository.AuthRepository;
 import com.amolrang.modume.repository.SocialRepository;
 import com.amolrang.modume.repository.UserRepository;
+import com.amolrang.modume.test.TestModel;
 import com.amolrang.modume.utils.StringUtils;
 
 import lombok.extern.slf4j.Slf4j;

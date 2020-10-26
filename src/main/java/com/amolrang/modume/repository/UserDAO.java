@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.amolrang.modume.mapper.UserMapper;
 import com.amolrang.modume.model.SocialModel;
-import com.amolrang.modume.model.TestModel;
 import com.amolrang.modume.model.UserModel;
+import com.amolrang.modume.test.TestModel;
 
 @Repository
 public class UserDAO {

@@ -1,4 +1,4 @@
-package com.amolrang.modume.service;
+package com.amolrang.modume.test;
 
 import org.springframework.stereotype.Component;
 
