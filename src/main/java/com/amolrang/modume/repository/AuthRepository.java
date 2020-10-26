@@ -1,7 +1,11 @@
 package com.amolrang.modume.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.amolrang.modume.model.User_JPA;
+import com.amolrang.modume.model.Authorize_JPA;
 
-public interface AuthRepository extends JpaRepository<User_JPA, Integer>{}
+public interface AuthRepository extends JpaRepository<Authorize_JPA, Integer>{
+	List<String> findByUsername(String username);
+}
