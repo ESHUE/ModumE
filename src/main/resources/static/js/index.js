@@ -79,14 +79,6 @@ function fetchBoard(ele, location) {
 	})
 }
 
-function aa () {
-	changeLocation('/boardRegMod');
-	setTimeout(bb, 50)
-}
-
-function bb() {
-	CKEDITOR.replace('board-regMod-ctnt__textarea');
-}
 
 function closeContainer(ele) {
     ele.remove();

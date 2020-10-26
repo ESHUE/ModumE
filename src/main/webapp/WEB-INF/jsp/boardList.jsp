@@ -6,7 +6,7 @@
         <span class="material-icons">arrow_upward</span>
     </div>
     <!-- 새 글 버튼-->
-    <div class="new-post cursor circle-btn50" onclick="aa()">
+    <div class="new-post cursor circle-btn50" onclick="bb()">
         <span class="material-icons">post_add</span>
     </div>
 </div>
