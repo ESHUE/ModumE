@@ -9,16 +9,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
-import org.apache.ibatis.type.Alias;
 import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.Data;
 
 @Entity
 @Data
-@Alias("UserBoard_JPA")
-public class UserBoard_JPA {
+public class Userboard_JPA {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int USERBOARD_SEQ;
@@ -33,4 +32,9 @@ public class UserBoard_JPA {
 	@ManyToOne
 	@JoinColumn(name = "MAIN_SEQ")
 	private User_JPA MAIN_SEQ;
+	
+	@Transient
+	private String username;
+	@Transient
+	private String profileImg;
 }
