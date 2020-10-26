@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="board-btns board-detail-btn">
+	<!-- 뒤로가기 버튼 -->
+	<div class="go-to-back board-detail-back cursor circle-btn50" onclick="changeLocation('/boardList')">
+		<span class="material-icons">arrow_back</span>
+	</div>
     <!-- top 버튼 -->
-    <div class="go-to-top board-detail-top cursor-pointer" onclick="goToTop()">
+    <div class="go-to-top board-detail-top cursor circle-btn50" onclick="goToTop()">
         <span class="material-icons">arrow_upward</span>
     </div>
 </div>
@@ -21,7 +25,7 @@
             <td class="board-detail-title" colspan="2">제목입니다라랄라</td>
         </tr>
         <tr class="board-date">
-            <td classs="board-detail-date" colspan="2">작성 : 10-20 | 수정 : 10-22</td>
+            <td classs="board-detail-date" colspan="2">─── 작성 : 10-20 │ 수정 : 10-22 ───</td>
         </tr>
         <tr class="board-ctnt board-detail-ctnt">
             <td class="board-detail-ctnt" colspan="2">
@@ -82,15 +86,15 @@
     </table>
 </div>
 <div class="board-detail-option-box board-icons">
-    <div class="board-hits cursor-pointer flex-center">
+    <div class="board-hits cursor flex-center">
         <span class="material-icons-outlined mr5">remove_red_eye</span>
         <span>10</span>
     </div>
-    <div class="board-comment cursor-pointer flex-center">
+    <div class="board-comment cursor flex-center">
         <span class="material-icons-outlined mr5">comment</span>
         <span>10</span>
     </div>
-    <div class="board-like cursor-pointer flex-center">
+    <div class="board-like cursor flex-center">
         <span class="material-icons-outlined mr5">thumb_up</span>
         <span>10</span>
     </div>
