@@ -1,4 +1,4 @@
-package com.amolrang.modume.repository;
+package com.amolrang.modume.model;
 
 import java.util.Collection;
 

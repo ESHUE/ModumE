@@ -1,4 +1,4 @@
-package com.amolrang.modume.repository;
+package com.amolrang.modume.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,15 +11,14 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Social_JPA {
+public class Authorize_JPA {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int SOCIAL_JPA_SEQ;
+	private int AUTH_JPA_SEQ;
 	
 	@ManyToOne
-	@JoinColumn(name = "MAIN_JPA_SEQ")
-	private User_JPA MAIN_JPA_SEQ;
-	private String social_id;
-	private String social_password;
-	private String sns;
+	@JoinColumn(name = "username")
+	private User_JPA username;
+	
+	private String Authentication;
 }

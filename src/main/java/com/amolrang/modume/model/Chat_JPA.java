@@ -1,4 +1,4 @@
-package com.amolrang.modume.repository;
+package com.amolrang.modume.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
