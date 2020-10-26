@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
 <form id="board-regMod__form" action="" class="board-regMod__form">
     <div class="board-regMod-title">
         <div class="board-regMod-title__input">

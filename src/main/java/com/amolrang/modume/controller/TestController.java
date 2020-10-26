@@ -40,7 +40,7 @@ public class TestController {
 	public String boardRegMod(Principal principal) {
 		return "/boardRegMod";
 	}
-	
+		
 	@GetMapping("/userinfo")
 	public String userInfo() {
 		return "/userinfo";

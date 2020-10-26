@@ -13,7 +13,7 @@
 	<div id="sectionContainerCenter">
 		<div>
 			<div class="msg">${err}</div>
-			<form id="frm" class="frm" action="/join" method="post">
+			<form id="frm" class="frm" action="/join" enctype="multipart/form-data" method="post">
 				<div id="idChkResult" class="msg"></div>
 				<div>
 					<input type="text" name="username" placeholder="아이디">
@@ -27,6 +27,9 @@
 				</div>
 				<div>
 					<input type="text" name="nickname" placeholder="이름">
+				</div>
+				<div>
+					<input type="file" name="profile">
 				</div>
 				<div>
 					<input type="submit" value="회원가입">

@@ -12,15 +12,4 @@ function removeAllChild(ele) {
 */
 
 
-function changeLocation(location) {
-	const boardContainer = document.querySelector('.boardContainer');		
-	fetchBoard(boardContainer, location);
-}
 
-function fetchBoard(ele, location) {
-	fetch(location).then(function(response) {
-		response.text().then(function(text) {
-			ele.innerHTML = text;
-		})
-	})
-}

@@ -66,7 +66,27 @@ function openboard() {
 	changeLocation('/boardList');
 }
 
+function changeLocation(location) {
+	const boardContainer = document.querySelector('.boardContainer');		
+	fetchBoard(boardContainer, location);
+}
 
+function fetchBoard(ele, location) {
+	fetch(location).then(function(response) {
+		response.text().then(function(text) {
+			ele.innerHTML = text;
+		})
+	})
+}
+
+function aa () {
+	changeLocation('/boardRegMod');
+	setTimeout(bb, 50)
+}
+
+function bb() {
+	CKEDITOR.replace('board-regMod-ctnt__textarea');
+}
 
 function closeContainer(ele) {
     ele.remove();
