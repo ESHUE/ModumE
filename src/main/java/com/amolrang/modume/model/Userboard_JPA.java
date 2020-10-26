@@ -32,9 +32,4 @@ public class Userboard_JPA {
 	@ManyToOne
 	@JoinColumn(name = "MAIN_SEQ")
 	private User_JPA MAIN_SEQ;
-	
-	@Transient
-	private String username;
-	@Transient
-	private String profileImg;
 }
