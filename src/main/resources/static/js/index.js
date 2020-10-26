@@ -7,6 +7,8 @@ var inputChat = null;
 var username = null;
 var inputUl = null;
 
+
+
 function chatInit() {
     const chatContainer = document.querySelector('.chatContainer');
     const boardContainer = document.querySelector('.boardContainer');
@@ -218,10 +220,17 @@ function openAlertMenu() {
    centralMenu1_2.append(makeDiv);
 }
 
+function event(e) {
+	if(e.target.className == 'loginWindowContainer') {
+		removeLogin();
+	}
+}
+
 function makeLogin() {
    let loginWindowContainer = document.createElement('div');
    loginWindowContainer.classList.add('loginWindowContainer');
    loginWindowContainer.setAttribute('id', 'loginWindowContainer');
+   loginWindowContainer.addEventListener('click', event);
    
    let loginPageContainer = document.createElement('div');
    loginPageContainer.classList.add('loginPageContainer');

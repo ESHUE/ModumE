@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title}</title>
     <link rel="icon" href="/img/favicon.png">
-    <link rel="stylesheet" href="/css/index.css?ver=6">
+    <link rel="stylesheet" href="/css/index.css?ver=8">
     <link rel="stylesheet" href="/css/boardList.css?ver=3">
     <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
     <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
@@ -81,8 +81,7 @@
 	</main>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-<<<<<<< HEAD
-    <script src="/js/index.js?aaa=3"></script>
+    <script src="/js/index.js?aaa=7"></script>
     <script src="/js/login.js"></script>
     <script src="/js/boardList.js?ver=1"></script>
     <script src="/js/boardDetail.js?ver=1"></script>
@@ -91,15 +90,6 @@
     <!-- 트위치 채널 긁어오기(채널지정) -->
     <script src="https://embed.twitch.tv/embed/v1.js"></script>
     <script>
-=======
-	<script src="/js/index.js?aaa=2"></script>
-	<script src="/js/login.js"></script>
-	<script src="/js/boardList.js?ver=1"></script>
-	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-	<!-- 트위치 채널 긁어오기(채널지정) -->
-	<script src="https://embed.twitch.tv/embed/v1.js"></script>
-	<script>
->>>>>>> branch 'master' of https://github.com/ESHUE/ModumE.git
     
     function connect(event){
     	username = '${userInfo.username}';
