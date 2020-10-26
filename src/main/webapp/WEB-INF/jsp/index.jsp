@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/css/boardList.css?ver=3">
     <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
     <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
-    <link rel="stylesheet" href="/css/login.css?ver=1">
+    <link rel="stylesheet" href="/css/login.css?ver=2">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
      <!-- 아웃라인 material-icon 링크 추가 -->
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
@@ -81,7 +81,6 @@
 	</main>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-<<<<<<< HEAD
 	<script src="/js/index.js?aaa=4"></script>
 	<script src="/js/login.js"></script>
 	<script src="/js/boardList.js?ver=2"></script>
@@ -91,17 +90,6 @@
 	<!-- 트위치 채널 긁어오기(채널지정) -->
 	<script src="https://embed.twitch.tv/embed/v1.js"></script>
 	<script>
-=======
-    <script src="/js/index.js?aaa=7"></script>
-    <script src="/js/login.js"></script>
-    <script src="/js/boardList.js?ver=1"></script>
-    <script src="/js/boardDetail.js?ver=1"></script>
-    <script src="/js/boardRegMod.js?ver=1"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!-- 트위치 채널 긁어오기(채널지정) -->
-    <script src="https://embed.twitch.tv/embed/v1.js"></script>
-    <script>
->>>>>>> branch 'Eunsil' of https://github.com/ESHUE/ModumE.git
     
     function connect(event){
     	username = '${userInfo.username}';

@@ -10,7 +10,7 @@ html, body {
    height: 100%;
    padding-top: 50px;
 }
-#tabMenuContainer {
+.tabMenuContainer {
   display: flex;
   justify-content: space-evenly;
 }
@@ -29,17 +29,7 @@ button {
   text-decoration: none;
   font-weight: bold;
 }
-#tabMenuContainer .tabMenuBtn a:hover {
-  color: #5d7599;
-}
 .underline {
    display: block;
-     border-bottom: 2px solid #5d7599;
-}
-
-.tabBox {
-  display: none;
-}
-.tabBox.on {
-  display: block;
+     border-bottom: 2px solid #56373c;
 }
