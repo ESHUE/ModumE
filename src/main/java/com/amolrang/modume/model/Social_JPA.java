@@ -1,3 +1,4 @@
+
 package com.amolrang.modume.model;
 
 import javax.persistence.Column;

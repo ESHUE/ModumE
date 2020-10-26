@@ -36,6 +36,11 @@ public class TestController {
 		return "/boardDetail";
 	}
 	
+	@RequestMapping(value = "/boardRegMod", method = RequestMethod.GET)
+	public String boardRegMod(Principal principal) {
+		return "/boardRegMod";
+	}
+		
 	@GetMapping("/userinfo")
 	public String userInfo() {
 		return "/userinfo";

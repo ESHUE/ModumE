@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service 
 public class twitchAPI {
 	private Gson gson = new Gson();
-	private RestTemplate restTemplate = new RestTemplate();
+	private RestTemplate restTemplate =null;
 	private ResponseEntity<Map> response = null;
 	private HttpHeaders headers = null;
 
@@ -30,8 +30,8 @@ public class twitchAPI {
 	
 	public String getTwitchMyFollower(OAuth2AuthenticationToken authentication,
 			OAuth2AuthorizedClientService authAuthorizedClientService) {
-		String url = "https://api.twitch.tv/helix/users/follows?from_id=";
-		String query = authentication.getPrincipal().getName();
+		String url = "https://api.twitch.tv/helix/users/follows";
+		String query = "?from_id="+authentication.getPrincipal().getName();
 		
 		newHeader(authentication,authAuthorizedClientService);
 		restTemplateExchange(url, query);
@@ -43,8 +43,8 @@ public class twitchAPI {
 	
 	public String getTwtichVideo(String follow,OAuth2AuthenticationToken authentication,
 			OAuth2AuthorizedClientService authAuthorizedClientService) {
-		String url = "https://api.twitch.tv/helix/videos?user_id=";
-		String query = follow;
+		String url = "https://api.twitch.tv/helix/videos";
+		String query = "?user_id="+follow;
 		
 		newHeader(authentication,authAuthorizedClientService);
 		restTemplateExchange(url, query);
@@ -67,9 +67,8 @@ public class twitchAPI {
 		return gson.toJson(data);
 	}
 	
-	
-	
 	private ResponseEntity<Map> restTemplateExchange(String url, String query){
+		restTemplate = new RestTemplate();
 		return response = restTemplate.exchange(url+query, HttpMethod.GET, new HttpEntity(headers), Map.class);
 	}
 	

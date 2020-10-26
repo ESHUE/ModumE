@@ -9,13 +9,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title}</title>
     <link rel="icon" href="/img/favicon.png">
-    <link rel="stylesheet" href="/css/index.css?ver=4">
-    <link rel="stylesheet" href="/css/boardList.css?ver=2">
-    <link rel="stylesheet" href="/css/boardDetail.css?ver=2">
-    <link rel="stylesheet" href="/css/login.css?ver=1">
+    <link rel="stylesheet" href="/css/index.css?ver=8">
+    <link rel="stylesheet" href="/css/boardList.css?ver=3">
+    <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
+    <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
+    <link rel="stylesheet" href="/css/login.css?ver=2">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
      <!-- 아웃라인 material-icon 링크 추가 -->
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+	<!-- 위지윅 에디터 추가 -->
+	<script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
 </head>
 <body>
 	<div id="bg1">
@@ -80,14 +83,17 @@
 	</main>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-    <script src="/js/index.js?aaa=3"></script>
+
+    <script src="/js/index.js?aaa=11"></script>
     <script src="/js/login.js"></script>
-    <script src="/js/boardList.js?ver=1"></script>
+    <script src="/js/boardList.js?ver=4"></script>
+    <script src="/js/boardDetail.js?ver=1"></script>
+    <script src="/js/boardRegMod.js?ver=1"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- 트위치 채널 긁어오기(채널지정) -->
     <script src="https://embed.twitch.tv/embed/v1.js"></script>
-    <script>
     
+    <script>
     function connect(event){
     	username = '${userInfo.username}';
     	console.log(username)
@@ -121,7 +127,7 @@
       }); */
 	</script>
 
-<script>
+	<script>
   const underline = document.getElementsByClassName('tabMenuBtn')
 
   function temp(idx) {
@@ -158,11 +164,11 @@
 </script>
 
 	<sec:authorize access="isAuthenticated()">
-	<script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
+		<script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
 		<c:if test="${userInfo.sns == 'twitch'}">
 			<script type="text/javascript">
-			axios.get('/CallFollows',{}).then(function(res){
-				console.log(res)
+		
+			function getVideo(res){
 				axios.get('/CallVideo',{
 					params:{
 						follow : res.data.data[0].to_id
@@ -176,7 +182,12 @@
 						 playing: true,
 						 controls: true
 					 })
-				})
+				})	
+			}
+			
+			axios.get('/CallFollows',{}).then(function(res){
+				console.log(res)
+				getVideo(res)
 			})
 			axios.get('/getStreams',{}).then(function(res){
 				console.log(res)

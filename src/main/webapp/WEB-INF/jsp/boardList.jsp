@@ -6,13 +6,13 @@
         <span class="material-icons">arrow_upward</span>
     </div>
     <!-- 새 글 버튼-->
-    <div class="new-post cursor circle-btn50">
+    <div class="new-post cursor circle-btn50" onclick="aa()">
         <span class="material-icons">post_add</span>
     </div>
 </div>
 <div class="boardContents">
     <!-- 1번 테이블 -->
-    <table class="board-table cursor" onclick="goToDetail()">
+    <table class="board-table cursor" onclick="changeLocation('/boardDetail')">
         <tr class="board-profile">
             <td rowspan="2" class="board-profile-td">
                 <div class="board-profile__box">
@@ -67,7 +67,7 @@
     </table>
 
     <!-- 2번 테이블 -->
-    <table class="board-table cursor" onclick="goToDetail()">
+    <table class="board-table cursor" onclick="changeLocation('/boardDetail')">
         <tr class="board-profile">
             <td rowspan="2" class="board-profile-td">
                 <div class="board-profile__box">

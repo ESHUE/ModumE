@@ -1,3 +1,4 @@
+
 package com.amolrang.modume.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;

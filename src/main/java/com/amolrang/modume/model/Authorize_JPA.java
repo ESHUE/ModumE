@@ -1,3 +1,4 @@
+
 package com.amolrang.modume.model;
 
 import javax.persistence.Entity;
@@ -20,3 +21,4 @@ public class Authorize_JPA {
 	private User_JPA user;
 	private String Authentication;
 }
+

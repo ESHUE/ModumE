@@ -7,6 +7,8 @@ var inputChat = null;
 var username = null;
 var inputUl = null;
 
+
+
 function chatInit() {
     const chatContainer = document.querySelector('.chatContainer');
     const boardContainer = document.querySelector('.boardContainer');
@@ -61,16 +63,29 @@ function openboard() {
     const makeDiv = document.createElement('div');
     makeDiv.className = 'boardContainer';
     sectionContainer.append(makeDiv);
-   fetchBoardList();
+	changeLocation('/boardList');
 }
 
+function changeLocation(location) {
+	const boardContainer = document.querySelector('.boardContainer');		
+	fetchBoard(boardContainer, location);
+}
 
-function fetchBoardList() {
-   fetch('/boardList').then(function(response) {
-      response.text().then(function(text) {
-         document.querySelector('.boardContainer').innerHTML = text;
-      })
-   })
+function fetchBoard(ele, location) {
+	fetch(location).then(function(response) {
+		response.text().then(function(text) {
+			ele.innerHTML = text;
+		})
+	})
+}
+
+function aa () {
+	changeLocation('/boardRegMod');
+	setTimeout(bb, 50)
+}
+
+function bb() {
+	CKEDITOR.replace('board-regMod-ctnt__textarea');
 }
 
 function closeContainer(ele) {
@@ -225,10 +240,17 @@ function openAlertMenu() {
    centralMenu1_2.append(makeDiv);
 }
 
+function event(e) {
+	if(e.target.className == 'loginWindowContainer') {
+		removeLogin();
+	}
+}
+
 function makeLogin() {
    let loginWindowContainer = document.createElement('div');
    loginWindowContainer.classList.add('loginWindowContainer');
    loginWindowContainer.setAttribute('id', 'loginWindowContainer');
+   loginWindowContainer.addEventListener('click', event);
    
    let loginPageContainer = document.createElement('div');
    loginPageContainer.classList.add('loginPageContainer');
