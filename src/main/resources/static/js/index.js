@@ -299,6 +299,11 @@ function moveToJoin(){
 	makeJoin();
 }
 
+function moveToLogin(){
+	removeLogin();
+	showLogin();
+}
+
 function makeJoin(){
    fetch('/join').then(function(response) {
       response.text().then(function(text) {

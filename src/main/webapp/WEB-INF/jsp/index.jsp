@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/css/boardList.css?ver=3">
     <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
     <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
-    <link rel="stylesheet" href="/css/login.css?ver=2">
+    <link rel="stylesheet" href="/css/login.css?ver=27">
     <link rel="stylesheet" href="/css/join.css?ver=89">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
      <!-- 아웃라인 material-icon 링크 추가 -->

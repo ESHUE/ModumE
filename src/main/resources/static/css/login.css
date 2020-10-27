@@ -114,7 +114,7 @@ body, fieldset, legend, form, input, a {
 	right: 195px;
 }
 
-.sbm-join>a {
+.sbm-join>span {
 	text-decoration: none;
 	color: #7777FF;
 	/* margin-left: 20px; */
