@@ -38,7 +38,6 @@
 
 .board-regMod__form .board-regMod-ctnt {
     width: 100%;
-    height: 82%;
 }
 
 .board-regMod__form .board-regMod-ctnt .board-regMod-ctnt__inputFile {
@@ -46,8 +45,6 @@
     height: 40px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid rgb(220, 220, 220) ;
-    
 }
 
 .board-regMod__form .board-regMod-ctnt .board-regMod-ctnt__inputFile #ctnt-img-title {
@@ -58,48 +55,9 @@
     color: rgb(73, 73, 73);
 }
 
-.board-regMod__form .board-regMod-ctnt .board-regMod-ctnt__inputFile label {
-    margin-left: 5px;
-    color: #A6B1C0;
-    font-size: small;
-}
-
-.board-regMod__form .board-regMod-ctnt .board-regMod-ctnt__inputFile label:hover{
-    color:rgba(255, 175, 182, .6);
-    font-weight: bold;;
-}
-
-.board-regMod__form .board-regMod-ctnt .board-regMod-ctnt__inputFile label input {
-    display: none;
-}
-
-.board-regMod__form .board-regMod-ctnt .board-regMod-ctnt__text {
-    width: 100%;
-    height: 85%;
-}
-
-.board-regMod__form .board-regMod-ctnt .board-regMod-ctnt__text textarea {
-    width: 100%;
-    height: 100%;
-    padding: 5px;
-    box-sizing: border-box;
-    border: none;
-    border-bottom: 1px solid rgb(220, 220, 220) ;
-    resize: none;
-    color: rgb(73, 73, 73);
-    font-size: 1em;    
-}
-
-.board-regMod__form .board-regMod-ctnt .board-regMod-ctnt__cnt {
-    height: 5%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    color: rgb(220, 220, 220);
-}
-
 .board-regMod__btns {
     width: 100%;
     display: flex;
     justify-content: space-around;
+    margin-top: 8px;
 }

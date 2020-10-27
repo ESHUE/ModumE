@@ -1,6 +1,9 @@
 package com.amolrang.modume.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -39,4 +42,16 @@ public class MvcConfig implements WebMvcConfigurer {
 		// 뒤에 classpath~~ 경로를 /** 이렇게만 써도 되도록(편리하게) 
 		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/", "classpath:/META-INF/resources/");
 	}
+	
+	/*
+	// 파일 업로드 위한 빈등록
+	@Bean 
+	public MultipartResolver multipartResolver() { 
+		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(); 
+		multipartResolver.setMaxUploadSize(10485760); // 1024 * 1024 * 10 = 10 MB return multipartResolver; }
+		 return multipartResolver;
+	}
+	*/
+	
+
 }

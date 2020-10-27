@@ -79,6 +79,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		// 권한없이 접근한 페이지로 보내는 곳
 		http.exceptionHandling().accessDeniedPage("/denied");
+		
+		// X-Frame-Options는 클릭 잭킹 공격을 막기 위해 거부되어 있으나 ckeditor로 파일 업로드 하기 위해 disable로 설정함 
+		http.headers().frameOptions().disable();
 	}
 	
 	// 패스워드 암호화

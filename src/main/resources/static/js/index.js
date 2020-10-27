@@ -85,7 +85,11 @@ function goToEditor() {
 		response.text().then(function(text) {
 			boardContainer.innerHTML = text;
 		}).then(function() {
-         CKEDITOR.replace('board-regMod-ctnt__textarea');
+         CKEDITOR.replace('board-regMod-ctnt__textarea',
+							{filebrowserUploadUrl:'/imageUpload'
+							 , resize_enabled: false
+							 , height: '34vh'
+							 });
       })
 	})
 }
