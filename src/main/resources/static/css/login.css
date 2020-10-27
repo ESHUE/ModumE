@@ -121,6 +121,7 @@ body, fieldset, legend, form, input, a {
 	text-align: center;
 	font-size: 17px;
 	font-weight: bold;
+	cursor: pointer;
 }
 .kakaoLogin a {
 	font-weight: bold;
@@ -148,4 +149,5 @@ body, fieldset, legend, form, input, a {
 	text-align: center;
 	margin: 1%;
 	padding: 1%;
+	
 }

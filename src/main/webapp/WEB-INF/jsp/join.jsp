@@ -38,8 +38,9 @@
 
 				</div>
 			</form>
-			<div>
-				<span onclick="moveToLogin()">로그인</span> <a href="/">메인화면</a>
+			<div class="moveList">
+				<span onclick="moveToLogin()">로그인</span> 
+				<a href="/">메인화면</a>
 			</div>
 		</div>
 

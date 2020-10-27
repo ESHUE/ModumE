@@ -6,7 +6,7 @@ html, body {
    height: 100%;
 }
 #sectionContainerCenter {
-   display: flex;
+   	display: flex;
     justify-content: space-evenly;
     background-color: #fff;
     padding:100px;
@@ -15,15 +15,28 @@ html, body {
    color:#a07be5;
    font-weight: normal;
    font-size: 2rem;
+   margin: 20px 0;
 }
 .joinListContainer input {
-   margin-top: 25px; 
+   margin-top: 30px; 
    padding-right : 50px;
    border: none;
    border-bottom: 1px solid gray;
      box-sizing: border-box;
      cursor: text;
 }
+
+.joinListContainer button {
+	background-color : #fff;
+}
+.joinListContainer button:hover {
+	background-color : #a07be5;
+	border-radius: 5%;
+	
+	opacity: 0.6;
+}
+
+
 .profileSelect input[type="file"] {
    display: none;
 }
@@ -40,7 +53,6 @@ html, body {
     background-color: #fdfdfd;
     cursor: pointer;
     border: none;
-  /*  border-radius: 5px;*/
 }
 
 .joinListContainer input:focus {
@@ -64,4 +76,9 @@ html, body {
    text-align: center;
    font-size: 1.3rem;
 
+}
+
+.moveList {
+	margin-top: 20px;
+	cursor: pointer;
 }
