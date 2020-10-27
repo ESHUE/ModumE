@@ -35,11 +35,11 @@
 				</div>
 				<div class="joinSbm">
 					<input type="submit" value="sign up">
+
 				</div>
 			</form>
 			<div>
-				<!--<a href="${login}">로그인</a>-->
-				<a href="/">메인화면</a>
+				<span onclick="moveToLogin()">로그인</span> <a href="/">메인화면</a>
 			</div>
 		</div>
 
@@ -58,6 +58,5 @@
 		}
 	</script>
 	</div>
-	</form>
 </body>
 </html>

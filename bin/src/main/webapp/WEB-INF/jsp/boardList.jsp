@@ -2,17 +2,17 @@
     pageEncoding="UTF-8"%>
 <div class="board-btns">
        <!-- top 버튼 -->
-    <div class="go-to-top cursor-pointer" onclick="goToTop()">
+    <div class="go-to-top cursor circle-btn50" onclick="goToTop()">
         <span class="material-icons">arrow_upward</span>
     </div>
     <!-- 새 글 버튼-->
-    <div class="new-post cursor-pointer">
+    <div class="new-post cursor circle-btn50" onclick="bb()">
         <span class="material-icons">post_add</span>
     </div>
 </div>
 <div class="boardContents">
     <!-- 1번 테이블 -->
-    <table class="board-table cursor-pointer" onclick="goToDetail()">
+    <table class="board-table cursor" onclick="changeLocation('/boardDetail')">
         <tr class="board-profile">
             <td rowspan="2" class="board-profile-td">
                 <div class="board-profile__box">
@@ -67,7 +67,7 @@
     </table>
 
     <!-- 2번 테이블 -->
-    <table class="board-table cursor-pointer" onclick="goToDetail()">
+    <table class="board-table cursor" onclick="changeLocation('/boardDetail')">
         <tr class="board-profile">
             <td rowspan="2" class="board-profile-td">
                 <div class="board-profile__box">

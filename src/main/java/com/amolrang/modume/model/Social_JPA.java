@@ -1,3 +1,4 @@
+
 package com.amolrang.modume.model;
 
 import javax.persistence.Entity;
@@ -15,10 +16,11 @@ public class Social_JPA {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int SOCIAL_SEQ;
+	
 	@ManyToOne
 	@JoinColumn(name = "MAIN_SEQ")
-	private User_JPA MAIN_SEQ;
+	private User_JPA user;
 	private String socialUsername;
-	private String socialPassword;
+	private String username;
 	private String sns;
 }

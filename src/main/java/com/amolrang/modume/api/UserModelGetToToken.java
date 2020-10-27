@@ -14,11 +14,9 @@ import org.springframework.security.oauth2.client.authentication.OAuth2Authentic
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.amolrang.modume.model.SocialModel;
-import com.amolrang.modume.model.UserModel;
-import com.amolrang.modume.service.UserService;
+import com.amolrang.modume.model.Social_JPA;
+import com.amolrang.modume.repository.SocialRepository;
 import com.amolrang.modume.utils.StringUtils;
-import com.google.gson.Gson;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,15 +24,16 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class UserModelGetToToken {
 	@Autowired
-	private UserService userService;
+	SocialRepository socialRepository;
 	
-	public SocialModel CallUserInfoToJson(OAuth2AuthenticationToken authentication,
+	public Social_JPA CallUserInfoToJson(OAuth2AuthenticationToken authentication,
 			OAuth2AuthorizedClientService auth2AuthorizedClientService) {
 		OAuth2AuthorizedClient client = auth2AuthorizedClientService
 				.loadAuthorizedClient(authentication.getAuthorizedClientRegistrationId(), authentication.getName());
 		log.info("access token:{}", client.getAccessToken().getTokenValue());
 		String userInfoEndpointUri = client.getClientRegistration().getProviderDetails().getUserInfoEndpoint().getUri();
-		SocialModel socialModel = new SocialModel();
+		//SocialModel socialModel = new SocialModel();
+		Social_JPA socialModel = new Social_JPA();
 		if (!StringUtils.isEmpty(userInfoEndpointUri)){
 			
 			RestTemplate restTemplate = new RestTemplate();
@@ -104,19 +103,16 @@ public class UserModelGetToToken {
 				sns = "twitch";
 				break;
 			}
-			//2020.10.20 마이페이지 넘어가는 곳 만들지 못해서 임시 생성한 구간
-			if(userService.loadSocialUserName(id)==null) {
+			//2020.10.26 소셜 로그인시 정보  SocialModel에 담아버림
+			if(socialRepository.findByUsername(id)==null) {
 				//id를 db에서 찾지 못했을 때
-				
-				socialModel.setS_id(id);
-				socialModel.setUsername(name);
+//				socialModel.setS_id(id);
+//				socialModel.setUsername(name);
+//				socialModel.setSns(sns);
+//				log.info("socialModel:{}",socialModel);
+				socialModel.setSocialUsername(id);
 				socialModel.setSns(sns);
-				userService.socialSave(socialModel,"ROLE_MEMBER");
-				log.info("socialModel:{}",socialModel);
-				//비밀번호.....
-				//userService.save(userModel, "ROLE_MEMBER");
-			}else {
-				//id가 같으면 정보 불러오기
+				socialModel.setUsername(name);
 			}
 		}
 		return socialModel;

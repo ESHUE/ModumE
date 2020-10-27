@@ -1,34 +1,35 @@
 @charset "UTF-8";
 html, body {
-	padding: 0;
-	margin: 0;
+   padding: 0;
+   margin: 0;
     width: 100%;
-	height: 100%;
+   height: 100%;
 }
 #sectionContainerCenter {
-	display: flex;
+   display: flex;
     justify-content: space-evenly;
-    padding-top: 100px;
+    background-color: #fff;
+    padding:100px;
 }
 .joinHeader h1 {
-	color:#a07be5;
-	font-weight: normal;
-	font-size: 2rem;
+   color:#a07be5;
+   font-weight: normal;
+   font-size: 2rem;
 }
 .joinListContainer input {
-	margin-top: 25px; 
-	padding-right : 50px;
-	border: none;
-	border-bottom: 1px solid gray;
-  	box-sizing: border-box;
-  	cursor: text;
+   margin-top: 25px; 
+   padding-right : 50px;
+   border: none;
+   border-bottom: 1px solid gray;
+     box-sizing: border-box;
+     cursor: text;
 }
 .profileSelect input[type="file"] {
-	display: none;
+   display: none;
 }
 /*.profileSelect input[type="file"] {
-	border: none;
-	margin-top: 25px; 
+   border: none;
+   margin-top: 25px; 
 }*/
 .profileSelect label {
     display: inline-block;
@@ -43,23 +44,24 @@ html, body {
 }
 
 .joinListContainer input:focus {
-	outline: 0;
-  	border-color: #a07be5;
-  	border-width: 2px;
-  	color: #a07be5;
+   outline: 0;
+     border-color: #a07be5;
+     border-width: 2px;
+     color: #a07be5;
 }
 .joinListContainer button {
-	border:none;
+   border:none;
 }
 .joinSbm input {
-	border: none;
-	margin-top: 25px;
-/*	margin-top: 10px;
-	margin-left: 20px;*/
-	padding: 20px 110px;
-	background-color: #a07be5;
-	border-radius: 50px;
-	color: #fff;
-	text-align: center;
-	font-size: 1.3rem;
+   border: none;
+   margin-top: 25px;
+/*   margin-top: 10px;
+   margin-left: 20px;*/
+   padding: 20px 110px;
+   background-color: #a07be5;
+   border-radius: 50px;
+   color: #fff;
+   text-align: center;
+   font-size: 1.3rem;
+
 }

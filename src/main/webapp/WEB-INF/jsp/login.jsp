@@ -16,8 +16,8 @@
 		<input class="loginSbm" type="submit" value="sign in"> <input name="${_csrf.parameterName}" type="hidden" value="${_crsf.token}">
 	</form>
 	<div class="sns-modume-sign">
-		<div class="input-container focus modeumEJoin" >
-			<a href="/join">ModeumE</a>
+		<div class="input-container focus sbm-join">
+			<span onclick="moveToJoin()">ModeumE</span>
 		</div>
 		<div class="input-container focus googleLogin">
 			<a href="/oauth2/authorization/google"><img src="/img/google_logo.svg" alt="google_logo"></a>

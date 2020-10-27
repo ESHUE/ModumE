@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="/css/boardList.css?ver=3">
     <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
     <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
-    <link rel="stylesheet" href="/css/login.css?ver=3">
+    <link rel="stylesheet" href="/css/login.css?ver=27">
+    <link rel="stylesheet" href="/css/join.css?ver=89">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
      <!-- 아웃라인 material-icon 링크 추가 -->
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
@@ -83,6 +84,7 @@
 	</main>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
     <script src="/js/index.js?aaa=11"></script>
     <script src="/js/login.js"></script>
     <script src="/js/boardList.js?ver=4"></script>
@@ -94,7 +96,7 @@
     
     <script>
     function connect(event){
-    	username = '${userInfo.username}';
+    	username = '${UserInfoJson.username}';
     	console.log(username)
     	if(username){
     		console.log("connect Start")

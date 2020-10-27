@@ -67,7 +67,7 @@ function openboard() {
 }
 
 function changeLocation(location) {
-	const boardContainer = document.querySelector('.boardContainer');		
+	const boardContainer = document.querySelector('.boardContainer');
 	fetchBoard(boardContainer, location);
 }
 
@@ -79,13 +79,15 @@ function fetchBoard(ele, location) {
 	})
 }
 
-function aa () {
-	changeLocation('/boardRegMod');
-	setTimeout(bb, 50)
-}
-
-function bb() {
-	CKEDITOR.replace('board-regMod-ctnt__textarea');
+function goToEditor() {
+   const boardContainer = document.querySelector('.boardContainer');
+	fetch('/boardRegMod').then(function(response) {
+		response.text().then(function(text) {
+			boardContainer.innerHTML = text;
+		}).then(function() {
+         CKEDITOR.replace('board-regMod-ctnt__textarea');
+      })
+	})
 }
 
 function closeContainer(ele) {
@@ -253,6 +255,7 @@ function makeLogin() {
    loginWindowContainer.setAttribute('id', 'loginWindowContainer');
    loginWindowContainer.addEventListener('click', event);
    
+
    let loginPageContainer = document.createElement('div');
    loginPageContainer.classList.add('loginPageContainer');
    
@@ -277,6 +280,7 @@ function makeLogin() {
    body.prepend(loginWindowContainer);
 }
 
+
 function showLogin() {
    fetch('/login').then(function(response) {
       response.text().then(function(text) {
@@ -294,8 +298,24 @@ function removeLogin() {
    loginWindowContainer.remove();
 }
 
+function moveToJoin(){
+	removeLogin();
+	makeJoin();
+}
 
+function moveToLogin(){
+	removeLogin();
+	showLogin();
+}
 
+function makeJoin(){
+   fetch('/join').then(function(response) {
+      response.text().then(function(text) {
+		 makeLogin();
+		document.querySelector('#loginWindow').innerHTML = text;
+      })
+   })
+}
 
 /*usernameForm.addEventListener('submit', connect, true)*/
 

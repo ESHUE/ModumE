@@ -1,3 +1,4 @@
+
 package com.amolrang.modume.model;
 
 import javax.persistence.Entity;
@@ -13,4 +14,5 @@ public class Chat_JPA {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int CHAT_SEQ;
+
 }

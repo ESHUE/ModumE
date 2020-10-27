@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.amolrang.modume.mapper.UserMapper;
 import com.amolrang.modume.model.SocialModel;
-import com.amolrang.modume.model.TestModel;
 import com.amolrang.modume.model.UserModel;
+import com.amolrang.modume.test.TestModel;
 
 @Repository
 public class UserDAO {
@@ -21,9 +21,7 @@ public class UserDAO {
 	
 	
 	public UserModel save(UserModel userModel, String role) {
-		//userMapper.insertUser(userModel);
 		userMapper.insUser(userModel);
-		//userMapper.insertUser(userModel);
 		userMapper.insertUserAutority(userModel.getId(), role);
 		return userModel;
 	}
@@ -34,7 +32,7 @@ public class UserDAO {
 	
 	
 	// 추가된 곳
-	// Return타입 잘 확인하기( SocialModel임)
+	// Return타입 잘 확인하기(SocialModel임)
 	public SocialModel findId(String id) {
 		return userMapper.selUser(id);
 	}
@@ -48,5 +46,14 @@ public class UserDAO {
 		// TODO Auto-generated method stub
 		userMapper.insertSocialUser(socialModel);
 		return socialModel;
+	}
+	
+	public SocialModel updateSocialSeq(int seq) {
+		userMapper.updateSocialSeq(seq);
+		return userMapper.findSelUser(seq);
+	}
+	
+	public int findUser(String userName) {
+		return userMapper.findUser(userName);
 	}
 }

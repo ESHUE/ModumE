@@ -16,9 +16,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.amolrang.modume.model.SocialModel;
-import com.amolrang.modume.model.TestModel;
 import com.amolrang.modume.model.UserModel;
+import com.amolrang.modume.model.User_JPA;
+import com.amolrang.modume.repository.AuthRepository;
 import com.amolrang.modume.repository.UserDAO;
+import com.amolrang.modume.repository.UserRepository;
+import com.amolrang.modume.test.TestModel;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -29,13 +32,21 @@ public class UserService implements UserDetailsService {
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	UserRepository userRepository;
+	
+	@Autowired
+	AuthRepository authRepository;
 
 	@Override
-	public UserDetails loadUserByUsername(String user_id) throws UsernameNotFoundException {
-		UserModel userModel = userDAO.findById(user_id);
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		User_JPA userModel = userRepository.findByUsername(username);
+		log.info("userServiceModel:{}",userModel);
 		
 		if(userModel == null) {return userModel;};
-		userModel.setAuthorities(getAuthorities(user_id));
+		userModel.setAuthorities(getAuthorities(username));
+		log.info("userModel:{}",userModel);
 		return userModel;
 	}
 	
@@ -73,7 +84,9 @@ public class UserService implements UserDetailsService {
 	}
 
 	public Collection<GrantedAuthority> getAuthorities(String id) {
-		List<String> string_authorities = userDAO.findAuthoritiesByID(id);
+		//log.info(msg);
+		//User_JPA userModel = userRepository.findByUsername(id);
+		List<String> string_authorities = authRepository.findUsername(id);
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		for (String authority : string_authorities) {
 			authorities.add(new SimpleGrantedAuthority(authority));
@@ -82,11 +95,24 @@ public class UserService implements UserDetailsService {
 	}
 
 	//소셜 로그인시 
+	//사이트 로그인 > 소셜 로그인 : UserService.socialSave > UserDAO.socialSave > UserMapper.insertSocialUser 
+	// (추가된 경로) : UserService.findUser > UserService updateSocialSeq > UserDAO.updateSocialSeq > 
+	// UserMapper.updateSocialSeq > UserMapper.findSelUser
+	//소셜로그인(단독) : UserService.socialSave > UserDAO.socialSave > UserMapper.insertSocialUser
 	public SocialModel socialSave(SocialModel socialModel, String role) {
 		// TODO Auto-generated method stub
 		// userModel에서의 seq를 받아서 넣을 예정
-		socialModel.setSeq(5);
 		return userDAO.socialSave(socialModel, role);
+	}
+	
+	public SocialModel updateSocialSeq(int seq) {
+		//userModel에서의 seq를 받아서 SocialModel에 업글한다
+		return userDAO.updateSocialSeq(seq);
+	}
+	
+	public int findUser(String userName) {
+		log.info("test00:{}",userName);
+		return userDAO.findUser(userName);
 	}
 
 }
