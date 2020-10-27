@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <jsp:useBean id="StringUtils"
 	class="com.amolrang.modume.utils.StringUtils" />
-
+<link rel="stylesheet" type="text/css" href="/css/join.css">
 <html>
 <head>
 <meta charset="UTF-8">
@@ -12,9 +12,7 @@
 <body>
 	<div id="sectionContainerCenter">
 		<div>
-			<div class="joinHeader">
-				<h1>create account</h1>
-			</div>
+			<div class="joinHeader"><h1>create account</h1></div>
 			<div class="msg">${err}</div>
 			<form id="frm" class="frm" action="/join" enctype="multipart/form-data" method="post">
 				<div id="idChkResult" class="msg"></div>
@@ -33,14 +31,16 @@
 				</div>
 				<div class="profileSelect">
 					<label for="profile">파일 첨부</label> 
-					<input type="file" name="profile">
+  					<input type="file" name="profile" id="profile"> 
 				</div>
 				<div class="joinSbm">
-					<input type="submit" value="회원가입">
+					<input type="submit" value="sign up">
+
 				</div>
 			</form>
-			<div>
-				<span onclick="moveToLogin()">로그인</span> <a href="/">메인화면</a>
+			<div class="moveList">
+				<span onclick="moveToLogin()">로그인</span> 
+				<a href="/">메인화면</a>
 			</div>
 		</div>
 	</div>

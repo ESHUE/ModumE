@@ -170,8 +170,8 @@
 		response.text().then(function(text) {
 			tabBoxContainer.innerHTML = text;
 		})
-	})
-  }
+	})	
+  } 
 
 </script>
 

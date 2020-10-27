@@ -185,15 +185,16 @@ function openUserMenu(isLogin) {
     makeDiv.className = 'userMenu';
     makeDiv.style.position = 'absolute';
     makeDiv.style.right = '35px';
-   makeDiv.style.width = '150px';
-   makeDiv.style.height = '350px';
-   makeDiv.style.borderRadius = '5px';
+    makeDiv.style.width = '150px';
+    makeDiv.style.height = '350px';
+    makeDiv.style.borderRadius = '5px';
     makeDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
-   makeDiv.style.color = 'white';
+    makeDiv.style.color = 'white';
     makeDiv.style.zIndex = '2';
 
    const makeDiv2 = document.createElement('div');
    makeDiv2.className = 'userMenuTooltip';
+ 
    
    const makeSpan2_1_1 = document.createElement('span');
    makeSpan2_1_1.classList.add('cursor');
@@ -290,6 +291,9 @@ function showLogin() {
       })
    })
 }
+
+
+
 
 function removeLogin() {
    let loginWindowContainer = document.querySelector('#loginWindowContainer');
