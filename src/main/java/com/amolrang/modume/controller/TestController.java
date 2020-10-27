@@ -65,4 +65,6 @@ public class TestController {
 	public String userInfo3() {
 		return "/userinfo3";
 	}
+	
+	
  }
