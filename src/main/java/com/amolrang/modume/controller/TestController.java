@@ -17,8 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 // @RestController
 @Controller
 public class TestController {
-	@Autowired
-	private TestService service;
+//	@Autowired
+//	private TestService service;
 
 	@RequestMapping(value = "/test", produces="text/plain;charset=UTF-8")
 	public String test(Principal principal,OAuth2AuthenticationToken authentication) {

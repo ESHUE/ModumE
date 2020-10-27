@@ -73,7 +73,7 @@ public class AuthenticationController {
 		
 		//User_JPA의 정보를 Session에 넣는다.
 		hs.setAttribute("UserInfoJson", UserInfoJson);
-		
+		model.addAttribute("UserInfoJson", UserInfoJson);
 		//seq만 따로 세션에 박는다 ( 추후에 따로 뽑아내기 위해서)
 		hs.setAttribute("userModelSeq", UserInfoJson.getMAIN_SEQ());
 		return "redirect:/main";
@@ -98,8 +98,8 @@ public class AuthenticationController {
 			
 		}
 		log.info("socialModel:{}",UserInfoJson);
-		model.addAttribute("userInfo", UserInfoJson);
-		hs.setAttribute("userInfo", UserInfoJson);
+		model.addAttribute("UserInfoJson", UserInfoJson);
+		hs.setAttribute("UserInfoJson", UserInfoJson);
 		
 		return "redirect:/main";
 	}
