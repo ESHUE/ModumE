@@ -18,6 +18,7 @@
 	<div class="sns-modume-sign">
 		<div class="input-container focus sbm-join">
 			<span onclick="moveToJoin()">ModeumE</span>
+			<!-- <a href="/join/">ModeumE</a> -->
 		</div>
 		<div class="input-container focus googleLogin">
 			<a href="/oauth2/authorization/google"><img src="/img/google_logo.svg" alt="google_logo"></a>
