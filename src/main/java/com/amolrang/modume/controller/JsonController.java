@@ -7,12 +7,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.amolrang.modume.api.UserModelGetToToken;
-import com.amolrang.modume.api.twitchAPI;
+import com.amolrang.modume.api.GoogleAPI;
+import com.amolrang.modume.api.TwitchAPI;
 import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.service.UserService;
-
-import lombok.extern.slf4j.Slf4j;
 
 @RestController
 public class JsonController {
@@ -23,7 +21,10 @@ public class JsonController {
 	private OAuth2AuthorizedClientService authorizedClientService;
 
 	@Autowired
-	private twitchAPI twitchApi;
+	private TwitchAPI twitchApi;
+	
+	@Autowired
+	private GoogleAPI googleApi;
 	
 	@RequestMapping(value = "/IdChk", produces = "text/plain;charset=UTF-8")
 	public String IdChk(@RequestBody User_JPA param) {
@@ -47,5 +48,10 @@ public class JsonController {
 	@RequestMapping(value = "/getStreams", produces = "text/plain;charset=UTF-8")
 	public String getStreams(OAuth2AuthenticationToken authentication) {
 		return twitchApi.getCurrentLiveStreamer(authentication, authorizedClientService);
+	}
+	
+	@RequestMapping(value = "/test22", produces = "text/plain;charset=UTF-8")
+	public String test22(OAuth2AuthenticationToken authentications) {
+		return googleApi.getYoutubeMyFollower(authentications, authorizedClientService);
 	}
 }
