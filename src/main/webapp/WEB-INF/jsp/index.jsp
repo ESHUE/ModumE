@@ -162,22 +162,6 @@
 
 </script>
 
-<!-- join page 이동 -->
-<script>
-
-function openJoinPageDetails() {
-	  const modeumEJoin = document.querySelector('.modeumEJoin');
-	  
-	  fetch('/join').then(function(response) {
-		  response.text().then(function(text) {
-			  modeumEJoin.innerHTML = text;
-		  })
-	  })
-}
-
-
-</script>
-
 	<sec:authorize access="isAuthenticated()">
 		<script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
 		<c:if test="${userInfo.sns == 'twitch'}">
