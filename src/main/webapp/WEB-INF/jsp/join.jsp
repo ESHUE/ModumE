@@ -40,7 +40,7 @@
 				</div>
 			</form>
 			<div>
-				<a href="/">메인화면</a>
+				<a href="${login}">로그인</a> <a href="/">메인화면</a>
 			</div>
 		</div>
 
