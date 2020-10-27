@@ -3,12 +3,10 @@ package com.amolrang.modume.model;
 
 import java.util.Collection;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
@@ -36,6 +34,7 @@ public class User_JPA implements UserDetails{
 	private boolean isAccountNonLocked;
 	private boolean isCredentialsNonExpired;
 	private boolean isEnabled;
+	
 	@Transient // 테이블 생성할 때 이 컬럼은 제외하라는 어노테이션
 	private Collection<? extends GrantedAuthority> authorities;
 

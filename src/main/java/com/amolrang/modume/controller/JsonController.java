@@ -9,13 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.amolrang.modume.api.UserModelGetToToken;
 import com.amolrang.modume.api.twitchAPI;
-import com.amolrang.modume.model.UserModel;
 import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @RestController
 public class JsonController {
 	@Autowired
@@ -23,9 +21,6 @@ public class JsonController {
 
 	@Autowired
 	private OAuth2AuthorizedClientService authorizedClientService;
-
-	@Autowired
-	private UserModelGetToToken callApi;
 
 	@Autowired
 	private twitchAPI twitchApi;

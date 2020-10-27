@@ -10,8 +10,8 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.data.repository.query.Param;
 
 import com.amolrang.modume.model.SocialModel;
-import com.amolrang.modume.model.TestModel;
 import com.amolrang.modume.model.UserModel;
+import com.amolrang.modume.test.TestModel;
 
 @Mapper
 public interface UserMapper {

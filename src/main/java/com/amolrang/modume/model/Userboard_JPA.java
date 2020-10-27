@@ -10,15 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import org.apache.ibatis.type.Alias;
 import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.Data;
 
 @Entity
 @Data
-@Alias("UserBoard_JPA")
-public class UserBoard_JPA {
+public class Userboard_JPA {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int USERBOARD_SEQ;

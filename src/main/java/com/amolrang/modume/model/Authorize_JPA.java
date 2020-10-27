@@ -21,4 +21,3 @@ public class Authorize_JPA {
 	private User_JPA user;
 	private String Authentication;
 }
-

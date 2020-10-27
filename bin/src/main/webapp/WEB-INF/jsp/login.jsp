@@ -15,55 +15,22 @@
 		</fieldset>
 		<input class="sbm-login" type="submit" value="sign in"> <input name="${_csrf.parameterName}" type="hidden" value="${_crsf.token}">
 	</form>
-	<div class="sbm-join">
-		<a href="/join">sign up</a>
-	</div>
-	<div>
-		<div class="input-container focus">
+	<div class="sns-modume-sign">
+		<div class="input-container focus sbm-join">
+			<a href="/join">ModeumE</a>
+		</div>
+		<div class="input-container focus googleLogin">
+			<a href="/oauth2/authorization/google"><img src="/img/google_logo.svg" alt="google_logo"></a>
+		</div>
+		<div class="input-container focus kakaoLogin">
 			<a href="/oauth2/authorization/kakao">Kakao</a>
 		</div>
-		<div class="input-container focus">
-			<a href="/oauth2/authorization/google">Google</a>
+		<div class="input-container focus naverLogin">
+			<a href="/oauth2/authorization/naver">Naver</a>
 		</div>
-		<div class="input-container focus">
-			<a href="/oauth2/authorization/twitch">twitch</a>
+		<div class="input-container focus twitchLogin">
+			<a href="/oauth2/authorization/twitch"><img src="https://blog.kakaocdn.net/dn/0WCc3/btqD2dnMsO9/5eYc5RKNjG5RAz2gnelcuK/img.jpg"></a>
 		</div>
-		<div class="input-container focus">
-			<a href="/oauth2/authorization/naver">naver</a>
-		</div>
+
 	</div>
 </div>
-<script>
-	window.onload = function() {
-
-		inputEvent();
-		if (('form').find(':input')[0] !== undefined) {
-			(':focus').blur();
-			('form').find(':input')[0].focus();
-		}
-	};
-
-	var inputEvent = function() {
-		var inputs = ('form').find(':input');
-		inputs.each(function() {
-			var input = (this), label = input.parent('div.input-container');
-			if (input.val())
-				label.addClass('active');
-
-			input.focusin(function() {
-				label.addClass('focus');
-				label.siblings('div.flexbdy').addClass('off');
-			});
-			input.change(function() {
-				label.addClass('active');
-			});
-			input.focusout(function() {
-				label.removeClass('focus');
-
-				if (!input.val())
-					label.removeClass('active').siblings('div.flexbdy')
-							.removeClass('off');
-			});
-		});
-	}
-</script>
