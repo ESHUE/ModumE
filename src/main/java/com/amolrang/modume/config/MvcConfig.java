@@ -37,6 +37,6 @@ public class MvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
 		// 뒤에 classpath~~ 경로를 /** 이렇게만 써도 되도록(편리하게) 
-		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/", "classpath:/META-INF/resources/");
+		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
 	}
 }
