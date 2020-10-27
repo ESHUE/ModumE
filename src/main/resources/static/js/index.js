@@ -252,6 +252,7 @@ function makeLogin() {
    loginWindowContainer.setAttribute('id', 'loginWindowContainer');
    loginWindowContainer.addEventListener('click', event);
    
+
    let loginPageContainer = document.createElement('div');
    loginPageContainer.classList.add('loginPageContainer');
    
@@ -276,6 +277,7 @@ function makeLogin() {
    body.prepend(loginWindowContainer);
 }
 
+
 function showLogin() {
    fetch('/login').then(function(response) {
       response.text().then(function(text) {
@@ -290,8 +292,19 @@ function removeLogin() {
    loginWindowContainer.remove();
 }
 
+function moveToJoin(){
+	removeLogin();
+	makeJoin();
+}
 
-
+function makeJoin(){
+   fetch('/join').then(function(response) {
+      response.text().then(function(text) {
+		 makeLogin();
+		document.querySelector('#loginWindow').innerHTML = text;
+      })
+   })
+}
 
 /*usernameForm.addEventListener('submit', connect, true)*/
 

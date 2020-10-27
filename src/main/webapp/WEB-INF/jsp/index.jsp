@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
     <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
     <link rel="stylesheet" href="/css/login.css?ver=2">
+    <link rel="stylesheet" href="/css/join.css?ver=89">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
      <!-- 아웃라인 material-icon 링크 추가 -->
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
@@ -95,7 +96,7 @@
     
     <script>
     function connect(event){
-    	username = '${userInfo.username}';
+    	username = '${UserInfoJson.username}';
     	console.log(username)
     	if(username){
     		console.log("connect Start")
