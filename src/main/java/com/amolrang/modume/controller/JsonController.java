@@ -12,6 +12,9 @@ import com.amolrang.modume.api.TwitchAPI;
 import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.service.UserService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 public class JsonController {
 	@Autowired
@@ -27,10 +30,11 @@ public class JsonController {
 	private GoogleAPI googleApi;
 	
 	@RequestMapping(value = "/IdChk", produces = "text/plain;charset=UTF-8")
-	public String IdChk(@RequestBody User_JPA param) {
+	public String IdChk(User_JPA param) {
 		String result = "2";
 		System.out.println(param.getUsername());
 		if (userService.loadUserByUsername(param.getUsername()) != null) {
+			log.info("user:{}",param);
 			result = "3";
 		}
 		return String.format("%s", result);
@@ -51,8 +55,13 @@ public class JsonController {
 		return twitchApi.getCurrentLiveStreamer(authentication, authorizedClientService);
 	}
 	
-	@RequestMapping(value = "/test22", produces = "text/plain;charset=UTF-8")
-	public String test22(OAuth2AuthenticationToken authentications) {
+	@RequestMapping(value = "/getYoutubeFollower", produces = "text/plain;charset=UTF-8")
+	public String getYoutubeFollower(OAuth2AuthenticationToken authentications) {
 		return googleApi.getYoutubeMyFollower(authentications, authorizedClientService);
+	}
+	
+	@RequestMapping(value = "/googleSearch", produces = "text/plain;charset=UTF-8")
+	public String googleSearch(String keyword) {
+		return googleApi.searchYoutube(authorizedClientService, keyword);
 	}
 }

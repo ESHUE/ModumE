@@ -14,6 +14,7 @@ function cutTitle(ele) {
     }
 }
 
+/*
 function changeCtnt__cnt() {
     const textarea = document.querySelector('#board-regMod-ctnt__textarea');
     const ctnt_cnt = document.querySelector('#board-regMod-ctnt__cnt');
@@ -28,3 +29,7 @@ function cutCtnt(ele) {
         ele.value = eleValue.substr(0, 10000);
     }
 }
+*/
+
+
+
