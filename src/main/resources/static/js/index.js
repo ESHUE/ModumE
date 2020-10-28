@@ -7,7 +7,18 @@ var inputChat = null;
 var username = null;
 var inputUl = null;
 
-
+function findVideo(evt) {
+   evt.preventDefault();
+   const keyword = document.querySelector('#searchVideo').value;
+   console.log(keyword);
+	axios.get('/googleSearch', {
+      params : {
+         keyword
+      }
+   }).then(function(res) {
+      console.log(res);
+   })
+}
 
 function chatInit() {
     const chatContainer = document.querySelector('.chatContainer');

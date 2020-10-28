@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
     <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
     <link rel="stylesheet" href="/css/login.css?ver=27">
-    <link rel="stylesheet" href="/css/join.css?ver=90">
+    <link rel="stylesheet" href="/css/join.css?ver=89">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
      <!-- 아웃라인 material-icon 링크 추가 -->
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
@@ -31,12 +31,12 @@
 				<img id="centralLogoImage" src="/img/logowhite.png" alt="">
 			</div>
 			<div class="centralSearch">
-				<form action="" method="POST" class="centralSearchFrm">
+				<form action="" method="POST" class="centralSearchFrm" onsubmit="findVideo(event)">
 					<div class="centralSearch1_1">
-						<input type="text" name="" id="" class="Search1_1__input" placeholder="검색">
+						<input type="text" name="searchVideo" id="searchVideo" class="Search1_1__input" placeholder="검색">
 					</div>
 					<div class="centralSearch1_2">
-						<span class="material-icons headMenus" onclick="submit()">search</span>
+						<span class="material-icons headMenus" onclick="findVideo(event)">search</span>
 					</div>
 				</form>
 			</div>
@@ -89,7 +89,11 @@
     <script src="/js/index.js?aaa=22344"></script>
 =======
 
+<<<<<<< HEAD
     <script src="/js/index.js?aaa=22344"></script>
+>>>>>>> branch 'master' of https://github.com/ESHUE/ModumE.git
+=======
+    <script src="/js/index.js?aaa=sdaaaa8"></script>
 >>>>>>> branch 'master' of https://github.com/ESHUE/ModumE.git
     <script src="/js/login.js"></script>
     <script src="/js/boardList.js?ver=4"></script>

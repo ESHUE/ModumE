@@ -15,6 +15,9 @@ import org.springframework.web.client.RestTemplate;
 
 import com.google.gson.Gson;
 
+import jdk.internal.org.jline.utils.Log;
+import lombok.extern.slf4j.Slf4j;
+
 @Service
 public class GoogleAPI {
 
@@ -31,6 +34,18 @@ public class GoogleAPI {
 		String query = "?part=snippet,contentDetails&mine=true&key=" + apikey;
 		newHeader(authentication, authAuthorizedClientService);
 		restTemplateExchange(url, query);
+		Map data = response.getBody();
+		
+		return gson.toJson(data);
+	}
+	
+	public String searchYoutube(OAuth2AuthorizedClientService authAuthorizedClientService, String keyword) {
+		String url = "https://www.googleapis.com/youtube/v3/search";
+		String query = "?q=" + keyword + "&key=" + apikey;
+		headers = new HttpHeaders();
+		headers.add(HttpHeaders.ACCEPT, "application/json");
+		restTemplate = new RestTemplate();
+		response = restTemplate.exchange(url + query, HttpMethod.GET, new HttpEntity(headers), Map.class);
 		Map data = response.getBody();
 		
 		return gson.toJson(data);
