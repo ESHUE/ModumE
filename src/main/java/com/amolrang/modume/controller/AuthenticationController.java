@@ -108,7 +108,7 @@ public class AuthenticationController {
 	}
 
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String joinAction(Model model, User_JPA userJPA, TestModel testModel) {
+	public String joinAction(Model model, User_JPA userJPA) {
 		log.info("회원가입 post 접근");
 		//user_JPA 값 넣기
 		User_JPA user = new User_JPA();
