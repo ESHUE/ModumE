@@ -96,8 +96,13 @@
     
     <script>
     function chkId() {
-		const id = frm.username.value
-		axios.post('/IdChk', {id}).then(function(res) {
+		const username = frm.username.value
+		console.log(username)
+		axios.post('/IdChk', {
+			params:{
+				username
+				}
+		}).then(function(res) {
 			if(res.data == '2') { //아이디 없음
 				idChkResult.innerText = '사용할 수 있는 아이디입니다.'
 			} else if(res.data == '3') { //아이디 중복됨
