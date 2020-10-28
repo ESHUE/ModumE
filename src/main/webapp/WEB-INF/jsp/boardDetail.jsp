@@ -12,6 +12,10 @@
 </div>
 
 <div class="board-detail boardContents">
+	<div class="board-detail-modDel__btns flex-center">
+		<div class="rectangle-small-btn mr5">수정</div>
+		<div class="rectangle-small-btn">삭제</div>
+	</div>
     <table class="board-detail-table board-table">
         <tr class="board-detail-profile">
             <td class="board-profile-td">

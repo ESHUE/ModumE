@@ -59,6 +59,7 @@ public class TestService {
                         json.addProperty("fileName", fileName);
                         json.addProperty("url", fileUrl);
                         
+                        Thread.sleep(3000);
                         printWriter.println(json);
         	        	
         	        } catch(Exception e) {
