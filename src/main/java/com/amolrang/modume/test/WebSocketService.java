@@ -1,4 +1,4 @@
-package com.amolrang.modume.service;
+package com.amolrang.modume.test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.socket.messaging.SessionConnectedEvent;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
-import com.amolrang.modume.model.ChatModel;
 import com.amolrang.modume.type.MessageType;
 
 import lombok.extern.slf4j.Slf4j;

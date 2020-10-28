@@ -63,63 +63,8 @@ public class TestController {
 	@ResponseBody
 	public String imageUpload(HttpServletRequest request, HttpServletResponse response, 
 			MultipartHttpServletRequest multiFile) throws Exception {
-		JsonObject json = new JsonObject();
-        OutputStream out = null;
-        PrintWriter printWriter = null; 
-        MultipartFile file = multiFile.getFile("upload");
-        
-        // StringUtils.isNotBlank("str") -> whitespace나 공백문자, null이면 true 반환
-        if(file != null) {
-        	if(file.getSize() > 0 && StringUtils.isNotBlank(file.getName())) {
-        		if(file.getContentType().toLowerCase().startsWith("image/")) {
-        			try {
-        	        	 //파일 이름 가져오기
-        	            String fileName = file.getName();
-        	            log.info("fileName:{}",fileName);
-        	            byte[] bytes = file.getBytes();
-        	            String uploadPath = request.getServletContext().getRealPath("") + "../resources/static/img";
-        	            File uploadFile = new File(uploadPath);
-        	            System.out.println("getContextPath() : " + request.getContextPath());
-        	            System.out.println(uploadPath);
-        	            if(!uploadFile.exists()) {
-        	            	uploadFile.mkdirs();
-        	            }
-        	            
-        	            fileName = UUID.randomUUID().toString();
-        	         
-        	            uploadPath = uploadPath + "/" + fileName;
-        	            out = new FileOutputStream(new File(uploadPath));
-        	            out.write(bytes);
-        	            
-        	            printWriter = response.getWriter();
-        	            response.setContentType("text/html");
-        	            String fileUrl = request.getContextPath() + "/img/" + fileName;
-        	            System.out.println("fileUrl : " + fileUrl);
-        	            
-        	            json.addProperty("uploaded", 1);
-                        json.addProperty("fileName", fileName);
-                        json.addProperty("url", fileUrl);
-                        
-                        Gson gson = new Gson();
-                        String strJson = gson.toJson(json);
-                        System.out.println(strJson);
-                        printWriter.println(strJson);
-                 
-                    }catch(IOException e){
-                        e.printStackTrace();
-                    }finally{
-                        if(out != null){
-                            out.close();
-                        }
-                        if(printWriter != null){
-                            printWriter.close();
-                        }		
-     				}
-     			}
-     		}
-     	}
-     	return null;        
-        
+		service.imageUpload(request, response, multiFile);
+		return null;        
 	}
 		
 	

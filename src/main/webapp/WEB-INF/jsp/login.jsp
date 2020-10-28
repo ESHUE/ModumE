@@ -13,11 +13,11 @@
 					options="{ updateOn: 'keyup blur' }" required>
 			</div>
 		</fieldset>
-		<input class="sbm-login" type="submit" value="sign in"> <input name="${_csrf.parameterName}" type="hidden" value="${_crsf.token}">
+		<input class="loginSbm" type="submit" value="sign in"> <input name="${_csrf.parameterName}" type="hidden" value="${_crsf.token}">
 	</form>
 	<div class="sns-modume-sign">
 		<div class="input-container focus sbm-join">
-			<a href="/join">ModeumE</a>
+			<span onclick="moveToJoin()">ModeumE</span>
 		</div>
 		<div class="input-container focus googleLogin">
 			<a href="/oauth2/authorization/google"><img src="/img/google_logo.svg" alt="google_logo"></a>

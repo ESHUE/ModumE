@@ -9,11 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title}</title>
     <link rel="icon" href="/img/favicon.png">
-    <link rel="stylesheet" href="/css/index.css?ver=8">
+    <link rel="stylesheet" href="/css/index.css?ver=10">
     <link rel="stylesheet" href="/css/boardList.css?ver=3">
     <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
     <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
-    <link rel="stylesheet" href="/css/login.css?ver=2">
+    <link rel="stylesheet" href="/css/login.css?ver=27">
+    <link rel="stylesheet" href="/css/join.css?ver=89">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
      <!-- 아웃라인 material-icon 링크 추가 -->
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
@@ -30,12 +31,12 @@
 				<img id="centralLogoImage" src="/img/logowhite.png" alt="">
 			</div>
 			<div class="centralSearch">
-				<form action="" method="POST" class="centralSearchFrm">
+				<form action="" method="POST" class="centralSearchFrm" onsubmit="findVideo(event)">
 					<div class="centralSearch1_1">
-						<input type="text" name="" id="" class="Search1_1__input" placeholder="검색">
+						<input type="text" name="searchVideo" id="searchVideo" class="Search1_1__input" placeholder="검색">
 					</div>
 					<div class="centralSearch1_2">
-						<span class="material-icons headMenus" onclick="submit()">search</span>
+						<span class="material-icons headMenus" onclick="findVideo(event)">search</span>
 					</div>
 				</form>
 			</div>
@@ -83,7 +84,8 @@
 	</main>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-    <script src="/js/index.js?aaa=11"></script>
+
+    <script src="/js/index.js?aaa=sdaaaa8"></script>
     <script src="/js/login.js"></script>
     <script src="/js/boardList.js?ver=4"></script>
     <script src="/js/boardDetail.js?ver=1"></script>
@@ -93,8 +95,19 @@
     <script src="https://embed.twitch.tv/embed/v1.js"></script>
     
     <script>
+    function chkId() {
+		const id = frm.username.value
+		axios.post('/IdChk', {id}).then(function(res) {
+			if(res.data == '2') { //아이디 없음
+				idChkResult.innerText = '사용할 수 있는 아이디입니다.'
+			} else if(res.data == '3') { //아이디 중복됨
+				idChkResult.innerText = '이미 사용중입니다.'
+			}
+		})
+	}
+    
     function connect(event){
-    	username = '${userInfo.username}';
+    	username = '${UserInfoJson.username}';
     	console.log(username)
     	if(username){
     		console.log("connect Start")
@@ -157,8 +170,8 @@
 		response.text().then(function(text) {
 			tabBoxContainer.innerHTML = text;
 		})
-	})
-  }
+	})	
+  } 
 
 </script>
 

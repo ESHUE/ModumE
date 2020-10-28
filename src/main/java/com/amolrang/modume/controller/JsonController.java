@@ -7,14 +7,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.amolrang.modume.api.UserModelGetToToken;
-import com.amolrang.modume.api.twitchAPI;
-import com.amolrang.modume.model.UserModel;
+import com.amolrang.modume.api.GoogleAPI;
+import com.amolrang.modume.api.TwitchAPI;
+import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.service.UserService;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @RestController
 public class JsonController {
 	@Autowired
@@ -24,15 +21,15 @@ public class JsonController {
 	private OAuth2AuthorizedClientService authorizedClientService;
 
 	@Autowired
-	private UserModelGetToToken callApi;
-
+	private TwitchAPI twitchApi;
+	
 	@Autowired
-	private twitchAPI twitchApi;
+	private GoogleAPI googleApi;
 	
 	@RequestMapping(value = "/IdChk", produces = "text/plain;charset=UTF-8")
-	public String IdChk(@RequestBody UserModel param) {
+	public String IdChk(@RequestBody User_JPA param) {
 		String result = "2";
-		if (userService.loadUserByUsername(param.getId()) != null) {
+		if (userService.loadUserByUsername(param.getUsername()) != null) {
 			result = "3";
 		}
 		return String.format("%s", result);
@@ -51,5 +48,15 @@ public class JsonController {
 	@RequestMapping(value = "/getStreams", produces = "text/plain;charset=UTF-8")
 	public String getStreams(OAuth2AuthenticationToken authentication) {
 		return twitchApi.getCurrentLiveStreamer(authentication, authorizedClientService);
+	}
+	
+	@RequestMapping(value = "/getYoutubeFollower", produces = "text/plain;charset=UTF-8")
+	public String getYoutubeFollower(OAuth2AuthenticationToken authentications) {
+		return googleApi.getYoutubeMyFollower(authentications, authorizedClientService);
+	}
+	
+	@RequestMapping(value = "/googleSearch", produces = "text/plain;charset=UTF-8")
+	public String googleSearch(String keyword) {
+		return googleApi.searchYoutube(authorizedClientService, keyword);
 	}
 }

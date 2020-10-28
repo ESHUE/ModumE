@@ -6,11 +6,12 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.data.repository.query.Param;
 
 import com.amolrang.modume.model.SocialModel;
-import com.amolrang.modume.model.TestModel;
 import com.amolrang.modume.model.UserModel;
+import com.amolrang.modume.test.TestModel;
 
 @Mapper
 public interface UserMapper {
@@ -19,6 +20,9 @@ public interface UserMapper {
 	
 	@Select("SELECT * FROM site_auth WHERE id=#{id}")
 	SocialModel selUser(String id);
+	
+	@Select("Select * from social where seq = #{seq}")
+	SocialModel findSelUser(int seq);
 	
 //	@Insert("INSERT INTO user_info(id, password, isAccountNonexpired, isAccountNonLocked, isCredentialsNonExpired, isEnabled, username)(select #{id}, #{password}, #{isAccountNonExpired}, #{isAccountNonLocked}, #{isCredentialsNonExpired}, #{isEnabled}, #{username})")
 //	int insertUser(UserModel userModel);
@@ -29,6 +33,8 @@ public interface UserMapper {
 	@Select("SELECT autority FROM AUTHORITY WHERE id=#{id}")
 	List<String> readautorities(String id);
 	
+	@Select("Select seq from user_site where userName = #{userName}")
+	int findUser(String userName);
 	
 	// 회원정보의 seq를 받아와서 저장
 	// 현재 임시적 조치
@@ -41,4 +47,10 @@ public interface UserMapper {
 
 	@Insert("Insert into social(seq,s_id,username,sns)values(#{seq}, #{s_id},#{username},#{sns})")
 	int insertSocialUser(SocialModel socialModel);
+	
+	@Update("update social set seq = #{seq} where seq = 0")
+	int updateSocialSeq(int seq);
+	
+	
+	
 }

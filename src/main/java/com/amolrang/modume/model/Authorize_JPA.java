@@ -1,3 +1,4 @@
+
 package com.amolrang.modume.model;
 
 import javax.persistence.Entity;
@@ -16,7 +17,7 @@ public class Authorize_JPA {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int AUTH_SEQ;
 	@ManyToOne
-	@JoinColumn(name = "username")
-	private User_JPA username;
+	@JoinColumn(name = "username", referencedColumnName = "username")
+	private User_JPA user;
 	private String Authentication;
 }

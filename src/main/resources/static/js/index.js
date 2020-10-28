@@ -7,7 +7,18 @@ var inputChat = null;
 var username = null;
 var inputUl = null;
 
-
+function findVideo(evt) {
+   evt.preventDefault();
+   const keyword = document.querySelector('#searchVideo').value;
+   console.log(keyword);
+	axios.get('/googleSearch', {
+      params : {
+         keyword
+      }
+   }).then(function(res) {
+      console.log(res);
+   })
+}
 
 function chatInit() {
     const chatContainer = document.querySelector('.chatContainer');
@@ -187,15 +198,16 @@ function openUserMenu(isLogin) {
     makeDiv.className = 'userMenu';
     makeDiv.style.position = 'absolute';
     makeDiv.style.right = '35px';
-   makeDiv.style.width = '150px';
-   makeDiv.style.height = '350px';
-   makeDiv.style.borderRadius = '5px';
+    makeDiv.style.width = '150px';
+    makeDiv.style.height = '350px';
+    makeDiv.style.borderRadius = '5px';
     makeDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
-   makeDiv.style.color = 'white';
+    makeDiv.style.color = 'white';
     makeDiv.style.zIndex = '2';
 
    const makeDiv2 = document.createElement('div');
    makeDiv2.className = 'userMenuTooltip';
+ 
    
    const makeSpan2_1_1 = document.createElement('span');
    makeSpan2_1_1.classList.add('cursor');
@@ -258,6 +270,7 @@ function makeLogin() {
    loginWindowContainer.setAttribute('id', 'loginWindowContainer');
    loginWindowContainer.addEventListener('click', event);
    
+
    let loginPageContainer = document.createElement('div');
    loginPageContainer.classList.add('loginPageContainer');
    
@@ -282,6 +295,7 @@ function makeLogin() {
    body.prepend(loginWindowContainer);
 }
 
+
 function showLogin() {
    fetch('/login').then(function(response) {
       response.text().then(function(text) {
@@ -291,13 +305,32 @@ function showLogin() {
    })
 }
 
+
+
+
 function removeLogin() {
    let loginWindowContainer = document.querySelector('#loginWindowContainer');
    loginWindowContainer.remove();
 }
 
+function moveToJoin(){
+	removeLogin();
+	makeJoin();
+}
 
+function moveToLogin(){
+	removeLogin();
+	showLogin();
+}
 
+function makeJoin(){
+   fetch('/join').then(function(response) {
+      response.text().then(function(text) {
+		 makeLogin();
+		document.querySelector('#loginWindow').innerHTML = text;
+      })
+   })
+}
 
 /*usernameForm.addEventListener('submit', connect, true)*/
 

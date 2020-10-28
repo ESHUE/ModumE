@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service 
-public class twitchAPI {
+public class TwitchAPI {
 	private Gson gson = new Gson();
 	private RestTemplate restTemplate =null;
 	private ResponseEntity<Map> response = null;

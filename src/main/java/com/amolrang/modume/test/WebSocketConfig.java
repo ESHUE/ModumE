@@ -1,4 +1,4 @@
-package com.amolrang.modume.config;
+package com.amolrang.modume.test;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -24,7 +24,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer{
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry registory) {
-		registory.setApplicationDestinationPrefixes("/app");
-		registory.enableSimpleBroker("/topic");
+		registory.setApplicationDestinationPrefixes("/publish");
+		registory.enableSimpleBroker("/subscribe");
 	}
 }
