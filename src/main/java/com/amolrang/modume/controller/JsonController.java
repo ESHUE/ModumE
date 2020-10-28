@@ -33,6 +33,7 @@ public class JsonController {
 		log.info("param:{}",param);
 		String result = "2";
 		if (userService.loadUserByUsername(param.getUsername()) != null) {
+			log.info("user:{}",param);
 			result = "3";
 		}
 		return String.format("%s", result);

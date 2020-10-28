@@ -36,7 +36,7 @@ public class WebSocketService {
 			chatMessage.setType(MessageType.LEAVE);
 			chatMessage.setSender(username);
 			
-			messagingTemplate.convertAndSend("/topic/public",chatMessage);
+			messagingTemplate.convertAndSend("/subscribe/public",chatMessage);
 		}
 	}
 }

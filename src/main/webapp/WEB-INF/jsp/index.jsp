@@ -95,13 +95,13 @@
     <script src="https://embed.twitch.tv/embed/v1.js"></script>
     
     <script>
+    var stompClient = null;
     function chkId() {
 		const username = frm.username.value
-		console.log(username)
-		axios.post('/IdChk', {
+		axios.get('/IdChk', {
 			params:{
 				username
-				}
+			}
 		}).then(function(res) {
 			if(res.data == '2') { //아이디 없음
 				idChkResult.innerText = '사용할 수 있는 아이디입니다.'
@@ -123,6 +123,63 @@
     	}
     	/*event.preventDefault();*/
     }
+    
+    function onConnected(){
+    	   stompClient.subscribe('/subscribe/public', onMessageReceived);
+    	   stompClient.send("/publish/chat.addUser",
+    	   {},
+    	   JSON.stringify({sender: username, type: 'JOIN'})
+    	   )
+    	   console.log("onConnected 끝")
+    	}
+
+    	function onError(error){
+    	   connectingElement.textContent = "ConnectionError";
+    	   connectingElement.style.color = 'red';
+    	}
+
+    	function sendMessage(event){
+    	   console.log('message전송 시작')
+    	   var messageContent = inputChat.value.trim();
+    	   console.log('messageContent: ' + messageContent)
+    	   if(messageContent && stompClient){
+    	      var chatMessage = {
+    	         sender : username,
+    	         content: inputChat.value,
+    	         type : 'CHAT'
+    	      };
+    	   stompClient.send("/publish/chat.sendMessage",{},JSON.stringify(chatMessage));
+    	   inputChat.value ='';
+    	   }
+    	   event.preventDefault();
+    	}
+
+    	function onMessageReceived(payload){
+    	   var message = JSON.parse(payload.body);
+    	   
+    	   var messageElement = document.createElement('li');
+    	   console.log('message.type:' + message.type)
+    	   console.log('message.sender: ' + message.sender)
+    	   if(message.type === "JOIN"){
+    	      message.content = message.sender + "joined!";
+    	   }else if(message.type === "LEVAE"){
+    	      message.content = message.sender + "left!";
+    	   }else{
+    	      /* 채팅창에 채팅 메세지 띄우기 */
+    	      messageElement.className='chat-message';
+    	      inputUl.append(messageElement);
+    	      
+    	      var usernameElement = document.createElement('span');
+    	      var usernameText = document.createTextNode(message.sender);
+    	      usernameElement.appendChild(usernameText);
+    	      messageElement.appendChild(usernameElement);   
+    	   }
+    	   var textElement = document.createElement('p');
+    	   var messageText = document.createTextNode(message.content);
+    	   textElement.appendChild(messageText);
+    	   
+    	   messageElement.appendChild(textElement);
+    	}
     /* $.ajax({
     	 type: 'GET',
     	 url: 'https://api.twitch.tv/kraken/channels/twitch',
@@ -179,10 +236,9 @@
   } 
 
 </script>
-
 	<sec:authorize access="isAuthenticated()">
 		<script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
-		<c:if test="${userInfo.sns == 'twitch'}">
+		<c:if test="${UserInfoJson.sns == 'twitch'}">
 			<script type="text/javascript">
 		
 			function getVideo(res){

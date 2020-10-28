@@ -59,6 +59,7 @@ public class UserModelGetToToken {
 			String email = null;
 			String sns = "modume";
 			//어느 사이트와 연동해서 로그인을 했느냐에 따라 switch문
+			log.info("sns정보:{}",authentication.getAuthorizedClientRegistrationId());
 			switch (authentication.getAuthorizedClientRegistrationId()) {
 			//각각 필요한 정보 뽑기(id, name, email >> twitch는 email없음)
 			case "naver":

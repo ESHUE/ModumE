@@ -17,14 +17,14 @@ public class WebSocketController {
 	private WebSocketService service;
 
 	@MessageMapping("/chat.sendMessage")
-	@SendTo("/topic/public")
+	@SendTo("/subscribe/public")
 	public ChatModel sendMessage(@Payload ChatModel chatMessage) {
 		log.info("chatMessage : {}" + chatMessage.toString());
 		return chatMessage;
 	}
 
 	@MessageMapping("/chat.addUser")
-	@SendTo("/topic/public")
+	@SendTo("/subscribe/public")
 	public ChatModel addUser(@Payload ChatModel chatMessage, SimpMessageHeaderAccessor headerAccessor) {
 		headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
 		log.info("chatMessage : {}" + chatMessage.toString());
