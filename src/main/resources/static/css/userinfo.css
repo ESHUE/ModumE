@@ -20,15 +20,12 @@ button {
   cursor:pointer;
 }
 .tabMenuBtn {
-  width: 85px;
-  height: 30px;
-  transition:0.3s all;
+  transition:0.2s all;
 }
 .tabMenuBtn a {
   text-decoration: none;
   font-weight: bold;
 }
-.underline {
-   display: block;
-     border-bottom: 2px solid #56373c;
+.underline:hover {
+   color: #a07be5; 
 }
