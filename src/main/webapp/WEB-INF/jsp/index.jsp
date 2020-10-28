@@ -31,12 +31,12 @@
 				<img id="centralLogoImage" src="/img/logowhite.png" alt="">
 			</div>
 			<div class="centralSearch">
-				<form action="" method="POST" class="centralSearchFrm">
+				<form action="" method="POST" class="centralSearchFrm" onsubmit="findVideo(event)">
 					<div class="centralSearch1_1">
-						<input type="text" name="" id="" class="Search1_1__input" placeholder="검색">
+						<input type="text" name="searchVideo" id="searchVideo" class="Search1_1__input" placeholder="검색">
 					</div>
 					<div class="centralSearch1_2">
-						<span class="material-icons headMenus" onclick="submit()">search</span>
+						<span class="material-icons headMenus" onclick="findVideo(event)">search</span>
 					</div>
 				</form>
 			</div>
@@ -85,7 +85,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
-    <script src="/js/index.js?aaa=22344"></script>
+    <script src="/js/index.js?aaa=sdaaaa8"></script>
     <script src="/js/login.js"></script>
     <script src="/js/boardList.js?ver=4"></script>
     <script src="/js/boardDetail.js?ver=1"></script>
