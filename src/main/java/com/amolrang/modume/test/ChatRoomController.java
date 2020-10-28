@@ -30,6 +30,7 @@ public class ChatRoomController {
 
     @GetMapping("/rooms")
     public String rooms(Model model) {
+    	repository.CreateRoom("");
         model.addAttribute("rooms", repository.getChatRooms());
         return listViewName;
     }

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.Data;
@@ -24,11 +25,12 @@ public class Userboard_JPA {
 	private String title;
 	@Column(length = 10000)
 	private String content;
+	@ColumnDefault("0")
 	private int hits;
 	@CreationTimestamp
 	private Timestamp r_date;
 	private Timestamp m_date;
 	@ManyToOne
 	@JoinColumn(name = "MAIN_SEQ")
-	private User_JPA MAIN_SEQ;
+	private User_JPA user;
 }
