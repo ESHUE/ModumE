@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/css/userInfo.css">
 </head>
 <body>
-	<div>
+	<div class="sns-modume-sign">
 		<div class="input-container focus kakaoLogin">
 			<a href="/oauth2/authorization/kakao">Kakao</a>
 		</div>

@@ -30,7 +30,7 @@
 					<input type="text" name="nickname" placeholder="이름">
 				</div>
 				<div class="profileSelect">
-					<label for="profile">파일 첨부</label> 
+					<label for="profile">프로필 이미지</label> 
   					<input type="file" name="profile" id="profile"> 
 				</div>
 				<div class="joinSbm">

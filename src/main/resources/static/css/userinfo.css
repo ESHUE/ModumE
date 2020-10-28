@@ -2,16 +2,14 @@
 html, body {
    padding: 0;
    margin: 0;
-   width: 100%;
-   height: 100%;
+
 }
-#userInfoContainer {
+.userMenuContainer {
    padding: 100px;
-    display: flex;
-  	justify-content: space-evenly;
 }
 .tabMenuContainer {
- 
+	display: flex;
+  justify-content: space-evenly;
 }
 button {
   background: none;

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
     <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
     <link rel="stylesheet" href="/css/login.css?ver=27">
-    <link rel="stylesheet" href="/css/join.css?ver=89">
+    <link rel="stylesheet" href="/css/join.css?ver=90">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
      <!-- 아웃라인 material-icon 링크 추가 -->
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
@@ -123,6 +123,7 @@
     	}
     	/*event.preventDefault();*/
     }
+    
     /* $.ajax({
     	 type: 'GET',
     	 url: 'https://api.twitch.tv/kraken/channels/twitch',
