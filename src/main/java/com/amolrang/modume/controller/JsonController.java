@@ -29,6 +29,7 @@ public class JsonController {
 	@RequestMapping(value = "/IdChk", produces = "text/plain;charset=UTF-8")
 	public String IdChk(@RequestBody User_JPA param) {
 		String result = "2";
+		System.out.println(param.getUsername());
 		if (userService.loadUserByUsername(param.getUsername()) != null) {
 			result = "3";
 		}

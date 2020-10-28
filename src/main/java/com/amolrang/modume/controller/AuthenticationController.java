@@ -67,8 +67,8 @@ public class AuthenticationController {
 		log.info("UserInfoJson:{}",UserInfoJson);
 		
 		//User_JPA의 정보를 Session에 넣는다.
-		hs.setAttribute("UserInfoJson", UserInfoJson);
-		model.addAttribute("UserInfoJson", UserInfoJson);
+		hs.setAttribute("UserInfo", UserInfoJson);
+		model.addAttribute("UserInfo", UserInfoJson);
 		//seq만 따로 세션에 박는다 ( 추후에 따로 뽑아내기 위해서)
 		hs.setAttribute("userModelSeq", UserInfoJson.getMAIN_SEQ());
 		return "redirect:/main";
@@ -90,7 +90,6 @@ public class AuthenticationController {
 			//사이트 로그인후 소셜사이트 로그인(seq를 가져올수있음)
 			UserInfoJson.setUser(userModel);
 			socialRepository.save(UserInfoJson);
-			
 		}
 		log.info("socialModel:{}",UserInfoJson);
 		model.addAttribute("UserInfoJson", UserInfoJson);

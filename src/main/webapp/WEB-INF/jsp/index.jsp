@@ -108,7 +108,7 @@
 	}
     
     function connect(event){
-    	username = '${UserInfoJson.username}';
+    	username = '${UserInfo.username}';
     	console.log(username)
     	if(username){
     		console.log("connect Start")

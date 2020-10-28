@@ -2,6 +2,8 @@ package com.amolrang.modume.test;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -40,7 +42,7 @@ public class ChatRoomController {
         ChatRoom room = repository.getChatRoom(id);
         model.addAttribute("room", room);
         model.addAttribute("member", "member" + seq.incrementAndGet());
-
+        log.info("room:{}",room);
         return detailViewName;
     }
 }
