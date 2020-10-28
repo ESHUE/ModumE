@@ -232,10 +232,9 @@
   } 
 
 </script>
-
 	<sec:authorize access="isAuthenticated()">
 		<script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
-		<c:if test="${userInfo.sns == 'twitch'}">
+		<c:if test="${UserInfoJson.sns == 'twitch'}">
 			<script type="text/javascript">
 		
 			function getVideo(res){

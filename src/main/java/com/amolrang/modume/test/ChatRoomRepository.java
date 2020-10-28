@@ -2,6 +2,7 @@ package com.amolrang.modume.test;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -14,17 +15,21 @@ import lombok.Getter;
 
 @Repository
 public class ChatRoomRepository {
-	private final Map<String, ChatRoom> chatRoomMap;
+	private Map<String, ChatRoom> chatRoomMap;
 	@Getter
-	private final Collection<ChatRoom> chatRooms;
-
+	private Collection<ChatRoom> chatRooms;
+	private List<ChatRoom> roomList = null;
 	public ChatRoomRepository() {
+		roomList.add(ChatRoom.create("전체 채팅방"));
+	}
+	
+	public void CreateRoom(String roomName) {
 		chatRoomMap = Collections
-				.unmodifiableMap(Stream.of(ChatRoom.create("1번방"), ChatRoom.create("2번방"), ChatRoom.create("3번방"))
-						.collect(Collectors.toMap(ChatRoom::getId, Function.identity())));
-
+				.unmodifiableList(Stream.of(roomList)
+						.collect(Collectors.toList(ChatRoom::getId, Function.identity())));
 		chatRooms = Collections.unmodifiableCollection(chatRoomMap.values());
 	}
+	
 
 	public ChatRoom getChatRoom(String id) {
 		return chatRoomMap.get(id);
