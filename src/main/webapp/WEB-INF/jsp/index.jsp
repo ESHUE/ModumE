@@ -173,6 +173,7 @@
     	   var textElement = document.createElement('p');
     	   var messageText = document.createTextNode(message.content);
     	   textElement.appendChild(messageText);
+    	   inputUl.append(messageText)
     	   
     	   messageElement.appendChild(textElement);
     	}
