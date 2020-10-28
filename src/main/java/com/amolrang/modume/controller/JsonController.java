@@ -54,8 +54,13 @@ public class JsonController {
 		return twitchApi.getCurrentLiveStreamer(authentication, authorizedClientService);
 	}
 	
-	@RequestMapping(value = "/test22", produces = "text/plain;charset=UTF-8")
-	public String test22(OAuth2AuthenticationToken authentications) {
+	@RequestMapping(value = "/getYoutubeFollower", produces = "text/plain;charset=UTF-8")
+	public String getYoutubeFollower(OAuth2AuthenticationToken authentications) {
 		return googleApi.getYoutubeMyFollower(authentications, authorizedClientService);
+	}
+	
+	@RequestMapping(value = "/googleSearch", produces = "text/plain;charset=UTF-8")
+	public String googleSearch(String keyword) {
+		return googleApi.searchYoutube(authorizedClientService, keyword);
 	}
 }
