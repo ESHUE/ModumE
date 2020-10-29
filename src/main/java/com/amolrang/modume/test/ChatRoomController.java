@@ -45,7 +45,8 @@ public class ChatRoomController {
     @GetMapping("/rooms/{id}")
     public String room(@PathVariable String id, Model model, HttpSession hs, Social_JPA socialModel) {
     	log.info("id:{}",id);
-    	socialModel = (Social_JPA)hs.getAttribute("UserInfoJson");
+    	socialModel = (Social_JPA)hs.getAttribute("userInfo");
+    	log.info("ChatuserInfo:{}",socialModel);
         ChatRoom room = repository.getChatRoom(id);
         model.addAttribute("room", room);
         //채팅방 들어갔을 때 닉네임으로 들고오기 
