@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
     <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
     <link rel="stylesheet" href="/css/login.css?ver=27">
-    <link rel="stylesheet" href="/css/join.css?ver=89">
+    <link rel="stylesheet" href="/css/join.css?ver=9998">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
      <!-- 아웃라인 material-icon 링크 추가 -->
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
@@ -234,6 +234,43 @@
 	})	
   } 
 
+</script>
+<script>
+	function profileAddIconChange () {
+	
+	  const personIcon = document.querySelector('.personIcon');
+	  const addIcon = document.querySelector('.addIconHidden');
+		personIcon.style.display = 'none';
+		personIcon.style.transition = '0.5s';
+	  //addIcon.style.removeProperty('display')
+	  addIcon.classList.remove('addIconHidden');
+	  const addIcon2 = document.querySelector('.addIcon');
+	  addIcon2.style.color = 'red';
+	}
+	
+	function profilePersonIconChange() {
+	  const addIcon = document.querySelector('.addIcon');
+	  addIcon.classList.add('addIconHidden');
+	  const personIcon = document.querySelector('.personIcon');
+	  personIcon.style.removeProperty('display');
+	}
+	//javascript:document.getElementById('fileName').value = this.value
+	function fileNameMove() {
+		const fileName = document.getElementById('fileName');
+		const profile = document.getElementById('profile');
+		fileName.value = profile.value;
+	}
+	//이미지 미리보기
+	function profilePreview(input) {
+		
+		if(input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(event) {
+				${'#imgPreview'}.attr('src', event.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		} 
+	}
 </script>
 	<sec:authorize access="isAuthenticated()">
 		<script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>

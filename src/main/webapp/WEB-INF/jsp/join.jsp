@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <jsp:useBean id="StringUtils"
 	class="com.amolrang.modume.utils.StringUtils" />
-<link rel="stylesheet" type="text/css" href="/css/join.css">
+<link rel="stylesheet" href="/css/join.css?ver=99987">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 <html>
 <head>
 <meta charset="UTF-8">
@@ -14,7 +16,17 @@
 		<div>
 			<div class="joinHeader"><h1>create account</h1></div>
 			<div class="msg">${err}</div>
-			<form id="frm" class="frm" action="/join" enctype="multipart/form-data" method="post">
+			<form id="frm" class="frm" action="/join" runat="server" enctype="multipart/form-data" method="post">
+				<div class="profileSelect">
+					<label for="profile">
+						<span class="material-icons personIcon" onmouseover="profileAddIconChange()" onmouseout="profilePersonIconChange()">person</span>
+            			<span class="material-icons addIconHidden addIcon">add</span> 
+            			<input type="text" id="fileName"  name="fileName" readonly="readonly">           			
+					</label>
+					<img alt="userProfile" src="#" id="imgPreview">
+					<input type="file" name="profile" id="profile" accept="image/*" onchange="fileNameMove()" onchange="profilePreview(this)"> 
+					<input type="submit" value="올리기"> 	
+				</div>
 				<div id="idChkResult" class="msg"></div>
 				<div class="joinListContainer">
 					<input type="text" name="username" placeholder="아이디">
@@ -29,10 +41,6 @@
 				<div class="joinListContainer">
 					<input type="text" name="nickname" placeholder="이름">
 				</div>
-				<div class="profileSelect">
-					<label for="profile">파일 첨부</label> 
-  					<input type="file" name="profile" id="profile"> 
-				</div>
 				<div class="joinSbm">
 					<input type="submit" value="sign up">
 
@@ -45,4 +53,5 @@
 		</div>
 	</div>
 </body>
+
 </html>
