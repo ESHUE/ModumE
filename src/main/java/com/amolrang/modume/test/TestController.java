@@ -54,8 +54,9 @@ public class TestController {
 	
 	@RequestMapping(value = "/boardDetail", method = RequestMethod.POST)
 	public String boardDetail(Model model, @RequestBody Map<String, Object> param) {
-		System.out.println("adfad : " + param.get("a"));
-		model.addAttribute("USERBOARD_SEQ", param.get("a"));
+		int USERBOARD_SEQ = (int) param.get("USERBOARD_SEQ");
+		System.out.println("꾸엑 : " + USERBOARD_SEQ);
+		model.addAttribute("board", "f");
 		return "/boardDetail";
 	}
 	
