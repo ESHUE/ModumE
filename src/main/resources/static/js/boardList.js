@@ -30,24 +30,29 @@ function modifyPost(boardDetail) {
 	form.title.value = title;
 }
 
+
 function goToDetail(board_seq) {
-	const form = document.querySelector('#board-regMod__form');
-	/*
-	const fetchOpt = {
-		method: 'GET',
-  		headers: {
-		    'Content-Type': 'application/json'
-		}
-		body: JSON.stringify({USERBOARD_SEQ: board_seq})
+	const boardContainer = document.querySelector('.boardContainer');
+	const param = {
+		a: board_seq
 	}
-	*/
 	
-	fetch('/boardDetail').then(function(response) {
+	const fetchOpt = {
+		method: 'POST',
+		headers: {
+		    'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(param)
+	}
+	
+	
+	fetch('/boardDetail', fetchOpt).then(function(response) {
 		response.text().then(function(text) {
 			boardContainer.innerHTML = text;
 		})
 	})
 }
+
 
 /*
 function removeAllChild(ele) {

@@ -70,7 +70,7 @@
 	</table>
 </c:forEach>
 	 <!-- 1번 테이블 -->
-    <table class="board-table cursor" onclick="changeLocation('/boardDetail')">
+    <table class="board-table cursor" onclick="goToDetail(${item.USERBOARD_SEQ})">
         <tr class="board-profile">
             <td rowspan="2" class="board-profile-td">
                 <div class="board-profile__box">
@@ -125,7 +125,7 @@
     </table>
     
     <!-- 2번 테이블 -->
-    <table class="board-table cursor" onclick="changeLocation('/boardDetail')">
+    <table class="board-table cursor" onclick="goToDetail(${item.USERBOARD_SEQ})">
         <tr class="board-profile">
             <td rowspan="2" class="board-profile-td">
                 <div class="board-profile__box">

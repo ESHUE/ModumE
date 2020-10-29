@@ -2,6 +2,7 @@ package com.amolrang.modume.test;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,13 +49,19 @@ public class TestController {
 		return "/boardList";
 	}
 	
-	@RequestMapping(value = "/boardDetail", method = RequestMethod.GET)
-	@ResponseBody
-	public String boardDetail(Model model, Userboard_JPA param) {
-		System.out.println("dfsdfd : " + param.getUSERBOARD_SEQ());
-		model.addAttribute("USERBOARD_SEQ", param.getUSERBOARD_SEQ());
+	
+	
+	
+	@RequestMapping(value = "/boardDetail", method = RequestMethod.POST)
+	public String boardDetail(Model model, @RequestBody Map<String, Object> param) {
+		System.out.println("adfad : " + param.get("a"));
+		model.addAttribute("USERBOARD_SEQ", param.get("a"));
 		return "/boardDetail";
 	}
+	
+	
+	
+	
 
 	@RequestMapping(value = "/boardRegMod", method = RequestMethod.GET)
 	public String boardRegMod(Principal principal) {
