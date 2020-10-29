@@ -56,7 +56,7 @@ public class TestController {
 	public String boardDetail(Model model, @RequestBody Map<String, Object> param) {
 		int USERBOARD_SEQ = (int) param.get("USERBOARD_SEQ");
 		System.out.println("꾸엑 : " + USERBOARD_SEQ);
-		model.addAttribute("board", "f");
+		//model.addAttribute("board", UserBoardRepository.findBy);
 		return "/boardDetail";
 	}
 	
