@@ -13,7 +13,7 @@
 
 <div class="board-detail boardContents">
 	<div class="board-detail-modDel__btns flex-center">
-		<div class="rectangle-small-btn mr5">수정</div>
+		<div class="rectangle-small-btn mr5" onclick="goToEditor('boardDetail정보들')">수정</div>
 		<div class="rectangle-small-btn">삭제</div>
 	</div>
     <table class="board-detail-table board-table">
@@ -29,7 +29,7 @@
             <td class="board-detail-title" colspan="2">제목입니다라랄라</td>
         </tr>
         <tr class="board-date">
-            <td classs="board-detail-date" colspan="2">─── 작성 : 10-20 │ 수정 : 10-22 ───</td>
+            <td class="board-detail-date" colspan="2">─── 작성 : 10-20 │ 수정 : 10-22 ───</td>
         </tr>
         <tr class="board-ctnt board-detail-ctnt">
             <td class="board-detail-ctnt" colspan="2">
