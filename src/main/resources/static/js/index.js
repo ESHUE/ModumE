@@ -78,6 +78,7 @@ function openboard() {
 
 function changeLocation(location) {
 	const boardContainer = document.querySelector('.boardContainer');
+	//fetchBoard(boardContainer, location);
 	fetchBoard(boardContainer, location);
 }
 
@@ -88,20 +89,6 @@ function fetchBoard(ele, location) {
 		})
 	})
 }
-
-
-function fetchBoardList() {
-	fetch(location).then(function(response) {
-		response.text().then(function(text) {
-			ele.innerHTML = text;
-		})
-	}).then(function() {
-		axios.get('/boardListAction').then(function(res) {
-			console.log(res);
-		})
-	})
-}
-
 
 function closeContainer(ele) {
     ele.remove();

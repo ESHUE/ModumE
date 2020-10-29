@@ -30,6 +30,25 @@ function modifyPost(boardDetail) {
 	form.title.value = title;
 }
 
+function goToDetail(board_seq) {
+	const form = document.querySelector('#board-regMod__form');
+	/*
+	const fetchOpt = {
+		method: 'GET',
+  		headers: {
+		    'Content-Type': 'application/json'
+		}
+		body: JSON.stringify({USERBOARD_SEQ: board_seq})
+	}
+	*/
+	
+	fetch('/boardDetail').then(function(response) {
+		response.text().then(function(text) {
+			boardContainer.innerHTML = text;
+		})
+	})
+}
+
 /*
 function removeAllChild(ele) {
 	while(ele.firstChild) {

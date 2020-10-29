@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,18 +43,16 @@ public class TestController {
 	}
 
 	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
-	public String boardList() {
+	public String boardList(Model model) {
+		model.addAttribute("list", userBoardRepository.findAll());
 		return "/boardList";
 	}
 	
-	@RequestMapping(value = "/boardListAction")
-	@ResponseBody
-	public List<Userboard_JPA> boardListAction() {
-		return userBoardRepository.findAll();
-	}
-
 	@RequestMapping(value = "/boardDetail", method = RequestMethod.GET)
-	public String boardDetail(Principal principal) {
+	@ResponseBody
+	public String boardDetail(Model model, Userboard_JPA param) {
+		System.out.println("dfsdfd : " + param.getUSERBOARD_SEQ());
+		model.addAttribute("USERBOARD_SEQ", param.getUSERBOARD_SEQ());
 		return "/boardDetail";
 	}
 
