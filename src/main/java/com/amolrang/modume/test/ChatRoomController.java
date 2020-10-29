@@ -1,5 +1,7 @@
 package com.amolrang.modume.test;
 
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.servlet.http.HttpSession;
@@ -34,8 +36,8 @@ public class ChatRoomController {
     }
 
     @GetMapping("/rooms")
-    public String rooms(Model model) {
-    	repository.CreateRoom("");
+    public String rooms(Model model,HttpSession hs) {
+    	repository.CreateRoom("", hs);
         model.addAttribute("rooms", repository.getChatRooms());
         return listViewName;
     }

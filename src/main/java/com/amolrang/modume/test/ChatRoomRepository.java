@@ -1,11 +1,14 @@
 package com.amolrang.modume.test;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.web.socket.WebSocketSession;
@@ -17,9 +20,15 @@ public class ChatRoomRepository {
 	private Map<String, ChatRoom> chatRoomMap;
 	@Getter
 	private Collection<ChatRoom> chatRooms;
-	public void CreateRoom(String roomName) {
-		ChatRoom[] roomList = {ChatRoom.create("전체 채팅방"),ChatRoom.create("테스트용 채팅방")};
-		
+	public void CreateRoom(String roomName,HttpSession hs) {
+//		ChatRoom[] roomList = {ChatRoom.create("전체 채팅방"),ChatRoom.create("테스트용 채팅방")};
+		ArrayList<Map> list = (ArrayList<Map>)hs.getAttribute("LiveStream");
+		ChatRoom[] roomList = new ChatRoom[list.size()];
+		System.out.println(list.size());
+		for(int i=0; i<list.size(); i++) {
+			roomList[i] = ChatRoom.create((String)list.get(i).get("user_id"));
+			System.out.println("roomList: " + roomList[i]);
+		}
 		chatRoomMap = Collections
 				.unmodifiableMap(Stream.of(roomList)
 						.collect(Collectors.toMap(ChatRoom::getId, Function.identity())));

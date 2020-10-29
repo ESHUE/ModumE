@@ -1,5 +1,7 @@
 package com.amolrang.modume.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
@@ -51,8 +53,13 @@ public class JsonController {
 	}
 	
 	@RequestMapping(value = "/getStreams", produces = "text/plain;charset=UTF-8")
-	public String getStreams(OAuth2AuthenticationToken authentication) {
-		return twitchApi.getCurrentLiveStreamer(authentication, authorizedClientService);
+	public String getStreams(OAuth2AuthenticationToken authentication, HttpSession hs) {
+		return twitchApi.getCurrentLiveStreamer(authentication, authorizedClientService, hs);
+	}
+	
+	@RequestMapping(value = "/getChat", produces = "text/plain;charset=UTF-8")
+	public String getChatting(OAuth2AuthenticationToken authentication, HttpSession hs) {
+		return twitchApi.getChatting(authentication, authorizedClientService, hs);
 	}
 	
 	@RequestMapping(value = "/getYoutubeFollower", produces = "text/plain;charset=UTF-8")

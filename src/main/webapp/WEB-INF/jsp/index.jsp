@@ -266,6 +266,9 @@
 			axios.get('/getStreams',{}).then(function(res){
 				console.log(res)
 			})
+			 axios.get('/getChat',{}).then(function(res){
+				console.log(res)
+			}) 
 			
 	    </script>
 		</c:if>

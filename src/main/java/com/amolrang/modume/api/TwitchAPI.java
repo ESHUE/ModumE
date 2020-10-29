@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -41,7 +43,7 @@ public class TwitchAPI {
 		LinkedHashMap data = (LinkedHashMap) response.getBody();
 		ArrayList<Map> list = (ArrayList<Map>) data.get("data");
 		log.info("FollowerLog:{}",data);
-		log.info("TestLog:{}",list);
+		log.info("FollowTestLog:{}",list);
 //		Map<?,?> test = (Map<?,?>)data.get("data");
 //		log.info("FollowerTestLog:{}",test.size());
 		return gson.toJson(data);
@@ -64,7 +66,7 @@ public class TwitchAPI {
 	}
 	
 	public String getCurrentLiveStreamer(OAuth2AuthenticationToken authentication,
-			OAuth2AuthorizedClientService authAuthorizedClientService) {
+			OAuth2AuthorizedClientService authAuthorizedClientService,HttpSession hs) {
 		String url = "https://api.twitch.tv/helix/streams?language=ko";
 		String query = "";
 		
@@ -74,11 +76,26 @@ public class TwitchAPI {
 		LinkedHashMap<?, ?> data = (LinkedHashMap<?, ?>) response.getBody();
 		ArrayList<Map<?,?>> list = (ArrayList<Map<?,?>>) data.get("data");
 		log.info("LiveStreamer:{}",data);
-		for(int i=0; i<list.size(); i++) {
-			log.info("TestLog:{}",list.get(i));
-		}
-		
-		
+//		for(int i=0; i<list.size(); i++) {
+//			log.info("LiveTestLog:{}",list.get(i));
+//		}
+		hs.setAttribute("LiveStream", list);
+		return gson.toJson(data);
+	}
+	
+	public String getChatting(OAuth2AuthenticationToken authentication,
+			OAuth2AuthorizedClientService authAuthorizedClientService,HttpSession hs) {
+		String url = "https://www.twitch.tv/embed/170347275/chat";
+		newHeader(authentication,authAuthorizedClientService);
+		restTemplateExchange(url, "");
+		Map data = response.getBody();
+//		for(int i=0; i<list.size(); i++) {
+//			String query = (String) list.get(i).get("user_id") + "/chat?parent=streamernews.example.com";
+//			newHeader(authentication,authAuthorizedClientService);
+//			restTemplateExchange(url, query);
+//			data = response.getBody();
+//		}
+//		log.info("ChatLog:{}",data);
 		return gson.toJson(data);
 	}
 	
