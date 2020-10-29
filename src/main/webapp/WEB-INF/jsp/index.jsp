@@ -58,13 +58,13 @@
                 	</video> --%>
 
 
-					<div class="slide slide__left">
+					<!-- <div class="slide slide__left">
 						<span class="material-icons">keyboard_arrow_left</span>
 					</div>
 					<div class="slide slide__center" id="video-embed"></div>
 					<div class="slide slide__right">
 						<span class="material-icons">keyboard_arrow_right</span>
-					</div>
+					</div> -->
 				</div>
 				<!-- 채팅관련 창 나오는 곳  -->
 			</div>
@@ -80,15 +80,15 @@
 	</main>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script src="https://embed.twitch.tv/embed/v1.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 	<script src="/js/index.js?aaa=3"></script>
 	<script src="/js/login.js"></script>
 	<script src="/js/boardList.js?ver=5"></script>
-	<script src="/js/boardDetail.js?ver=1"></script>
 	<script src="/js/boardRegMod.js?ver=18"></script>
-	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<!-- 트위치 채널 긁어오기(채널지정) -->
-	<script src="https://embed.twitch.tv/embed/v1.js"></script>
 
 	<script>
     var stompClient = null;
@@ -232,11 +232,22 @@
   } 
 
 </script>
-console.log(${UserInfo})
 	<sec:authorize access="isAuthenticated()">
 		<script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
-		<c:if test="${UserInfo.sns == 'twitch'}">
-			<script type="text/javascript">
+		<c:if test="${userSNS != null}">
+		
+			<script>
+			console.log('${userSNS}')
+			</script>
+				
+		</c:if>
+
+		<c:if test="${userInfo != null}">
+			<script>
+				console.log('${userInfo}')
+			</script>
+			<c:if test="${userSNS.sns == 'twitch'}">
+				<script type="text/javascript">
 		
 			function getVideo(res){
 				axios.get('/CallVideo',{
@@ -268,11 +279,11 @@ console.log(${UserInfo})
 					item.user_name
 					item.title
 					item.thumbnail_url
-					container.append('div')
 				})
 			})
 			
 	    </script>
+			</c:if>
 		</c:if>
 	</sec:authorize>
 </body>
