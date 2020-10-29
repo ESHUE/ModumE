@@ -14,17 +14,18 @@ import lombok.Getter;
 
 @Repository
 public class ChatRoomRepository {
-	private final Map<String, ChatRoom> chatRoomMap;
+	private Map<String, ChatRoom> chatRoomMap;
 	@Getter
-	private final Collection<ChatRoom> chatRooms;
-
-	public ChatRoomRepository() {
+	private Collection<ChatRoom> chatRooms;
+	public void CreateRoom(String roomName) {
+		ChatRoom[] roomList = {ChatRoom.create("전체 채팅방"),ChatRoom.create("테스트용 채팅방")};
+		
 		chatRoomMap = Collections
-				.unmodifiableMap(Stream.of(ChatRoom.create("1번방"), ChatRoom.create("2번방"), ChatRoom.create("3번방"))
+				.unmodifiableMap(Stream.of(roomList)
 						.collect(Collectors.toMap(ChatRoom::getId, Function.identity())));
-
 		chatRooms = Collections.unmodifiableCollection(chatRoomMap.values());
 	}
+	
 
 	public ChatRoom getChatRoom(String id) {
 		return chatRoomMap.get(id);

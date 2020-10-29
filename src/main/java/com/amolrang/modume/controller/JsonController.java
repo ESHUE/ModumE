@@ -12,6 +12,9 @@ import com.amolrang.modume.api.TwitchAPI;
 import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.service.UserService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 public class JsonController {
 	@Autowired
@@ -27,9 +30,10 @@ public class JsonController {
 	private GoogleAPI googleApi;
 	
 	@RequestMapping(value = "/IdChk", produces = "text/plain;charset=UTF-8")
-	public String IdChk(@RequestBody User_JPA param) {
+	public String IdChk(User_JPA param) {
 		String result = "2";
 		if (userService.loadUserByUsername(param.getUsername()) != null) {
+			log.info("user:{}",param);
 			result = "3";
 		}
 		return String.format("%s", result);
