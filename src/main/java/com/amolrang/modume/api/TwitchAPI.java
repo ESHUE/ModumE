@@ -85,7 +85,7 @@ public class TwitchAPI {
 	
 	public String getChatting(OAuth2AuthenticationToken authentication,
 			OAuth2AuthorizedClientService authAuthorizedClientService,HttpSession hs) {
-		String url = "https://www.twitch.tv/embed/170347275/chat";
+		String url = "https://www.twitch.tv/embed/43691/chat";
 		newHeader(authentication,authAuthorizedClientService);
 		restTemplateExchange(url, "");
 		Map data = response.getBody();

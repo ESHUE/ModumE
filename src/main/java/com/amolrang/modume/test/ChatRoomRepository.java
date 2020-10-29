@@ -21,17 +21,18 @@ public class ChatRoomRepository {
 	@Getter
 	private Collection<ChatRoom> chatRooms;
 	public void CreateRoom(String roomName,HttpSession hs) {
-//		ChatRoom[] roomList = {ChatRoom.create("전체 채팅방"),ChatRoom.create("테스트용 채팅방")};
+//		ChatRoom[] roomList = {ChatRoom.create("전체 채팅방"),ChatRoom.create("?????")};
 		ArrayList<Map> list = (ArrayList<Map>)hs.getAttribute("LiveStream");
 		ChatRoom[] roomList = new ChatRoom[list.size()];
 		System.out.println(list.size());
 		for(int i=0; i<list.size(); i++) {
-			roomList[i] = ChatRoom.create((String)list.get(i).get("user_id"));
+			roomList[i] = ChatRoom.create((String)list.get(i).get("user_name"));
 			System.out.println("roomList: " + roomList[i]);
 		}
 		chatRoomMap = Collections
 				.unmodifiableMap(Stream.of(roomList)
 						.collect(Collectors.toMap(ChatRoom::getId, Function.identity())));
+		System.out.println(chatRoomMap);
 		chatRooms = Collections.unmodifiableCollection(chatRoomMap.values());
 	}
 	

@@ -4,6 +4,6 @@
 <h1>채팅방 목록</h1>
 <ul>
 <c:forEach items="${rooms}" var="item">
-<li><a href="/rooms/${item.name}">${item.name}</a></li>
+<li><a href="/chat/rooms/${item.id}">${item.name}</a></li>
 </c:forEach>
 </ul>

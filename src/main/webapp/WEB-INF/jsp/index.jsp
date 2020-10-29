@@ -181,25 +181,7 @@
     	   
     	   messageElement.appendChild(textElement);
     	}
-    /* $.ajax({
-    	 type: 'GET',
-    	 url: 'https://api.twitch.tv/kraken/channels/twitch',
-    	 headers: {
-    	   'Client-ID': '95put5vj4zw23iiy5poetela3ilbq6'
-    	 },
-    	 success: function(data) {
-    	   console.log(data);
-    	 }
-    	});
-      
-    xhr.send(); */
-    /* new Twitch.Embed("twitch-embed", {
-        width: 854,
-        height: 480,
-        channel: "2chamcham2",
-        // only needed if your site is also embedded on embed.example.com and othersite.example.com 
-        parent: ["embed.example.com", "othersite.example.com"]
-      }); */
+    
 	</script>
 
 	<script>
@@ -266,10 +248,25 @@
 			axios.get('/getStreams',{}).then(function(res){
 				console.log(res)
 			})
-			 axios.get('/getChat',{}).then(function(res){
-				console.log(res)
-			}) 
-			
+			/* $.ajax({
+    	 type: 'GET',
+    	 url: 'https://api.twitch.tv/kraken/channels/twitch',
+    	 headers: {
+    	   'Client-ID': '95put5vj4zw23iiy5poetela3ilbq6'
+    	 },
+    	 success: function(data) {
+    	   console.log(data);
+    	 }
+    	});
+      
+    xhr.send(); */
+    /* new Twitch.Embed("twitch-embed", {
+        width: 854,
+        height: 480,
+        channel: "2chamcham2",
+        // only needed if your site is also embedded on embed.example.com and othersite.example.com 
+        parent: ["embed.example.com", "othersite.example.com"]
+      }); */
 	    </script>
 		</c:if>
 	</sec:authorize>
