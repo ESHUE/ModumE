@@ -102,6 +102,10 @@ public class AuthenticationController {
 			} else {				
 				socialRepository.updateToMainSeq(UserInfoJson);
 			}
+		}else {
+			UserInfoJson = socialRepository.findBySocialUsername(UserInfoJson.getSocialUsername());
+			loginedUser = UserInfoJson.getUser();
+			log.info("loginedUser:{}",loginedUser);
 		}
 
 		//유저정보 받아오기
