@@ -26,6 +26,17 @@ function chkSubmit() {
         alert('내용을 입력해주세요!');
         return false;
     } 
+	ajaxRegMod(title, textarea);
     return true;
+
+}
+
+function ajaxRegMod(title, textarea) {
+	axios.post('/boardRegModAction', {
+		title: title,
+		content: textarea
+	}). then(function(res) {
+		console.log(res);
+	})
 }
 

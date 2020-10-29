@@ -75,9 +75,8 @@ public class AuthenticationController {
 	}
 
 	@RequestMapping(value = "/login_success", method = RequestMethod.GET)
-	public String login_success(Model model, OAuth2AuthenticationToken authentication, HttpSession hs) {
-		log.info("로그인 성공 페이지 GET접근 :{}", authentication);
-		model.addAttribute(StringUtils.TitleKey(), "로그인 성공 페이지");
+	public String login_success(Model model, OAuth2AuthenticationToken authentication, HttpSession hs, Principal principal) {
+		log.info("로그인 성공 페이지 GET접근 :{}", principal);
 		
 		//SocialModel 정보 받아오기 (CallApi으로부터)
 		Social_JPA UserInfoJson = callApi.CallUserInfoToJson(authentication, authorizedClientService);
