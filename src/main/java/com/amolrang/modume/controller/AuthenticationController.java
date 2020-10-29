@@ -57,47 +57,47 @@ public class AuthenticationController {
 	}
 	
 	@RequestMapping(value = "/loginAction", method = RequestMethod.GET)
-	public String login(Model model, HttpSession hs,Principal principal) {
-		log.info("로그인 성공페이지 GET접근 :{}", principal);
-		model.addAttribute(StringUtils.TitleKey(), "로그인페이지");
-		
+	public String login(HttpSession hs,Principal principal) {
+		UserModel userDomain=null;
 		//기존 데이터베이스에 있는 자료 들고오기
 		//----------------------------------
 		log.info(principal.getName());
 		log.info("userInfo:{}",userRepository.findByUsername(principal.getName()));
 		User_JPA UserInfoJson = userRepository.findByUsername(principal.getName());
 		//----------------------------------
-		log.info("UserInfoJson:{}",UserInfoJson);
-		//User_JPA의 정보를 Session에 넣는다.
-		hs.setAttribute("UserInfo", UserInfoJson);
-		model.addAttribute("UserInfo", UserInfoJson);
-		//seq만 따로 세션에 박는다 ( 추후에 따로 뽑아내기 위해서)
-		hs.setAttribute("userModelSeq", UserInfoJson.getMAIN_SEQ());
+		// 가져온 db의 시퀀스 값으로 연동된 sns를 찾아온다.
+		List<Social_JPA> social_JPA_List= socialRepository.findAllByUser(UserInfoJson);
+		log.info("social_JPA_List:{}",social_JPA_List);
+		if( social_JPA_List != null ) {
+			userDomain = new UserModel();
+			for(Social_JPA sns : social_JPA_List) {
+				userDomain.getSns().add(sns.getSns());
+			}
+		}
+		hs.setAttribute("userDomain", userDomain);
+		hs.setAttribute("userInfo", UserInfoJson);
 		
 		return "redirect:/main";
 	}
 
 	@RequestMapping(value = "/login_success", method = RequestMethod.GET)
-	public String login_success(Model model, OAuth2AuthenticationToken authentication, HttpSession hs) {
+	public String login_success(OAuth2AuthenticationToken authentication, HttpSession hs) {
 		log.info("로그인 성공 페이지 GET접근 :{}", authentication);
-		model.addAttribute(StringUtils.TitleKey(), "로그인 성공 페이지");
+		//소셜 로그인시 연동된 계정을 확인하고, 연동된 계정이 있다면 연동된 계정으로 로그인 할 것. (ex -> modume+twitch에서 twitch로 로그인시 modume로 로그인 되게 할것 )
 		
 		//SocialModel 정보 받아오기 (CallApi으로부터)
 		Social_JPA UserInfoJson = callApi.CallUserInfoToJson(authentication, authorizedClientService);
-		User_JPA userModel = (User_JPA)hs.getAttribute("UserInfo");
-		//세션에서의 정보가 없을경우 소셜사이트 로그인으로 인식 (seq는 가져오지못하므로 기본값 0으로 박힌다)
-		if(hs.getAttribute("UserSnsInfo")==null) {
-			socialRepository.save(UserInfoJson);
+		
+		if(UserInfoJson.getUser() != null) {
+			//연동된 유저정보가 있으면
+		}else {
+			//연동이 안되었다면 일반 sns userinfo 반환
+			// 이미 저장된 정보가 있는지 확인후 저장.
+			if(socialRepository.findBySocialUsername(UserInfoJson.getSocialUsername()) == null) {
+				socialRepository.save(UserInfoJson);
+			}
 		}
-		else {
-			//사이트 로그인후 소셜사이트 로그인(seq를 가져올수있음)
-			UserInfoJson.setUser(userModel);
-			socialRepository.save(UserInfoJson);
-			
-		}
-		log.info("socialModel:{}",UserInfoJson);
-		model.addAttribute("UserSnsInfo", UserInfoJson);
-		hs.setAttribute("UserSnsInfo", UserInfoJson);
+		hs.setAttribute("userInfo", UserInfoJson);	
 		
 		return "redirect:/main";
 	}

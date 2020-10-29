@@ -10,6 +10,5 @@ import com.amolrang.modume.model.User_JPA;
 
 public interface SocialRepository extends JpaRepository<Social_JPA, Integer>{
 	Social_JPA findBySocialUsername(String socialUsername);
-
-	List<Social_JPA> findByUser(User_JPA user);
+	List<Social_JPA> findAllByUser(User_JPA user);
 }

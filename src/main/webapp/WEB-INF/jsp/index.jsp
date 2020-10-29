@@ -234,19 +234,19 @@
 </script>
 	<sec:authorize access="isAuthenticated()">
 		<script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
-		<c:if test="${UserInfo != null}">
+		<c:if test="${userSNS != null}">
 		
 			<script>
-			console.log('${UserInfo}')
+			console.log('${userSNS}')
 			</script>
 				
 		</c:if>
 
-		<c:if test="${UserSnsInfo != null}">
+		<c:if test="${userInfo != null}">
 			<script>
-				console.log('${UserSnsInfo}')
+				console.log('${userInfo}')
 			</script>
-			<c:if test="${UserSnsInfo.sns == 'twitch'}">
+			<c:if test="${userSNS.sns == 'twitch'}">
 				<script type="text/javascript">
 		
 			function getVideo(res){

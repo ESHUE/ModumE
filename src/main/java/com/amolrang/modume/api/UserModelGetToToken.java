@@ -104,6 +104,7 @@ public class UserModelGetToToken {
 				sns = "twitch";
 				break;
 			}
+			
 			//2020.10.26 소셜 로그인시 정보  SocialModel에 담아버림
 			if(socialRepository.findBySocialUsername(id)==null) {
 				//id를 db에서 찾지 못했을 때
