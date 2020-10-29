@@ -232,11 +232,22 @@
   } 
 
 </script>
-console.log(${UserInfo})
 	<sec:authorize access="isAuthenticated()">
 		<script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
-		<c:if test="${UserInfo.sns == 'twitch'}">
-			<script type="text/javascript">
+		<c:if test="${UserInfo != null}">
+		
+			<script>
+			console.log('${UserInfo}')
+			</script>
+				
+		</c:if>
+
+		<c:if test="${UserSnsInfo != null}">
+			<script>
+				console.log('${UserSnsInfo}')
+			</script>
+			<c:if test="${UserSnsInfo.sns == 'twitch'}">
+				<script type="text/javascript">
 		
 			function getVideo(res){
 				axios.get('/CallVideo',{
@@ -268,11 +279,11 @@ console.log(${UserInfo})
 					item.user_name
 					item.title
 					item.thumbnail_url
-					container.append('div')
 				})
 			})
 			
 	    </script>
+			</c:if>
 		</c:if>
 	</sec:authorize>
 </body>

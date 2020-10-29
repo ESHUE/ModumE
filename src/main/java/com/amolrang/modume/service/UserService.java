@@ -59,7 +59,7 @@ public class UserService implements UserDetailsService {
 	
 	public UserModel save(UserModel userModel, String role) {
 		// TODO Auto-generated method stublog.info(role);
-		UserModel result = userDAO.findById(userModel.getId());
+		UserModel result = userDAO.findById(userModel.getUsername());
 		if( result != null ){return null;}
 		
 		userModel.setPassword(passwordEncoder.encode(userModel.getPassword()));
@@ -76,8 +76,8 @@ public class UserService implements UserDetailsService {
 	//userModel에서 뽑아온 정보에서 id / pw만 추출
 	public TestModel saveUser(UserModel userModel) {
 		TestModel testModel = new TestModel();
-		testModel.setSeq(userModel.getSeq());
-		testModel.setId(userModel.getId());
+		testModel.setSeq(userModel.getMAIN_SEQ());
+		testModel.setId(userModel.getUsername());
 		testModel.setPassword(userModel.getPassword());
 		log.info("testModel:{}",testModel);
 		return userDAO.saveUser(testModel);

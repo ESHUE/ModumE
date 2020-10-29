@@ -1,10 +1,13 @@
 package com.amolrang.modume.controller;
 
 import java.security.Principal;
+import java.util.Collection;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
@@ -16,11 +19,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.amolrang.modume.api.UserModelGetToToken;
 import com.amolrang.modume.model.Authorize_JPA;
 import com.amolrang.modume.model.Social_JPA;
+import com.amolrang.modume.model.UserModel;
 import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.repository.AuthRepository;
 import com.amolrang.modume.repository.SocialRepository;
 import com.amolrang.modume.repository.UserRepository;
-import com.amolrang.modume.test.TestModel;
 import com.amolrang.modume.utils.StringUtils;
 
 import lombok.extern.slf4j.Slf4j;
@@ -65,12 +68,12 @@ public class AuthenticationController {
 		User_JPA UserInfoJson = userRepository.findByUsername(principal.getName());
 		//----------------------------------
 		log.info("UserInfoJson:{}",UserInfoJson);
-		
 		//User_JPA의 정보를 Session에 넣는다.
 		hs.setAttribute("UserInfo", UserInfoJson);
 		model.addAttribute("UserInfo", UserInfoJson);
 		//seq만 따로 세션에 박는다 ( 추후에 따로 뽑아내기 위해서)
 		hs.setAttribute("userModelSeq", UserInfoJson.getMAIN_SEQ());
+		
 		return "redirect:/main";
 	}
 
@@ -83,7 +86,7 @@ public class AuthenticationController {
 		Social_JPA UserInfoJson = callApi.CallUserInfoToJson(authentication, authorizedClientService);
 		User_JPA userModel = (User_JPA)hs.getAttribute("UserInfo");
 		//세션에서의 정보가 없을경우 소셜사이트 로그인으로 인식 (seq는 가져오지못하므로 기본값 0으로 박힌다)
-		if(hs.getAttribute("UserInfo")==null) {
+		if(hs.getAttribute("UserSnsInfo")==null) {
 			socialRepository.save(UserInfoJson);
 		}
 		else {
@@ -93,8 +96,8 @@ public class AuthenticationController {
 			
 		}
 		log.info("socialModel:{}",UserInfoJson);
-		model.addAttribute("UserInfo", UserInfoJson);
-		hs.setAttribute("UserInfo", UserInfoJson);
+		model.addAttribute("UserSnsInfo", UserInfoJson);
+		hs.setAttribute("UserSnsInfo", UserInfoJson);
 		
 		return "redirect:/main";
 	}
