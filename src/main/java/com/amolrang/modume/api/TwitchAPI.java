@@ -1,5 +1,7 @@
 package com.amolrang.modume.api;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.springframework.http.HttpEntity;
@@ -36,8 +38,12 @@ public class TwitchAPI {
 		newHeader(authentication,authAuthorizedClientService);
 		restTemplateExchange(url, query);
 
-		Map data = response.getBody();
-		
+		LinkedHashMap data = (LinkedHashMap) response.getBody();
+		ArrayList<Map> list = (ArrayList<Map>) data.get("data");
+		log.info("FollowerLog:{}",data);
+		log.info("TestLog:{}",list);
+//		Map<?,?> test = (Map<?,?>)data.get("data");
+//		log.info("FollowerTestLog:{}",test.size());
 		return gson.toJson(data);
 	}
 	
@@ -50,7 +56,10 @@ public class TwitchAPI {
 		restTemplateExchange(url, query);
 
 		Map data = response.getBody();
-		
+		log.info("VideoLog:{}",data);
+	
+//		Map videoLog = (Map)data.get("from_id");
+//		log.info("videoLog:{}",videoLog);
 		return gson.toJson(data);
 	}
 	
@@ -62,7 +71,13 @@ public class TwitchAPI {
 		newHeader(authentication,authAuthorizedClientService);
 		restTemplateExchange(url, query);
 
-		Map data = response.getBody();
+		LinkedHashMap<?, ?> data = (LinkedHashMap<?, ?>) response.getBody();
+		ArrayList<Map<?,?>> list = (ArrayList<Map<?,?>>) data.get("data");
+		log.info("LiveStreamer:{}",data);
+		for(int i=0; i<list.size(); i++) {
+			log.info("TestLog:{}",list.get(i));
+		}
+		
 		
 		return gson.toJson(data);
 	}
