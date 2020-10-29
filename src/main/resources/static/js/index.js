@@ -173,9 +173,9 @@ function openUserMenu(isLogin) {
    makeSpan2_2_2.setAttribute('onclick', 'openUserInfo()');
 
 	const makeSpan2_2_3 = document.createElement('span');
-   makeSpan2_2_2.classList.add('cursor');
-   makeSpan2_2_2.innerText = '채팅테스트';
-   makeSpan2_2_2.setAttribute('onclick', "location.href='/chat/rooms'");
+   makeSpan2_2_3.classList.add('cursor');
+   makeSpan2_2_3.innerText = '채팅테스트';
+   makeSpan2_2_3.setAttribute('onclick', "location.href='/chat/rooms'");
    
 //   const makeSpan2_2_2 = document.createElement('span');
 //   makeSpan2_2_2.classList.add('cursor');
@@ -185,6 +185,7 @@ function openUserMenu(isLogin) {
    if(isLogin) {
       makeDiv2.append(makeSpan2_2_1);
       makeDiv2.append(makeSpan2_2_2);
+	  makeDiv2.append(makeSpan2_2_3);
    } else {
       makeDiv2.append(makeSpan2_1_1);
 //      makeDiv2.append(makeSpan2_1_2);
