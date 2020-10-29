@@ -11,7 +11,7 @@
     </div>
 </div>
 <div class="boardContents">
-    <!-- 1번 테이블 -->
+	 <!-- 1번 테이블 -->
     <table class="board-table cursor" onclick="changeLocation('/boardDetail')">
         <tr class="board-profile">
             <td rowspan="2" class="board-profile-td">
@@ -65,7 +65,7 @@
             </td>
         </tr>
     </table>
-
+    
     <!-- 2번 테이블 -->
     <table class="board-table cursor" onclick="changeLocation('/boardDetail')">
         <tr class="board-profile">

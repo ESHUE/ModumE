@@ -17,17 +17,17 @@
 			<form id="frm" class="frm" action="/join" enctype="multipart/form-data" method="post">
 				<div id="idChkResult" class="msg"></div>
 				<div class="joinListContainer">
-					<input type="text" name="username" placeholder="아이디">
+					<input type="text" name="username" placeholder="아이디" value="abc111">
 					<button type="button" onclick="chkId()">아이디 중복체크</button>
 				</div>
 				<div class="joinListContainer">
-					<input type="password" name="password" placeholder="비밀번호">
+					<input type="password" name="password" placeholder="비밀번호" value="123456">
 				</div>
 				<div class="joinListContainer">
-					<input type="password" name="password_re" placeholder="비밀번호 확인">
+					<input type="password" name="password_re" placeholder="비밀번호 확인" value="123456">
 				</div>
 				<div class="joinListContainer">
-					<input type="text" name="nickname" placeholder="이름">
+					<input type="text" name="nickname" placeholder="이름" value="은찌리">
 				</div>
 				<div class="profileSelect">
 					<label for="profile">파일 첨부</label> 

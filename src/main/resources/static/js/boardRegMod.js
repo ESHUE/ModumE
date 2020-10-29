@@ -14,6 +14,8 @@ function cutTitle(ele) {
     }
 }
 
+
+
 function chkSubmit() {
     const form = document.querySelector('#board-regMod__form');
     const title = form.title.value;
@@ -21,22 +23,22 @@ function chkSubmit() {
 
     if(title == '') {
         alert('제목을 입력해주세요!');
-        return false;
+        return;
     } else if(textarea == '') {
         alert('내용을 입력해주세요!');
-        return false;
+        return;
     } 
 	ajaxRegMod(title, textarea);
-    return true;
-
 }
 
 function ajaxRegMod(title, textarea) {
-	axios.post('/boardRegModAction', {
-		title: title,
-		content: textarea
-	}). then(function(res) {
-		console.log(res);
+	const url = '/boardRegModAction';
+	const param = {
+		'title': title,
+		'content': textarea
+	};
+	
+	axios.post(url, param).then(function(res) {
+		console.log(res.data);
 	})
 }
-

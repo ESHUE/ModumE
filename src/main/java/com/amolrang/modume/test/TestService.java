@@ -8,17 +8,26 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.amolrang.modume.model.Social_JPA;
+import com.amolrang.modume.model.User_JPA;
+import com.amolrang.modume.model.Userboard_JPA;
+import com.amolrang.modume.repository.UserBoardRepository;
 import com.google.gson.JsonObject;
 
 @Service
 public class TestService {
+	
+	@Autowired
+	UserBoardRepository userBoardRepository;
 	
 	@ResponseBody
 	public String imageUpload(HttpServletRequest request, HttpServletResponse response, 
@@ -78,6 +87,48 @@ public class TestService {
         
         return null;        
         
+	}
+	
+	public Userboard_JPA boardRegModAction(HttpSession hs, Userboard_JPA param) {
+		Object resultObject = hs.getAttribute("userInfo");
+		
+		if(resultObject == null) {
+			return null;
+		}
+		
+		// UserInfo가 속하는 클래스의 풀네임 추출
+		String classFullNm = resultObject.getClass().getName();
+		String classNm = classFullNm.substring(classFullNm.lastIndexOf(".") + 1);
+		
+		User_JPA user_jpa = null;
+		Social_JPA social_jpa = null;
+		Userboard_JPA userBoard_jpa = new Userboard_JPA();
+		
+		if(classNm.equals("User_JPA")) {
+			user_jpa = (User_JPA)resultObject;
+		} else if(classNm.equals("Social_JPA")) {
+			social_jpa = (Social_JPA)resultObject;
+			user_jpa = social_jpa.getUser();
+			
+			// social 로그인만 된 경우
+			if(user_jpa == null) {
+				return null;
+			}
+			
+		}
+		
+		userBoard_jpa.setUser(user_jpa);
+		userBoard_jpa.setTitle(param.getTitle());
+		userBoard_jpa.setContent(param.getContent());
+		
+		System.out.println("타이틀 : " + param.getTitle());
+		System.out.println("내용 : " + param.getContent());
+		System.out.println("이름 : " + user_jpa.getNickname());
+		
+		userBoardRepository.save(userBoard_jpa);
+		
+		return userBoard_jpa;
+		
 	}
 
 }
