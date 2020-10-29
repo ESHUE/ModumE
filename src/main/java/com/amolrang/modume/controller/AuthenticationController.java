@@ -67,8 +67,8 @@ public class AuthenticationController {
 		log.info("UserInfoJson:{}",UserInfoJson);
 		
 		//User_JPA의 정보를 Session에 넣는다.
-		hs.setAttribute("UserInfoJson", UserInfoJson);
-		model.addAttribute("UserInfoJson", UserInfoJson);
+		hs.setAttribute("UserInfo", UserInfoJson);
+		model.addAttribute("UserInfo", UserInfoJson);
 		//seq만 따로 세션에 박는다 ( 추후에 따로 뽑아내기 위해서)
 		hs.setAttribute("userModelSeq", UserInfoJson.getMAIN_SEQ());
 		return "redirect:/main";
@@ -81,9 +81,9 @@ public class AuthenticationController {
 		
 		//SocialModel 정보 받아오기 (CallApi으로부터)
 		Social_JPA UserInfoJson = callApi.CallUserInfoToJson(authentication, authorizedClientService);
-		User_JPA userModel = (User_JPA)hs.getAttribute("UserInfoJson");
+		User_JPA userModel = (User_JPA)hs.getAttribute("UserInfo");
 		//세션에서의 정보가 없을경우 소셜사이트 로그인으로 인식 (seq는 가져오지못하므로 기본값 0으로 박힌다)
-		if(hs.getAttribute("UserInfoJson")==null) {
+		if(hs.getAttribute("UserInfo")==null) {
 			socialRepository.save(UserInfoJson);
 		}
 		else {
@@ -93,8 +93,8 @@ public class AuthenticationController {
 			
 		}
 		log.info("socialModel:{}",UserInfoJson);
-		model.addAttribute("UserInfoJson", UserInfoJson);
-		hs.setAttribute("UserInfoJson", UserInfoJson);
+		model.addAttribute("UserInfo", UserInfoJson);
+		hs.setAttribute("UserInfo", UserInfoJson);
 		
 		return "redirect:/main";
 	}

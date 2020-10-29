@@ -6,20 +6,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${title}</title>
-    <link rel="icon" href="/img/favicon.png">
-    <link rel="stylesheet" href="/css/index.css?ver=10">
-    <link rel="stylesheet" href="/css/boardList.css?ver=3">
-    <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
-    <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
-    <link rel="stylesheet" href="/css/login.css?ver=27">
-    <link rel="stylesheet" href="/css/join.css?ver=89">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
-     <!-- 아웃라인 material-icon 링크 추가 -->
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
-	<!-- 위지윅 에디터 추가 -->
-	<script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${title}</title>
+<link rel="icon" href="/img/favicon.png">
+<link rel="stylesheet" href="/css/index.css?ver=10">
+<link rel="stylesheet" href="/css/boardList.css?ver=3">
+<link rel="stylesheet" href="/css/boardDetail.css?ver=4">
+<link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
+<link rel="stylesheet" href="/css/login.css?ver=27">
+<link rel="stylesheet" href="/css/join.css?ver=89">
+<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+<!-- 아웃라인 material-icon 링크 추가 -->
+<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+<!-- 위지윅 에디터 추가 -->
+<script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
 </head>
 <body>
 	<div id="bg1">
@@ -61,11 +61,7 @@
 					<div class="slide slide__left">
 						<span class="material-icons">keyboard_arrow_left</span>
 					</div>
-					<div class="slide slide__center" id="twitch-embed">
-						<sec:authorize access="isAuthenticated()">
-							<div id="video"></div>
-						</sec:authorize>
-					</div>
+					<div class="slide slide__center" id="video-embed"></div>
 					<div class="slide slide__right">
 						<span class="material-icons">keyboard_arrow_right</span>
 					</div>
@@ -85,16 +81,16 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
-    <script src="/js/index.js?aaa=sdaaaa8"></script>
-    <script src="/js/login.js"></script>
-    <script src="/js/boardList.js?ver=4"></script>
-    <script src="/js/boardDetail.js?ver=1"></script>
-    <script src="/js/boardRegMod.js?ver=1"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!-- 트위치 채널 긁어오기(채널지정) -->
-    <script src="https://embed.twitch.tv/embed/v1.js"></script>
-    
-    <script>
+	<script src="/js/index.js?aaa=sdaaaa8"></script>
+	<script src="/js/login.js"></script>
+	<script src="/js/boardList.js?ver=4"></script>
+	<script src="/js/boardDetail.js?ver=1"></script>
+	<script src="/js/boardRegMod.js?ver=1"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<!-- 트위치 채널 긁어오기(채널지정) -->
+	<script src="https://embed.twitch.tv/embed/v1.js"></script>
+
+	<script>
     var stompClient = null;
     function chkId() {
 		const username = frm.username.value
@@ -192,7 +188,7 @@
     	});
       
     xhr.send(); */
-    /* new Twitch.Embed("twitch-embed", {
+    /* new Twitch.Embed("video-embed", {
         width: 854,
         height: 480,
         channel: "2chamcham2",
@@ -236,9 +232,10 @@
   } 
 
 </script>
+console.log(${UserInfo})
 	<sec:authorize access="isAuthenticated()">
 		<script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
-		<c:if test="${UserInfoJson.sns == 'twitch'}">
+		<c:if test="${UserInfo.sns == 'twitch'}">
 			<script type="text/javascript">
 		
 			function getVideo(res){
@@ -249,21 +246,30 @@
 				}).then(function(res){
 					console.log(res)
 					const url = `\${res.data.data[0].url}`;
-					 const container = document.getElementById('video')
-					 renderReactPlayer(container , {
-						 url,
-						 playing: true,
-						 controls: true
-					 })
+					const container = document.getElementById('video-embed')
+					renderReactPlayer(container , {
+						url,
+						playing: true,
+						controls: true
+					})
 				})	
 			}
-			
-			axios.get('/CallFollows',{}).then(function(res){
-				console.log(res)
-				getVideo(res)
-			})
+			function callFollowVideo(){
+				axios.get('/CallFollows',{}).then(function(res){
+					console.log(res)
+					getVideo(res)
+				})
+			}
 			axios.get('/getStreams',{}).then(function(res){
 				console.log(res)
+				const container = document.getElementById('video-embed')
+				res.data.data.forEach(function(item){
+					console.log(item)
+					item.user_name
+					item.title
+					item.thumbnail_url
+					container.append('div')
+				})
 			})
 			
 	    </script>
