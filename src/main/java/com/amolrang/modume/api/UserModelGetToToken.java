@@ -106,17 +106,17 @@ public class UserModelGetToToken {
 			}
 			
 			//2020.10.26 소셜 로그인시 정보  SocialModel에 담아버림
-			if(socialRepository.findBySocialUsername(id)==null) {
+//			if(socialRepository.findBySocialUsername(id)==null) {
 				//id를 db에서 찾지 못했을 때
 //				socialModel.setS_id(id);
 //				socialModel.setUsername(name);
 //				socialModel.setSns(sns);
 //				log.info("socialModel:{}",socialModel);
-				socialModel.setSocialUsername(id);
-				socialModel.setSns(sns);
-				socialModel.setUsername(name);
 				log.info("socialModel:{}",socialModel);
-			}
+//			}
+			socialModel.setSocialUsername(id);
+			socialModel.setSns(sns);
+			socialModel.setUsername(name);
 		}
 		return socialModel;
 	}

@@ -67,8 +67,9 @@ public class AuthenticationController {
 		//----------------------------------
 		// 가져온 db의 시퀀스 값으로 연동된 sns를 찾아온다.
 		List<Social_JPA> social_JPA_List= socialRepository.findAllByUser(UserInfoJson);
-		log.info("social_JPA_List:{}",social_JPA_List);
-		if( social_JPA_List != null ) {
+//		log.info("social_JPA_List:{}",social_JPA_List);
+//		System.out.println("social_JPA_List != null ? " + social_JPA_List != null);
+		if(social_JPA_List != null) {
 			userDomain = new UserModel();
 			for(Social_JPA sns : social_JPA_List) {
 				userDomain.getSns().add(sns.getSns());
@@ -87,17 +88,30 @@ public class AuthenticationController {
 		
 		//SocialModel 정보 받아오기 (CallApi으로부터)
 		Social_JPA UserInfoJson = callApi.CallUserInfoToJson(authentication, authorizedClientService);
+		log.info("123. Social_JPA: {}",UserInfoJson);
+		User_JPA loginedUser = (User_JPA)hs.getAttribute("userInfo");
+		log.info("132. User_JPA: {}", loginedUser);
+		if(loginedUser != null) {
+//			System.out.println("두 아이디 연동 시작");
+			UserInfoJson.setUser(loginedUser);
+			if(socialRepository.findBySocialUsername(UserInfoJson.getSocialUsername()) == null) {
+				socialRepository.save(UserInfoJson);
+			} else {				
+				socialRepository.updateToMainSeq(UserInfoJson);
+			}
+		}
+		
 		
 		if(UserInfoJson.getUser() != null) {
-			//연동된 유저정보가 있으면
+//			hs.setAttribute("userInfo", loginedUser);
 		}else {
 			//연동이 안되었다면 일반 sns userinfo 반환
 			// 이미 저장된 정보가 있는지 확인후 저장.
 			if(socialRepository.findBySocialUsername(UserInfoJson.getSocialUsername()) == null) {
 				socialRepository.save(UserInfoJson);
 			}
+			hs.setAttribute("userInfo", UserInfoJson);
 		}
-		hs.setAttribute("userInfo", UserInfoJson);	
 		
 		return "redirect:/main";
 	}
