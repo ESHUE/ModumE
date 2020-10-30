@@ -6,9 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.amolrang.modume.model.Authorize_JPA;
+import com.amolrang.modume.model.User_JPA;
 
 public interface AuthRepository extends JpaRepository<Authorize_JPA, Integer>{
-	@Query("select Authentication from Authorize_JPA where username = :username")
-	List<String> findUsername(String username);
+	@Query(value = "SELECT authentication FROM Authorize_JPA WHERE username = :userModel")
+	List<String> SelAllByUsername(User_JPA userModel);
 }
 

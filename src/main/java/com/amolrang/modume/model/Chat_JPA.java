@@ -13,6 +13,6 @@ import lombok.Data;
 public class Chat_JPA {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int CHAT_SEQ;
+	private int chatSeq;
 
 }
