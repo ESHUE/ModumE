@@ -76,7 +76,7 @@ public class UserService implements UserDetailsService {
 	//userModel에서 뽑아온 정보에서 id / pw만 추출
 	public TestModel saveUser(UserModel userModel) {
 		TestModel testModel = new TestModel();
-		testModel.setSeq(userModel.getMAIN_SEQ());
+		testModel.setSeq(userModel.getUserSeq());
 		testModel.setId(userModel.getUsername());
 		testModel.setPassword(userModel.getPassword());
 		log.info("testModel:{}",testModel);
@@ -86,7 +86,7 @@ public class UserService implements UserDetailsService {
 	public Collection<GrantedAuthority> getAuthorities(String id) {
 		//log.info(msg);
 		//User_JPA userModel = userRepository.findByUsername(id);
-		List<String> string_authorities = authRepository.findUsername(id);
+		List<String> string_authorities = authRepository.SelAllByUsername(id);
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		for (String authority : string_authorities) {
 			authorities.add(new SimpleGrantedAuthority(authority));
