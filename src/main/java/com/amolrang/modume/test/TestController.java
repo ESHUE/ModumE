@@ -65,8 +65,7 @@ public class TestController {
 	
 
 	@RequestMapping(value = "/boardRegMod", method = RequestMethod.GET)
-	public String boardRegMod(Principal principal) {
-		log.info("principal:{}", principal);
+	public String boardRegMod() {
 		return "/boardRegMod";
 	}
 	
