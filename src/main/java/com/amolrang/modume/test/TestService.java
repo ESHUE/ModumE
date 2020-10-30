@@ -108,7 +108,7 @@ public class TestService {
 			user_jpa = (User_JPA)resultObject;
 		} else if(classNm.equals("Social_JPA")) {
 			social_jpa = (Social_JPA)resultObject;
-			user_jpa = social_jpa.getUser();
+			user_jpa = social_jpa.getUserSeq();
 			
 			// social 로그인만 된 경우
 			if(user_jpa == null) {
@@ -117,7 +117,7 @@ public class TestService {
 			
 		}
 		
-		userBoard_jpa.setUser(user_jpa);
+		userBoard_jpa.setUserSeq(user_jpa);
 		userBoard_jpa.setTitle(param.getTitle());
 		userBoard_jpa.setContent(param.getContent());
 		

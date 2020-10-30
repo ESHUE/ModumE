@@ -45,6 +45,7 @@ public class TestController {
 
 	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
 	public String boardList(Model model) {
+		log.info("boardList:{}",userBoardRepository.findAll());
 		model.addAttribute("list", userBoardRepository.findAll());
 		return "/boardList";
 	}
