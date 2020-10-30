@@ -6,6 +6,7 @@ function goToTop() {
 function goToEditor(boardDetail) {
    const boardContainer = document.querySelector('.boardContainer');
 	fetch('/boardRegMod').then(function(response) {
+		console.log(response);
 		response.text().then(function(text) {
 			boardContainer.innerHTML = text;
 		}).then(function() {
@@ -15,7 +16,7 @@ function goToEditor(boardDetail) {
 							 , height: '34vh'
 							 });
 		modifyPost(boardDetail);
-		 
+		console.log(${loginType});
       })
 	})
 }
@@ -30,7 +31,6 @@ function modifyPost(boardDetail) {
 	form.title.value = title;
 }
 
-
 function goToDetail(board_seq) {
 	const boardContainer = document.querySelector('.boardContainer');
 	const param = {
@@ -44,7 +44,6 @@ function goToDetail(board_seq) {
 		},
 		body: JSON.stringify(param)
 	}
-	
 	
 	fetch('/boardDetail', fetchOpt).then(function(response) {
 		response.text().then(function(text) {

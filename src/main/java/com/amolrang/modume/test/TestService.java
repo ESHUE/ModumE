@@ -89,35 +89,28 @@ public class TestService {
         
 	}
 	
-	public Userboard_JPA boardRegModAction(HttpSession hs, Userboard_JPA param) {
-		Object resultObject = hs.getAttribute("userInfo");
-		
-		if(resultObject == null) {
-			return null;
-		}
-		
-		// UserInfo가 속하는 클래스의 풀네임 추출
-		String classFullNm = resultObject.getClass().getName();
-		String classNm = classFullNm.substring(classFullNm.lastIndexOf(".") + 1);
+	public Userboard_JPA boardRegModAction(HttpSession hs, Userboard_JPA param) {	
+		int loginType = CommonUtils.getLoginType(hs);
 		
 		User_JPA user_jpa = null;
 		Social_JPA social_jpa = null;
-		Userboard_JPA userBoard_jpa = new Userboard_JPA();
 		
-		if(classNm.equals("User_JPA")) {
-			user_jpa = (User_JPA)resultObject;
-		} else if(classNm.equals("Social_JPA")) {
-			social_jpa = (Social_JPA)resultObject;
-			user_jpa = social_jpa.getUser();
-			
-			// social 로그인만 된 경우
-			if(user_jpa == null) {
+		// 0: 로그인 안 된 상태 // 1: 모둠이 + 소셜 // 2: 모듐이만 // 3: 소셜만
+		switch(loginType) {
+			case 1: // 모듐이  + 소셜 로그인 상태
+				social_jpa = (Social_JPA)hs.getAttribute("userInfo");
+				user_jpa = social_jpa.getUserSeq();
+				break;
+			case 2: // 모듀미만 로그인 상태
+				user_jpa = (User_JPA)hs.getAttribute("userInfo");
+				break;
+			default:
 				return null;
-			}
-			
 		}
 		
-		userBoard_jpa.setUser(user_jpa);
+		Userboard_JPA userBoard_jpa = new Userboard_JPA();
+		
+		userBoard_jpa.setUserSeq(user_jpa);
 		userBoard_jpa.setTitle(param.getTitle());
 		userBoard_jpa.setContent(param.getContent());
 		

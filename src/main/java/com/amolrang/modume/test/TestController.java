@@ -44,7 +44,7 @@ public class TestController {
 	}
 
 	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
-	public String boardList(Model model) {
+	public String boardList(Model model, HttpSession hs) {
 		model.addAttribute("list", userBoardRepository.findAll());
 		return "/boardList";
 	}
@@ -65,7 +65,9 @@ public class TestController {
 	
 
 	@RequestMapping(value = "/boardRegMod", method = RequestMethod.GET)
-	public String boardRegMod() {
+	public String boardRegMod(Model model, HttpSession hs) {
+		model.addAttribute("loginType", CommonUtils.getLoginType(hs));
+		System.out.println("dd : " + CommonUtils.getLoginType(hs));
 		return "/boardRegMod";
 	}
 	
