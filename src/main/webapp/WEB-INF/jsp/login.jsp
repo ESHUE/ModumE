@@ -10,7 +10,7 @@
 			</div>
 			<div class="input-container focus">
 				<label class="move active" for="password"></label><input type="password" class="no-border active" id="password" name="password" placeholder="PASSWORD" autocomplete="off"
-					options="{ updateOn: 'keyup blur' }" required value="123456">
+					options="{ updateOn: 'keyup blur' }" required value="123!456!">
 			</div>
 		</fieldset>
 		<input class="loginSbm" type="submit" value="sign in"> <input name="${_csrf.parameterName}" type="hidden" value="${_crsf.token}">

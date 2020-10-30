@@ -99,7 +99,7 @@ public class TestService {
 		switch(loginType) {
 			case 1: // 모듐이  + 소셜 로그인 상태
 				social_jpa = (Social_JPA)hs.getAttribute("userInfo");
-				user_jpa = social_jpa.getUserSeq();
+				user_jpa = social_jpa.getUserseq();
 				break;
 			case 2: // 모듀미만 로그인 상태
 				user_jpa = (User_JPA)hs.getAttribute("userInfo");
@@ -110,7 +110,7 @@ public class TestService {
 		
 		Userboard_JPA userBoard_jpa = new Userboard_JPA();
 		
-		userBoard_jpa.setUserSeq(user_jpa);
+		userBoard_jpa.setUserseq(user_jpa);
 		userBoard_jpa.setTitle(param.getTitle());
 		userBoard_jpa.setContent(param.getContent());
 		

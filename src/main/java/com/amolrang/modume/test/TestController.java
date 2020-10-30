@@ -1,7 +1,6 @@
 package com.amolrang.modume.test;
 
 import java.security.Principal;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,12 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.amolrang.modume.model.Social_JPA;
-import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.model.Userboard_JPA;
 import com.amolrang.modume.repository.UserBoardRepository;
 
@@ -44,13 +40,10 @@ public class TestController {
 	}
 
 	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
-	public String boardList(Model model, HttpSession hs) {
-		model.addAttribute("list", userBoardRepository.findAll());
+	public String boardList(Model model) {
+		model.addAttribute("list", userBoardRepository.findAllByOrderByBoardseqDesc());
 		return "/boardList";
 	}
-	
-	
-	
 	
 	@RequestMapping(value = "/boardDetail", method = RequestMethod.POST)
 	public String boardDetail(Model model, @RequestBody Map<String, Object> param) {
@@ -60,10 +53,6 @@ public class TestController {
 		return "/boardDetail";
 	}
 	
-	
-	
-	
-
 	@RequestMapping(value = "/boardRegMod", method = RequestMethod.GET)
 	public String boardRegMod(Model model, HttpSession hs) {
 		model.addAttribute("loginType", CommonUtils.getLoginType(hs));
@@ -109,7 +98,4 @@ public class TestController {
 	public String userInfo3() {
 		return "/userinfo3";
 	}
-
-	
-
 }

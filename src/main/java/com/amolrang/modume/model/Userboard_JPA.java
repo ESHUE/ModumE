@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
@@ -21,7 +20,7 @@ import lombok.Data;
 public class Userboard_JPA {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int boardSeq;
+	private int boardseq;
 	@Column(length = 100)
 	private String title;
 	@Column(length = 10000)
@@ -29,14 +28,9 @@ public class Userboard_JPA {
 	@ColumnDefault("0")
 	private int hits;
 	@CreationTimestamp
-	private Timestamp rDate;
-	private Timestamp mDate;
+	private Timestamp rdate;
+	private Timestamp mdate;
 	@ManyToOne
-	@JoinColumn(name = "userSeq")
-	private User_JPA userSeq;
-	
-	@Transient
-	private String username;
-	@Transient
-	private String profileImg;
+	@JoinColumn(name = "userseq")
+	private User_JPA userseq;
 }

@@ -16,7 +16,7 @@ function goToEditor(boardDetail) {
 							 , height: '34vh'
 							 });
 		modifyPost(boardDetail);
-		console.log(${loginType});
+		//console.log(${loginType});
       })
 	})
 }

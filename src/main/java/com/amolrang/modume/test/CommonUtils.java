@@ -26,7 +26,7 @@ public class CommonUtils {
 			return 2;
 		} else if(classNm.equals("Social_JPA")) {
 			// social 로그인만 된 경우
-			if(((Social_JPA)resultObject).getUserSeq() == null) {
+			if(((Social_JPA)resultObject).getUserseq() == null) {
 				return 3;
 			}
 			return 1;
