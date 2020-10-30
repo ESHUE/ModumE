@@ -18,7 +18,7 @@ public class Social_JPA {
 	private int socialseq;
 	
 	@ManyToOne
-	@JoinColumn(name = "userSeq")
+	@JoinColumn(name = "userseq")
 	private User_JPA userseq;
 	private String socialusername;
 	private String username;
