@@ -83,6 +83,7 @@ public class AuthenticationController {
 
 	@RequestMapping(value = "/login_success", method = RequestMethod.GET)
 	public String login_success(OAuth2AuthenticationToken authentication, HttpSession hs) {
+		UserModel userDomain=null;
 		log.info("로그인 성공 페이지 GET접근 :{}", authentication);
 		//소셜 로그인시 연동된 계정을 확인하고, 연동된 계정이 있다면 연동된 계정으로 로그인 할 것. (ex -> modume+twitch에서 twitch로 로그인시 modume로 로그인 되게 할것 )
 		
@@ -91,6 +92,8 @@ public class AuthenticationController {
 		log.info("123. Social_JPA: {}",UserInfoJson);
 		User_JPA loginedUser = (User_JPA)hs.getAttribute("userInfo");
 		log.info("132. User_JPA: {}", loginedUser);
+		
+		// 유저정보 업데이트
 		if(loginedUser != null) {
 //			System.out.println("두 아이디 연동 시작");
 			UserInfoJson.setUser(loginedUser);
@@ -99,19 +102,25 @@ public class AuthenticationController {
 			} else {				
 				socialRepository.updateToMainSeq(UserInfoJson);
 			}
-		}
-		
-		if(UserInfoJson.getUser() != null) {
-//			hs.setAttribute("userInfo", loginedUser);
 		}else {
-			//연동이 안되었다면 일반 sns userinfo 반환
-			// 이미 저장된 정보가 있는지 확인후 저장.
-			if(socialRepository.findBySocialUsername(UserInfoJson.getSocialUsername()) == null) {
-				socialRepository.save(UserInfoJson);
-			}
-			hs.setAttribute("userInfo", UserInfoJson);
+			UserInfoJson = socialRepository.findBySocialUsername(UserInfoJson.getSocialUsername());
+			log.info("1232. Social_JPA: {}",UserInfoJson);
+			loginedUser = UserInfoJson.getUser();
+			log.info("loginedUser:{}",loginedUser);
 		}
-		log.info("userInfo:{}",UserInfoJson);
+
+		//유저정보 받아오기
+		List<Social_JPA> social_JPA_List= socialRepository.findAllByUser(loginedUser);
+		if(social_JPA_List != null) {
+			userDomain = new UserModel();
+			for(Social_JPA sns : social_JPA_List) {
+				System.out.println(sns.getSns());
+				userDomain.getSns().add(new String(sns.getSns()));
+			}
+		}
+		hs.setAttribute("userDomain", userDomain);
+		hs.setAttribute("userInfo", loginedUser);
+		
 		return "redirect:/main";
 	}
 

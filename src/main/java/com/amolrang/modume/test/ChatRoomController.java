@@ -1,7 +1,5 @@
 package com.amolrang.modume.test;
 
-import java.util.ArrayList;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.servlet.http.HttpSession;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.amolrang.modume.model.Social_JPA;
 import com.amolrang.modume.model.User_JPA;
 
 import lombok.extern.slf4j.Slf4j;
@@ -43,14 +40,14 @@ public class ChatRoomController {
     }
 
     @GetMapping("/rooms/{id}")
-    public String room(@PathVariable String id, Model model, HttpSession hs, Social_JPA socialModel) {
+    public String room(@PathVariable String id, Model model, HttpSession hs, User_JPA userModel) {
     	log.info("id:{}",id);
-    	socialModel = (Social_JPA)hs.getAttribute("userInfo");
-    	log.info("ChatuserInfo:{}",socialModel);
+    	userModel = (User_JPA)hs.getAttribute("userInfo");
+    	log.info("ChatuserInfo:{}",userModel);
         ChatRoom room = repository.getChatRoom(id);
         model.addAttribute("room", room);
         //채팅방 들어갔을 때 닉네임으로 들고오기 
-        model.addAttribute("member", socialModel.getUsername());
+        model.addAttribute("member", userModel.getUsername());
         log.info("room:{}",room);
         return detailViewName;
     }
