@@ -35,7 +35,7 @@
 	    </tr>
 	    <tr class="board-date">
 	    <td colspan="2">
-	    ${item}
+	    ${item.parseRDate}
 	        </td>
 	    </tr>
 	    <tr class="board-title">

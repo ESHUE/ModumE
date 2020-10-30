@@ -45,13 +45,15 @@ public class TestController {
 
 	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
 	public String boardList(Model model) {
-		log.info("boardList:{}",userBoardRepository.findAll());
-		model.addAttribute("list", userBoardRepository.findAll());
+//		log.info("boardList:{}",userBoardRepository.findAllByOrderByBoardSeqDesc());
+		List<Userboard_JPA> list = userBoardRepository.findAllByOrderByBoardSeqDesc();
+		for(Userboard_JPA item : list) {
+			String date = item.getRDate().toString().substring(5, 10);
+			item.setParseRDate(date);
+		}
+		model.addAttribute("list", list);
 		return "/boardList";
 	}
-	
-	
-	
 	
 	@RequestMapping(value = "/boardDetail", method = RequestMethod.POST)
 	public String boardDetail(Model model, @RequestBody Map<String, Object> param) {
@@ -61,10 +63,6 @@ public class TestController {
 		return "/boardDetail";
 	}
 	
-	
-	
-	
-
 	@RequestMapping(value = "/boardRegMod", method = RequestMethod.GET)
 	public String boardRegMod() {
 		return "/boardRegMod";
