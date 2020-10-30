@@ -19,14 +19,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.amolrang.modume.model.Boardimg_JPA;
 import com.amolrang.modume.model.Social_JPA;
 import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.model.Userboard_JPA;
 import com.amolrang.modume.repository.UserBoardRepository;
 import com.google.gson.JsonObject;
 
+import lombok.Data;
+
 @Service
+@Data
 public class TestService {
+	
+	private List<Boardimg_JPA> imgList = new ArrayList<Boardimg_JPA>();
 	
 	@Autowired
 	UserBoardRepository userBoardRepository;
@@ -37,6 +43,7 @@ public class TestService {
 		
 		String content = "";
 		String cuttedContent = "";
+		String edittedContent = "";
 		
 		int startP = 0;
 		int finishP = 0;
@@ -63,15 +70,16 @@ public class TestService {
 				finishP = content.indexOf("</p>");
 				
 				cuttedContent = content.substring(startP, finishP);
+				edittedContent += cuttedContent;
 				
 				content = content.replaceFirst(String.format("<p>%s</p>", cuttedContent), cuttedContent + " ");
 			}
 			
-			if(content.length() > limitedLength) {
-				content = content.substring(0, 120);
+			if(edittedContent.length() > limitedLength) {
+				edittedContent = edittedContent.substring(0, 120);
 			}
 			
-			param.setContent(String.format("<p>%s</p>", content));
+			param.setContent(String.format("<p>%s</p>", edittedContent));
 			
 			System.out.println(param.getContent());
 			
@@ -81,8 +89,9 @@ public class TestService {
 		return editedList;
 	}
 	
-	public String imageUpload(HttpServletRequest request, HttpServletResponse response, 
+	public List<Boardimg_JPA> imageUpload(HttpServletRequest request, HttpServletResponse response, 
 			MultipartHttpServletRequest multiFile) throws Exception {      
+		
 		JsonObject json = new JsonObject();
         OutputStream out = null;
         PrintWriter printWriter = null; 
@@ -121,7 +130,21 @@ public class TestService {
                         
                         Thread.sleep(3000);
                         printWriter.println(json);
+                        
+                        // DB에 저장할 이미지 파일 정보
+                        Boardimg_JPA img = new Boardimg_JPA();
         	        	
+                        img.setImgname(fileName);
+                        img.setImgseq(imgList.size() + 1);
+                        
+                        imgList.add(img);
+                        
+                        for(Boardimg_JPA i : imgList) {
+                        	System.out.println("이미지네임나가신다~");
+                        	System.out.println(i.getImgname());
+                        	System.out.println(i.getImgseq());
+                        }
+                        	
         	        } catch(Exception e) {
         	        	e.printStackTrace();
         	        } finally {
@@ -136,7 +159,7 @@ public class TestService {
         	}
         }
         
-        return null;        
+        return imgList;        
         
 	}
 	
@@ -158,6 +181,8 @@ public class TestService {
 		System.out.println("이름 : " + user_jpa.getNickname());
 		
 		userBoardRepository.save(userBoard_jpa);
+		int boardseq = userBoardRepository.findMaxBoardseqByUserSeq(user_jpa);
+		System.out.println("찍어주세요 제발요.. ㅠㅠ : " + boardseq );
 		
 		return userBoard_jpa;
 		

@@ -1,6 +1,7 @@
 package com.amolrang.modume.test;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.amolrang.modume.model.Boardimg_JPA;
 import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.model.Userboard_JPA;
 import com.amolrang.modume.repository.UserBoardRepository;
@@ -75,7 +77,9 @@ public class TestController {
 	@RequestMapping(value = "/boardRegModAction", method = RequestMethod.POST)
 	@ResponseBody
 	public Userboard_JPA boardRegModAction(HttpSession hs, @RequestBody Userboard_JPA param) {
-		return service.boardRegModAction(hs, param);
+		Userboard_JPA userboard_jpa = service.boardRegModAction(hs, param);
+		service.setImgList(new ArrayList<Boardimg_JPA>());
+		return userboard_jpa;
 	}
 
 	@GetMapping("/userinfo")
