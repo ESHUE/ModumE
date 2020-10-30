@@ -103,8 +103,15 @@ public class AuthenticationController {
 				socialRepository.updateToMainSeq(UserInfoJson);
 			}
 		}else {
+			if(socialRepository.findBySocialUsername(UserInfoJson.getSocialUsername()) == null) {
+				socialRepository.save(UserInfoJson);
+			}
+			
 			UserInfoJson = socialRepository.findBySocialUsername(UserInfoJson.getSocialUsername());
-			loginedUser = UserInfoJson.getUser();
+			log.info("UserInfoJson:{}",UserInfoJson);
+			if(UserInfoJson.getUser() != null ) {
+				loginedUser = UserInfoJson.getUser();
+			}
 			log.info("loginedUser:{}",loginedUser);
 		}
 
