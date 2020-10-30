@@ -176,9 +176,15 @@ function openUserMenu(isLogin) {
 //   makeSpan2_2_2.innerText = '메인화면';
 //   makeSpan2_2_2.setAttribute('onclick',"location.href='/'");
    
+	const makeSpan2_2_3 = document.createElement('span');
+   makeSpan2_2_3.classList.add('cursor');
+   makeSpan2_2_3.innerText = '채팅테스트';
+   makeSpan2_2_3.setAttribute('onclick', "location.href='/chat/rooms'");
+   
    if(isLogin) {
       makeDiv2.append(makeSpan2_2_1);
       makeDiv2.append(makeSpan2_2_2);
+      makeDiv2.append(makeSpan2_2_3);
    } else {
       makeDiv2.append(makeSpan2_1_1);
 //      makeDiv2.append(makeSpan2_1_2);

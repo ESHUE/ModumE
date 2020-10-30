@@ -18,14 +18,13 @@
 			<div class="msg">${err}</div>
 			<form id="frm" class="frm" action="/join" runat="server" enctype="multipart/form-data" method="post">
 				<div class="profileSelect">
-					<label for="profile">
+					<label for="profile" id="profileIcon">
 						<span class="material-icons personIcon" onmouseover="profileAddIconChange()" onmouseout="profilePersonIconChange()">person</span>
             			<span class="material-icons addIconHidden addIcon">add</span> 
             			<input type="text" id="fileName"  name="fileName" readonly="readonly">           			
 					</label>
-					<img alt="userProfile" src="#" id="imgPreview">
-					<input type="file" name="profile" id="profile" accept="image/*" onchange="fileNameMove()"> 
-					<input type="submit" value="올리기"> 	
+					<!--<img alt="userProfile" src="#" id="imgPreview"> -->
+					<input type="file" name="profile" id="profile" accept="image/*" onchange="fileNameMove()"> 	
 				</div>
 				<div id="idChkResult" class="msg"></div>
 				<div class="joinListContainer">
@@ -46,9 +45,9 @@
 
 				</div>
 			</form>
-			<div class="moveList">
-				<span onclick="moveToLogin()">로그인</span> 
-				<a href="/">메인화면</a>
+			<div class="retrunToPage">
+				<span onclick="moveToLogin()" class="returnToLoginPage">로그인</span> 
+				<a href="/" class="returnToMainPage">메인화면</a>
 			</div>
 		</div>
 	</div>

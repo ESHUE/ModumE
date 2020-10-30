@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <sec:authorize var="isLogin" access="isAuthenticated()" />
@@ -15,16 +17,20 @@
 <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
 <link rel="stylesheet" href="/css/login.css?ver=27">
 <link rel="stylesheet" href="/css/join.css?ver=89">
-<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Icons"
+	rel="stylesheet">
 <!-- 아웃라인 material-icon 링크 추가 -->
-<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+	rel="stylesheet">
 <!-- 위지윅 에디터 추가 -->
 <script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
 
 </head>
 <body>
 	<div id="bg1">
-		<img src="/img/yousef-salhamoud-kQ6mh2yagDw-unsplash.jpg" alt="" id="bg1_1">
+		<img src="/img/yousef-salhamoud-kQ6mh2yagDw-unsplash.jpg" alt=""
+			id="bg1_1">
 	</div>
 	<main class="centralContainer">
 		<header class="centralHeader">
@@ -32,9 +38,11 @@
 				<img id="centralLogoImage" src="/img/logowhite.png" alt="">
 			</div>
 			<div class="centralSearch">
-				<form action="" method="POST" class="centralSearchFrm" onsubmit="findVideo(event)">
+				<form action="" method="POST" class="centralSearchFrm"
+					onsubmit="findVideo(event)">
 					<div class="centralSearch1_1">
-						<input type="text" name="searchVideo" id="searchVideo" class="Search1_1__input" placeholder="검색">
+						<input type="text" name="searchVideo" id="searchVideo"
+							class="Search1_1__input" placeholder="검색">
 					</div>
 					<div class="centralSearch1_2">
 						<span class="material-icons headMenus" onclick="findVideo(event)">search</span>
@@ -53,20 +61,7 @@
 		<section class="centralSection">
 			<!-- jsp include -->
 			<div class="sectionContainer">
-				<div class="slideContainer">
-					<%-- <video autoplay="autoplay" controls>
-                		<source src = "/videos/${videoName }" type="video/mp4">	
-                	</video> --%>
-
-
-					<!-- <div class="slide slide__left">
-						<span class="material-icons">keyboard_arrow_left</span>
-					</div>
-					<div class="slide slide__center" id="video-embed"></div>
-					<div class="slide slide__right">
-						<span class="material-icons">keyboard_arrow_right</span>
-					</div> -->
-				</div>
+				<div class="slideContainer"></div>
 				<!-- 채팅관련 창 나오는 곳  -->
 			</div>
 			<aside class="centralSidebar">
@@ -79,8 +74,10 @@
 			</aside>
 		</section>
 	</main>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 	<script src="https://embed.twitch.tv/embed/v1.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -111,7 +108,7 @@
 	}
     
     function connect(event){
-    	username = '${UserInfoJson.username}';
+    	username = '${UserInfo.username}';
     	console.log(username)
     	if(username){
     		console.log("connect Start")
@@ -176,8 +173,10 @@
     	   var textElement = document.createElement('p');
     	   var messageText = document.createTextNode(message.content);
     	   textElement.appendChild(messageText);
+    	   inputUl.append(messageText)
     	   
     	   messageElement.appendChild(textElement);
+
     	}
     /* $.ajax({
     	 type: 'GET',
@@ -261,11 +260,11 @@
 		fileName.value = profile.value;
 	}
 	//이미지 미리보기
-/*	onchange="profilePreview(this)"
-	function profilePreview(input) {
+ // onchange="profilePreview(this)"
+/*	function profilePreview(input) {
 		
 		if(input.files && input.files[0]) {
-			var reader = new FileReader();
+			var reader = new FileReader()
 			reader.onload = function(event) {
 				${'#imgPreview'}.attr('src', event.target.result);
 			}
@@ -273,57 +272,63 @@
 		} */
 </script>
 	<sec:authorize access="isAuthenticated()">
-		<script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
-		<c:if test="${userSNS != null}">
-		
+		<script
+			src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
+		<c:if test="${userInfo != null}">
+
 			<script>
-			console.log('${userSNS}')
+			console.log('userInfo= ${userInfo}')
 			</script>
-				
+
 		</c:if>
 
-		<c:if test="${userInfo != null}">
+		<c:if test="${userDomain != null}">
 			<script>
-				console.log('${userInfo}')
+				console.log('userDomain = ${userDomain}')
 			</script>
-			<c:if test="${userSNS.sns == 'twitch'}">
-				<script type="text/javascript">
+			<c:forEach items="${userDomain.sns}" var="item">
+				<c:if test="${item == 'twitch'}">
+					<script type="text/javascript">
 		
-			function getVideo(res){
-				axios.get('/CallVideo',{
-					params:{
-						follow : res.data.data[0].to_id
+						function getVideo(res){
+							axios.get('/CallVideo',{
+								params:{
+									follow : res.data.data[0].to_id
+									}
+							}).then(function(res){
+								console.log(res)
+								const url = `\${res.data.data[0].url}`;
+								const container = document.getElementById('video-embed')
+								renderReactPlayer(container , {
+									url,
+									playing: true,
+									controls: true
+								})
+							})	
 						}
-				}).then(function(res){
-					console.log(res)
-					const url = `\${res.data.data[0].url}`;
-					const container = document.getElementById('video-embed')
-					renderReactPlayer(container , {
-						url,
-						playing: true,
-						controls: true
-					})
-				})	
-			}
-			function callFollowVideo(){
-				axios.get('/CallFollows',{}).then(function(res){
-					console.log(res)
-					getVideo(res)
-				})
-			}
-			axios.get('/getStreams',{}).then(function(res){
-				console.log(res)
-				const container = document.getElementById('video-embed')
-				res.data.data.forEach(function(item){
-					console.log(item)
-					item.user_name
-					item.title
-					item.thumbnail_url
-				})
-			})
-			
-	    </script>
-			</c:if>
+						
+						function callFollowVideo(){
+							axios.get('/CallFollows',{}).then(function(res){
+								console.log(res)
+								getVideo(res)
+							})
+						}
+						
+						axios.get('/getStreams',{}).then(function(res){
+							console.log(res)
+							const container = document.getElementById('video-embed')
+							res.data.data.forEach(function(item){
+								console.log(item)
+								item.user_name
+								item.title
+								item.thumbnail_url
+							})
+						})
+							
+						
+				    </script>
+				</c:if>
+			</c:forEach>
 		</c:if>
 	</sec:authorize>
 </body>

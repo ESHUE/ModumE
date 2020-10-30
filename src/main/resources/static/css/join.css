@@ -8,15 +8,18 @@ html, body {
    	display: flex;
     justify-content: space-evenly;
     background-color: #fff;
-    padding:100px;
+    padding-top: 50px;
+    padding-bottom: 30px;
 }
 .joinHeader h1 {
+   display: flex;
+   justify-content: center;
    color:#a07be5;
    font-weight: normal;
    font-size: 2rem;
    margin: 20px 0;
 }
-.joinListContainer input {
+.joinListContainer input, #fileName {
    margin-top: 30px; 
    padding-right : 50px;
    border: none;
@@ -34,7 +37,6 @@ html, body {
 	
 	opacity: 0.6;
 }
-
 
 .profileSelect input[type="file"] {
    display: none;
@@ -76,10 +78,15 @@ html, body {
    font-size: 1.3rem;
 
 }
-.moveList {
-	margin-top: 20px;
+.retrunToPage {
+	margin-top: 40px;
 	cursor: pointer;
+	display: flex;
+	justify-content: space-evenly;
+	
 }
+
+
 .addIconHidden {
 	display: none !important;
 }

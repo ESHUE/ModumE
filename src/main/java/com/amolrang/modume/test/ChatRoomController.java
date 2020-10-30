@@ -2,6 +2,8 @@ package com.amolrang.modume.test;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.amolrang.modume.model.User_JPA;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -29,18 +33,22 @@ public class ChatRoomController {
     }
 
     @GetMapping("/rooms")
-    public String rooms(Model model) {
-    	repository.CreateRoom("");
+    public String rooms(Model model,HttpSession hs) {
+    	repository.CreateRoom("",hs);
         model.addAttribute("rooms", repository.getChatRooms());
         return listViewName;
     }
 
     @GetMapping("/rooms/{id}")
-    public String room(@PathVariable String id, Model model) {
+    public String room(@PathVariable String id, Model model, HttpSession hs, User_JPA userModel) {
+    	log.info("id:{}",id);
+    	userModel = (User_JPA)hs.getAttribute("userInfo");
+    	log.info("ChatuserInfo:{}",userModel);
         ChatRoom room = repository.getChatRoom(id);
         model.addAttribute("room", room);
-        model.addAttribute("member", "member" + seq.incrementAndGet());
-
+        //채팅방 들어갔을 때 닉네임으로 들고오기 
+        model.addAttribute("member", userModel.getUsername());
+        log.info("room:{}",room);
         return detailViewName;
     }
 }
