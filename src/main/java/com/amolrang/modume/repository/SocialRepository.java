@@ -14,10 +14,10 @@ import com.amolrang.modume.model.User_JPA;
 
 public interface SocialRepository extends JpaRepository<Social_JPA, Integer>{
 	Social_JPA findBySocialUsername(String socialUsername);
-	List<Social_JPA> findAllByUser(User_JPA user);
+	List<Social_JPA> findAllByUserSeq(User_JPA userSeq);
 	@Modifying
 	@Transactional
-	@Query(value = "UPDATE Social_JPA SET user = :#{#social.user} WHERE socialUsername = :#{#social.socialUsername}")
+	@Query(value = "UPDATE Social_JPA SET userSeq = :#{#social.userSeq} WHERE socialUsername = :#{#social.socialUsername}")
 	void updateToMainSeq(Social_JPA social);
 	User_JPA findByUser(User_JPA user);
 }
