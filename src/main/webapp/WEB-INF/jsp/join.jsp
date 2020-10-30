@@ -24,7 +24,7 @@
             			<input type="text" id="fileName"  name="fileName" readonly="readonly">           			
 					</label>
 					<img alt="userProfile" src="#" id="imgPreview">
-					<input type="file" name="profile" id="profile" accept="image/*" onchange="fileNameMove()" onchange="profilePreview(this)"> 
+					<input type="file" name="profile" id="profile" accept="image/*" onchange="fileNameMove()"> 
 					<input type="submit" value="올리기"> 	
 				</div>
 				<div id="idChkResult" class="msg"></div>
