@@ -66,7 +66,7 @@ public class AuthenticationController {
 		User_JPA UserInfoJson = userRepository.findByUsername(principal.getName());
 		//----------------------------------
 		// 가져온 db의 시퀀스 값으로 연동된 sns를 찾아온다.
-		List<Social_JPA> social_JPA_List= socialRepository.findAllByUser(UserInfoJson);
+		List<Social_JPA> social_JPA_List= socialRepository.findAllByUserSeq(UserInfoJson);
 //		log.info("social_JPA_List:{}",social_JPA_List);
 //		System.out.println("social_JPA_List != null ? " + social_JPA_List != null);
 		if(social_JPA_List != null) {
@@ -93,7 +93,7 @@ public class AuthenticationController {
 		log.info("132. User_JPA: {}", loginedUser);
 		if(loginedUser != null) {
 //			System.out.println("두 아이디 연동 시작");
-			UserInfoJson.setUser(loginedUser);
+			UserInfoJson.setUserSeq(loginedUser);
 			if(socialRepository.findBySocialUsername(UserInfoJson.getSocialUsername()) == null) {
 				socialRepository.save(UserInfoJson);
 			} else {				
@@ -102,7 +102,7 @@ public class AuthenticationController {
 		}
 		
 		
-		if(UserInfoJson.getUser() != null) {
+		if(UserInfoJson.getUserSeq() != null) {
 //			hs.setAttribute("userInfo", loginedUser);
 		}else {
 			//연동이 안되었다면 일반 sns userinfo 반환
@@ -140,9 +140,9 @@ public class AuthenticationController {
 		
 		//Authorize_JPA 값 넣기
 		Authorize_JPA authorize = new Authorize_JPA();
-		authorize.setAUTH_SEQ(user.getMAIN_SEQ());
+		authorize.setAuthSeq(user.getUserSeq());
 		authorize.setAuthentication("ROLE_MEMBER");
-		authorize.setUser(user);
+		authorize.setUsername(user);
 		authRepository.save(authorize);
 		
 		log.info("userJPA:{}",user);

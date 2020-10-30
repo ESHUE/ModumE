@@ -15,11 +15,11 @@ import lombok.Data;
 public class Social_JPA {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int SOCIAL_SEQ;
+	private int socialSeq;
 	
 	@ManyToOne
-	@JoinColumn(name = "MAIN_SEQ")
-	private User_JPA user;
+	@JoinColumn(name = "userSeq")
+	private User_JPA userSeq;
 	private String socialUsername;
 	private String username;
 	private String sns;
