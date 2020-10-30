@@ -29,6 +29,7 @@ public class Userboard_JPA {
 	private int hits;
 	@CreationTimestamp
 	private Timestamp rdate;
+	@CreationTimestamp
 	private Timestamp mdate;
 	@ManyToOne
 	@JoinColumn(name = "userseq")

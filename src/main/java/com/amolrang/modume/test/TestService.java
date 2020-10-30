@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +31,56 @@ public class TestService {
 	@Autowired
 	UserBoardRepository userBoardRepository;
 	
-	@ResponseBody
+	public List<Userboard_JPA> boardList(List<Userboard_JPA> list) {
+		List<Userboard_JPA> editedList = new ArrayList<Userboard_JPA>();
+		int limitedLength = 120;
+		
+		String content = "";
+		String cuttedContent = "";
+		
+		int startP = 0;
+		int finishP = 0;
+		
+		
+		// 모든 <p>태그에서 <p></p> 제외한 내용 120글자 이하 추출
+		for(Userboard_JPA board : list) {
+			Userboard_JPA param = new Userboard_JPA();
+			
+			param.setBoardseq(board.getBoardseq());
+			param.setHits(board.getHits());
+			param.setMdate(board.getMdate());
+			param.setRdate(board.getRdate());
+			param.setTitle(board.getTitle());
+			param.setUserseq(board.getUserseq());
+			
+			content = board.getContent();
+			
+			while(content.contains("<p>")) {
+				content = content.replace("&nbsp;", "");
+				content = content.replace("<br />;", "");
+				
+				startP = content.indexOf("<p>") + 3;
+				finishP = content.indexOf("</p>");
+				
+				cuttedContent = content.substring(startP, finishP);
+				
+				content = content.replaceFirst(String.format("<p>%s</p>", cuttedContent), cuttedContent + " ");
+			}
+			
+			if(content.length() > limitedLength) {
+				content = content.substring(0, 120);
+			}
+			
+			param.setContent(String.format("<p>%s</p>", content));
+			
+			System.out.println(param.getContent());
+			
+			editedList.add(param);
+		}
+		
+		return editedList;
+	}
+	
 	public String imageUpload(HttpServletRequest request, HttpServletResponse response, 
 			MultipartHttpServletRequest multiFile) throws Exception {      
 		JsonObject json = new JsonObject();
@@ -90,24 +141,12 @@ public class TestService {
 	}
 	
 	public Userboard_JPA boardRegModAction(HttpSession hs, Userboard_JPA param) {	
-		int loginType = CommonUtils.getLoginType(hs);
-		
-		User_JPA user_jpa = null;
-		Social_JPA social_jpa = null;
-		
-		// 0: 로그인 안 된 상태 // 1: 모둠이 + 소셜 // 2: 모듐이만 // 3: 소셜만
-		switch(loginType) {
-			case 1: // 모듐이  + 소셜 로그인 상태
-				social_jpa = (Social_JPA)hs.getAttribute("userInfo");
-				user_jpa = social_jpa.getUserseq();
-				break;
-			case 2: // 모듀미만 로그인 상태
-				user_jpa = (User_JPA)hs.getAttribute("userInfo");
-				break;
-			default:
-				return null;
+		User_JPA user_jpa = (User_JPA)hs.getAttribute("userInfo");
+
+		if(user_jpa == null) {
+			return null;
 		}
-		
+
 		Userboard_JPA userBoard_jpa = new Userboard_JPA();
 		
 		userBoard_jpa.setUserseq(user_jpa);

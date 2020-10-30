@@ -34,7 +34,7 @@ function modifyPost(boardDetail) {
 function goToDetail(board_seq) {
 	const boardContainer = document.querySelector('.boardContainer');
 	const param = {
-		USERBOARD_SEQ: board_seq
+		boardseq: board_seq
 	}
 	
 	const fetchOpt = {
