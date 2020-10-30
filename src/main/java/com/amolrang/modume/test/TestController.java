@@ -1,7 +1,6 @@
 package com.amolrang.modume.test;
 
 import java.security.Principal;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,12 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.amolrang.modume.model.Social_JPA;
-import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.model.Userboard_JPA;
 import com.amolrang.modume.repository.UserBoardRepository;
 
@@ -45,13 +41,7 @@ public class TestController {
 
 	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
 	public String boardList(Model model) {
-//		log.info("boardList:{}",userBoardRepository.findAllByOrderByBoardSeqDesc());
-		List<Userboard_JPA> list = userBoardRepository.findAllByOrderByBoardSeqDesc();
-		for(Userboard_JPA item : list) {
-			String date = item.getRDate().toString().substring(5, 10);
-			item.setParseRDate(date);
-		}
-		model.addAttribute("list", list);
+		model.addAttribute("list", userBoardRepository.findAllByOrderByBoardSeqDesc());
 		return "/boardList";
 	}
 	
@@ -106,7 +96,4 @@ public class TestController {
 	public String userInfo3() {
 		return "/userinfo3";
 	}
-
-	
-
 }

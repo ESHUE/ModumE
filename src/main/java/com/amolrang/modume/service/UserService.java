@@ -76,7 +76,7 @@ public class UserService implements UserDetailsService {
 	//userModel에서 뽑아온 정보에서 id / pw만 추출
 	public TestModel saveUser(UserModel userModel) {
 		TestModel testModel = new TestModel();
-		testModel.setSeq(userModel.getUserSeq());
+		testModel.setSeq(userModel.getUserseq());
 		testModel.setId(userModel.getUsername());
 		testModel.setPassword(userModel.getPassword());
 		log.info("testModel:{}",testModel);
