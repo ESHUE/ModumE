@@ -103,9 +103,14 @@ public class AuthenticationController {
 				socialRepository.updateToMainSeq(UserInfoJson);
 			}
 		}else {
+			if(socialRepository.findBySocialUsername(UserInfoJson.getSocialUsername()) == null) {
+				socialRepository.save(UserInfoJson);
+			}
+			
 			UserInfoJson = socialRepository.findBySocialUsername(UserInfoJson.getSocialUsername());
-			log.info("1232. Social_JPA: {}",UserInfoJson);
-			loginedUser = UserInfoJson.getUser();
+			if(UserInfoJson.getUser() != null ) {
+				loginedUser = UserInfoJson.getUser();
+			}
 			log.info("loginedUser:{}",loginedUser);
 		}
 
