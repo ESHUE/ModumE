@@ -4,9 +4,6 @@
 <h1>채팅방 목록</h1>
 <ul>
 <c:forEach items="${rooms}" var="item">
-<li><a href="/chat/rooms/${item.id}">${item.name}</a></li>
-</c:forEach>
-<c:forEach items="${followRooms}" var="item">
-<li><a href="/chat/rooms/${item.id}">${item.name}</a></li>
+<li><span onclick="chatListDetail(${item.id})">${item.name}</span></li>
 </c:forEach>
 </ul>

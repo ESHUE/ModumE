@@ -222,20 +222,10 @@ body{
     position: relative;
     min-width: 350px;
 }
-.chatContainer .hidden{
-   margin : 0 auto;
-   width : 90%;
-   height : 66vh;
-   background-color: white;
+.chatList{
+    width: 30%;
+    background-color: #fff;
 }
-.charContainer .inputChat{
-   width : 70%;
-   height : 30px;
-}
-.charContainer .btnChat{
-   
-}
-
 .boardContainer {
     width: 30%;
     height: 68vh;

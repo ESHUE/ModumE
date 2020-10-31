@@ -26,7 +26,7 @@ function chatInit() {
         closeContainer(boardContainer);
     }
     if(chatContainer == null) {
-        openChat();
+        chatList()
     } else {
         closeContainer(chatContainer);
     }
@@ -48,24 +48,48 @@ function boardInit() {
 function openChat() {
     const makeDiv = document.createElement('div');
     makeDiv.className = 'chatContainer';
+	 makeDiv.setAttribute('id','chatContainer')
     sectionContainer.append(makeDiv);
+    const chatList = document.createElement('div');
+    chatList.className = 'chatList';
+    makeDiv.append(chatList)
    /*채팅관련 창들 */
-   const chatDiv = document.createElement('div');
-   chatDiv.className = 'hidden';``
-   makeDiv.append(chatDiv);
-   inputChat = document.createElement('input');
-   inputChat.className = 'inputChat';
-   makeDiv.append(inputChat);
-   inputUl = document.createElement('ul');
-   inputUl.className = 'messageArea';
-   chatDiv.append(inputUl);
-   const btnChat = document.createElement('button');
-   btnChat.className = 'btnChat';
-   makeDiv.append(btnChat);
-   btnChat.innerText = "보내기";
-   btnChat.addEventListener('click', sendMessage, true);
-   connect()
+   
    console.log('chat화면 띄우기 완료')
+}
+
+function openDetailChat(){
+	const makeDetailDiv = document.createElement('div')
+	makeDetailDiv.className = 'chatDetailContainer'
+	makeDetailDiv.setAttribute('id','chatDetailContainer')
+	sectionContainer.append(makeDetailDiv)
+	
+	console.log('Detailchat화면 띄우기 완료')
+}
+
+function chatList() {
+   fetch('/chat/rooms').then(function(response) {
+      response.text().then(function(text) {
+         openChat()
+         document.querySelector('#chatContainer').innerHTML = text;
+      })
+   })
+}
+
+	function chatListDetail(temp) {
+      console.log(temp)
+      var url = '/chat/'+temp
+      console.log(url)
+		   fetch('''+url+''').then(function(response) {
+		      response.text().then(function(text) {
+		         document.querySelector('#chatContainer').innerHTML = text;
+		      })
+		   })
+		}
+		
+function removeChatPage(){
+	let chatContainer = document.querySelector('#chatContainer');
+	chatContainer.remove();
 }
 
 
@@ -253,8 +277,6 @@ function showLogin() {
       })
    })
 }
-
-
 
 
 function removeLogin() {

@@ -81,7 +81,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-	<script src="/js/index.js?aaa=sdaaaa8"></script>
+	<script src="/js/index.js?aaa=sdaaaa8440094"></script>
 	<script src="/js/swiper.js"></script>
 	<script src="/js/boardList.js?ver=4"></script>
 	<script src="/js/boardDetail.js?ver=1"></script>
@@ -89,7 +89,6 @@
 	<!-- 트위치 채널 긁어오기(채널지정) -->
 
 	<script>
-    var stompClient = null;
     function chkId() {
 		const username = frm.username.value
 		axios.get('/IdChk', {
@@ -104,80 +103,6 @@
 			}
 		})
 	}
-    
-    function connect(event){
-    	username = '${UserInfo.username}';
-    	console.log(username)
-    	if(username){
-    		console.log("connect Start")
-    		var socket = new SockJS('/ws');
-    		stompClient = Stomp.over(socket);
-    		
-    		stompClient.connect({},onConnected, onError);
-    	}
-    	/*event.preventDefault();*/
-    }
-    
-    function onConnected(){
-    	   stompClient.subscribe('/subscribe/public', onMessageReceived);
-    	   stompClient.send("/publish/chat.addUser",
-    	   {},
-    	   JSON.stringify({sender: username, type: 'JOIN'})
-    	   )
-    	   console.log("onConnected 끝")
-    	}
-
-    	function onError(error){
-    	   connectingElement.textContent = "ConnectionError";
-    	   connectingElement.style.color = 'red';
-    	}
-
-    	function sendMessage(event){
-    	   console.log('message전송 시작')
-    	   var messageContent = inputChat.value.trim();
-    	   console.log('messageContent: ' + messageContent)
-    	   if(messageContent && stompClient){
-    	      var chatMessage = {
-    	         sender : username,
-    	         content: inputChat.value,
-    	         type : 'CHAT'
-    	      };
-    	   stompClient.send("/publish/chat.sendMessage",{},JSON.stringify(chatMessage));
-    	   inputChat.value ='';
-    	   }
-    	   event.preventDefault();
-    	}
-
-    	function onMessageReceived(payload){
-    	   var message = JSON.parse(payload.body);
-    	   
-    	   var messageElement = document.createElement('li');
-    	   console.log('message.type:' + message.type)
-    	   console.log('message.sender: ' + message.sender)
-    	   if(message.type === "JOIN"){
-    	      message.content = message.sender + "joined!";
-    	   }else if(message.type === "LEVAE"){
-    	      message.content = message.sender + "left!";
-    	   }else{
-    	      /* 채팅창에 채팅 메세지 띄우기 */
-    	      messageElement.className='chat-message';
-    	      inputUl.append(messageElement);
-    	      
-    	      var usernameElement = document.createElement('span');
-    	      var usernameText = document.createTextNode(message.sender);
-    	      usernameElement.appendChild(usernameText);
-    	      messageElement.appendChild(usernameElement);   
-    	   }
-    	   var textElement = document.createElement('p');
-    	   var messageText = document.createTextNode(message.content);
-    	   textElement.appendChild(messageText);
-    	   inputUl.append(messageText)
-    	   
-    	   messageElement.appendChild(textElement);
-    	}
-	</script>
-
-	<script>
   const underline = document.getElementsByClassName('tabMenuBtn')
 
   function temp(idx) {
@@ -210,7 +135,6 @@
 		})
 	})	
   } 
-
 </script>
 	<sec:authorize access="isAuthenticated()">
 		<script
