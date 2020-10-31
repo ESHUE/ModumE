@@ -78,9 +78,9 @@ function chatList() {
 
 	function chatListDetail(temp) {
       console.log(temp)
-      var url = '/chat/'+temp
+      var url = '/chat/rooms/'+temp
       console.log(url)
-		   fetch('''+url+''').then(function(response) {
+		   fetch(url).then(function(response) {
 		      response.text().then(function(text) {
 		         document.querySelector('#chatContainer').innerHTML = text;
 		      })
@@ -241,7 +241,7 @@ function makeLogin() {
    let loginWindowContainer = document.createElement('div');
    loginWindowContainer.classList.add('loginWindowContainer');
    loginWindowContainer.setAttribute('id', 'loginWindowContainer');
-   loginWindowContainer.addEventListener('click', event);
+	   loginWindowContainer.addEventListener('click', event);
    
 
    let loginPageContainer = document.createElement('div');
