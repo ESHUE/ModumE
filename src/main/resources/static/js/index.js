@@ -58,15 +58,6 @@ function openChat() {
    console.log('chat화면 띄우기 완료')
 }
 
-function openDetailChat(){
-	const makeDetailDiv = document.createElement('div')
-	makeDetailDiv.className = 'chatDetailContainer'
-	makeDetailDiv.setAttribute('id','chatDetailContainer')
-	sectionContainer.append(makeDetailDiv)
-	
-	console.log('Detailchat화면 띄우기 완료')
-}
-
 function chatList() {
    fetch('/chat/rooms').then(function(response) {
       response.text().then(function(text) {
@@ -76,12 +67,41 @@ function chatList() {
    })
 }
 
-	function chatListDetail(temp) {
-      console.log(temp)
+var roomId = null;
+function chatDetail(roomId,member){
+   // var chatBox = $('.chat_box');
+   var chatBox = document.querySelector('.chat_box');
+    var messageInput = $('input[name="message"]');
+    var sendBtn = $('.send');
+    var sock = new SockJS("/ws");
+    var client = Stomp.over(sock); // 1. SockJS를 내부에 들고 있는 client를 내어준다.
+    // 2. connection이 맺어지면 실행된다.
+    console.log(messageInput)
+	console.log(roomId)
+	console.log(member)
+    client.connect({}, function () {
+        // 3. send(path, header, message)로 메시지를 보낼 수 있다.
+        client.send('/publish/chat/join', {}, JSON.stringify({chatRoomId: roomId, writer: member})); 
+        // 4. subscribe(path, callback)로 메시지를 받을 수 있다. callback 첫번째 파라미터의 body로 메시지의 내용이 들어온다.
+        client.subscribe('/subscribe/chat/room/' + roomId, function (chat) {
+            var content = JSON.parse(chat.body);
+            console.log(content);
+            chatBox.append('<li>' + content.message + '(' + content.writer + ')</li>')
+        });
+    });
+    sendBtn.click(function () {
+        var message = messageInput.val();
+        client.send('/publish/chat/message', {}, JSON.stringify({chatRoomId: roomId, message: message, writer: member}));
+        messageInput.val('');
+    });
+}
+	function chatListDetail(temp,member) {
+      roomId = temp;
       var url = '/chat/rooms/'+temp
       console.log(url)
 		   fetch(url).then(function(response) {
 		      response.text().then(function(text) {
+				 chatDetail(roomId,member)
 		         document.querySelector('#chatContainer').innerHTML = text;
 		      })
 		   })

@@ -222,10 +222,13 @@ body{
     position: relative;
     min-width: 350px;
 }
-.chatList{
-    width: 30%;
+
+.chatContainer > .chat_box{
+    width: 90%;
+    height: 90%;
     background-color: #fff;
 }
+
 .boardContainer {
     width: 30%;
     height: 68vh;

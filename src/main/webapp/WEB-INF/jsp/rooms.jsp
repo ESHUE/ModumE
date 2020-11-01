@@ -4,6 +4,6 @@
 <h1>채팅방 목록</h1>
 <ul>
 <c:forEach items="${rooms}" var="item">
-<li><span onclick="chatListDetail(${item.id})">${item.name}</span></li>
+<li><span onclick="chatListDetail('${item.id}','${member}')">${item.name}</span></li>
 </c:forEach>
 </ul>
