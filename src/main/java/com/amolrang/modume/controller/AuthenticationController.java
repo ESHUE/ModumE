@@ -1,13 +1,11 @@
 package com.amolrang.modume.controller;
 
 import java.security.Principal;
-import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
@@ -66,7 +64,7 @@ public class AuthenticationController {
 		User_JPA UserInfoJson = userRepository.findByUsername(principal.getName());
 		//----------------------------------
 		// 가져온 db의 시퀀스 값으로 연동된 sns를 찾아온다.
-		List<Social_JPA> social_JPA_List= socialRepository.findAllByUserSeq(UserInfoJson);
+		List<Social_JPA> social_JPA_List= socialRepository.findAllByUserseq(UserInfoJson);
 //		log.info("social_JPA_List:{}",social_JPA_List);
 //		System.out.println("social_JPA_List != null ? " + social_JPA_List != null);
 		if(social_JPA_List != null) {
@@ -97,17 +95,17 @@ public class AuthenticationController {
 		if(loginedUser != null) {
 //			System.out.println("두 아이디 연동 시작");
 			UserInfoJson.setUserseq(loginedUser);
-			if(socialRepository.findBySocialUsername(UserInfoJson.getSocialusername()) == null) {
+			if(socialRepository.findBysocialusername(UserInfoJson.getSocialusername()) == null) {
 				socialRepository.save(UserInfoJson);
 			} else {				
-				socialRepository.updateToMainSeq(UserInfoJson);
+				socialRepository.updateToMainseq(UserInfoJson);
 			}
 		}else {
-			if(socialRepository.findBySocialUsername(UserInfoJson.getSocialusername()) == null) {
+			if(socialRepository.findBysocialusername(UserInfoJson.getSocialusername()) == null) {
 				socialRepository.save(UserInfoJson);
 			}
 			
-			UserInfoJson = socialRepository.findBySocialUsername(UserInfoJson.getSocialusername());
+			UserInfoJson = socialRepository.findBysocialusername(UserInfoJson.getSocialusername());
 			log.info("UserInfoJson:{}",UserInfoJson);
 			if(UserInfoJson.getUserseq() != null ) {
 				loginedUser = UserInfoJson.getUserseq();
@@ -116,7 +114,7 @@ public class AuthenticationController {
 		}
 
 		//유저정보 받아오기
-		List<Social_JPA> social_JPA_List= socialRepository.findAllByUserSeq(loginedUser);
+		List<Social_JPA> social_JPA_List= socialRepository.findAllByUserseq(loginedUser);
 		if(social_JPA_List != null) {
 			userDomain = new UserModel();
 			for(Social_JPA sns : social_JPA_List) {

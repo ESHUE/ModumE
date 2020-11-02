@@ -41,7 +41,7 @@ public class TestController {
 
 	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
 	public String boardList(Model model) {
-		model.addAttribute("list", userBoardRepository.findAllByOrderByBoardSeqDesc());
+		model.addAttribute("list", userBoardRepository.findAllByOrderByBoardseqDesc());
 		return "/boardList";
 	}
 	
