@@ -70,6 +70,15 @@ public class TestController {
 		return "/boardRegMod";
 	}
 	
+	@RequestMapping(value = "/boardRegMod", method = RequestMethod.POST)
+	@ResponseBody
+	public Userboard_JPA boardRegMod(@RequestBody Userboard_JPA param) {
+		System.out.println("오는거샤?? : " + param.getBoardseq());
+		Userboard_JPA ubModel = userBoardRepository.findByBoardseq(param.getBoardseq());
+		log.info("찍어보쟈 findByBoardseq:{}", ubModel);
+		return ubModel;
+	}
+	
 	@RequestMapping(value = "/imageUpload", method = RequestMethod.POST)
 	@ResponseBody
 	public String imageUpload(HttpServletRequest request, HttpServletResponse response, 
@@ -82,7 +91,14 @@ public class TestController {
 	@ResponseBody
 	public int boardRegModAction(HttpSession hs, @RequestBody Userboard_JPA param) {
 		int boardseq = service.boardRegModAction(hs, param);
-		return boardseq;
+		return boardseq;			
+	}
+	
+	@RequestMapping(value = "/boardDel", method = RequestMethod.GET)
+	@ResponseBody
+	public String boardDel(Userboard_JPA param) {
+		userBoardRepository.deleteByBoardseq(param.getBoardseq());
+		return null;
 	}
 
 	@GetMapping("/userinfo")

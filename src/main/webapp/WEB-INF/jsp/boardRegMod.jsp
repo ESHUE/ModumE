@@ -13,7 +13,7 @@
     <div class="board-regMod-ctnt">
         <textarea name="board-regMod-ctnt" id="boardRegModTexarea"></textarea>
     </div>
-    <input type="hidden" name="" value="">
+    <input type="hidden" name="boardseq" value="0">
     <div class="board-regMod__btns">
         <button type="button" class="btn-div flex-center cursor" onclick="changeLocation('/boardList')">  
             취소

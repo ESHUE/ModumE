@@ -18,10 +18,12 @@ function cutTitle(ele) {
 
 function chkSubmit() {
     const form = document.querySelector('#board-regMod__form');
-    const title = form.title.value;
+    const boardseq = form.boardseq.value;
+	const title = form.title.value;
     const textarea = CKEDITOR.instances.boardRegModTexarea.getData();
 	const convertcontent = textarea.replace(/(<([^>]+)>)/ig, "");
 
+	console.log("보여줘 너의 보드시퀀스 : " + boardseq);
     if(title == '') {
         alert('제목을 입력해주세요!');
         return;
@@ -30,12 +32,13 @@ function chkSubmit() {
         return;
     } 
 	// console.log(convertcontent);
-	ajaxRegMod(title, textarea, convertcontent);
+	ajaxRegMod(boardseq, title, textarea, convertcontent);
 }
 
-function ajaxRegMod(title, textarea, convertcontent) {
+function ajaxRegMod(boardseq, title, textarea, convertcontent) {
 	const url = '/boardRegModAction';
 	const param = {
+		'boardseq': boardseq,
 		'title': title,
 		'content': textarea,
 		'convertcontent' : convertcontent

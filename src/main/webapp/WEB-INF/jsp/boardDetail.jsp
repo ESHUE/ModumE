@@ -19,8 +19,8 @@
 	<c:if test="${loginUser != null }">
 		<c:if test="${boardDetail.userseq.userseq == loginUser.userseq}">
 			<div class="board-detail-modDel__btns flex-center">
-				<div class="rectangle-small-btn mr5" onclick="goToEditor('${boardDetail.title }')">수정</div>
-				<div class="rectangle-small-btn">삭제</div>
+				<div class="rectangle-small-btn mr5" onclick="goToEditor(${boardDetail.boardseq})">수정</div>
+				<div class="rectangle-small-btn" onclick="deleteBoard(${boardDetail.boardseq})">삭제</div>
 			</div>
 		</c:if>
 	</c:if>

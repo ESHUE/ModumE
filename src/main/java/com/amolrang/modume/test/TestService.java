@@ -36,25 +36,14 @@ import lombok.extern.slf4j.Slf4j;
 @Data
 public class TestService {
 	
-	// private List<Boardimg_JPA> imgList = new ArrayList<Boardimg_JPA>();
-	
 	@Autowired
 	UserBoardRepository userBoardRepository;
 	
 	@Autowired
 	BoardImgRepository boardImgRepository;
 	
-	public List<UserboardModel> boardList(List<Userboard_JPA> list) {
-		List<UserboardModel> edittedList = new ArrayList<UserboardModel>();
-
-		int limitedLength = 120;
-		String edittedContent = "";
-		
-		// 미리보기 - limitedLength만큼 자르기 + 이미지 리스트 저장
-		for(Userboard_JPA board : list) {
+	public UserboardModel addImgListToParam(Userboard_JPA board) {
 			UserboardModel param = new UserboardModel();
-
-			int boardseq = board.getBoardseq();
 			
 			List<Boardimg_JPA>dbImgList = boardImgRepository.findByBoardseq(board);
 			List<Boardimg_JPA> imgList = new ArrayList<Boardimg_JPA>();
@@ -63,7 +52,7 @@ public class TestService {
 				imgList.add(img);
 			}
 			
-			param.setBoardseq(boardseq);
+			param.setBoardseq(board.getBoardseq());
 			param.setHits(board.getHits());
 			param.setMdate(board.getMdate());
 			param.setRdate(board.getRdate());
@@ -72,25 +61,28 @@ public class TestService {
 			param.setContent(board.getContent());
 			param.setImgList(imgList);
 			
-			edittedContent = board.getConvertcontent();
+		return param;
+	}
+	
+	public List<UserboardModel> boardList(List<Userboard_JPA> list) {
+		List<UserboardModel> edittedList = new ArrayList<UserboardModel>();
+		
+		int limitedLength = 120;
+		String edittedContent = "";
+		
+		for(Userboard_JPA board : list) {
+			// 이미지 리스트 저장
+			UserboardModel param = addImgListToParam(board);
 			
+			// 미리보기 - limitedLength만큼 자르기
+			edittedContent = board.getConvertcontent();
 			if(edittedContent.length() > 120) {
 				edittedContent = (edittedContent.substring(0, (limitedLength - 1))) + "   ··· ";
 			}
-			
 			param.setConvertcontent(edittedContent);
 			
 			edittedList.add(param);
 		}
-		
-		for(UserboardModel board : edittedList) {
-			int cnt = 0;
-			System.out.println("보드 시퀀스  : " + board.getBoardseq());
-			for(Boardimg_JPA img : board.getImgList()) {
-				System.out.println("이미지 패쓰 : " + ++cnt + img.getImgpath());
-			}
-		}
-		
 		return edittedList;
 	}
 	
@@ -136,24 +128,6 @@ public class TestService {
                         // Thread.sleep(3000);
                         printWriter.println(json);
                         
-                        /*
-                        // DB에 저장할 이미지 파일 정보
-                        Boardimg_JPA img = new Boardimg_JPA();
-        	        	
-                        img.setImgname(fileName);
-                        img.setImgseq(imgList.size() + 1);
-                        
-                        imgList.add(img);
-                        
-                        
-                        System.out.println("이미지 포문 시작");
-                        for(Boardimg_JPA i : imgList) {
-                        	System.out.println("이미지네임나가신다~");
-                        	System.out.println(i.getImgname());
-                        	System.out.println(i.getImgseq());
-                        }
-                        */
-                        	
         	        } catch(Exception e) {
         	        	e.printStackTrace();
         	        } finally {
@@ -170,7 +144,10 @@ public class TestService {
         
 	}
 	
-	public int boardRegModAction(HttpSession hs, Userboard_JPA param) {	
+	public int boardRegModAction(HttpSession hs, Userboard_JPA param) {
+		int boardseq = 0;
+		Userboard_JPA result = null;
+		
 		User_JPA user_jpa = (User_JPA)hs.getAttribute("userInfo");
 
 		Userboard_JPA userBoard_jpa = new Userboard_JPA();
@@ -185,10 +162,21 @@ public class TestService {
 		System.out.println("태그 뺀 내용 : " + param.getConvertcontent());
 		System.out.println("이름 : " + user_jpa.getNickname());
 		
-		userBoardRepository.save(userBoard_jpa);
-		Integer boardseq = userBoardRepository.findMaxBoardseqByUserSeq(user_jpa);
-		Userboard_JPA temp = userBoardRepository.findByBoardseq(boardseq);
-		log.info("temp:{}",temp);
+		
+		 // 글 수정
+		   if(param.getBoardseq() != 0) {
+			   boardseq = param.getBoardseq();
+			   userBoard_jpa.setBoardseq(boardseq);
+			   result = userBoardRepository.save(userBoard_jpa);
+		   } else {
+			   result = userBoardRepository.save(userBoard_jpa);
+			   boardseq = result.getBoardseq();
+		   }
+		   
+//		Integer boardseq = userBoardRepository.findMaxBoardseqByUserSeq(user_jpa);
+		//Userboard_JPA temp = userBoardRepository.findByBoardseq(boardseq);
+		//log.info("temp:{}",temp);
+		
 		// content에서 이미지 이름 찾기... ㅠㅡㅠ
 		List<String> imgList = new ArrayList<String>();
 		String text = userBoard_jpa.getContent();
@@ -196,30 +184,36 @@ public class TestService {
 		Pattern nonValidPattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
 		Matcher matcher = nonValidPattern.matcher(text);
 			   
-	   while (matcher.find()) {
-		   System.out.println("이거 나와야 되는데 ㅜㅜㅜㅜㅜㅜ");
-		   String imgPath = matcher.group(1);
-		   System.out.println(imgPath);
-		   
-		   Boardimg_JPA boardImg_jpa = new Boardimg_JPA();
-		   
-		   boardImg_jpa.setImgpath(imgPath);
-		   boardImg_jpa.setBoardseq(temp);
-		   
-		   imgList.add(imgPath);
-		   
-		   
-		   log.info("boardImg_jpa:{}",boardImg_jpa);
-		   
-		   boardImgRepository.save(boardImg_jpa);
-		   
-	   }
+		
+		// 글 수정인 경우에 해당 boardseq의 모든 img를 db에서 삭제
+		if(param.getBoardseq() != 0 ) {
+			boardImgRepository.deleteByBoardseq(result); // 이거 문제 생기면 삭제!!
+		}
+		
+		while (matcher.find()) {
+			System.out.println("이거 나와야 되는데 ㅜㅜㅜㅜㅜㅜ");
+			String imgPath = matcher.group(1);
+			System.out.println(imgPath);
+			   
+			Boardimg_JPA boardImg_jpa = new Boardimg_JPA();
+			   
+			boardImg_jpa.setImgpath(imgPath);
+			boardImg_jpa.setBoardseq(result);
+			   
+			imgList.add(imgPath);
+			   
+			   
+			log.info("boardImg_jpa:{}",boardImg_jpa);
+			   
+
+			boardImgRepository.save(boardImg_jpa);
+			   
+		}
+	   
 		
 		// 여기까지
-		
-		
 		return boardseq;
-		
 	}
+	
 
 }
