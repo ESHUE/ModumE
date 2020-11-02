@@ -21,11 +21,11 @@ public class Userboard_JPA {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int boardseq;
-	@Column(length = 120)
+	@Column(length = 128)
 	private String title;
-	@Column(length = 10000)
+	@Column(length = 8000)
 	private String content;
-	@Column(length = 10000)
+	@Column(length = 800)
 	private String convertcontent;
 	@ColumnDefault("0")
 	private int hits;
