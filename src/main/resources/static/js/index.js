@@ -148,37 +148,42 @@ function openUserMenu(isLogin) {
 //   const makeSpan2_1_2 = document.createElement('span');
 //   makeSpan2_1_2.classList.add('cursor');
 //   makeSpan2_1_2.innerText = '회원가입';
-//   makeSpan2_1_2.setAttribute('onclick',"location.href='/join'");
+//   makeSpan2_1_2.setAttribute('onclick',"location.href=+/join'");
 
-   const makeSpan2_2_2 = document.createElement('span');
-   makeSpan2_2_2.classList.add('cursor');
-   makeSpan2_2_2.innerText = '마이페이지';
-   makeSpan2_2_2.setAttribute('onclick', 'openUserInfo()');
+   /*const nickName = document.createElement('span');
+   nickName.innerText = temp+'님님님';*/
    
    const makeSpan2_2_1 = document.createElement('span');
    makeSpan2_2_1.classList.add('cursor');
    makeSpan2_2_1.innerText = '로그아웃';
    makeSpan2_2_1.setAttribute('onclick',"location.href='/logout'");
-   
+   console.log(temp)
+   console.log(isLogin)
+	
+   const makeSpan2_2_2 = document.createElement('span');
+   makeSpan2_2_2.classList.add('cursor');
+   makeSpan2_2_2.innerText = '마이페이지';
+   makeSpan2_2_2.setAttribute('onclick', 'openUserInfo()');
    
 //   const makeSpan2_2_2 = document.createElement('span');
 //   makeSpan2_2_2.classList.add('cursor');
 //   makeSpan2_2_2.innerText = '메인화면';
 //   makeSpan2_2_2.setAttribute('onclick',"location.href='/'");
    
-	const makeSpan2_2_3 = document.createElement('span');
+/*	const makeSpan2_2_3 = document.createElement('span');
    makeSpan2_2_3.classList.add('cursor');
-   makeSpan2_2_3.innerText = '채팅테스트';
-   makeSpan2_2_3.setAttribute('onclick', "location.href='/chat/rooms'");
+   makeSpan2_2_3.innerText = temp+'님';
+   makeSpan2_2_3.setAttribute('onclick', "location.href='/userinfo'");*/
 
    makeSpan2_2_1.style.display = ' block';
    makeSpan2_2_2.style.display = ' block';
-   makeSpan2_2_3.style.display = ' block';
+ //  makeSpan2_2_3.style.display = ' block';
    
    if(isLogin) {
-      makeDiv2.append(makeSpan2_2_1);
+     // makeDiv2.append(makeSpan2_2_3);
       makeDiv2.append(makeSpan2_2_2);
-      makeDiv2.append(makeSpan2_2_3);
+      makeDiv2.append(makeSpan2_2_1);
+	  
    } else {
       makeDiv2.append(makeSpan2_1_1);
 //      makeDiv2.append(makeSpan2_1_2);

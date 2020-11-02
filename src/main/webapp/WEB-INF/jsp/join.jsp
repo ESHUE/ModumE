@@ -23,8 +23,9 @@
             			<span class="material-icons addIconHidden addIcon">add</span> 
             			<input type="text" id="fileName"  name="fileName" readonly="readonly">           			
 					</label>
-					<!--<img alt="userProfile" src="#" id="imgPreview"> -->
-					<input type="file" name="profile" id="profile" accept="image/*" onchange="fileNameMove()"> 	
+					<!-- <img alt="userProfile" src="#" id="imgPreview"> -->
+					<input type="file" name="profile" id="profile" accept="image/*" onchange="fileNameMove()"> 
+					
 				</div>
 				<div id="idChkResult" class="msg"></div>
 				<div class="joinListContainer">

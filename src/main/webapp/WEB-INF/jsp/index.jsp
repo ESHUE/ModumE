@@ -54,7 +54,7 @@
 					<span class="material-icons" onclick="alertMenuInit()">notifications_none</span>
 				</div>
 				<div class="menus centralMenu1_2">
-					<span class="material-icons" onclick="userMenuInit(${isLogin})">person_outline</span>
+					<span class="material-icons" onclick="userMenuInit('${isLogin}')">person_outline</span>
 				</div>
 			</div>
 		</header>
@@ -82,8 +82,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-	<script src="/js/index.js?aaa=7"></script>
-	<script src="/js/login.js"></script>
+	<script src="/js/index.js?aaa=7888505844"></script>
 	<script src="/js/boardList.js?ver=54"></script>
 	<script src="/js/boardRegMod.js?ver=45"></script>
 	<!-- 트위치 채널 긁어오기(채널지정) -->
@@ -268,7 +267,7 @@
 				${'#imgPreview'}.attr('src', event.target.result);
 			}
 			reader.readAsDataURL(input.files[0]);
-		} */
+		}*/
 </script>
 	<sec:authorize access="isAuthenticated()">
 		<script
