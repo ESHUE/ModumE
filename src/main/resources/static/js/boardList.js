@@ -31,7 +31,10 @@ function goToEditor(boardseq) {
 				
 				const form = document.querySelector('#board-regMod__form');
 				
-				CKEDITOR.instances.boardRegModTexarea.setData(boardDetail.content);
+				//CKEDITOR.instances.boardRegModTexarea.setData(boardDetail.content);
+				CKEDITOR.instances.boardRegModTexarea.setData(boardDetail.content, function(){
+                CKEDITOR.instances.boardRegModTexarea.setData(boardDetail.content);
+              	})
 				form.title.value = boardDetail.title;
 				form.boardseq.value = boardseq;
 			})

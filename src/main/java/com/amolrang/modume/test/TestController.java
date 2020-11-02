@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.amolrang.modume.model.Boardimg_JPA;
 import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.model.Userboard_JPA;
+import com.amolrang.modume.repository.BoardImgRepository;
 import com.amolrang.modume.repository.UserBoardRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +38,9 @@ public class TestController {
 	@Autowired
 	UserBoardRepository userBoardRepository;
 
+	@Autowired
+	BoardImgRepository boardImgRepository;
+	
 	@RequestMapping(value = "/test", produces = "text/plain;charset=UTF-8")
 	public String test(Principal principal, OAuth2AuthenticationToken authentication) {
 		log.info("principal:{}", principal);
@@ -97,6 +101,7 @@ public class TestController {
 	@RequestMapping(value = "/boardDel", method = RequestMethod.GET)
 	@ResponseBody
 	public String boardDel(Userboard_JPA param) {
+		boardImgRepository.deleteByBoardseq(param);
 		userBoardRepository.deleteByBoardseq(param.getBoardseq());
 		return null;
 	}
