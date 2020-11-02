@@ -78,6 +78,7 @@ function openboard() {
 
 function changeLocation(location) {
 	const boardContainer = document.querySelector('.boardContainer');
+	//fetchBoard(boardContainer, location);
 	fetchBoard(boardContainer, location);
 }
 
@@ -86,21 +87,6 @@ function fetchBoard(ele, location) {
 		response.text().then(function(text) {
 			ele.innerHTML = text;
 		})
-	})
-}
-
-function goToEditor() {
-   const boardContainer = document.querySelector('.boardContainer');
-	fetch('/boardRegMod').then(function(response) {
-		response.text().then(function(text) {
-			boardContainer.innerHTML = text;
-		}).then(function() {
-         CKEDITOR.replace('board-regMod-ctnt__textarea',
-							{filebrowserUploadUrl:'/imageUpload'
-							 , resize_enabled: false
-							 , height: '34vh'
-							 });
-      })
 	})
 }
 

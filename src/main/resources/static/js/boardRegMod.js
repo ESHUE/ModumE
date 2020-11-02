@@ -14,22 +14,31 @@ function cutTitle(ele) {
     }
 }
 
-/*
-function changeCtnt__cnt() {
-    const textarea = document.querySelector('#board-regMod-ctnt__textarea');
-    const ctnt_cnt = document.querySelector('#board-regMod-ctnt__cnt');
-    cutCtnt(textarea);
-    ctnt_cnt.innerText = textarea.value.length + '/10000';
+
+
+function chkSubmit() {
+    const form = document.querySelector('#board-regMod__form');
+    const title = form.title.value;
+    const textarea = CKEDITOR.instances.boardRegModTexarea.getData();
+
+    if(title == '') {
+        alert('제목을 입력해주세요!');
+        return;
+    } else if(textarea == '') {
+        alert('내용을 입력해주세요!');
+        return;
+    } 
+	ajaxRegMod(title, textarea);
 }
 
-function cutCtnt(ele) {
-    let eleValue = ele.value;
-    if(eleValue.length > 10000) {
-        alert('내용은 10000자를 넘을 수 없습니다!');
-        ele.value = eleValue.substr(0, 10000);
-    }
+function ajaxRegMod(title, textarea) {
+	const url = '/boardRegModAction';
+	const param = {
+		'title': title,
+		'content': textarea
+	};
+	
+	axios.post(url, param).then(function(res) {
+		console.log(res.data);
+	})
 }
-*/
-
-
-

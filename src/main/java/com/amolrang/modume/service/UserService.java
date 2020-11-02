@@ -45,7 +45,7 @@ public class UserService implements UserDetailsService {
 		log.info("userServiceModel:{}",userModel);
 		
 		if(userModel == null) {return userModel;};
-		userModel.setAuthorities(getAuthorities(username));
+		userModel.setAuthorities(getAuthorities(userModel));
 		log.info("userModel:{}",userModel);
 		return userModel;
 	}
@@ -76,17 +76,17 @@ public class UserService implements UserDetailsService {
 	//userModel에서 뽑아온 정보에서 id / pw만 추출
 	public TestModel saveUser(UserModel userModel) {
 		TestModel testModel = new TestModel();
-		testModel.setSeq(userModel.getUserSeq());
+		testModel.setSeq(userModel.getUserseq());
 		testModel.setId(userModel.getUsername());
 		testModel.setPassword(userModel.getPassword());
 		log.info("testModel:{}",testModel);
 		return userDAO.saveUser(testModel);
 	}
 
-	public Collection<GrantedAuthority> getAuthorities(String id) {
+	public Collection<GrantedAuthority> getAuthorities(User_JPA userModel) {
 		//log.info(msg);
 		//User_JPA userModel = userRepository.findByUsername(id);
-		List<String> string_authorities = authRepository.SelAllByUsername(id);
+		List<String> string_authorities = authRepository.SelAllByUsername(userModel);
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		for (String authority : string_authorities) {
 			authorities.add(new SimpleGrantedAuthority(authority));

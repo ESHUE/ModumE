@@ -5,7 +5,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,6 +32,7 @@ public class JsonController {
 	
 	@RequestMapping(value = "/IdChk", produces = "text/plain;charset=UTF-8")
 	public String IdChk(User_JPA param) {
+		log.info("param:{}",param);
 		String result = "2";
 		System.out.println(param.getUsername());
 		if (userService.loadUserByUsername(param.getUsername()) != null) {

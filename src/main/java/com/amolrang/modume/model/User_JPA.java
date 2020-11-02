@@ -24,8 +24,8 @@ public class User_JPA implements UserDetails{
 	private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int userSeq;
-	private int failCnt;
+	private int userseq;
+	private int failcnt;
 	private String nickname; // 실제 이름
 	private String username; // 실제 ID
 	private String password; // 실제 PW

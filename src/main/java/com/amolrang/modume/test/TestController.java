@@ -1,29 +1,29 @@
 package com.amolrang.modume.test;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.security.Principal;
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.google.gson.JsonObject;
-import com.nimbusds.oauth2.sdk.util.StringUtils;
+import com.amolrang.modume.model.Boardimg_JPA;
+import com.amolrang.modume.model.User_JPA;
+import com.amolrang.modume.model.Userboard_JPA;
+import com.amolrang.modume.repository.UserBoardRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,6 +33,9 @@ import lombok.extern.slf4j.Slf4j;
 public class TestController {
 	@Autowired
 	private TestService service;
+	
+	@Autowired
+	UserBoardRepository userBoardRepository;
 
 	@RequestMapping(value = "/test", produces = "text/plain;charset=UTF-8")
 	public String test(Principal principal, OAuth2AuthenticationToken authentication) {
@@ -41,17 +44,25 @@ public class TestController {
 	}
 
 	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
-	public String boardList(Principal principal) {
+	public String boardList(Model model) {
+		List<Userboard_JPA> list = userBoardRepository.findAllByOrderByBoardseqDesc();
+		
+		model.addAttribute("list", service.boardList(list));
 		return "/boardList";
 	}
-
-	@RequestMapping(value = "/boardDetail", method = RequestMethod.GET)
-	public String boardDetail(Principal principal) {
+	
+	@RequestMapping(value = "/boardDetail", method = RequestMethod.POST)
+	public String boardDetail(Model model, @RequestBody Map<String, Object> param, HttpSession hs) {
+		int boardseq = (int) param.get("boardseq");
+		User_JPA loginUser = (User_JPA)hs.getAttribute("userInfo");
+		System.out.println("로그인 : " + loginUser.getUserseq());
+		model.addAttribute("boardDetail", userBoardRepository.findByBoardseq(boardseq));
+		model.addAttribute("loginUser", loginUser);
 		return "/boardDetail";
 	}
-
+	
 	@RequestMapping(value = "/boardRegMod", method = RequestMethod.GET)
-	public String boardRegMod(Principal principal) {
+	public String boardRegMod(Model model, HttpSession hs) {
 		return "/boardRegMod";
 	}
 	
@@ -61,6 +72,14 @@ public class TestController {
 			MultipartHttpServletRequest multiFile) throws Exception {
 		service.imageUpload(request, response, multiFile);
 		return null;        
+	}
+	
+	@RequestMapping(value = "/boardRegModAction", method = RequestMethod.POST)
+	@ResponseBody
+	public Userboard_JPA boardRegModAction(HttpSession hs, @RequestBody Userboard_JPA param) {
+		Userboard_JPA userboard_jpa = service.boardRegModAction(hs, param);
+		service.setImgList(new ArrayList<Boardimg_JPA>());
+		return userboard_jpa;
 	}
 
 	@GetMapping("/userinfo")
@@ -87,7 +106,4 @@ public class TestController {
 	public String userInfo3() {
 		return "/userinfo3";
 	}
-
-	
-
 }
