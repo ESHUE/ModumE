@@ -184,7 +184,7 @@ public class TestService {
 		   
 		   Boardimg_JPA boardImg_jpa = new Boardimg_JPA();
 		   
-		   //boardImg_jpa.setImgseq(imgList.size() + 1);
+		   boardImg_jpa.setImgseq(imgList.size() + 1);
 		   boardImg_jpa.setImgpath(imgPath);
 		   boardImg_jpa.setBoardseq(temp);
 		   
