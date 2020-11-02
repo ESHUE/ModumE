@@ -9,7 +9,7 @@
 </head>
 <body>
 <div id="userProfileContainer">
-	<div>알려줘알려줘로그인한사람</div>
+	<div></div>
 	<div>
 		<label for="profile2"></label>
 		<input type="file" name="profile2">

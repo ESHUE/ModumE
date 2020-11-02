@@ -29,3 +29,9 @@ button {
 .underline:hover {
    color: #a07be5; 
 }
+
+/*userInfo0.css*/
+
+#userProfileContainer {
+	padding-top: 100px;
+}
