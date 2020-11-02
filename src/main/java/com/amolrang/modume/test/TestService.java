@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.amolrang.modume.model.Boardimg_JPA;
 import com.amolrang.modume.model.User_JPA;
+import com.amolrang.modume.model.UserboardModel;
 import com.amolrang.modume.model.Userboard_JPA;
 import com.amolrang.modume.repository.BoardImgRepository;
 import com.amolrang.modume.repository.UserBoardRepository;
@@ -43,33 +44,51 @@ public class TestService {
 	@Autowired
 	BoardImgRepository boardImgRepository;
 	
-	public List<Userboard_JPA> boardList(List<Userboard_JPA> list) {
-		List<Userboard_JPA> edittedList = new ArrayList<Userboard_JPA>();
+	public List<UserboardModel> boardList(List<Userboard_JPA> list) {
+		List<UserboardModel> edittedList = new ArrayList<UserboardModel>();
+
 		int limitedLength = 120;
-		
 		String edittedContent = "";
 		
-		// 미리보기 - limitedLength만큼 자르기
+		// 미리보기 - limitedLength만큼 자르기 + 이미지 리스트 저장
 		for(Userboard_JPA board : list) {
-			Userboard_JPA param = new Userboard_JPA();
+			UserboardModel param = new UserboardModel();
+
+			int boardseq = board.getBoardseq();
 			
-			param.setBoardseq(board.getBoardseq());
+			List<Boardimg_JPA>dbImgList = boardImgRepository.findByBoardseq(board);
+			List<Boardimg_JPA> imgList = new ArrayList<Boardimg_JPA>();
+			
+			for(Boardimg_JPA img : dbImgList) {
+				imgList.add(img);
+			}
+			
+			param.setBoardseq(boardseq);
 			param.setHits(board.getHits());
 			param.setMdate(board.getMdate());
 			param.setRdate(board.getRdate());
 			param.setTitle(board.getTitle());
 			param.setUserseq(board.getUserseq());
 			param.setContent(board.getContent());
+			param.setImgList(imgList);
 			
 			edittedContent = board.getConvertcontent();
 			
 			if(edittedContent.length() > 120) {
-				edittedContent = edittedContent.substring(0, (limitedLength - 1));
+				edittedContent = (edittedContent.substring(0, (limitedLength - 1))) + "   ··· ";
 			}
 			
 			param.setConvertcontent(edittedContent);
 			
 			edittedList.add(param);
+		}
+		
+		for(UserboardModel board : edittedList) {
+			int cnt = 0;
+			System.out.println("보드 시퀀스  : " + board.getBoardseq());
+			for(Boardimg_JPA img : board.getImgList()) {
+				System.out.println("이미지 패쓰 : " + ++cnt + img.getImgpath());
+			}
 		}
 		
 		return edittedList;
@@ -184,7 +203,6 @@ public class TestService {
 		   
 		   Boardimg_JPA boardImg_jpa = new Boardimg_JPA();
 		   
-		   boardImg_jpa.setImgseq(imgList.size() + 1);
 		   boardImg_jpa.setImgpath(imgPath);
 		   boardImg_jpa.setBoardseq(temp);
 		   
