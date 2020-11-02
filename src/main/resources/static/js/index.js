@@ -87,19 +87,31 @@ function chatDetail(roomId, member) {
 			// 4. subscribe(path, callback)로 메시지를 받을 수 있다. callback 첫번째 파라미터의 body로 메시지의 내용이 들어온다.
 			client.subscribe('/subscribe/chat/room/' + roomId, function(
 					chat) {
-				var content = JSON.parse(chat.body);
-				chatBox.append('<li><span>' + content.message + '</span>('
+            var content = JSON.parse(chat.body);
+            if(content.writer==member){
+               chatBox.append('<li class="myId"><span class="myMember">' + content.message + '</span>('
 						+ content.writer + ')</li>')
+            }else{
+               chatBox.append('<li class="otherId"><span class="otherMember">' + content.message + '</span>('
+						+ content.writer + ')</li>')
+            }
+				
 			});
 		});
 		sendBtn.click(function() {
-			var message = messageInput.val();
-			client.send('/publish/chat/message', {}, JSON.stringify({
-				chatRoomId : roomId,
-				message : message,
-				writer : member
-			}));
-			messageInput.val('');
+         var message = messageInput.val();
+         console.log(message);
+         if(message ==null || message==''){
+            alert('Please Enter Content')
+            
+         }else{
+            client.send('/publish/chat/message', {}, JSON.stringify({
+               chatRoomId : roomId,
+               message : message,
+               writer : member
+            }));
+            messageInput.val('');
+         }
 		});
 	});
 	}
@@ -148,14 +160,14 @@ function closeContainer(ele) {
 
 
 
-function userMenuInit(isLogin) {
+function userMenuInit(isLogin,temp) {
     const userMenu = document.querySelector('.userMenu');
     const alertMenu = document.querySelector('.alertMenu');
     if(alertMenu != null) {
         closeContainer(alertMenu);
     }
    if(userMenu == null) {
-      openUserMenu(isLogin);
+      openUserMenu(isLogin,temp);
    } else {
       closeContainer(userMenu);
    }
@@ -174,7 +186,9 @@ function alertMenuInit() {
    }
 }
 
-function openUserMenu(isLogin) {
+var nickname = null;
+function openUserMenu(isLogin,temp) {
+   nickname = temp;
     const makeDiv = document.createElement('div');
     makeDiv.className = 'userMenu';
     makeDiv.style.position = 'absolute';
@@ -216,8 +230,8 @@ function openUserMenu(isLogin) {
    
 	const makeSpan2_2_3 = document.createElement('span');
    makeSpan2_2_3.classList.add('cursor');
-   makeSpan2_2_3.innerText = '채팅테스트';
-   makeSpan2_2_3.setAttribute('onclick', "location.href='/chat/rooms'");
+   makeSpan2_2_3.innerText = temp;
+   makeSpan2_2_3.setAttribute('onclick', 'openUserInfo()');
    
    if(isLogin) {
       makeDiv2.append(makeSpan2_2_1);
