@@ -107,6 +107,7 @@ body{
     flex-wrap: nowrap;
     height: 80%;
     padding: 100px;
+     margin-bottom: 100px;
 }
 
 .closeLoginWindow .material-icons{

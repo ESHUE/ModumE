@@ -8,6 +8,12 @@
 <link rel="stylesheet" href="/css/userInfo.css">
 </head>
 <body>
-	<div>나는 0입니다.</div>
+<div id="userProfileContainer">
+	<div>알려줘알려줘로그인한사람</div>
+	<div>
+		<label for="profile2"></label>
+		<input type="file" name="profile2">
+	</div>
+</div>
 </body>
 </html>
