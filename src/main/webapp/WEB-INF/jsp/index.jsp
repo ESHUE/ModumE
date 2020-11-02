@@ -84,8 +84,8 @@
 
 	<script src="/js/index.js?aaa=7"></script>
 	<script src="/js/login.js"></script>
-	<script src="/js/boardList.js?ver=45"></script>
-	<script src="/js/boardRegMod.js?ver=34"></script>
+	<script src="/js/boardList.js?ver=54"></script>
+	<script src="/js/boardRegMod.js?ver=45"></script>
 	<!-- 트위치 채널 긁어오기(채널지정) -->
 
 	<script>

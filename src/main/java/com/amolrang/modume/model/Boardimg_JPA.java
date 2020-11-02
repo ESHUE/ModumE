@@ -2,12 +2,13 @@ package com.amolrang.modume.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.sun.istack.NotNull;
 
 import lombok.Data;
 
@@ -28,9 +29,11 @@ public class Boardimg_JPA {
 	 */
 	
 	@Id
+	//@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column
 	private int imgseq;
 	@Column(nullable = false)
-	private String imgname;
+	private String imgpath;
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "boardseq")

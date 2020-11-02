@@ -42,7 +42,7 @@
 	        <td colspan="3">${item.title}</td>
 	    </tr>
 	    <tr class="board-ctnt">
-	        <td colspan="3">${item.content}</td>
+	        <td colspan="3">${item.convertcontent}</td>
 	    </tr>
 	    <!-- c:if 이미지 개수가 1개인 경우와 2개 이상인 경우 구분 -->
 	    <!-- c:if 이미지 개수가 1개 이상일 경우, tr 안에는 for each로 처리, img는 두개까지만 -->
