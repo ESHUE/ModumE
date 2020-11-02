@@ -11,9 +11,8 @@ function showSearchList(res) {
     const makeDiv1 = document.createElement('div');
     makeDiv1.className = 'searchResultContainer';
     makeDiv1.style.position = 'absolute';
-    makeDiv1.style.left = "15%";
-    makeDiv1.style.width = '70%';
-    makeDiv1.style.height = '22%';
+    makeDiv1.style.left = "-80%";
+    makeDiv1.style.width = '1280px';
     makeDiv1.style.zIndex = '3';
     
     const makeDiv11 = document.createElement('div');

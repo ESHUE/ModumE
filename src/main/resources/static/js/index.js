@@ -24,9 +24,9 @@ function findVideo(evt) {
          slidesPerGroup: 4,
          loop: true,
          loopFillGroupWithBlank: true,
+         mousewheel: true,
          pagination: {
            el: '.swiper-pagination',
-           // mousewheel: true,
            clickable: true,
          },
          navigation: {
