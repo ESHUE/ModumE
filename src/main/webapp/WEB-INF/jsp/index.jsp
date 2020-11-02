@@ -13,7 +13,7 @@
 <link rel="icon" href="/img/favicon.png">
 <link rel="stylesheet" href="/css/index.css?ver=12">
 <link rel="stylesheet" href="/css/boardList.css?ver=5">
-<link rel="stylesheet" href="/css/boardDetail.css?ver=9">
+<link rel="stylesheet" href="/css/boardDetail.css?ver=10">
 <link rel="stylesheet" href="/css/boardRegMod.css?ver=4">
 <link rel="stylesheet" href="/css/login.css?ver=27">
 <link rel="stylesheet" href="/css/join.css?ver=89">

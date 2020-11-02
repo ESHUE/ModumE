@@ -35,7 +35,7 @@
 	    </tr>
 	    <tr class="board-date">
 	    	<td colspan="2">
-	    		${item.rdate}
+	    		<fmt:formatDate value="${item.rdate}" pattern="MM-dd"/>
 	        </td>
 	    </tr>
 	    <tr class="board-title">

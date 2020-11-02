@@ -46,6 +46,7 @@ public class TestController {
 	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
 	public String boardList(Model model) {
 		List<Userboard_JPA> list = userBoardRepository.findAllByOrderByBoardseqDesc();
+		//List<Userboard_JPA> list = userBoardRepository.selAllByUserseq();
 		model.addAttribute("list", service.boardList(list));
 		return "/boardList";
 	}
