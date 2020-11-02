@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c_rt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <div class="board-btns">
        <!-- top 버튼 -->
     <div class="go-to-top cursor circle-btn50" onclick="goToTop()">
@@ -11,8 +15,64 @@
     </div>
 </div>
 <div class="boardContents">
-    <!-- 1번 테이블 -->
-    <table class="board-table cursor" onclick="changeLocation('/boardDetail')">
+	<c:if test="${list == null }">
+		<div> 글을 등록해주세요 </div>
+	</c:if>
+	<c:forEach items="${list}" var="item">
+	    <table class="board-table cursor" onclick="goToDetail(${item.boardseq})">
+	    <tr class="board-profile">
+	        <td rowspan="2" class="board-profile-td">
+	            <div class="board-profile__box">
+	            	<c:if test="${item.userseq.profileImg == null }">
+		                <img class="board-profile__img" src="/img/test-profile.jpg" alt="프로필">
+	            	</c:if>
+	            	<c:if test="${item.userseq.profileImg != null }">
+		                <img class="board-profile__img" src="/img/${item.userseq.profileImg }" alt="프로필">
+	            	</c:if>
+	            </div>
+	        </td>
+	        <td class="board-user-name" colspan="2">${item.userseq.nickname }</td>
+	    </tr>
+	    <tr class="board-date">
+	    	<td colspan="2">
+	    		${item.rdate}
+	        </td>
+	    </tr>
+	    <tr class="board-title">
+	        <td colspan="3">${item.title}</td>
+	    </tr>
+	    <tr class="board-ctnt">
+	        <td colspan="3">${item.content}</td>
+	    </tr>
+	    <!-- c:if 이미지 개수가 1개인 경우와 2개 이상인 경우 구분 -->
+	    <!-- c:if 이미지 개수가 1개 이상일 경우, tr 안에는 for each로 처리, img는 두개까지만 -->
+	    
+		<!-- 여기 이미지 관련 포문 넣기!!! -->
+
+
+
+	    <tr class="board-foot">
+	        <td colspan="3">
+	            <div class="board-icons">
+	                <div class="board-hits flex-center">
+	                    <span class="material-icons-outlined mr5">remove_red_eye</span>
+	                    <span>${item.hits }</span>
+	                </div>
+	                <div class="board-comment flex-center">
+	                    <span class="material-icons-outlined mr5">comment</span>
+	                    <span>10</span>
+	                </div>
+	                <div class="board-like flex-center">
+	                    <span class="material-icons-outlined mr5">thumb_up</span>
+	                    <span>10</span>
+	                </div>
+	            </div>
+	        </td>
+	    </tr>
+	</table>
+</c:forEach>
+	 <!-- 1번 테이블 -->
+    <table class="board-table cursor" onclick="goToDetail(${item.boardseq})">
         <tr class="board-profile">
             <td rowspan="2" class="board-profile-td">
                 <div class="board-profile__box">
@@ -65,9 +125,9 @@
             </td>
         </tr>
     </table>
-
+    
     <!-- 2번 테이블 -->
-    <table class="board-table cursor" onclick="changeLocation('/boardDetail')">
+    <table class="board-table cursor" onclick="goToDetail(${item.boardseq})">
         <tr class="board-profile">
             <td rowspan="2" class="board-profile-td">
                 <div class="board-profile__box">

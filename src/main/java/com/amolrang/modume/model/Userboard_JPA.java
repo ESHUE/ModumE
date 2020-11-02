@@ -20,7 +20,7 @@ import lombok.Data;
 public class Userboard_JPA {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int USERBOARD_SEQ;
+	private int boardseq;
 	@Column(length = 100)
 	private String title;
 	@Column(length = 10000)
@@ -28,9 +28,10 @@ public class Userboard_JPA {
 	@ColumnDefault("0")
 	private int hits;
 	@CreationTimestamp
-	private Timestamp r_date;
-	private Timestamp m_date;
+	private Timestamp rdate;
+	@CreationTimestamp
+	private Timestamp mdate;
 	@ManyToOne
-	@JoinColumn(name = "MAIN_SEQ")
-	private User_JPA user;
+	@JoinColumn(name = "userseq")
+	private User_JPA userseq;
 }

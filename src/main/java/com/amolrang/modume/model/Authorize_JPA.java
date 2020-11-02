@@ -15,9 +15,9 @@ import lombok.Data;
 public class Authorize_JPA {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int AUTH_SEQ;
+	private int authsseq;
 	@ManyToOne
 	@JoinColumn(name = "username", referencedColumnName = "username")
-	private User_JPA user;
-	private String Authentication;
+	private User_JPA username;
+	private String authentication;
 }

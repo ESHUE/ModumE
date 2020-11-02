@@ -15,7 +15,7 @@ public class SocialModel implements UserDetails{
 	private String s_id;
 	private String username;
 	private String sns;
-	private String r_dt;
+	private String rdate;
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub

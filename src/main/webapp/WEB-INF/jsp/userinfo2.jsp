@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/css/userInfo.css">
 </head>
 <body>
 	<div>나는 2입니다.</div>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
-<form id="board-regMod__form" action="" class="board-regMod__form" method="post">
+<form id="board-regMod__form" class="board-regMod__form">
     <div class="board-regMod-title">
         <div class="board-regMod-title__input">
             <input type="text" name="title" placeholder="제목을 입력하세요." onkeyup="changeTitle__cnt()">
@@ -11,13 +11,14 @@
         </div>
     </div>
     <div class="board-regMod-ctnt">
-        <textarea name="board-regMod-ctnt" id="board-regMod-ctnt__textarea" placeholder="내용을 입력하세요."></textarea>
+        <textarea name="board-regMod-ctnt" id="boardRegModTexarea"></textarea>
     </div>
+    <input type="hidden" name="" value="">
     <div class="board-regMod__btns">
-        <button type="button" class="btn-div flex-center cursor" onclick="changeLocation('/boardList')">
+        <button type="button" class="btn-div flex-center cursor" onclick="changeLocation('/boardList')">  
             취소
         </button>
-        <button class="btn-div flex-center cursor">
+        <button type="button" class="btn-div flex-center cursor" onclick="chkSubmit()">
             등록
         </button>
     </div>
