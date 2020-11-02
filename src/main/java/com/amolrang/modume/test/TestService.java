@@ -16,10 +16,12 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.amolrang.modume.model.BoardimgId_JPA;
 import com.amolrang.modume.model.Boardimg_JPA;
 import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.model.Userboard_JPA;
@@ -36,6 +38,9 @@ import lombok.extern.slf4j.Slf4j;
 public class TestService {
 	
 	// private List<Boardimg_JPA> imgList = new ArrayList<Boardimg_JPA>();
+	
+	@Autowired
+	TestMapper testMapper;
 	
 	@Autowired
 	UserBoardRepository userBoardRepository;
@@ -184,7 +189,7 @@ public class TestService {
 		   
 		   Boardimg_JPA boardImg_jpa = new Boardimg_JPA();
 		   
-		   //boardImg_jpa.setImgseq(imgList.size() + 1);
+		   boardImg_jpa.setImgseq(imgList.size() + 1);
 		   boardImg_jpa.setImgpath(imgPath);
 		   boardImg_jpa.setBoardseq(temp);
 		   
@@ -193,7 +198,7 @@ public class TestService {
 		   
 		   log.info("boardImg_jpa:{}",boardImg_jpa);
 		   
-		   boardImgRepository.save(boardImg_jpa);
+		   testMapper.insBoardimg(boardImg_jpa);
 		   
 	   }
 		
