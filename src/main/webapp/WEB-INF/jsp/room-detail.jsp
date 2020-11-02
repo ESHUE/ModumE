@@ -11,11 +11,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </head>
 <body>
-<h1>${room.name}(${room.id},${member})</h1>
-<div class="content" data-room_id="${room.id}" data-member="${member}">
-    <ul class="chat_box"></ul>
+<h1>${room.name}(${room.id})</h1>
+<div class="content">
+    <ul class="chat-box"></ul>
     <input name="message">
     <button class="send">보내기</button>
 </div>
 </body>
+<script>
+
+	
+</script>
 </html>

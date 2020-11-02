@@ -36,6 +36,7 @@ public class ChatRoomController {
     public String rooms(Model model,HttpSession hs,User_JPA userModel) {
     	repository.CreateRoom("",hs);
     	userModel = (User_JPA)hs.getAttribute("userInfo");
+    	//값 전달을 위해 미리 넘김
         model.addAttribute("rooms", repository.getChatRooms());
         model.addAttribute("member", userModel.getUsername());
         return listViewName;

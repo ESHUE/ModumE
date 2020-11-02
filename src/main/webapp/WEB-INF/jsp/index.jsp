@@ -73,6 +73,7 @@
 			</aside>
 		</section>
 	</main>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<script
@@ -81,12 +82,12 @@
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-	<script src="/js/index.js?aaa=sdaa3388001236"></script>
+	<script src="/js/index.js?aaa=08776"></script>
 	<script src="/js/swiper.js"></script>
 	<script src="/js/boardList.js?ver=4"></script>
 	<script src="/js/boardDetail.js?ver=1"></script>
 	<script src="/js/boardRegMod.js?ver=1"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
 	<!-- 트위치 채널 긁어오기(채널지정) -->
 
 	<script>
