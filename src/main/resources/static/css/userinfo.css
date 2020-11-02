@@ -6,7 +6,6 @@ html, body {
 }
 .userMenuContainer {
    padding: 100px;
-   margin-bottom: 100px;
 }
 .tabMenuContainer {
    display: flex;

@@ -48,8 +48,8 @@ public class JsonController {
 	}
 
 	@RequestMapping(value = "/CallFollows", produces = "text/plain;charset=UTF-8")
-	public String CallFollows(OAuth2AuthenticationToken authentication) {
-		return twitchApi.getTwitchMyFollower(authentication, authorizedClientService);
+	public String CallFollows(OAuth2AuthenticationToken authentication,HttpSession hs) {
+		return twitchApi.getTwitchMyFollower(authentication, authorizedClientService,hs);
 	}
 	
 	@RequestMapping(value = "/getStreams", produces = "text/plain;charset=UTF-8")

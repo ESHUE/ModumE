@@ -2,9 +2,6 @@ var sectionContainer = document.querySelector('.sectionContainer');
 var centralContainer = document.querySelector('.centralContainer');
 var centralMenu1_2 = document.querySelector('.centralMenu1_2');
 
-var inputChat = null;
-var username = null;
-var inputUl = null;
 
 function findVideo(evt) {
    evt.preventDefault();
@@ -26,7 +23,7 @@ function chatInit() {
         closeContainer(boardContainer);
     }
     if(chatContainer == null) {
-        openChat();
+        chatList()
     } else {
         closeContainer(chatContainer);
     }
@@ -48,24 +45,79 @@ function boardInit() {
 function openChat() {
     const makeDiv = document.createElement('div');
     makeDiv.className = 'chatContainer';
+	 makeDiv.setAttribute('id','chatContainer')
     sectionContainer.append(makeDiv);
+    const chatList = document.createElement('div');
+    chatList.className = 'chatList';
+    makeDiv.append(chatList)
    /*채팅관련 창들 */
-   const chatDiv = document.createElement('div');
-   chatDiv.className = 'hidden';``
-   makeDiv.append(chatDiv);
-   inputChat = document.createElement('input');
-   inputChat.className = 'inputChat';
-   makeDiv.append(inputChat);
-   inputUl = document.createElement('ul');
-   inputUl.className = 'messageArea';
-   chatDiv.append(inputUl);
-   const btnChat = document.createElement('button');
-   btnChat.className = 'btnChat';
-   makeDiv.append(btnChat);
-   btnChat.innerText = "보내기";
-   btnChat.addEventListener('click', sendMessage, true);
-   connect()
+   
    console.log('chat화면 띄우기 완료')
+}
+
+function chatList() {
+   fetch('/chat/rooms').then(function(response) {
+      response.text().then(function(text) {
+         openChat()
+         document.querySelector('#chatContainer').innerHTML = text;
+      })
+   })
+}
+
+	//채팅을 위한 전역변수들( 미리 초기화 )
+	var roomId = null;
+	var member = null;
+	var message = null;
+
+function chatDetail(roomId, member) {
+	$(function() {
+		var chatBox = $('.chat-box');
+		var messageInput = $('input[name="message"]');
+		message = messageInput;
+		var sendBtn = $('.send');
+		var sock = new SockJS("/ws");
+		var client = Stomp.over(sock); // 1. SockJS를 내부에 들고 있는 client를 내어준다.
+		// 2. connection이 맺어지면 실행된다.
+		client.connect({}, function() {
+			// 3. send(path, header, message)로 메시지를 보낼 수 있다.
+			client.send('/publish/chat/join', {}, JSON.stringify({
+				chatRoomId : roomId,
+				writer : member
+			}));
+			// 4. subscribe(path, callback)로 메시지를 받을 수 있다. callback 첫번째 파라미터의 body로 메시지의 내용이 들어온다.
+			client.subscribe('/subscribe/chat/room/' + roomId, function(
+					chat) {
+				var content = JSON.parse(chat.body);
+				chatBox.append('<li><span>' + content.message + '</span>('
+						+ content.writer + ')</li>')
+			});
+		});
+		sendBtn.click(function() {
+			var message = messageInput.val();
+			client.send('/publish/chat/message', {}, JSON.stringify({
+				chatRoomId : roomId,
+				message : message,
+				writer : member
+			}));
+			messageInput.val('');
+		});
+	});
+	}
+function chatListDetail(temp, mem) {
+	roomId = temp;
+	member = mem;
+	var url = '/chat/rooms/' + temp
+	console.log(url)
+	fetch(url).then(function(response) {
+		response.text().then(function(text) {
+			chatDetail(roomId, mem)
+			document.querySelector('#chatContainer').innerHTML = text;
+		})
+	})
+}
+function removeChatPage(){
+	let chatContainer = document.querySelector('#chatContainer');
+	chatContainer.remove();
 }
 
 
@@ -216,7 +268,7 @@ function makeLogin() {
    let loginWindowContainer = document.createElement('div');
    loginWindowContainer.classList.add('loginWindowContainer');
    loginWindowContainer.setAttribute('id', 'loginWindowContainer');
-   loginWindowContainer.addEventListener('click', event);
+	   loginWindowContainer.addEventListener('click', event);
    
 
    let loginPageContainer = document.createElement('div');
@@ -252,8 +304,6 @@ function showLogin() {
       })
    })
 }
-
-
 
 
 function removeLogin() {

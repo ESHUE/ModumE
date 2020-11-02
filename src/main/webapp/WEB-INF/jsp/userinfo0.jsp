@@ -9,10 +9,11 @@
 </head>
 <body>
 <div id="userProfileContainer">
-	<div>${userInfo.nickname }님님님</div>
+	<div class="userProfileHeader"><h3>프로필 사진</h3></div>
+	<div class="userNickName">${userInfo.nickname }님</div>
 	<div>
-		<label for="profile2"></label>
-		<input type="file" name="profile2">
+		<label for="profile2">프로필  사진 추가</label>
+		<input type="file" name="profile2" vlaue="">
 	</div>
 </div>
 </body>

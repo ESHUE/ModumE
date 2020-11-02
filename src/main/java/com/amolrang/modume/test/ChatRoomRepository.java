@@ -23,6 +23,7 @@ public class ChatRoomRepository {
 	public void CreateRoom(String roomName,HttpSession hs) {
 //		ChatRoom[] roomList = {ChatRoom.create("전체 채팅방"),ChatRoom.create("?????")};
 		ArrayList<Map> list = (ArrayList<Map>)hs.getAttribute("LiveStream");
+
 		ChatRoom[] roomList = null;
 		if(list != null ) {
 			roomList = new ChatRoom[list.size()];
@@ -41,7 +42,7 @@ public class ChatRoomRepository {
 		}
 	}
 	
-
+	
 	public ChatRoom getChatRoom(String id) {
 		return chatRoomMap.get(id);
 	}

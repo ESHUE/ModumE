@@ -245,18 +245,27 @@ body{
     position: relative;
     min-width: 350px;
 }
-.chatContainer .hidden{
-   margin : 0 auto;
-   width : 90%;
-   height : 66vh;
-   background-color: white;
+.chatContainer > h1{
+    font-size: 1.5em;
+    text-align: center;
 }
-.charContainer .inputChat{
-   width : 70%;
-   height : 30px;
+
+.content{
+    height: 90%;
+    width: 90%;
 }
-.charContainer .btnChat{
-   
+
+.chat-box{
+    width: 90%;
+    height: 90%;
+
+}
+.chat-box > li{
+    padding-top: 5px;
+    color: white;
+}
+.chat-box > li > span{
+    color: rosybrown;
 }
 
 .boardContainer {

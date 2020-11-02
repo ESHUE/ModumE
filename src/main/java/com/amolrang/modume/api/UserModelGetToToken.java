@@ -112,7 +112,6 @@ public class UserModelGetToToken {
 //				socialModel.setUsername(name);
 //				socialModel.setSns(sns);
 //				log.info("socialModel:{}",socialModel);
-				log.info("socialModel:{}",socialModel);
 //			}
 			socialModel.setSocialusername(id);
 			socialModel.setSns(sns);

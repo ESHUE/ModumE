@@ -26,6 +26,7 @@ public class ChatMessageController {
 
     @MessageMapping("/chat/message")
     public void message(ChatMessage message) {
+    	System.out.println("messageId:" + message.getChatRoomId());
         template.convertAndSend("/subscribe/chat/room/" + message.getChatRoomId(), message);
     }
 }
