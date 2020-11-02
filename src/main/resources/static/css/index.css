@@ -121,13 +121,14 @@ body{
 }
 
 .userInfoContainer{
-   background-color: seashell;
+   background-color: #fff;
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
     height: 80%;
+    padding: 100px;
 }
 
 .closeLoginWindow .material-icons{

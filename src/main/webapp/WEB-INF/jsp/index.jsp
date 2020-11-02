@@ -25,6 +25,7 @@
 	rel="stylesheet">
 <!-- 위지윅 에디터 추가 -->
 <script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+
 </head>
 <body>
 	<div id="bg1">
@@ -88,6 +89,7 @@
 	<!-- 트위치 채널 긁어오기(채널지정) -->
 
 	<script>
+
     var stompClient = null;
     function chkId() {
 		const username = frm.username.value
@@ -173,7 +175,27 @@
     	   inputUl.append(messageText)
     	   
     	   messageElement.appendChild(textElement);
+
     	}
+    /* $.ajax({
+    	 type: 'GET',
+    	 url: 'https://api.twitch.tv/kraken/channels/twitch',
+    	 headers: {
+    	   'Client-ID': '95put5vj4zw23iiy5poetela3ilbq6'
+    	 },
+    	 success: function(data) {
+    	   console.log(data);
+    	 }
+    	});
+      
+    xhr.send(); */
+    /* new Twitch.Embed("video-embed", {
+        width: 854,
+        height: 480,
+        channel: "2chamcham2",
+        // only needed if your site is also embedded on embed.example.com and othersite.example.com 
+        parent: ["embed.example.com", "othersite.example.com"]
+      }); */
 	</script>
 
 	<script>
@@ -210,6 +232,43 @@
 	})	
   } 
 
+</script>
+<script>
+	function profileAddIconChange () {
+	
+	  const personIcon = document.querySelector('.personIcon');
+	  const addIcon = document.querySelector('.addIconHidden');
+		personIcon.style.display = 'none';
+		personIcon.style.transition = '0.5s';
+	  //addIcon.style.removeProperty('display')
+	  addIcon.classList.remove('addIconHidden');
+	  const addIcon2 = document.querySelector('.addIcon');
+	  addIcon2.style.color = 'red';
+	}
+	
+	function profilePersonIconChange() {
+	  const addIcon = document.querySelector('.addIcon');
+	  addIcon.classList.add('addIconHidden');
+	  const personIcon = document.querySelector('.personIcon');
+	  personIcon.style.removeProperty('display');
+	}
+	//javascript:document.getElementById('fileName').value = this.value
+	function fileNameMove() {
+		const fileName = document.getElementById('fileName');
+		const profile = document.getElementById('profile');
+		fileName.value = profile.value;
+	}
+	//이미지 미리보기
+ // onchange="profilePreview(this)"
+/*	function profilePreview(input) {
+		
+		if(input.files && input.files[0]) {
+			var reader = new FileReader()
+			reader.onload = function(event) {
+				${'#imgPreview'}.attr('src', event.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		} */
 </script>
 	<sec:authorize access="isAuthenticated()">
 		<script
