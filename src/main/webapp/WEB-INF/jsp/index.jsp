@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/css/boardRegMod.css?ver=4">
 <link rel="stylesheet" href="/css/login.css?ver=27">
 <link rel="stylesheet" href="/css/join.css?ver=89">
-<link rel="stylesheet" href="/css/test.css">
+<link rel="stylesheet" href="/css/test.css?ver=4">
 <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
 <!-- 아웃라인 material-icon 링크 추가 -->
 <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
@@ -80,7 +80,7 @@
 	<script src="/js/boardRegMod.js?ver=45"></script>
 
 
-	<script src="/js/test.js"></script>
+	<script src="/js/test.js?ver=12"></script>
 
 	<!-- 트위치 채널 긁어오기(채널지정) -->
 
@@ -311,7 +311,7 @@
 						axios.get('/getStreams',{}).then(function(res){
 							//console.log(res)
 							res.data.data.forEach(function(item){
-								console.log(item)
+								//console.log(item)
 								loadTwitchFollowSwiper(item)
 							})
 							reloadPagination();
