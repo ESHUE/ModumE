@@ -39,7 +39,7 @@ public class GoogleAPI {
 	
 	public String searchYoutube(OAuth2AuthorizedClientService authAuthorizedClientService, String keyword) {
 		String url = "https://www.googleapis.com/youtube/v3/search";
-		String query = "?q=" + keyword + "&key=" + apikey;
+		String query = "?part=snippet&type=video&maxResults=20&order=date&q=" + keyword + "&key=" + apikey;
 		headers = new HttpHeaders();
 		headers.add(HttpHeaders.ACCEPT, "application/json");
 		restTemplate = new RestTemplate();

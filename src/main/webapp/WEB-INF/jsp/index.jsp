@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="/css/boardRegMod.css?ver=4">
 <link rel="stylesheet" href="/css/login.css?ver=27">
 <link rel="stylesheet" href="/css/join.css?ver=89">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Material+Icons"
 	rel="stylesheet">
 <!-- 아웃라인 material-icon 링크 추가 -->
@@ -84,6 +85,7 @@
 
 	<script src="/js/index.js?aaa=7"></script>
 	<script src="/js/login.js"></script>
+	<script src="/js/search.js"></script>
 	<script src="/js/boardList.js?ver=54"></script>
 	<script src="/js/boardRegMod.js?ver=45"></script>
 	<!-- 트위치 채널 긁어오기(채널지정) -->
