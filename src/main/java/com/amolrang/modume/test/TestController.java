@@ -46,7 +46,6 @@ public class TestController {
 	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
 	public String boardList(Model model) {
 		List<Userboard_JPA> list = userBoardRepository.findAllByOrderByBoardseqDesc();
-		
 		model.addAttribute("list", service.boardList(list));
 		return "/boardList";
 	}
@@ -63,6 +62,10 @@ public class TestController {
 	
 	@RequestMapping(value = "/boardRegMod", method = RequestMethod.GET)
 	public String boardRegMod(Model model, HttpSession hs) {
+		User_JPA user_jpa = (User_JPA)hs.getAttribute("userInfo");
+		if(user_jpa == null) {
+			return null; // status 404 띄움
+		}
 		return "/boardRegMod";
 	}
 	
@@ -76,10 +79,9 @@ public class TestController {
 	
 	@RequestMapping(value = "/boardRegModAction", method = RequestMethod.POST)
 	@ResponseBody
-	public Userboard_JPA boardRegModAction(HttpSession hs, @RequestBody Userboard_JPA param) {
-		Userboard_JPA userboard_jpa = service.boardRegModAction(hs, param);
-		service.setImgList(new ArrayList<Boardimg_JPA>());
-		return userboard_jpa;
+	public int boardRegModAction(HttpSession hs, @RequestBody Userboard_JPA param) {
+		int boardseq = service.boardRegModAction(hs, param);
+		return boardseq;
 	}
 
 	@GetMapping("/userinfo")
