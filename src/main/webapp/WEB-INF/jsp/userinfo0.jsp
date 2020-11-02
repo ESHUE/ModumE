@@ -9,7 +9,7 @@
 </head>
 <body>
 <div id="userProfileContainer">
-	<div></div>
+	<div>${userInfo.nickname }님님님</div>
 	<div>
 		<label for="profile2"></label>
 		<input type="file" name="profile2">
