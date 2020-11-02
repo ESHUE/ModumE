@@ -1,6 +1,8 @@
 package com.amolrang.modume.test;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.amolrang.modume.model.Boardimg_JPA;
+import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.model.Userboard_JPA;
 import com.amolrang.modume.repository.UserBoardRepository;
 
@@ -41,20 +45,24 @@ public class TestController {
 
 	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
 	public String boardList(Model model) {
-		model.addAttribute("list", userBoardRepository.findAllByOrderByBoardseqDesc());
+		List<Userboard_JPA> list = userBoardRepository.findAllByOrderByBoardseqDesc();
+		
+		model.addAttribute("list", service.boardList(list));
 		return "/boardList";
 	}
 	
 	@RequestMapping(value = "/boardDetail", method = RequestMethod.POST)
-	public String boardDetail(Model model, @RequestBody Map<String, Object> param) {
-		int USERBOARD_SEQ = (int) param.get("USERBOARD_SEQ");
-		System.out.println("꾸엑 : " + USERBOARD_SEQ);
-		//model.addAttribute("board", UserBoardRepository.findBy);
+	public String boardDetail(Model model, @RequestBody Map<String, Object> param, HttpSession hs) {
+		int boardseq = (int) param.get("boardseq");
+		User_JPA loginUser = (User_JPA)hs.getAttribute("userInfo");
+		System.out.println("로그인 : " + loginUser.getUserseq());
+		model.addAttribute("boardDetail", userBoardRepository.findByBoardseq(boardseq));
+		model.addAttribute("loginUser", loginUser);
 		return "/boardDetail";
 	}
 	
 	@RequestMapping(value = "/boardRegMod", method = RequestMethod.GET)
-	public String boardRegMod() {
+	public String boardRegMod(Model model, HttpSession hs) {
 		return "/boardRegMod";
 	}
 	
@@ -69,7 +77,9 @@ public class TestController {
 	@RequestMapping(value = "/boardRegModAction", method = RequestMethod.POST)
 	@ResponseBody
 	public Userboard_JPA boardRegModAction(HttpSession hs, @RequestBody Userboard_JPA param) {
-		return service.boardRegModAction(hs, param);
+		Userboard_JPA userboard_jpa = service.boardRegModAction(hs, param);
+		service.setImgList(new ArrayList<Boardimg_JPA>());
+		return userboard_jpa;
 	}
 
 	@GetMapping("/userinfo")

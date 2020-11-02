@@ -19,23 +19,23 @@
 		<div> 글을 등록해주세요 </div>
 	</c:if>
 	<c:forEach items="${list}" var="item">
-	    <table class="board-table cursor" onclick="goToDetail(${item.boardSeq})">
+	    <table class="board-table cursor" onclick="goToDetail(${item.boardseq})">
 	    <tr class="board-profile">
 	        <td rowspan="2" class="board-profile-td">
 	            <div class="board-profile__box">
-	            	<c:if test="${item.userSeq.profileImg == null }">
+	            	<c:if test="${item.userseq.profileImg == null }">
 		                <img class="board-profile__img" src="/img/test-profile.jpg" alt="프로필">
 	            	</c:if>
-	            	<c:if test="${item.userSeq.profileImg != null }">
-		                <img class="board-profile__img" src="/img/${item.userSeq.profileImg }" alt="프로필">
+	            	<c:if test="${item.userseq.profileImg != null }">
+		                <img class="board-profile__img" src="/img/${item.userseq.profileImg }" alt="프로필">
 	            	</c:if>
 	            </div>
 	        </td>
-	        <td class="board-user-name" colspan="2">${item.userSeq.nickname }</td>
+	        <td class="board-user-name" colspan="2">${item.userseq.nickname }</td>
 	    </tr>
 	    <tr class="board-date">
-	    <td colspan="2">
-	    ${item.parseRDate}
+	    	<td colspan="2">
+	    		${item.rdate}
 	        </td>
 	    </tr>
 	    <tr class="board-title">
@@ -72,7 +72,7 @@
 	</table>
 </c:forEach>
 	 <!-- 1번 테이블 -->
-    <table class="board-table cursor" onclick="goToDetail(${item.boardSeq})">
+    <table class="board-table cursor" onclick="goToDetail(${item.boardseq})">
         <tr class="board-profile">
             <td rowspan="2" class="board-profile-td">
                 <div class="board-profile__box">
@@ -127,7 +127,7 @@
     </table>
     
     <!-- 2번 테이블 -->
-    <table class="board-table cursor" onclick="goToDetail(${item.boardSeq})">
+    <table class="board-table cursor" onclick="goToDetail(${item.boardseq})">
         <tr class="board-profile">
             <td rowspan="2" class="board-profile-td">
                 <div class="board-profile__box">

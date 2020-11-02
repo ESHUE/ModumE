@@ -12,8 +12,8 @@
 <title>${title}</title>
 <link rel="icon" href="/img/favicon.png">
 <link rel="stylesheet" href="/css/index.css?ver=12">
-<link rel="stylesheet" href="/css/boardList.css?ver=3">
-<link rel="stylesheet" href="/css/boardDetail.css?ver=5">
+<link rel="stylesheet" href="/css/boardList.css?ver=5">
+<link rel="stylesheet" href="/css/boardDetail.css?ver=9">
 <link rel="stylesheet" href="/css/boardRegMod.css?ver=4">
 <link rel="stylesheet" href="/css/login.css?ver=27">
 <link rel="stylesheet" href="/css/join.css?ver=89">
@@ -82,9 +82,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-	<script src="/js/index.js?aaa=5"></script>
+	<script src="/js/index.js?aaa=7"></script>
 	<script src="/js/login.js"></script>
-	<script src="/js/boardList.js?ver=41"></script>
+	<script src="/js/boardList.js?ver=45"></script>
 	<script src="/js/boardRegMod.js?ver=34"></script>
 	<!-- 트위치 채널 긁어오기(채널지정) -->
 
