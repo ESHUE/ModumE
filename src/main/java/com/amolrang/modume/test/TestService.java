@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,41 +17,39 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.amolrang.modume.model.Boardimg_JPA;
-import com.amolrang.modume.model.Social_JPA;
 import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.model.Userboard_JPA;
+import com.amolrang.modume.repository.BoardImgRepository;
 import com.amolrang.modume.repository.UserBoardRepository;
 import com.google.gson.JsonObject;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @Data
 public class TestService {
 	
-	private List<Boardimg_JPA> imgList = new ArrayList<Boardimg_JPA>();
+	// private List<Boardimg_JPA> imgList = new ArrayList<Boardimg_JPA>();
 	
 	@Autowired
 	UserBoardRepository userBoardRepository;
 	
+	@Autowired
+	BoardImgRepository boardImgRepository;
+	
 	public List<Userboard_JPA> boardList(List<Userboard_JPA> list) {
-		List<Userboard_JPA> editedList = new ArrayList<Userboard_JPA>();
+		List<Userboard_JPA> edittedList = new ArrayList<Userboard_JPA>();
 		int limitedLength = 120;
 		
-		String content = "";
-		String cuttedContent = "";
 		String edittedContent = "";
 		
-		int startP = 0;
-		int finishP = 0;
-		
-		
-		// 모든 <p>태그에서 <p></p> 제외한 내용 120글자 이하 추출
+		// 미리보기 - limitedLength만큼 자르기
 		for(Userboard_JPA board : list) {
 			Userboard_JPA param = new Userboard_JPA();
 			
@@ -59,37 +59,23 @@ public class TestService {
 			param.setRdate(board.getRdate());
 			param.setTitle(board.getTitle());
 			param.setUserseq(board.getUserseq());
+			param.setContent(board.getContent());
 			
-			content = board.getContent();
+			edittedContent = board.getConvertcontent();
 			
-			while(content.contains("<p>")) {
-				content = content.replace("&nbsp;", "");
-				content = content.replace("<br />;", "");
-				
-				startP = content.indexOf("<p>") + 3;
-				finishP = content.indexOf("</p>");
-				
-				cuttedContent = content.substring(startP, finishP);
-				edittedContent += cuttedContent;
-				
-				content = content.replaceFirst(String.format("<p>%s</p>", cuttedContent), cuttedContent + " ");
+			if(edittedContent.length() > 120) {
+				edittedContent = edittedContent.substring(0, (limitedLength - 1));
 			}
 			
-			if(edittedContent.length() > limitedLength) {
-				edittedContent = edittedContent.substring(0, 120);
-			}
+			param.setConvertcontent(edittedContent);
 			
-			param.setContent(String.format("<p>%s</p>", edittedContent));
-			
-			System.out.println(param.getContent());
-			
-			editedList.add(param);
+			edittedList.add(param);
 		}
 		
-		return editedList;
+		return edittedList;
 	}
 	
-	public List<Boardimg_JPA> imageUpload(HttpServletRequest request, HttpServletResponse response, 
+	public void imageUpload(HttpServletRequest request, HttpServletResponse response, 
 			MultipartHttpServletRequest multiFile) throws Exception {      
 		
 		JsonObject json = new JsonObject();
@@ -128,9 +114,10 @@ public class TestService {
                         json.addProperty("fileName", fileName);
                         json.addProperty("url", fileUrl);
                         
-                        Thread.sleep(3000);
+                        // Thread.sleep(3000);
                         printWriter.println(json);
                         
+                        /*
                         // DB에 저장할 이미지 파일 정보
                         Boardimg_JPA img = new Boardimg_JPA();
         	        	
@@ -139,11 +126,14 @@ public class TestService {
                         
                         imgList.add(img);
                         
+                        
+                        System.out.println("이미지 포문 시작");
                         for(Boardimg_JPA i : imgList) {
                         	System.out.println("이미지네임나가신다~");
                         	System.out.println(i.getImgname());
                         	System.out.println(i.getImgseq());
                         }
+                        */
                         	
         	        } catch(Exception e) {
         	        	e.printStackTrace();
@@ -159,32 +149,58 @@ public class TestService {
         	}
         }
         
-        return imgList;        
-        
 	}
 	
-	public Userboard_JPA boardRegModAction(HttpSession hs, Userboard_JPA param) {	
+	public int boardRegModAction(HttpSession hs, Userboard_JPA param) {	
 		User_JPA user_jpa = (User_JPA)hs.getAttribute("userInfo");
 
-		if(user_jpa == null) {
-			return null;
-		}
-
 		Userboard_JPA userBoard_jpa = new Userboard_JPA();
-		
+	
 		userBoard_jpa.setUserseq(user_jpa);
 		userBoard_jpa.setTitle(param.getTitle());
 		userBoard_jpa.setContent(param.getContent());
+		userBoard_jpa.setConvertcontent(param.getConvertcontent());
 		
 		System.out.println("타이틀 : " + param.getTitle());
 		System.out.println("내용 : " + param.getContent());
+		System.out.println("태그 뺀 내용 : " + param.getConvertcontent());
 		System.out.println("이름 : " + user_jpa.getNickname());
 		
 		userBoardRepository.save(userBoard_jpa);
-		int boardseq = userBoardRepository.findMaxBoardseqByUserSeq(user_jpa);
-		System.out.println("찍어주세요 제발요.. ㅠㅠ : " + boardseq );
+		Integer boardseq = userBoardRepository.findMaxBoardseqByUserSeq(user_jpa);
+		Userboard_JPA temp = userBoardRepository.findByBoardseq(boardseq);
+		log.info("temp:{}",temp);
+		// content에서 이미지 이름 찾기... ㅠㅡㅠ
+		List<String> imgList = new ArrayList<String>();
+		String text = userBoard_jpa.getContent();
 		
-		return userBoard_jpa;
+		Pattern nonValidPattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
+		Matcher matcher = nonValidPattern.matcher(text);
+			   
+	   while (matcher.find()) {
+		   System.out.println("이거 나와야 되는데 ㅜㅜㅜㅜㅜㅜ");
+		   String imgPath = matcher.group(1);
+		   System.out.println(imgPath);
+		   
+		   Boardimg_JPA boardImg_jpa = new Boardimg_JPA();
+		   
+		   //boardImg_jpa.setImgseq(imgList.size() + 1);
+		   boardImg_jpa.setImgpath(imgPath);
+		   boardImg_jpa.setBoardseq(temp);
+		   
+		   imgList.add(imgPath);
+		   
+		   
+		   log.info("boardImg_jpa:{}",boardImg_jpa);
+		   
+		   boardImgRepository.save(boardImg_jpa);
+		   
+	   }
+		
+		// 여기까지
+		
+		
+		return boardseq;
 		
 	}
 

@@ -20,6 +20,7 @@ function chkSubmit() {
     const form = document.querySelector('#board-regMod__form');
     const title = form.title.value;
     const textarea = CKEDITOR.instances.boardRegModTexarea.getData();
+	const convertcontent = textarea.replace(/(<([^>]+)>)/ig, "");
 
     if(title == '') {
         alert('제목을 입력해주세요!');
@@ -28,17 +29,21 @@ function chkSubmit() {
         alert('내용을 입력해주세요!');
         return;
     } 
-	ajaxRegMod(title, textarea);
+	// console.log(convertcontent);
+	ajaxRegMod(title, textarea, convertcontent);
 }
 
-function ajaxRegMod(title, textarea) {
+function ajaxRegMod(title, textarea, convertcontent) {
 	const url = '/boardRegModAction';
 	const param = {
 		'title': title,
-		'content': textarea
+		'content': textarea,
+		'convertcontent' : convertcontent
 	};
 	
 	axios.post(url, param).then(function(res) {
-		console.log(res.data);
+		console.log(res.data); // 글 쓴 후 데이터
+		const boardseq = res.data;
+		goToDetail(boardseq);
 	})
 }

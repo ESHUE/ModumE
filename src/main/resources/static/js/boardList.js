@@ -6,7 +6,11 @@ function goToTop() {
 function goToEditor(boardDetail) {
    const boardContainer = document.querySelector('.boardContainer');
 	fetch('/boardRegMod').then(function(response) {
-		console.log(response);
+		if(response.status == 404) {
+			alert('로그인이 필요합니다!');
+			location.href = '/main';
+			return;
+		}
 		response.text().then(function(text) {
 			boardContainer.innerHTML = text;
 		}).then(function() {

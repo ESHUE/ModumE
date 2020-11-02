@@ -88,7 +88,7 @@ function chatDetail(roomId, member) {
 			client.subscribe('/subscribe/chat/room/' + roomId, function(
 					chat) {
 				var content = JSON.parse(chat.body);
-				chatBox.append('<li>' + content.message + '('
+				chatBox.append('<li><span>' + content.message + '</span>('
 						+ content.writer + ')</li>')
 			});
 		});

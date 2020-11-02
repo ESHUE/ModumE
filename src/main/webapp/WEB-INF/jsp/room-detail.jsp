@@ -13,10 +13,10 @@
 <body>
 <h1>${room.name}(${room.id})</h1>
 <div class="content">
-    <ul class="chat-box"></ul>
-    <input name="message">
-    <button class="send">보내기</button>
+    <ul class="chat-box"></ul> 
 </div>
+<input name="message">
+<button class="send">보내기</button>
 </body>
 <script>
 
