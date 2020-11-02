@@ -25,7 +25,7 @@ public class Userboard_JPA {
 	private String title;
 	@Column(length = 8000)
 	private String content;
-	@Column(length = 800)
+	@Column(length = 8000)
 	private String convertcontent;
 	@ColumnDefault("0")
 	private int hits;
