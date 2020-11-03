@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${title}</title>
 <link rel="icon" href="/img/favicon.png">
-<link rel="stylesheet" href="/css/index.css?ver=731220">
+<link rel="stylesheet" href="/css/index.css?ver=75a22sd">
 <link rel="stylesheet" href="/css/boardList.css?ver=3">
 <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
 <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
@@ -53,7 +53,7 @@
 					<span class="material-icons" onclick="alertMenuInit()">notifications_none</span>
 				</div>
 				<div class="menus centralMenu1_2">
-					<span class="material-icons" onclick="userMenuInit('${isLogin}')">person_outline</span>
+					<span class="material-icons" onclick="userMenuInit(${isLogin},'${userInfo.nickname }')">person_outline</span>
 				</div>
 			</div>
 		</header>
@@ -82,8 +82,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
+	<script src="/js/index.js?aaa=0872236w"></script>
 
-	<script src="/js/index.js?aaa=0876"></script>
 	<script src="/js/swiper.js"></script>
 	<script src="/js/boardList.js?ver=4"></script>
 	<script src="/js/boardDetail.js?ver=1"></script>
