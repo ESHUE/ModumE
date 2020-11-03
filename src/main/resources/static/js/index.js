@@ -22,7 +22,7 @@ function findVideo(evt) {
          slidesPerView: 4,
          spaceBetween: 10,
          slidesPerGroup: 4,
-         loop: true,
+         loop: false,
          loopFillGroupWithBlank: true,
          mousewheel: true,
          pagination: {
