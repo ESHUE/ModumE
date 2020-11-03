@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${title}</title>
 <link rel="icon" href="/img/favicon.png">
-<link rel="stylesheet" href="/css/index.css?ver=7a225sd">
+<link rel="stylesheet" href="/css/index.css?ver=908484">
 <link rel="stylesheet" href="/css/boardList.css?ver=3">
 <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
 <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
@@ -82,7 +82,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-	<script src="/js/index.js?aaa=0876w"></script>
+	<script src="/js/index.js?aaa=0876w79634"></script>
 	<script src="/js/swiper.js"></script>
 	<script src="/js/boardList.js?ver=4"></script>
 	<script src="/js/boardDetail.js?ver=1"></script>
