@@ -65,9 +65,25 @@ function reloadPagination() {
       clickable: true,
     },
   });
-  // for(var i = 0 ; i < thumbnails.length; i++){
-  //   while(thumbnails[i].firstChild){
-  //     thumbnails[i].removeChild(thumbnails[i].lastChild);
-  //   }
-  // }
+}
+function videoLoad() {
+  const videoLink = document.querySelector(".swiper-slide-active>.thumbnail");
+  const thumbnails = document.getElementsByClassName("thumbnail");
+  for (var i = 0; i < thumbnails.length; i++) {
+    thumbnails[i].id = "";
+  }
+  videoLink.id = "video-embed";
+
+  const url = videoLink.getAttribute("streamerURL");
+  const videoURL = "https://www.twitch.tv/" + url.substring(url.indexOf("user_") + 5, url.lastIndexOf("-1920x"));
+  console.log(videoURL);
+  const container = document.getElementById('video-embed')
+  console.log(container)
+  renderReactPlayer(container, {
+    videoURL,
+    playing: true,
+    controls: false,
+    width: "100%",
+    height: "100%"
+  })
 }
