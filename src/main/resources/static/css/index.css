@@ -175,6 +175,10 @@ body{
     margin-left: 20px;
 }
 
+.centralSearch{
+    position: relative;
+}
+
 .centralSearchFrm{
     width: 500px;
     display: grid;
