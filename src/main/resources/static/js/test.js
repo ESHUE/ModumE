@@ -26,9 +26,10 @@ function newSlider() {
   return swiperSlide;
 }
 
-function newPagination() {
+function newScrollbar() {
   const swiperPagination = document.createElement("div");
-  swiperPagination.classList.add("swiper-pagination");
+  swiperPagination.classList.add("swiper-scrollbar");
+  swiperPagination.style.color = "floralwhite";
   return swiperPagination;
 }
 
@@ -58,7 +59,8 @@ function loadTwitchFollowSwiper(item) {
   title.style.background = "rgba(150,150,150,.5)";
   title.style.display = "inline-flex";
   title.style.borderRadius = "10px";
-  title.style.right = "0";
+  title.style.top = "0";
+  title.style.left = "0";
   title.classList.add("streamerTitle");
   //thumbnail_url.innerText = item.thumbnail_url;
   item.thumbnail_url = item.thumbnail_url.replace("{width}", "1920");
@@ -89,14 +91,16 @@ function loadTwitchFollowSwiper(item) {
 }
 
 function reloadPagination() {
-  SwiperContainer.appendChild(newPagination());
+  SwiperContainer.appendChild(newScrollbar());
   var swiper = new Swiper(".swiper-container", {
     direction: "vertical",
     slidesPerView: 1,
     spaceBetween: 30,
     mousewheel: true,
-    pagination: {
-      el: ".swiper-pagination",
+    scrollbar: {
+        el: '.swiper-scrollbar',
+        hide: true,
+	  draggable: true,
       clickable: true,
     },
   });
