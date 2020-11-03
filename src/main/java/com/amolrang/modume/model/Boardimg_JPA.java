@@ -16,7 +16,7 @@ import lombok.Data;
 
 @Entity
 @Data
-//@IdClass(BoardimgId_JPA.class)
+@IdClass(BoardimgId_JPA.class)
 public class Boardimg_JPA {
 	/*
 	 * CREATE TABLE img_jpa (
@@ -29,11 +29,11 @@ public class Boardimg_JPA {
 );
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
 	private int imgseq;
 	@Column(nullable = false)
 	private String imgpath;
-	//@Id
+	@Id
 	@ManyToOne
 	@JoinColumn(name = "boardseq")
 	private Userboard_JPA boardseq;

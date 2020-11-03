@@ -16,10 +16,12 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.amolrang.modume.model.BoardimgId_JPA;
 import com.amolrang.modume.model.Boardimg_JPA;
 import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.model.UserboardModel;
@@ -35,6 +37,9 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Data
 public class TestService {
+	
+	@Autowired
+	TestMapper testMapper;
 	
 	@Autowired
 	UserBoardRepository userBoardRepository;
@@ -184,7 +189,6 @@ public class TestService {
 		Pattern nonValidPattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
 		Matcher matcher = nonValidPattern.matcher(text);
 			   
-		
 		// 글 수정인 경우에 해당 boardseq의 모든 img를 db에서 삭제
 		if(param.getBoardseq() != 0 ) {
 			boardImgRepository.deleteByBoardseq(result); // 이거 문제 생기면 삭제!!
@@ -210,7 +214,6 @@ public class TestService {
 			   
 		}
 	   
-		
 		// 여기까지
 		return boardseq;
 	}
