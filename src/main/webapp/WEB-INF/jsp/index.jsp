@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="/css/boardRegMod.css?ver=4">
 <link rel="stylesheet" href="/css/login.css?ver=27">
 <link rel="stylesheet" href="/css/join.css?ver=89">
-<link rel="stylesheet" href="/css/test.css?ver=4">
+<link rel="stylesheet" href="/css/test.css?ver=5">
 <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
 <!-- 아웃라인 material-icon 링크 추가 -->
 <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
@@ -55,8 +55,7 @@
 		</header>
 		<section class="centralSection">
 			<div class="sectionContainer">
-				<div class="slideContainer">
-				</div>
+				<div class="slideContainer"></div>
 			</div>
 			<aside class="centralSidebar">
 				<div class="menus sidebarMenu1_1">
@@ -73,6 +72,8 @@
 	<script src="https://embed.twitch.tv/embed/v1.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	<script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
+
 
 	<script src="/js/index.js?aaa=7"></script>
 	<script src="/js/login.js"></script>
@@ -80,7 +81,7 @@
 	<script src="/js/boardRegMod.js?ver=45"></script>
 
 
-	<script src="/js/test.js?ver=12"></script>
+	<script src="/js/test.js?ver=13"></script>
 
 	<!-- 트위치 채널 긁어오기(채널지정) -->
 
@@ -253,6 +254,7 @@
 		const fileName = document.getElementById('fileName');
 		const profile = document.getElementById('profile');
 		fileName.value = profile.value;
+
 	}
 	//이미지 미리보기
  // onchange="profilePreview(this)"
@@ -267,7 +269,6 @@
 		} */
 </script>
 	<sec:authorize access="isAuthenticated()">
-		<script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
 		<c:if test="${userInfo != null}">
 
 			<script>
@@ -283,30 +284,12 @@
 			<c:forEach items="${userDomain.sns}" var="item">
 				<c:if test="${item == 'twitch'}">
 					<script type="text/javascript">
-		
-						function getVideo(res){
-							axios.get('/CallVideo',{
-								params:{
-									follow : res.data.data[0].to_id
-									}
-							}).then(function(res){
-								console.log(res)
-								const url = `\${res.data.data[0].url}`;
-								const container = document.getElementById('video-embed')
-								renderReactPlayer(container , {
-									url,
-									playing: true,
-									controls: true
-								})
-							})	
-						}
-						
-						function callFollowVideo(){
+						/* function callFollowVideo(){
 							axios.get('/CallFollows',{}).then(function(res){
 								console.log(res)
 								getVideo(res)
 							})
-						}
+						} */
 						
 						axios.get('/getStreams',{}).then(function(res){
 							//console.log(res)
@@ -315,9 +298,54 @@
 								loadTwitchFollowSwiper(item)
 							})
 							reloadPagination();
-						})
 							
+						}).then(function(){
+							const playBtn = document.querySelectorAll(".playBtn");
+							for(var i = 0 ; i < playBtn.length; i++){
+								playBtn[i].setAttribute("onclick","videoLoad()");
+							}
+						})
+		
 						
+						
+						
+						function videoLoad() {
+						  //console.log(url)
+						  //console.log(url.lastIndexOf("-1920x"));
+						  //console.log(url.indexOf("user_"));
+						  const videoLink = document.querySelector(".swiper-slide-active>.thumbnail");
+						  const thumbnails = document.getElementsByClassName("thumbnail");
+						  for(var i = 0 ; i < thumbnails.length; i++){
+						    //thumbnails[i].classList.remove("video-embed");
+						    thumbnails[i].id = "";
+						  }
+						  //videoLink.classList.add("video-embed");
+						  videoLink.id = "video-embed";
+			
+						  
+						// for(var i = 0 ; i < thumbnails.length; i++){
+						  //   while(thumbnails[i].firstChild){
+						  //     thumbnails[i].removeChild(thumbnails[i].lastChild);
+						  //   }
+						  // } 
+								const url = videoLink.getAttribute("streamerURL");
+								  const videoURL ="https://www.twitch.tv/" + url.substring(url.indexOf("user_")+5,url.lastIndexOf("-1920x"));
+								  console.log(videoURL);
+								
+							reactPlayer(videoURL);
+						}
+						
+						  function reactPlayer(url){
+								  const container = document.getElementById('video-embed')
+								  console.log(container)
+								  renderReactPlayer(container , {
+								    url,
+								    playing: true,
+								    controls: false,
+								    width: "100%",
+								    height: "100%"
+								  })
+						  }
 				    </script>
 				</c:if>
 			</c:forEach>

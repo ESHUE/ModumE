@@ -2,8 +2,8 @@ const slideContainer = document.querySelector(".slideContainer");
 const SwiperContainer = document.createElement("div");
 SwiperContainer.classList.add("swiper-container");
 slideContainer.appendChild(SwiperContainer);
-
 const Wrapper = document.createElement("div");
+
 function getWrapper() {
   Wrapper.classList.add("swiper-wrapper");
   SwiperContainer.appendChild(Wrapper);
@@ -39,8 +39,16 @@ function loadTwitchFollowSwiper(item) {
 
   thumbnail_url.style.backgroundImage = `url(${item.thumbnail_url})`;
   thumbnail_url.classList.add("thumbnail");
+  thumbnail_url.setAttribute('streamerURL', item.thumbnail_url);
   thumbnail_url.appendChild(name);
   thumbnail_url.appendChild(title);
+
+  const playbtn = document.createElement("span");
+  playbtn.classList.add("material-icons");
+  playbtn.classList.add("playBtn");
+  playbtn.innerText = "play_circle_outline";
+  thumbnail_url.appendChild(playbtn);
+
   slide.appendChild(thumbnail_url);
   getWrapper().appendChild(slide);
 }
@@ -57,4 +65,9 @@ function reloadPagination() {
       clickable: true,
     },
   });
+  // for(var i = 0 ; i < thumbnails.length; i++){
+  //   while(thumbnails[i].firstChild){
+  //     thumbnails[i].removeChild(thumbnails[i].lastChild);
+  //   }
+  // }
 }
