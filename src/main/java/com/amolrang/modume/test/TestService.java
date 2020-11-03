@@ -47,6 +47,7 @@ public class TestService {
 	@Autowired
 	BoardImgRepository boardImgRepository;
 	
+	
 	public UserboardModel addImgListToParam(Userboard_JPA board) {
 			UserboardModel param = new UserboardModel();
 			
@@ -172,15 +173,13 @@ public class TestService {
 		   if(param.getBoardseq() != 0) {
 			   boardseq = param.getBoardseq();
 			   userBoard_jpa.setBoardseq(boardseq);
-			   result = userBoardRepository.save(userBoard_jpa);
+			   testMapper.updUserBoard(userBoard_jpa);
+			   result = userBoardRepository.findByBoardseq(boardseq);
 		   } else {
 			   result = userBoardRepository.save(userBoard_jpa);
 			   boardseq = result.getBoardseq();
 		   }
 		   
-//		Integer boardseq = userBoardRepository.findMaxBoardseqByUserSeq(user_jpa);
-		//Userboard_JPA temp = userBoardRepository.findByBoardseq(boardseq);
-		//log.info("temp:{}",temp);
 		
 		// content에서 이미지 이름 찾기... ㅠㅡㅠ
 		List<String> imgList = new ArrayList<String>();
@@ -191,16 +190,16 @@ public class TestService {
 			   
 		// 글 수정인 경우에 해당 boardseq의 모든 img를 db에서 삭제
 		if(param.getBoardseq() != 0 ) {
-			boardImgRepository.deleteByBoardseq(result); // 이거 문제 생기면 삭제!!
+			boardImgRepository.deleteByBoardseq(result);
 		}
 		
 		while (matcher.find()) {
-			System.out.println("이거 나와야 되는데 ㅜㅜㅜㅜㅜㅜ");
 			String imgPath = matcher.group(1);
 			System.out.println(imgPath);
 			   
 			Boardimg_JPA boardImg_jpa = new Boardimg_JPA();
 			   
+			boardImg_jpa.setImgseq((boardImgRepository.countByBoardseq(result)) + 1);
 			boardImg_jpa.setImgpath(imgPath);
 			boardImg_jpa.setBoardseq(result);
 			   
@@ -209,8 +208,7 @@ public class TestService {
 			   
 			log.info("boardImg_jpa:{}",boardImg_jpa);
 			   
-
-			boardImgRepository.save(boardImg_jpa);
+			testMapper.insBoardimg(boardImg_jpa);
 			   
 		}
 	   

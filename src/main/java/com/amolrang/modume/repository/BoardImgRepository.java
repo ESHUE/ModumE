@@ -11,6 +11,7 @@ import com.amolrang.modume.model.Userboard_JPA;
 public interface BoardImgRepository extends JpaRepository<Boardimg_JPA, Integer> {
 
 	List<Boardimg_JPA> findByBoardseq(Userboard_JPA boardseq);
+	int countByBoardseq(Userboard_JPA boardseq);
 	@Transactional 
 	void deleteByBoardseq(Userboard_JPA boardseq);
 }
