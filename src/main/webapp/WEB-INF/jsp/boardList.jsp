@@ -22,7 +22,7 @@
 	    <table class="board-table cursor" onclick="goToDetail(${item.boardseq})">
 	    <tr class="board-profile">
 	        <td rowspan="2" class="board-profile-td">
-	            <div class="board-profile__box">
+	            <div class="board-profile__box flex-center">
 	            	<c:if test="${item.userseq.profileImg == null }">
 		                <img class="board-profile__img" src="/img/test-profile.jpg" alt="프로필">
 	            	</c:if>

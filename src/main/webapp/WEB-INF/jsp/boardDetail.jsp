@@ -27,7 +27,7 @@
     <table class="board-detail-table board-table">
         <tr class="board-detail-profile">
             <td class="board-profile-td">
-                <div class="board-profile__box">
+                <div class="board-profile__box flex-center">
                 	<c:if test="${boardDetail.userseq.profileImg == null }">
 		                <img class="board-profile__img" src="/img/test-profile.jpg" alt="프로필">
 	            	</c:if>
