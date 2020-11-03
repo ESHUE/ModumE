@@ -263,23 +263,25 @@ body{
 }
 
 .view{
-    padding-left: 35px;
+    text-align: center;
+    padding-left: 20px;
     margin: 10px auto;
     height: 85%;
-    width: 280px;
+    width: 90%;
     position: absolute;
     overflow: hidden;
 }
 
 .content{
+    text-align: center;
     margin: 5px auto;
     height: 90%;
-    width: 330px;
+    width: 108%;
     overflow-y: scroll;
     
 }
 .view #inputMessage{
-    width: 250px;
+    width: 95%;
     border-radius : 3px;
     padding-left: 5px;
     position: relative;
@@ -290,13 +292,13 @@ body{
 .view #sendBtn{
     position: absolute;
     border-radius : 3px;
-    margin-left: -30px;
+    margin-left: -50px;
     height: 35px;
     border: 0;
     opacity: 1;
 }
 .chat-box{
-    width: 280px;
+    width: 95%;
     height: 100%;
     text-align: center;
 }
