@@ -6,13 +6,31 @@ var centralMenu1_2 = document.querySelector('.centralMenu1_2');
 function findVideo(evt) {
    evt.preventDefault();
    const keyword = document.querySelector('#searchVideo').value;
-   console.log(keyword);
+   // console.log(keyword);
 	axios.get('/googleSearch', {
       params : {
          keyword
       }
    }).then(function(res) {
-      console.log(res);
+      // console.log(res);
+      showSearchList(res);
+   }).then(function() {
+      var searchSwiper = new Swiper('.searchResultContainer>.swiper-container', {
+         slidesPerView: 4,
+         spaceBetween: 10,
+         slidesPerGroup: 4,
+         loop: false,
+         loopFillGroupWithBlank: true,
+         mousewheel: true,
+         pagination: {
+           el: '.swiper-pagination',
+           clickable: true,
+         },
+         navigation: {
+           nextEl: '.swiper-button-next',
+           prevEl: '.swiper-button-prev',
+         },
+      });
    })
 }
 
@@ -305,7 +323,6 @@ function showLogin() {
       })
    })
 }
-
 
 function removeLogin() {
    let loginWindowContainer = document.querySelector('#loginWindowContainer');

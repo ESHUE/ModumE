@@ -175,6 +175,10 @@ body{
     margin-left: 20px;
 }
 
+.centralSearch{
+    position: relative;
+}
+
 .centralSearchFrm{
     width: 500px;
     display: grid;
@@ -349,6 +353,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
 
 .centralSidebar>.menus:first-child{
