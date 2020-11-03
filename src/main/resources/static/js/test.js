@@ -26,9 +26,9 @@ function newSlider() {
   return swiperSlide;
 }
 
-function newPagination() {
+function newScrollbar() {
   const swiperPagination = document.createElement("div");
-  swiperPagination.classList.add("swiper-pagination");
+  swiperPagination.classList.add("swiper-scrollbar");
   return swiperPagination;
 }
 
@@ -89,15 +89,18 @@ function loadTwitchFollowSwiper(item) {
 }
 
 function reloadPagination() {
-  SwiperContainer.appendChild(newPagination());
-  var swiper = new Swiper(".swiper-container", {
+  SwiperContainer.appendChild(newScrollbar());
+  var swiper = new Swiper(".slideContainer>.swiper-container", {
     direction: "vertical",
     slidesPerView: 1,
     spaceBetween: 30,
     mousewheel: true,
-    pagination: {
-      el: ".swiper-pagination",
+    scrollbar: {
+      el: ".swiper-scrollbar",
       clickable: true,
+      hide: true,
+      draggable:true,
+      clickable:true
     },
   });
 }

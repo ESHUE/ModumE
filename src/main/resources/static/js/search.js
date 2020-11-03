@@ -70,7 +70,10 @@ function showSearchList(res) {
         makeDiv11111.remove();
       });
       makeDiv11111.addEventListener("click", ()=>{
+        // const youtubeUrl = 'https://www.youtube.com/watch?v=' + res.data.items[i].id.videoId;
+        // console.log(youtubeUrl);
         closeSearch();
+        // openYoutube(youtubeUrl);
       });
     }
 }
@@ -81,3 +84,29 @@ function closeSearch() {
        searchResultContainer.remove();
     }
 }
+
+// function openYoutube(url) {
+//   const video_embed = document.querySelector('.video_embed');
+//   const twitchSwiper = document.querySelector('.slideContainer>.swiper-container');
+//   if(video_embed != null) {
+//     video_embed.remove();
+//   }
+//   if(twitchSwiper != null) {
+//     twitchSwiper.remove();
+//   }
+//   const makeDiv1 = document.createElement('div');
+//   makeDiv1.className = 'video_embed';
+
+//   loadReactPlayer(makeDiv1, url);
+// }
+
+// function loadReactPlayer(tag, url) {
+//   renderReactPlayer(tag, {
+//     url,
+//     playing: true,
+//     controls: false,
+//     width: '100%',
+//     height: '100%'
+//   });
+//   document.querySelector('.slideContainer').append(tag);
+// }

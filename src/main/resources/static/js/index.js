@@ -9,7 +9,7 @@ var inputUl = null;
 function findVideo(evt) {
    evt.preventDefault();
    const keyword = document.querySelector('#searchVideo').value;
-   console.log(keyword);
+   // console.log(keyword);
 	axios.get('/googleSearch', {
       params : {
          keyword
@@ -18,7 +18,7 @@ function findVideo(evt) {
       // console.log(res);
       showSearchList(res);
    }).then(function() {
-      var searchSwiper = new Swiper('.swiper-container', {
+      var searchSwiper = new Swiper('.searchResultContainer>.swiper-container', {
          slidesPerView: 4,
          spaceBetween: 10,
          slidesPerGroup: 4,
