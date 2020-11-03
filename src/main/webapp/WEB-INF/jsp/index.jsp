@@ -6,26 +6,24 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>${title}</title>
-	<link rel="icon" href="/img/favicon.png">
-	<link rel="stylesheet" href="/css/index.css?ver=12">
-	<link rel="stylesheet" href="/css/boardList.css?ver=5">
-	<link rel="stylesheet" href="/css/boardDetail.css?ver=9">
-	<link rel="stylesheet" href="/css/boardRegMod.css?ver=4">
-	<link rel="stylesheet" href="/css/login.css?ver=27">
-	<link rel="stylesheet" href="/css/join.css?ver=89">
-	<link rel="stylesheet" href="/css/test.css?ver=5">
-	<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
-	<!-- 아웃라인 material-icon 링크 추가 -->
-	<link
-		href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
-		rel="stylesheet">
-	<!-- 위지윅 에디터 추가 -->
-	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${title}</title>
+<link rel="icon" href="/img/favicon.png">
+<link rel="stylesheet" href="/css/index.css?ver=12">
+<link rel="stylesheet" href="/css/boardList.css?ver=5">
+<link rel="stylesheet" href="/css/boardDetail.css?ver=9">
+<link rel="stylesheet" href="/css/boardRegMod.css?ver=4">
+<link rel="stylesheet" href="/css/login.css?ver=27">
+<link rel="stylesheet" href="/css/join.css?ver=89">
+<link rel="stylesheet" href="/css/test.css?ver=5">
+<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+<!-- 아웃라인 material-icon 링크 추가 -->
+<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+<!-- 위지윅 에디터 추가 -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
-	<script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+<script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
 
 </head>
 
@@ -41,8 +39,7 @@
 			<div class="centralSearch">
 				<form action="" method="POST" class="centralSearchFrm" onsubmit="findVideo(event)">
 					<div class="centralSearch1_1">
-						<input type="text" name="searchVideo" id="searchVideo" class="Search1_1__input"
-							placeholder="검색">
+						<input type="text" name="searchVideo" id="searchVideo" class="Search1_1__input" placeholder="검색">
 					</div>
 					<div class="centralSearch1_2">
 						<span class="material-icons headMenus" onclick="findVideo(event)">search</span>
