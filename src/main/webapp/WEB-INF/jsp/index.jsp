@@ -85,7 +85,7 @@
 
 	<script src="/js/index.js?aaa=7"></script>
 	<script src="/js/login.js"></script>
-	<script src="/js/search.js?aa=131"></script>
+	<script src="/js/search.js?aa=afasef"></script>
 	<script src="/js/boardList.js?ver=54"></script>
 	<script src="/js/boardRegMod.js?ver=45"></script>
 	<!-- 트위치 채널 긁어오기(채널지정) -->
@@ -169,7 +169,7 @@
     	      var usernameElement = document.createElement('span');
     	      var usernameText = document.createTextNode(message.sender);
     	      usernameElement.appendChild(usernameText);
-    	      messageElement.appendChild(usernameElement);   
+    	      messageElement.appendChild(usernameElement);
     	   }
     	   var textElement = document.createElement('p');
     	   var messageText = document.createTextNode(message.content);

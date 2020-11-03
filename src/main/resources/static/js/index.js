@@ -258,9 +258,6 @@ function showLogin() {
    })
 }
 
-
-
-
 function removeLogin() {
    let loginWindowContainer = document.querySelector('#loginWindowContainer');
    loginWindowContainer.remove();
