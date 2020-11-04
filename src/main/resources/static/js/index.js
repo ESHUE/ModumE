@@ -211,7 +211,7 @@ function openUserMenu(isLogin,temp) {
     makeDiv.className = 'userMenu';
     makeDiv.style.position = 'absolute';
     makeDiv.style.right = '35px';
-    makeDiv.style.width = '150px';
+    makeDiv.style.width = '300px';
     makeDiv.style.height = '350px';
     makeDiv.style.borderRadius = '5px';
     makeDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
@@ -220,6 +220,9 @@ function openUserMenu(isLogin,temp) {
 
    const makeDiv2 = document.createElement('div');
    makeDiv2.className = 'userMenuTooltip';
+   
+   makeDiv2.style.position = 'relative';
+   makeDiv2.style.top = '50px';
  
    
    const makeSpan2_1_1 = document.createElement('span');
@@ -229,13 +232,18 @@ function openUserMenu(isLogin,temp) {
 //   const makeSpan2_1_2 = document.createElement('span');
 //   makeSpan2_1_2.classList.add('cursor');
 //   makeSpan2_1_2.innerText = '회원가입';
-//   makeSpan2_1_2.setAttribute('onclick',"location.href='/join'");
+//   makeSpan2_1_2.setAttribute('onclick',"location.href=+/join'");
+
+   /*const nickName = document.createElement('span');
+   nickName.innerText = temp+'님님님';*/
    
    const makeSpan2_2_1 = document.createElement('span');
    makeSpan2_2_1.classList.add('cursor');
    makeSpan2_2_1.innerText = '로그아웃';
    makeSpan2_2_1.setAttribute('onclick',"location.href='/logout'");
-   
+   console.log(temp)
+   console.log(isLogin)
+	
    const makeSpan2_2_2 = document.createElement('span');
    makeSpan2_2_2.classList.add('cursor');
    makeSpan2_2_2.innerText = '마이페이지';
@@ -250,11 +258,18 @@ function openUserMenu(isLogin,temp) {
    makeSpan2_2_3.classList.add('cursor');
    makeSpan2_2_3.innerText = temp;
    makeSpan2_2_3.setAttribute('onclick', 'openUserInfo()');
+
+   makeSpan2_2_1.style.display = ' block';
+   makeSpan2_2_2.style.display = ' block';
+ //  makeSpan2_2_3.style.display = ' block';
+
+
    
    if(isLogin) {
-      makeDiv2.append(makeSpan2_2_1);
-      makeDiv2.append(makeSpan2_2_2);
       makeDiv2.append(makeSpan2_2_3);
+      makeDiv2.append(makeSpan2_2_2);
+      makeDiv2.append(makeSpan2_2_1);
+	  
    } else {
       makeDiv2.append(makeSpan2_1_1);
 //      makeDiv2.append(makeSpan2_1_2);
@@ -358,6 +373,11 @@ function openUserInfo() {
    
    const makeDiv2 = document.createElement('div');
    makeDiv2.classList.add('loginPageContainer');
+
+ //  const userInfoContainer = document.querySelector('userInfoContainer')
+
+   const myPageTabMenuContainer = document.createElement('div');
+   myPageTabMenuContainer.classList.add('myPageTabMenuContainer');
    
    const makeDiv2_1 = document.createElement('div');
    makeDiv2_1.classList.add('closeLoginWindow');
@@ -379,8 +399,9 @@ function openUserInfo() {
    })
    
    makeDiv2_1.append(makeSpan2_1_1);
-   makeDiv2.append(makeDiv2_1);
-   makeDiv2.append(makeDiv2_2);
+   myPageTabMenuContainer.append(makeDiv2_1);
+   myPageTabMenuContainer.append(makeDiv2_2);
+   makeDiv2.append(myPageTabMenuContainer);
    makeDiv.append(makeDiv2);
    body.prepend(makeDiv);
 }

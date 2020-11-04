@@ -5,11 +5,14 @@ html, body {
 
 }
 .userMenuContainer {
-   padding: 100px;
+	width: 100%;
+	height: 550px;
 }
 .tabMenuContainer {
-	display: flex;
-  justify-content: space-evenly;
+   display: flex;
+   justify-content: space-evenly;
+   margin-top: 25px;
+ 
 }
 button {
   background: none;
@@ -27,3 +30,12 @@ button {
 .underline:hover {
    color: #a07be5; 
 }
+
+/*userInfo0.css*/
+.myPageBox {
+	width: 500px;
+	height: 500px;
+	
+}
+
+

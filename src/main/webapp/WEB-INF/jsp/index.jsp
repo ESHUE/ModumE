@@ -87,7 +87,6 @@
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 	<script
 		src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
-
 	<!-- 트위치 채널 긁어오기(채널지정) -->
 	<script src="/js/index.js?aaa=7"></script>
 	<script src="/js/search.js?aa=afasef"></script>
@@ -140,23 +139,25 @@
   } 
 	</script>
 	<script>
-		function profileAddIconChange() {
-
-			const personIcon = document.querySelector('.personIcon');
-			const addIcon = document.querySelector('.addIconHidden');
-			personIcon.style.display = 'none';
-			personIcon.style.transition = '0.5s';
-			addIcon.classList.remove('addIconHidden');
-			const addIcon2 = document.querySelector('.addIcon');
-			addIcon2.style.color = 'red';
-		}
-
-		function profilePersonIconChange() {
-			const addIcon = document.querySelector('.addIcon');
-			addIcon.classList.add('addIconHidden');
-			const personIcon = document.querySelector('.personIcon');
-			personIcon.style.removeProperty('display');
-		}
+	function profileInfo(event){
+		profilePreview(event);
+		fileNameMove();
+	}
+	function profileAddIconChange() {
+		const personIcon = document.querySelector('.personIcon');
+		const addIcon = document.querySelector('.addIconHidden');
+		personIcon.style.display = 'none';
+		personIcon.style.transition = '0.5s';
+		addIcon.classList.remove('addIconHidden');
+		const addIcon2 = document.querySelector('.addIcon');
+		addIcon2.style.color = 'red';
+	}
+	function profilePersonIconChange() {
+		const addIcon = document.querySelector('.addIcon');
+		addIcon.classList.add('addIconHidden');
+		const personIcon = document.querySelector('.personIcon');
+		personIcon.style.removeProperty('display');
+	}
 		function fileNameMove() {
 			const fileName = document.getElementById('fileName');
 			const profile = document.getElementById('profile');
