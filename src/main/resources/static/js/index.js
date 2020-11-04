@@ -340,9 +340,11 @@ function moveToLogin(){
 function makeJoin(){
    fetch('/join').then(function(response) {
       response.text().then(function(text) {
-		 makeLogin();
-		document.querySelector('#loginWindow').innerHTML = text;
+		   makeLogin();
+		   document.querySelector('#loginWindow').innerHTML = text;
       })
+   }).then(function() {
+      alert('bb')
    })
 }
 
