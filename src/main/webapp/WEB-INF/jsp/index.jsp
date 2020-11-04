@@ -12,7 +12,7 @@
 <link rel="icon" href="/img/favicon.png">
 <link rel="stylesheet" href="/css/index.css?ver=12">
 <link rel="stylesheet" href="/css/boardList.css?ver=5">
-<link rel="stylesheet" href="/css/boardDetail.css?ver=9">
+<link rel="stylesheet" href="/css/boardDetail.css?ver=11">
 <link rel="stylesheet" href="/css/boardRegMod.css?ver=4">
 <link rel="stylesheet" href="/css/login.css?ver=27">
 <link rel="stylesheet" href="/css/join.css?ver=89">
@@ -82,6 +82,15 @@
 	<script src="/js/boardRegMod.js?ver=45"></script>
 
 	<script src="/js/test.js?ver=13"></script>
+	<script src="/js/login.js"></script>
+	<script src="/js/boardList.js?ver=77"></script>
+	<script src="/js/boardDetail.js?ver=2"></script>
+	<script src="/js/boardRegMod.js?ver=50"></script>
+
+	<script src="/js/test.js?ver=12"></script>
+
+	<!-- 트위치 채널 긁어오기(채널지정) -->
+
 	<script>
 		const underline = document.getElementsByClassName('tabMenuBtn')
 
@@ -95,6 +104,12 @@
 			if (document.querySelector('.underline')) {
 				const under_element = document.querySelector('.underline')
 				under_element.classList.remove('underline')
+
+    function chkId() {
+		const username = frm.username.value
+		axios.get('/IdChk', {
+			params:{
+				username
 			}
 			underline[idx].classList.add('underline')
 		}
@@ -106,16 +121,8 @@
 				location.href = 'http://localhost:8080/logout';
 				return;
 			}
-
-			// jsp 파일 이름이 바뀌면 controller와 pageName이 변경되어야 한다.
-			const pageName = '/userinfo' + idx;
-			fetch(pageName).then(function (response) {
-				response.text().then(function (text) {
-					tabBoxContainer.innerHTML = text;
-				})
-			})
-		}
-
+		})
+	}
 	</script>
 	<script>
 		function profileAddIconChange() {

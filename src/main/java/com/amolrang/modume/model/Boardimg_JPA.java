@@ -7,8 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToOne;
 
 import lombok.Data;
 
@@ -27,9 +28,7 @@ public class Boardimg_JPA {
 	PRIMARY KEY (boardseq, imgseq)
 );
 	 */
-	
 	@Id
-	//@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
 	private int imgseq;
 	@Column(nullable = false)

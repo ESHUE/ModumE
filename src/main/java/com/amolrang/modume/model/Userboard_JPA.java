@@ -20,6 +20,7 @@ import lombok.Data;
 public class Userboard_JPA {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
 	private int boardseq;
 	@Column(length = 128)
 	private String title;
