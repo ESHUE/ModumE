@@ -2,6 +2,7 @@ const slideContainer = document.querySelector(".slideContainer");
 const SwiperContainer = document.createElement("div");
 SwiperContainer.classList.add("swiper-container");
 slideContainer.appendChild(SwiperContainer);
+slideContainer.style.overflow = "hidden";
 SwiperContainer.style.width = "100%";
 SwiperContainer.style.height = "100%";
 SwiperContainer.style.marginLeft = "auto"

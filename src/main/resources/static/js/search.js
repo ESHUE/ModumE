@@ -44,7 +44,7 @@ function showSearchList(res) {
       makeImg1.setAttribute('src', res.data.items[i].snippet.thumbnails.medium.url);
       
       const makeDiv11111 = document.createElement('div');
-      const makeDiv11111ClassName = 'playVideo' + i;
+      const makeDiv11111ClassName = 'playVideo' + i + ' cursor';
       makeDiv11111.className = makeDiv11111ClassName;
       makeDiv11111.style.position = 'absolute';
       makeDiv11111.style.left = '0';
