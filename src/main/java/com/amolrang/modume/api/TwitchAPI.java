@@ -33,7 +33,7 @@ public class TwitchAPI {
 	 */
 	
 	public String getTwitchMyFollower(OAuth2AuthenticationToken authentication,
-			OAuth2AuthorizedClientService authAuthorizedClientService) {
+			OAuth2AuthorizedClientService authAuthorizedClientService,HttpSession hs) {
 		String url = "https://api.twitch.tv/helix/users/follows";
 		String query = "?from_id="+authentication.getPrincipal().getName();
 		
@@ -44,6 +44,7 @@ public class TwitchAPI {
 		ArrayList<Map> list = (ArrayList<Map>) data.get("data");
 		log.info("FollowerLog:{}",data);
 		log.info("FollowTestLog:{}",list);
+		hs.setAttribute("followList", list);
 //		Map<?,?> test = (Map<?,?>)data.get("data");
 //		log.info("FollowerTestLog:{}",test.size());
 		return gson.toJson(data);

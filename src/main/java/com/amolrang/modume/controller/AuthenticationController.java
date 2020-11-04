@@ -104,7 +104,6 @@ public class AuthenticationController {
 			if(socialRepository.findBysocialusername(UserInfoJson.getSocialusername()) == null) {
 				socialRepository.save(UserInfoJson);
 			}
-			
 			UserInfoJson = socialRepository.findBysocialusername(UserInfoJson.getSocialusername());
 			log.info("UserInfoJson:{}",UserInfoJson);
 			if(UserInfoJson.getUserseq() != null ) {

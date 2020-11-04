@@ -33,21 +33,20 @@ public class ChatRoomController {
     }
 
     @GetMapping("/rooms")
-    public String rooms(Model model,HttpSession hs) {
+    public String rooms(Model model,HttpSession hs,User_JPA userModel) {
     	repository.CreateRoom("",hs);
+    	userModel = (User_JPA)hs.getAttribute("userInfo");
+    	//값 전달을 위해 미리 넘김
         model.addAttribute("rooms", repository.getChatRooms());
+        model.addAttribute("member", userModel.getUsername());
         return listViewName;
     }
 
     @GetMapping("/rooms/{id}")
-    public String room(@PathVariable String id, Model model, HttpSession hs, User_JPA userModel) {
-    	log.info("id:{}",id);
-    	userModel = (User_JPA)hs.getAttribute("userInfo");
-    	log.info("ChatuserInfo:{}",userModel);
+    public String room(@PathVariable String id, Model model, HttpSession hs) {
         ChatRoom room = repository.getChatRoom(id);
         model.addAttribute("room", room);
         //채팅방 들어갔을 때 닉네임으로 들고오기 
-        model.addAttribute("member", userModel.getUsername());
         log.info("room:{}",room);
         return detailViewName;
     }

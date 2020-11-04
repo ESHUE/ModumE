@@ -249,18 +249,51 @@ body{
     position: relative;
     min-width: 350px;
 }
-.chatContainer .hidden{
-   margin : 0 auto;
-   width : 90%;
-   height : 66vh;
-   background-color: white;
+.chatContainer > h1{
+    font-size: 1.5em;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: whitesmoke;
 }
-.charContainer .inputChat{
-   width : 70%;
-   height : 30px;
+.view{
+    padding-left: 20px;
+    margin: 10px auto;
+    height: 85%;
+    width: 280px;
+    position: absolute;
+    overflow: hidden;
 }
-.charContainer .btnChat{
-   
+
+.content{
+    margin: 5px auto;
+    height: 90%;
+    width: 330px;
+    overflow-y: scroll;
+    
+}
+.chat-box{
+    width: 280px;
+    height: 100%;
+    text-align: center;
+
+}
+.chat-box > li{
+    padding-top: 5px;
+    color: white;
+    
+}
+.chat-box > .myId{
+    text-align: right;
+}
+.chat-box > li > .myMember{
+    color: aqua;
+}
+.chat-box > .otherId{
+    text-align: left;
+}
+.chat-box > li > .otherMember{
+    color: rosybrown;
 }
 
 .boardContainer {

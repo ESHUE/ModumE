@@ -8,8 +8,9 @@ html, body {
    padding: 100px;
 }
 .tabMenuContainer {
-	display: flex;
-  justify-content: space-evenly;
+   display: flex;
+   justify-content: space-evenly;
+ 
 }
 button {
   background: none;
@@ -26,4 +27,10 @@ button {
 }
 .underline:hover {
    color: #a07be5; 
+}
+
+/*userInfo0.css*/
+
+#userProfileContainer {
+	padding-top: 50px;
 }

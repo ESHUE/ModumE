@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${title}</title>
 <link rel="icon" href="/img/favicon.png">
+
 <link rel="stylesheet" href="/css/index.css?ver=12">
 <link rel="stylesheet" href="/css/boardList.css?ver=5">
 <link rel="stylesheet" href="/css/boardDetail.css?ver=11">
@@ -24,7 +25,6 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
 <script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
-
 </head>
 
 <body>
@@ -51,7 +51,7 @@
 					<span class="material-icons" onclick="alertMenuInit()">notifications_none</span>
 				</div>
 				<div class="menus centralMenu1_2">
-					<span class="material-icons" onclick="userMenuInit(${isLogin})">person_outline</span>
+					<span class="material-icons" onclick="userMenuInit(${isLogin},'${userInfo.nickname }')">person_outline</span>
 				</div>
 			</div>
 		</header>
@@ -71,7 +71,7 @@
 	</main>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-	<script src="https://embed.twitch.tv/embed/v1.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 	<script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
@@ -82,28 +82,27 @@
 	<script src="/js/boardRegMod.js?ver=45"></script>
 
 	<script src="/js/test.js?ver=13"></script>
-	<script src="/js/login.js"></script>
 	<script src="/js/boardList.js?ver=77"></script>
-	<script src="/js/boardDetail.js?ver=2"></script>
-	<script src="/js/boardRegMod.js?ver=50"></script>
 
-	<script src="/js/test.js?ver=12"></script>
-
+	<script src="/js/boardDetail.js?ver=1"></script>
 	<!-- 트위치 채널 긁어오기(채널지정) -->
 
 	<script>
-		const underline = document.getElementsByClassName('tabMenuBtn')
+	const underline = document.getElementsByClassName('tabMenuBtn')
 
-		function temp(idx) {
-			openMyPageDetails(idx)
-			addUnderLine(idx)
-			//removeUnderLine(idx)
+	function temp(idx) {
+		openMyPageDetails(idx)
+		addUnderLine(idx)
+		//removeUnderLine(idx)
+	}
+
+	function addUnderLine(idx) {
+		if (document.querySelector('.underline')) {
+			const under_element = document.querySelector('.underline')
+			under_element.classList.remove('underline')
 		}
-
-		function addUnderLine(idx) {
-			if (document.querySelector('.underline')) {
-				const under_element = document.querySelector('.underline')
-				under_element.classList.remove('underline')
+		underline[idx].classList.add('underline')
+	}
 
     function chkId() {
 		const username = frm.username.value
@@ -111,44 +110,109 @@
 			params:{
 				username
 			}
-			underline[idx].classList.add('underline')
-		}
-
-		function openMyPageDetails(idx) {
-			const tabBoxContainer = document.querySelector('.tabBoxContainer');
-
-			if (idx == 4) {
-				location.href = 'http://localhost:8080/logout';
-				return;
-			}
 		})
+    }
+	
+
+	function openMyPageDetails(idx) {
+		const tabBoxContainer = document.querySelector('.tabBoxContainer');
+
+		if (idx == 4) {
+			location.href = 'http://localhost:8080/logout';
+			return;
+		}
 	}
 	</script>
 	<script>
-		function profileAddIconChange() {
+	function profileAddIconChange() {
 
-			const personIcon = document.querySelector('.personIcon');
-			const addIcon = document.querySelector('.addIconHidden');
-			personIcon.style.display = 'none';
-			personIcon.style.transition = '0.5s';
-			addIcon.classList.remove('addIconHidden');
-			const addIcon2 = document.querySelector('.addIcon');
-			addIcon2.style.color = 'red';
-		}
+		const personIcon = document.querySelector('.personIcon');
+		const addIcon = document.querySelector('.addIconHidden');
+		personIcon.style.display = 'none';
+		personIcon.style.transition = '0.5s';
+		addIcon.classList.remove('addIconHidden');
+		const addIcon2 = document.querySelector('.addIcon');
+		addIcon2.style.color = 'red';
+	}
 
-		function profilePersonIconChange() {
-			const addIcon = document.querySelector('.addIcon');
-			addIcon.classList.add('addIconHidden');
-			const personIcon = document.querySelector('.personIcon');
-			personIcon.style.removeProperty('display');
-		}
-		function fileNameMove() {
-			const fileName = document.getElementById('fileName');
-			const profile = document.getElementById('profile');
-			fileName.value = profile.value;
+	function profilePersonIconChange() {
+		const addIcon = document.querySelector('.addIcon');
+		addIcon.classList.add('addIconHidden');
+		const personIcon = document.querySelector('.personIcon');
+		personIcon.style.removeProperty('display');
+	}
+	function fileNameMove() {
+		const fileName = document.getElementById('fileName');
+		const profile = document.getElementById('profile');
+		fileName.value = profile.value;
 
-		}
+	}
+	const underline = document.getElementsByClassName('tabMenuBtn') 
+	function temp(idx) { 
+		openMyPageDetails(idx)
+		addUnderLine(idx) 
+		//removeUnderLine(idx) 
+	} 
+	function addUnderLine(idx) {
+		if(document.querySelector('.underline')) { 
+		const under_element = document.querySelector('.underline') 
+		under_element.classList.remove('underline') 
+		} 
+		underline[idx].classList.add('underline') 	
+	}
+	function openMyPageDetails(idx) { 
+		const tabBoxContainer = document.querySelector('.tabBoxContainer'); 
+		if(idx == 4) {
+			location.href = 'http://localhost:8080/logout'; 
+			return; 
+		} // jsp 파일 이름이 바뀌면 controller와 pageName이 변경되어야 한다. 
+		const pageName = '/userinfo' + idx; 
+		fetch(pageName).then(function(response) { 
+			response.text().then(function(text) { 
+				tabBoxContainer.innerHTML = text; 
+				}) 
+			})
+	}
+
+
 	</script>
+	<script>
+	function profileAddIconChange () {
+	
+	  const personIcon = document.querySelector('.personIcon');
+	  const addIcon = document.querySelector('.addIconHidden');
+		personIcon.style.display = 'none';
+		personIcon.style.transition = '0.5s';
+	  //addIcon.style.removeProperty('display')
+	  addIcon.classList.remove('addIconHidden');
+	  const addIcon2 = document.querySelector('.addIcon');
+	  addIcon2.style.color = 'red';
+	}
+	
+	function profilePersonIconChange() {
+	  const addIcon = document.querySelector('.addIcon');
+	  addIcon.classList.add('addIconHidden');
+	  const personIcon = document.querySelector('.personIcon');
+	  personIcon.style.removeProperty('display');
+	}
+	//javascript:document.getElementById('fileName').value = this.value
+	function fileNameMove() {
+		const fileName = document.getElementById('fileName');
+		const profile = document.getElementById('profile');
+		fileName.value = profile.value;
+	}
+	//이미지 미리보기
+ // onchange="profilePreview(this)"
+/*	function profilePreview(input) {
+		
+		if(input.files && input.files[0]) {
+			var reader = new FileReader()
+			reader.onload = function(event) {
+				${'#imgPreview'}.attr('src', event.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}*/
+</script>
 	<sec:authorize access="isAuthenticated()">
 		<c:if test="${userInfo != null}">
 
