@@ -89,10 +89,9 @@
 	<!-- 트위치 채널 긁어오기(채널지정) -->
 	<script src="/js/index.js?aaa=7"></script>
 	<script src="/js/search.js?aa=afasef"></script>
-	<script src="/js/boardList.js?ver=54"></script>
 	<script src="/js/boardRegMod.js?ver=45"></script>
 	<script src="/js/test.js?ver=13"></script>
-	<script src="/js/boardList.js?ver=77"></script>
+	<script src="/js/boardList.js?ver=80"></script>
 	<script src="/js/boardDetail.js?ver=1"></script>
 	<!-- 트위치 채널 긁어오기(채널지정) -->
 
