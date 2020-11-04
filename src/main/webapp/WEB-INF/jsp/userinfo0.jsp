@@ -10,21 +10,21 @@
 <body>
 <div id="userProfileContainer">
 	<div class="profileBox">
-		<div class="userProfileHeader"><h3>프로필 사진</h3></div>
+		
 		<div class="myPageBox">
-			<div class="userNickName">${userInfo.nickname }님</div>
-			<div>
-				<label for="profile">프로필  사진 추가</label>
-				<input type="file" name="profile" vlaue="">
-			</div>
 			<c:choose>
 				<c:when test="${userInfo.profileImg != null}">
-					<img clss= "pImg" src="/img/user/${userInfo.userseq}/${userInfo.profileImg}" alt="사용자지정 프로필">
+					<img clss= "pImg" src="/img/user/${userInfo.userseq}/${userInfo.profileImg}" >
 				</c:when>
 				<c:otherwise>
 					<img class="pImg" src="/img/default_profile.jpg" alt="기본프로필">
 				</c:otherwise>
 			</c:choose>	
+			<div class="userProfileHeader"><span class="userNickName">${userInfo.nickname }</span>님 프로필 사진 설정</div>
+			<div>
+				<label for="profile"></label>
+				<input type="file" name="profile" vlaue="">
+			</div>
 		</div>
 	</div>
 </div>

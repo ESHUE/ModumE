@@ -37,5 +37,19 @@ button {
 	height: 500px;
 	
 }
+.profileBox {
+	margin-top: 80px;
+}
+.userProfileHeader {
+	margin-bottom: 30px;
+}
+.userNickName {
+	font-size: 20px;
+	font-weight: bold;
+}
+.pImg {
+	width: 60px;
+	border-radius: 50%;
+}
 
 
