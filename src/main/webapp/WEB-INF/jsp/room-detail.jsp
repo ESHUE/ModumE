@@ -16,11 +16,13 @@
 <body>
 	<h1>${room.name}(${room.id})</h1>
 	<div class="view">
-		<div class="content">
+		<div class="content" id="content">
 			<ul class="chat-box"></ul>
 		</div>
-		<input name="message">
-		<button class="send">보내기</button>
+		<div>
+		<input name="message" id="inputMessage" placeholder="메세지를 입력하세요" >
+		<button class="send" id="sendBtn">보내기</button>
+		</div>
 	</div>
 
 </body>
