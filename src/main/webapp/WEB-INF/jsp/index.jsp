@@ -118,8 +118,14 @@
 			return;
 		}
 	}
+	
+	/* Profile  Eunjeong*/
+	function profileInfo(event){
+		profilePreview(event);
+		fileNameMove();
+	}
+	
 	function profileAddIconChange() {
-
 		const personIcon = document.querySelector('.personIcon');
 		const addIcon = document.querySelector('.addIconHidden');
 		personIcon.style.display = 'none';
@@ -167,50 +173,18 @@
 				}) 
 			})
 	}
-	function profileAddIconChange () {
-	  const personIcon = document.querySelector('.personIcon');
-	  const addIcon = document.querySelector('.addIconHidden');
-		personIcon.style.display = 'none';
-		personIcon.style.transition = '0.5s';
-	  //addIcon.style.removeProperty('display')
-	  addIcon.classList.remove('addIconHidden');
-	  const addIcon2 = document.querySelector('.addIcon');
-	  addIcon2.style.color = 'red';
-	}
-	
-	function profilePersonIconChange() {
-	  const addIcon = document.querySelector('.addIcon');
-	  addIcon.classList.add('addIconHidden');
-	  const personIcon = document.querySelector('.personIcon');
-	  personIcon.style.removeProperty('display');
-	}
-	//javascript:document.getElementById('fileName').value = this.value
-	function fileNameMove() {
-		const fileName = document.getElementById('fileName');
-		const profile = document.getElementById('profile');
-		fileName.value = profile.value;
-	}
-	function profileAddIconChange() {
-
-		const personIcon = document.querySelector('.personIcon');
-		const addIcon = document.querySelector('.addIconHidden');
-		personIcon.style.display = 'none';
-		personIcon.style.transition = '0.5s';
-		addIcon.classList.remove('addIconHidden');
-		const addIcon2 = document.querySelector('.addIcon');
-		addIcon2.style.color = 'red';
-	}
-
-	function profilePersonIconChange() {
-		const addIcon = document.querySelector('.addIcon');
-		addIcon.classList.add('addIconHidden');
-		const personIcon = document.querySelector('.personIcon');
-		personIcon.style.removeProperty('display');
-	}
-	function fileNameMove() {
-		const fileName = document.getElementById('fileName');
-		const profile = document.getElementById('profile');
-		fileName.value = profile.value;
+	function profilePreview(event) {
+		var reader = new FileReader(); 
+		reader.onload = function(event) { 
+			var img = document.createElement("img"); 
+			img.classList.add('imgPreview')
+			img.style.width= '100px';
+			img.style.height = '80px';
+			
+			img.setAttribute("src", event.target.result); 
+			document.querySelector("div#image_container").appendChild(img); 
+			}; 
+		reader.readAsDataURL(event.target.files[0]); 
 	}
 	</script>
 	

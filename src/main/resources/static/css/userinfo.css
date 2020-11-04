@@ -5,11 +5,13 @@ html, body {
 
 }
 .userMenuContainer {
-   padding: 100px;
+	width: 100%;
+	height: 550px;
 }
 .tabMenuContainer {
    display: flex;
    justify-content: space-evenly;
+   margin-top: 25px;
  
 }
 button {
@@ -29,8 +31,9 @@ button {
    color: #a07be5; 
 }
 
-/*userInfo0.css*/
 
-#userProfileContainer {
-	padding-top: 50px;
+.myPageBox {
+	width: 500px;
+	height: 500px;
+	
 }
