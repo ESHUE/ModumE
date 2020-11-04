@@ -19,8 +19,8 @@
 			<form id="frm" class="frm" action="/join" runat="server" enctype="multipart/form-data" method="post">
 				<div class="profileSelect">
 					<label for="profile" id="profileIcon">
-						<span class="material-icons personIcon" onmouseover="profileAddIconChange()" onmouseout="profilePersonIconChange()">person</span>
-            			<span class="material-icons addIconHidden addIcon">add</span> 
+						<span class="material-icons personIcon">person</span>
+            			<!-- <span class="material-icons addIconHidden addIcon">add</span> onmouseover="profileAddIconChange()" onmouseout="profilePersonIconChange()"  --> 
             			<input type="text" id="fileName"  name="profile" readonly="readonly">         			
 					</label>
 					<!-- <img alt="userProfile" src="#" id="imgPreview"> -->
@@ -54,5 +54,4 @@
 		</div>
 	</div>
 </body>
-
 </html>
