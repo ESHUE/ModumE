@@ -83,7 +83,6 @@
 	<script src="/js/test.js?ver=13"></script>
 	<script src="/js/boardList.js?ver=77"></script>
 	<script src="/js/boardDetail.js?ver=1"></script>
-	<!-- 트위치 채널 긁어오기(채널지정) -->
 
 	<script>
 	function chkId() {
@@ -100,6 +99,7 @@
 			}
 		})
     }
+	
 	function openMyPageDetails(idx) { 
 		const tabBoxContainer = document.querySelector('.tabBoxContainer'); 
 		if(idx == 4) {
@@ -110,17 +110,18 @@
 		fetch(pageName).then(function(response) { 
 			response.text().then(function(text) { 
 				tabBoxContainer.innerHTML = text; 
-				}) 
-			})
+			}) 
+		})
 	}
 
-	/* Ukjun */
+	/* Profile  Eunjeong Start */
 	const underline = document.getElementsByClassName('tabMenuBtn') 
 	function temp(idx) { 
 		openMyPageDetails(idx)
 		addUnderLine(idx) 
 		//removeUnderLine(idx) 
-	} 
+	}
+	
 	function addUnderLine(idx) {
 		if(document.querySelector('.underline')) { 
 		const under_element = document.querySelector('.underline') 
@@ -128,8 +129,6 @@
 		} 
 		underline[idx].classList.add('underline') 	
 	}
-	
-	/* Profile  Eunjeong*/
 	
 	function profileAddIconChange() {
 		const personIcon = document.querySelector('.personIcon');
@@ -159,7 +158,6 @@
 		fileName.value = profile.value;
 	}
 	
-
 	function profilePreview(event) {
 		var reader = new FileReader(); 
 		reader.onload = function(event) { 
@@ -173,16 +171,18 @@
 		}; 
 		reader.readAsDataURL(event.target.files[0]); 
 	}
-	</script>
 	
+	/* Eunjeong End */
+	
+	</script>
 	<sec:authorize access="isAuthenticated()">
+	
 		<c:if test="${userInfo != null}">
-
 			<script>
 				//console.log('userInfo= ${userInfo}')
 			</script>
-
 		</c:if>
+		
 		<c:if test="${userDomain != null}">
 			<script>
 				//console.log('userDomain = ${userDomain}')
