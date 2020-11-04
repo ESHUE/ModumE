@@ -26,8 +26,6 @@
 	href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
 	rel="stylesheet">
 <!-- 위지윅 에디터 추가 -->
-<link rel="stylesheet"
-	href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
 <script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
 </head>
@@ -111,6 +109,7 @@
 			}
 		})
 	}
+	/* Ukjun */
   const underline = document.getElementsByClassName('tabMenuBtn')
   function temp(idx) {
     openMyPageDetails(idx)
@@ -162,7 +161,19 @@
 			const fileName = document.getElementById('fileName');
 			const profile = document.getElementById('profile');
 			fileName.value = profile.value;
-
+		}
+		function profilePreview(event) {
+			var reader = new FileReader(); 
+			reader.onload = function(event) { 
+				var img = document.createElement("img"); 
+				img.classList.add('imgPreview')
+				img.style.width= '100px';
+				img.style.height = '80px';
+				
+				img.setAttribute("src", event.target.result); 
+				document.querySelector("div#image_container").appendChild(img); 
+				}; 
+			reader.readAsDataURL(event.target.files[0]); 
 		}
 	</script>
 	<sec:authorize access="isAuthenticated()">
