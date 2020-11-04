@@ -356,6 +356,11 @@ function openUserInfo() {
    
    const makeDiv2 = document.createElement('div');
    makeDiv2.classList.add('loginPageContainer');
+
+ //  const userInfoContainer = document.querySelector('userInfoContainer')
+
+   const myPageTabMenuContainer = document.createElement('div');
+   myPageTabMenuContainer.classList.add('myPageTabMenuContainer');
    
    const makeDiv2_1 = document.createElement('div');
    makeDiv2_1.classList.add('closeLoginWindow');
@@ -377,8 +382,9 @@ function openUserInfo() {
    })
    
    makeDiv2_1.append(makeSpan2_1_1);
-   makeDiv2.append(makeDiv2_1);
-   makeDiv2.append(makeDiv2_2);
+   myPageTabMenuContainer.append(makeDiv2_1);
+   myPageTabMenuContainer.append(makeDiv2_2);
+   makeDiv2.append(myPageTabMenuContainer);
    makeDiv.append(makeDiv2);
    body.prepend(makeDiv);
 }
