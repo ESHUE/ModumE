@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <sec:authorize var="isLogin" access="isAuthenticated()" />
@@ -19,23 +17,17 @@
 <link rel="stylesheet" href="/css/login.css?ver=27">
 <link rel="stylesheet" href="/css/join.css?ver=89">
 <link rel="stylesheet" href="/css/test.css?ver=5">
-<link href="https://fonts.googleapis.com/css2?family=Material+Icons"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
 <!-- 아웃라인 material-icon 링크 추가 -->
-<link
-	href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 <!-- 위지윅 에디터 추가 -->
-<link rel="stylesheet"
-	href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
 <script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
 </head>
 
 <body>
 	<div id="bg1">
-		<img src="/img/yousef-salhamoud-kQ6mh2yagDw-unsplash.jpg" alt=""
-			id="bg1_1">
+		<img src="/img/yousef-salhamoud-kQ6mh2yagDw-unsplash.jpg" alt="" id="bg1_1">
 	</div>
 	<main class="centralContainer">
 		<header class="centralHeader">
@@ -43,11 +35,9 @@
 				<img id="centralLogoImage" src="/img/logowhite.png" alt="">
 			</div>
 			<div class="centralSearch">
-				<form action="" method="POST" class="centralSearchFrm"
-					onsubmit="findVideo(event)">
+				<form action="" method="POST" class="centralSearchFrm" onsubmit="findVideo(event)">
 					<div class="centralSearch1_1">
-						<input type="text" name="searchVideo" id="searchVideo"
-							class="Search1_1__input" placeholder="검색">
+						<input type="text" name="searchVideo" id="searchVideo" class="Search1_1__input" placeholder="검색">
 					</div>
 					<div class="centralSearch1_2">
 						<span class="material-icons headMenus" onclick="findVideo(event)">search</span>
@@ -59,8 +49,7 @@
 					<span class="material-icons" onclick="alertMenuInit()">notifications_none</span>
 				</div>
 				<div class="menus centralMenu1_2">
-					<span class="material-icons"
-						onclick="userMenuInit(${isLogin},'${userInfo.nickname }')">person_outline</span>
+					<span class="material-icons" onclick="userMenuInit(${isLogin},'${userInfo.nickname }')">person_outline</span>
 				</div>
 			</div>
 		</header>
@@ -81,139 +70,100 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script	src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
+	<script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 	<script src="https://embed.twitch.tv/embed/v1.js"></script>
-
-	<!-- 트위치 채널 긁어오기(채널지정) -->
-	<script src="/js/index.js?aaa=7"></script>
-	<script src="/js/search.js?aa=afasef"></script>
-	<script src="/js/boardList.js?ver=54"></script>
-	<script src="/js/boardRegMod.js?ver=45"></script>
-	<script src="/js/test.js?ver=13"></script>
-	<script src="/js/boardList.js?ver=77"></script>
-	<script src="/js/boardDetail.js?ver=1"></script>
-	<!-- 트위치 채널 긁어오기(채널지정) -->
-
+	
+	<script src="/js/boardDetail.js"></script>
+	<script src="/js/boardList.js"></script>
+	<script src="/js/boardRegMod.js"></script>
+	<script src="/js/index.js"></script>
+	<script src="/js/search.js"></script>
+	<script src="/js/test.js"></script>
 	<script>
 	function chkId() {
-		const username = frm.username.value
-		axios.get('/IdChk', {
-			params:{
-				username
-			}
-		}).then(function(res) {
-			if(res.data == '2') { //아이디 없음
-				idChkResult.innerText = '사용할 수 있는 아이디입니다.'
-			} else if(res.data == '3') { //아이디 중복됨
-				idChkResult.innerText = '이미 사용중입니다.'
-			}
-		})
-    }
-	function openMyPageDetails(idx) {
-		const tabBoxContainer = document.querySelector('.tabBoxContainer');
-		if (idx == 4) {
-			location.href = 'http://localhost:8080/logout';
-			return;
-		}
+	    const username = frm.username.value
+	    axios.get('/IdChk', {
+	        params: {
+	            username
+	        }
+	    }).then(function (res) {
+	        if (res.data == '2') { //아이디 없음
+	            idChkResult.innerText = '사용할 수 있는 아이디입니다.'
+	        } else if (res.data == '3') { //아이디 중복됨
+	            idChkResult.innerText = '이미 사용중입니다.'
+	        }
+	    })
 	}
-	function profileAddIconChange() {
-
-		const personIcon = document.querySelector('.personIcon');
-		const addIcon = document.querySelector('.addIconHidden');
-		personIcon.style.display = 'none';
-		personIcon.style.transition = '0.5s';
-		addIcon.classList.remove('addIconHidden');
-		const addIcon2 = document.querySelector('.addIcon');
-		addIcon2.style.color = 'red';
+	/* Ukjun */
+	const underline = document.getElementsByClassName('tabMenuBtn')
+	function temp(idx) {
+	    openMyPageDetails(idx)
+	    addUnderLine(idx)
+	    //removeUnderLine(idx)
 	}
-
-	function profilePersonIconChange() {
-		const addIcon = document.querySelector('.addIcon');
-		addIcon.classList.add('addIconHidden');
-		const personIcon = document.querySelector('.personIcon');
-		personIcon.style.removeProperty('display');
-	}
-	function fileNameMove() {
-		const fileName = document.getElementById('fileName');
-		const profile = document.getElementById('profile');
-		fileName.value = profile.value;
-
-	}
-	const underline = document.getElementsByClassName('tabMenuBtn') 
-	function temp(idx) { 
-		openMyPageDetails(idx)
-		addUnderLine(idx) 
-		//removeUnderLine(idx) 
-	} 
 	function addUnderLine(idx) {
-		if(document.querySelector('.underline')) { 
-		const under_element = document.querySelector('.underline') 
-		under_element.classList.remove('underline') 
-		} 
-		underline[idx].classList.add('underline') 	
+	    if (document.querySelector('.underline')) {
+	        const under_element = document.querySelector('.underline')
+	        under_element.classList.remove('underline')
+	    }
 	}
-	function openMyPageDetails(idx) { 
-		const tabBoxContainer = document.querySelector('.tabBoxContainer'); 
-		if(idx == 4) {
-			location.href = 'http://localhost:8080/logout'; 
-			return; 
-		} // jsp 파일 이름이 바뀌면 controller와 pageName이 변경되어야 한다. 
-		const pageName = '/userinfo' + idx; 
-		fetch(pageName).then(function(response) { 
-			response.text().then(function(text) { 
-				tabBoxContainer.innerHTML = text; 
-				}) 
-			})
+	function openMyPageDetails(idx) {
+	    const tabBoxContainer = document.querySelector('.tabBoxContainer');
+	    if (idx == 4) {
+	        location.href = 'http://localhost:8080/logout';
+	        return;
+	    }
+	    const pageName = '/userinfo' + idx;
+	    fetch(pageName).then(function (response) {
+	        response.text().then(function (text) {
+	            tabBoxContainer.innerHTML = text;
+	        })
+	    })
 	}
-	function profileAddIconChange () {
-	  const personIcon = document.querySelector('.personIcon');
-	  const addIcon = document.querySelector('.addIconHidden');
-		personIcon.style.display = 'none';
-		personIcon.style.transition = '0.5s';
-	  //addIcon.style.removeProperty('display')
-	  addIcon.classList.remove('addIconHidden');
-	  const addIcon2 = document.querySelector('.addIcon');
-	  addIcon2.style.color = 'red';
+	
+	function profileAddIconChange() {
+	    const personIcon = document.querySelector('.personIcon');
+	    const addIcon = document.querySelector('.addIconHidden');
+	    personIcon.style.display = 'none';
+	    personIcon.style.transition = '0.5s';
+	    addIcon.classList.remove('addIconHidden');
+	    const addIcon2 = document.querySelector('.addIcon');
+	    addIcon2.style.color = 'red';
 	}
 	
 	function profilePersonIconChange() {
-	  const addIcon = document.querySelector('.addIcon');
-	  addIcon.classList.add('addIconHidden');
-	  const personIcon = document.querySelector('.personIcon');
-	  personIcon.style.removeProperty('display');
+	    const addIcon = document.querySelector('.addIcon');
+	    addIcon.classList.add('addIconHidden');
+	    const personIcon = document.querySelector('.personIcon');
+	    personIcon.style.removeProperty('display');
 	}
-	//javascript:document.getElementById('fileName').value = this.value
+	
+	function profileInfo(event) {
+	    profilePreview(event);
+	    fileNameMove();
+	}
+	
 	function fileNameMove() {
-		const fileName = document.getElementById('fileName');
-		const profile = document.getElementById('profile');
-		fileName.value = profile.value;
+	    const fileName = document.getElementById('fileName');
+	    const profile = document.getElementById('profile');
+	    fileName.value = profile.value;
 	}
-	function profileAddIconChange() {
-
-		const personIcon = document.querySelector('.personIcon');
-		const addIcon = document.querySelector('.addIconHidden');
-		personIcon.style.display = 'none';
-		personIcon.style.transition = '0.5s';
-		addIcon.classList.remove('addIconHidden');
-		const addIcon2 = document.querySelector('.addIcon');
-		addIcon2.style.color = 'red';
-	}
-
-	function profilePersonIconChange() {
-		const addIcon = document.querySelector('.addIcon');
-		addIcon.classList.add('addIconHidden');
-		const personIcon = document.querySelector('.personIcon');
-		personIcon.style.removeProperty('display');
-	}
-	function fileNameMove() {
-		const fileName = document.getElementById('fileName');
-		const profile = document.getElementById('profile');
-		fileName.value = profile.value;
+	function profilePreview(event) {
+	    var reader = new FileReader();
+	    reader.onload = function (event) {
+	        var img = document.createElement("img");
+	        img.classList.add('imgPreview')
+	        img.style.width = '100px';
+	        img.style.height = '80px';
+	
+	        img.setAttribute("src", event.target.result);
+	        document.querySelector("div#image_container").appendChild(img);
+	    };
+	    reader.readAsDataURL(event.target.files[0]);
 	}
 	</script>
-	
 	<sec:authorize access="isAuthenticated()">
 		<c:if test="${userInfo != null}">
 
