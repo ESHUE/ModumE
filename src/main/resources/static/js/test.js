@@ -6,6 +6,7 @@ SwiperContainer.style.width = "100%";
 SwiperContainer.style.height = "100%";
 SwiperContainer.style.marginLeft = "auto"
 SwiperContainer.style.overflow = "hidden";
+SwiperContainer.style.borderRadius = "5px";
 const Wrapper = document.createElement("div");
 
 function getWrapper() {
@@ -29,7 +30,7 @@ function newSlider() {
 function newScrollbar() {
   const swiperPagination = document.createElement("div");
   swiperPagination.classList.add("swiper-scrollbar");
-  swiperPagination.style.color = "floralwhite";
+  swiperPagination.style.color = " floralwhite";
   return swiperPagination;
 }
 
@@ -92,16 +93,17 @@ function loadTwitchFollowSwiper(item) {
 
 function reloadPagination() {
   SwiperContainer.appendChild(newScrollbar());
-  var swiper = new Swiper(".swiper-container", {
+  var swiper = new Swiper(".slideContainer>.swiper-container", {
     direction: "vertical",
     slidesPerView: 1,
     spaceBetween: 30,
     mousewheel: true,
     scrollbar: {
-        el: '.swiper-scrollbar',
-        hide: true,
-	  draggable: true,
+      el: ".swiper-scrollbar",
       clickable: true,
+      hide: true,
+      draggable:true,
+      clickable:true
     },
   });
 }

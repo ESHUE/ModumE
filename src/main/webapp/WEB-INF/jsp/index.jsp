@@ -33,7 +33,7 @@
 	</div>
 	<main class="centralContainer">
 		<header class="centralHeader">
-			<div class="centralLogo">
+			<div class="centralLogo cursor" onclick="location.href='/main'">
 				<img id="centralLogoImage" src="/img/logowhite.png" alt="">
 			</div>
 			<div class="centralSearch">
@@ -77,7 +77,6 @@
 	<script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
 
 	<script src="/js/index.js?aaa=7"></script>
-	<script src="/js/login.js"></script>
 	<script src="/js/search.js?aa=afasef"></script>
 	<script src="/js/boardList.js?ver=54"></script>
 	<script src="/js/boardRegMod.js?ver=45"></script>
