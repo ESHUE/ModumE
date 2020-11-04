@@ -1,11 +1,17 @@
 package com.amolrang.modume.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.amolrang.modume.model.BoardimgId_JPA;
 import com.amolrang.modume.model.Boardimg_JPA;
+import com.amolrang.modume.model.Userboard_JPA;
 
-public interface BoardImgRepository extends JpaRepository<Boardimg_JPA, BoardimgId_JPA> {
-//	@Query("INSERT INTO Boardimg_JPA(imgseq, boardseq, imgpath) VALUES (:#{#entity.imgseq}, :#{#entity.boardseq.boardseq}, :#{#entity.imgpath})")
-//	void insBoardimg(Boardimg_JPA entity);
+public interface BoardImgRepository extends JpaRepository<Boardimg_JPA, Integer> {
+
+	List<Boardimg_JPA> findByBoardseq(Userboard_JPA boardseq);
+	int countByBoardseq(Userboard_JPA boardseq);
+	@Transactional 
+	void deleteByBoardseq(Userboard_JPA boardseq);
 }

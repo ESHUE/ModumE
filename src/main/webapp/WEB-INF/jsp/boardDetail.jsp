@@ -19,15 +19,15 @@
 	<c:if test="${loginUser != null }">
 		<c:if test="${boardDetail.userseq.userseq == loginUser.userseq}">
 			<div class="board-detail-modDel__btns flex-center">
-				<div class="rectangle-small-btn mr5" onclick="goToEditor('boardDetail정보들')">수정</div>
-				<div class="rectangle-small-btn">삭제</div>
+				<div class="rectangle-small-btn mr5" onclick="goToEditor(${boardDetail.boardseq})">수정</div>
+				<div class="rectangle-small-btn" onclick="deleteBoard(${boardDetail.boardseq})">삭제</div>
 			</div>
 		</c:if>
 	</c:if>
     <table class="board-detail-table board-table">
         <tr class="board-detail-profile">
             <td class="board-profile-td">
-                <div class="board-profile__box">
+                <div class="board-profile__box flex-center">
                 	<c:if test="${boardDetail.userseq.profileImg == null }">
 		                <img class="board-profile__img" src="/img/test-profile.jpg" alt="프로필">
 	            	</c:if>
@@ -42,9 +42,11 @@
             <td class="board-detail-title" colspan="2">${boardDetail.title }</td>
         </tr>
         <tr class="board-date">
-            <td class="board-detail-date" colspan="2">─── 작성 : 10-20
+            <td class="board-detail-date" colspan="2">─── 작성 : 
+            	<fmt:formatDate value="${boardDetail.rdate }" pattern="MM-dd"/>
            		<c:if test="${boardDetail.rdate != boardDetail.mdate }">
-		            │ 수정 : 10-22 
+		            │ 수정 : 
+		            <fmt:formatDate value="${boardDetail.mdate }" pattern="MM-dd"/> 
 	            </c:if>
             ───</td>
         </tr>

@@ -3,7 +3,7 @@ function goToTop() {
 	location.scrollTop = 0;
 }
 
-function goToEditor(boardDetail) {
+function goToEditor(boardseq) {
    const boardContainer = document.querySelector('.boardContainer');
 	fetch('/boardRegMod').then(function(response) {
 		if(response.status == 404) {
@@ -19,26 +19,43 @@ function goToEditor(boardDetail) {
 							 , resize_enabled: false
 							 , height: '34vh'
 							 });
-		modifyPost(boardDetail);
-		//console.log(${loginType});
+		if(boardseq) {
+			const url = '/boardRegMod';
+			const param = {
+				boardseq: boardseq
+			};
+			
+			axios.post(url, param).then(function(res) {
+				console.log(res.data); 
+				const boardDetail = res.data;
+				
+				const form = document.querySelector('#board-regMod__form');
+				
+				//CKEDITOR.instances.boardRegModTexarea.setData(boardDetail.content);
+				CKEDITOR.instances.boardRegModTexarea.setData(boardDetail.content, function(){
+                CKEDITOR.instances.boardRegModTexarea.setData(boardDetail.content);
+              	})
+				form.title.value = boardDetail.title;
+				form.boardseq.value = boardseq;
+			})
+		}
       })
 	})
 }
 
-function modifyPost(boardDetail) {
+function modifyPost(title, content) {
 	const form = document.querySelector('#board-regMod__form');
-	let title = boardDetail;
-	if(boardDetail == undefined) {
+	if(title == undefined) {
 		title = '';
 	}
-	CKEDITOR.instances.boardRegModTexarea.setData(boardDetail);
+	CKEDITOR.instances.boardRegModTexarea.setData(content);
 	form.title.value = title;
 }
 
-function goToDetail(board_seq) {
+function goToDetail(boardseq) {
 	const boardContainer = document.querySelector('.boardContainer');
 	const param = {
-		boardseq: board_seq
+		boardseq: boardseq
 	}
 	
 	const fetchOpt = {

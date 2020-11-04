@@ -175,6 +175,10 @@ body{
     margin-left: 20px;
 }
 
+.centralSearch{
+    position: relative;
+}
+
 .centralSearchFrm{
     width: 500px;
     display: grid;
@@ -252,27 +256,55 @@ body{
     padding-bottom: 10px;
     color: whitesmoke;
 }
+.streamList{
+    margin: 5px auto;
+    width: 90%;
+    height: 85%;
+}
+
+.streamList > ul> .streamListDetail{
+    padding-bottom: 7px;
+}
+
 .view{
+    text-align: center;
     padding-left: 20px;
     margin: 10px auto;
     height: 85%;
-    width: 280px;
+    width: 90%;
     position: absolute;
     overflow: hidden;
 }
 
 .content{
+    text-align: center;
     margin: 5px auto;
     height: 90%;
-    width: 330px;
+    width: 108%;
     overflow-y: scroll;
     
 }
+.view #inputMessage{
+    width: 95%;
+    border-radius : 3px;
+    padding-left: 5px;
+    position: relative;
+    height: 35px;
+    border: 0;
+    opacity: 1;
+}
+.view #sendBtn{
+    position: absolute;
+    border-radius : 3px;
+    margin-left: -50px;
+    height: 35px;
+    border: 0;
+    opacity: 1;
+}
 .chat-box{
-    width: 280px;
+    width: 95%;
     height: 100%;
     text-align: center;
-
 }
 .chat-box > li{
     padding-top: 5px;
@@ -321,6 +353,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
 
 .centralSidebar>.menus:first-child{

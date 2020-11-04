@@ -6,13 +6,31 @@ var centralMenu1_2 = document.querySelector('.centralMenu1_2');
 function findVideo(evt) {
    evt.preventDefault();
    const keyword = document.querySelector('#searchVideo').value;
-   console.log(keyword);
+   // console.log(keyword);
 	axios.get('/googleSearch', {
       params : {
          keyword
       }
    }).then(function(res) {
-      console.log(res);
+      // console.log(res);
+      showSearchList(res);
+   }).then(function() {
+      var searchSwiper = new Swiper('.searchResultContainer>.swiper-container', {
+         slidesPerView: 4,
+         spaceBetween: 10,
+         slidesPerGroup: 4,
+         loop: false,
+         loopFillGroupWithBlank: true,
+         mousewheel: true,
+         pagination: {
+           el: '.swiper-pagination',
+           clickable: true,
+         },
+         navigation: {
+           nextEl: '.swiper-button-next',
+           prevEl: '.swiper-button-prev',
+         },
+      });
    })
 }
 
@@ -75,7 +93,7 @@ function chatDetail(roomId, member) {
 		var messageInput = $('input[name="message"]');
 		message = messageInput;
 		var sendBtn = $('.send');
-		var sock = new SockJS("/ws");
+      var sock = new SockJS("/ws");
 		var client = Stomp.over(sock); // 1. SockJS를 내부에 들고 있는 client를 내어준다.
 		// 2. connection이 맺어지면 실행된다.
 		client.connect({}, function() {
@@ -97,8 +115,8 @@ function chatDetail(roomId, member) {
             }
 				
 			});
-		});
-		sendBtn.click(function() {
+      });
+      sendBtn.click(function() {
          var message = messageInput.val();
          console.log(message);
          if(message ==null || message==''){
@@ -112,7 +130,7 @@ function chatDetail(roomId, member) {
             }));
             messageInput.val('');
          }
-		});
+      });
 	});
 	}
 function chatListDetail(temp, mem) {
@@ -320,7 +338,6 @@ function showLogin() {
       })
    })
 }
-
 
 function removeLogin() {
    let loginWindowContainer = document.querySelector('#loginWindowContainer');

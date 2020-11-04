@@ -12,3 +12,23 @@ function fetchBoardListToBack(ele) {
 	})
 }
 */
+
+function deleteBoard(boardseq) {
+	if(!confirm('삭제하시겠습니까?')) {
+		return;
+	}
+	
+	axios.get('/boardDel', {
+		params: {
+			boardseq: boardseq
+		}
+	}).then(function(res){
+		console.log(res)
+		
+		fetch('/boardList').then(function(response) {
+		response.text().then(function(text) {
+			document.querySelector('.boardContainer').innerHTML = text;
+			})
+		})
+	})
+}

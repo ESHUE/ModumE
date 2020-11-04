@@ -19,13 +19,13 @@
 			<form id="frm" class="frm" action="/join" runat="server" enctype="multipart/form-data" method="post">
 				<div class="profileSelect">
 					<label for="profile" id="profileIcon">
-						<span class="material-icons personIcon">person</span>
-            			<!-- <span class="material-icons addIconHidden addIcon">add</span> onmouseover="profileAddIconChange()" onmouseout="profilePersonIconChange()"  --> 
-            			<input type="text" id="fileName"  name="profile" readonly="readonly">         			
+						<span class="material-icons personIcon" onmouseover="profileAddIconChange()" onmouseout="profilePersonIconChange()">person</span>
+            			<span class="material-icons addIconHidden addIcon">add</span> 
+            			<input type="text" id="fileName"  name="fileName" readonly="readonly">         			
 					</label>
 					<!-- <img alt="userProfile" src="#" id="imgPreview"> -->
 					<div id="image_container"></div>  
-					<input type="file" name="profile" id="profile" accept="image/*" onchange="profilePreview(event)" onchange="fileNameMove()"> 
+					<input type="file" name="profile" id="profile" accept="image/*" onchange="profileInfo(event)"> 
 					
 				</div>
 				<div id="idChkResult" class="msg"></div>
