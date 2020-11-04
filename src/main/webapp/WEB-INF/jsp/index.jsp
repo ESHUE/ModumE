@@ -161,17 +161,21 @@
 		const profile = document.getElementById('profile');
 		fileName.value = profile.value;
 	}
-	//이미지 미리보기
- // onchange="profilePreview(this)"
-/*	function profilePreview(input) {
-		
-		if(input.files && input.files[0]) {
-			var reader = new FileReader()
-			reader.onload = function(event) {
-				${'#imgPreview'}.attr('src', event.target.result);
-			}
-			reader.readAsDataURL(input.files[0]);
-		}*/
+	// 프로필 이미지 미리보기 	
+		function profilePreview(event) {
+			var reader = new FileReader(); 
+			reader.onload = function(event) { 
+				var img = document.createElement("img"); 
+				img.classList.add('imgPreview')
+				img.style.width= '100px';
+				img.style.height = '80px';
+				
+				img.setAttribute("src", event.target.result); 
+				document.querySelector("div#image_container").appendChild(img); 
+				}; 
+			reader.readAsDataURL(event.target.files[0]); 
+		}
+
 </script>
 	<sec:authorize access="isAuthenticated()">
 		<script
