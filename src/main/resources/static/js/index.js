@@ -373,7 +373,9 @@ function openUserInfo() {
    
    const makeDiv2 = document.createElement('div');
    makeDiv2.classList.add('loginPageContainer');
-   
+
+ //  const userInfoContainer = document.querySelector('userInfoContainer')
+
    const myPageTabMenuContainer = document.createElement('div');
    myPageTabMenuContainer.classList.add('myPageTabMenuContainer');
 

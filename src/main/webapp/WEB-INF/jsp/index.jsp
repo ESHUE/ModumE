@@ -38,8 +38,7 @@
 			<div class="centralSearch">
 				<form action="" method="POST" class="centralSearchFrm" onsubmit="findVideo(event)">
 					<div class="centralSearch1_1">
-						<input type="text" name="searchVideo" id="searchVideo"
-							class="Search1_1__input" placeholder="검색">
+						<input type="text" name="searchVideo" id="searchVideo" class="Search1_1__input" placeholder="검색">
 					</div>
 					<div class="centralSearch1_2">
 						<span class="material-icons headMenus" onclick="findVideo(event)">search</span>
@@ -77,8 +76,7 @@
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 	<script src="https://embed.twitch.tv/embed/v1.js"></script>
 
-	<!-- 트위치 채널 긁어오기(채널지정) -->
-	<script src="/js/index.js?aaa=7"></script>
+	<script src="/js/index.js?aaa=79"></script>
 	<script src="/js/search.js?aa=afasef"></script>
 	<script src="/js/boardList.js?ver=54"></script>
 	<script src="/js/boardRegMod.js?ver=45"></script>

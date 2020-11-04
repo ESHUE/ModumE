@@ -139,6 +139,7 @@ public class AuthenticationController {
 	public String joinAction(Model model, User_JPA userJPA) {
 		log.info("회원가입 post 접근");
 		//user_JPA 값 넣기
+		//log.info(userJPA.getProfileImg());
 		User_JPA user = new User_JPA();
 		user.setAccountNonExpired(true);
 		user.setAccountNonLocked(true);
