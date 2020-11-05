@@ -1,130 +1,69 @@
-const input = document.querySelector(".commentIns");
-const optionBox = document.querySelector(".comment-option-box");
-const commentBackTopBox = document.querySelector(".comment-backTop-btns");
-
-
-input.addEventListener("focusin",()=>{
-    optionBox.style.height = "35%";
-    optionBox.style.minHeight ="200px";
-})
-
-input.addEventListener("focusout",(e)=>{
-    const submitBtn = document.querySelector('.commentIns-btn');
-    console.log(submitBtn);
-    console.log(e.currentTarget);
-    //alert(e.target.classList.contains('commentIns-btn'));
-    if(e.target != submitBtn) {
-        optionBox.style.minHeight = null;
-        optionBox.style.height = "60px";
-    }
-    
-})
-
 function toggleFontWeight(element) {
-    const bro = element.parentNode.children;
-    for(var i = 0 ; i < bro.length; i++){
-        bro[i].classList.remove('bold');
-        //console.log(bro)
+    const ele = element.parentNode.children;
+    for(var i = 0 ; i < ele.length; i++){
+        ele[i].classList.remove('bold');
     }
     element.classList.add('bold');
 }
 
+function createModDelBox(ele) { // ele는 내가 선택한 객체
+    let div = document.createElement('div');
+    div.classList.add('comment-modDel-box');
+    div.classList.add('flex-center');
 
-function showModDelBox() {
-    let length = document.getElementsByClassName('comment-modDel-td').length;
-    console.log(length);
-    for(var i = 0; i < length; i++) {
-        
-        const a = document.querySelector('#comment-modDel-td' + i);
-        console.log(a);
-        
-        a.addEventListener("focusin", (event)=> {
-            
-            let div = document.createElement('div');
-            div.classList.add('comment-modDel-box');
-            div.classList.add('flex-center');
+    let modDiv = document.createElement('div');
+    modDiv.innerText = '수정';
+    modDiv.classList.add('cursor');
+    modDiv.addEventListener('click', () => {
+        alert('수정');
+    })
 
-            let modDiv = document.createElement('div');
-            modDiv.innerText = '수정';
-            modDiv.classList.add('cursor');
-            modDiv.addEventListener('click', () => {
+    let delDiv = document.createElement('div');
+    delDiv.innerText = '삭제';
+    delDiv.classList.add('cursor');
+    delDiv.addEventListener('click', () => {
+        alert('삭제');
+    })
 
-            })
+    div.append(modDiv);
+    div.append(delDiv);
+    ele.append(div);
+}
 
-            let delDiv = document.createElement('div');
-            delDiv.innerText = '삭제';
-            delDiv.classList.add('cursor');
-            delDiv.addEventListener('click', () => {
+function removeModDelBox(ele) {
+    ele.remove();
+}
 
-            })
-
-            div.append(modDiv);
-            div.append(delDiv);
-            event.target.append(div);
-
-        })
-
-        a.addEventListener("focusout", (event) => {
-            console.log(event);
-            event.target.removeChild()
-            })
+function showModDelBox(ele) {
+    const modDelBox = document.querySelector('.comment-modDel-box');
+    if(modDelBox) {
+        if(ele != modDelBox.parentNode) {
+            createModDelBox(ele);
+        }
+        removeModDelBox(modDelBox);
+        return;
+    } else {
+        createModDelBox(ele);
+        return;
     }
 }
 
-showModDelBox();
-
-
-// const aa = document.querySelector('.aaa');
-
-// aa.addEventListener('focusin', () => {
-//     alert('ggggdsdfds');
-//     console.log(div);
-//     while(div.firstChild) {
-//         div.lastChild.remove();
-//     }
-//     div.remove();
-// })
-
-// function bb(ele) {
-//     const comment_modDel_box = document.querySelector('.comment-modDel-box');
-    
-//     removeCommentBox(comment_modDel_box);
-//     if(comment_modDel_box) {
-        
-//         return;
-//     }
-
-//     let div = document.createElement('div');
-//     div.classList.add('comment-modDel-box');
-//     div.classList.add('flex-center');
-
-//     let modDiv = document.createElement('div');
-//     modDiv.innerText = '수정';
-//     modDiv.classList.add('cursor');
-//     modDiv.addEventListener('click', () => {
-
-//     })
-
-//     let delDiv = document.createElement('div');
-//     delDiv.innerText = '삭제';
-//     delDiv.classList.add('cursor');
-//     delDiv.addEventListener('click', () => {
-
-//     })
-
-//     div.append(modDiv);
-//     div.append(delDiv);
-//     ele.append(div);
-
-// }
-
-// function removeCommentBox(element) {
-//     console.log(element);
-//     element.parentNode.removeChild(element)
-// }
-
-function aa() {
-    alert('aa입니당');
+function cutComment(ele) {
+    const eleValue = ele.value;
+    if(eleValue.length > 300) {
+        alert('댓글은 300자를 넘을 수 없습니다!');
+        ele.value = eleValue.substr(0, 100);
+    }
 }
 
+function formSubmit() {
+    const form = document.querySelector('#commentIns-form');
+    const eleValue = form.comment.value;
+    if(eleValue.length == 0) {
+        alert('댓글을 입력해주세요!');
+        return;
+    }
+    // 아자아자아작스
+    alert(eleValue);
+}
 

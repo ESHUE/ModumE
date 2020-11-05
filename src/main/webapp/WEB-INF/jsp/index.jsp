@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="/css/boardList.css?ver=3">
 <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
 <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
-<link rel="stylesheet" href="/css/comment.css?ver=2">
+<link rel="stylesheet" href="/css/comment.css?ver=4">
 <link rel="stylesheet" href="/css/login.css?ver=27">
 <link rel="stylesheet" href="/css/join.css?ver=89">
 <link rel="stylesheet" href="/css/test.css?ver=5">

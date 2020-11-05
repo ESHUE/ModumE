@@ -1,6 +1,5 @@
 /* 나중에 userBoard 지울 때 comment 삭제 잊지 말기~~~! */
 @charset "UTF-8";
-
 .bold {
     font-weight: bold;
 }
@@ -53,14 +52,13 @@
 
 .commentContainer .comment-modDel-td .comment-modDel-box {
     position: absolute;
-    bottom: 12px;
+    bottom: 6px;
     right: 35px;
     justify-content: space-around;
-    width: 90px;
-    height: 30px;
-    border: 1px solid rgba(161, 161, 161, .8);
+    width: 100px;
+    height: 40px;
     border-radius: 5px;
-    background: rgba(255, 205, 209, 0.9);
+    background: rgba(255, 205, 209, .8);
     color: #fff;
     font-weight: bold;
 }
@@ -69,7 +67,7 @@
     background: none;
     border: none;
     color: rgba(161, 161, 161, .8);
-    font-size: 1.5em !important;
+    font-size: 1em !important;
 }
 
 .comment-like {
@@ -91,11 +89,6 @@
 .comment-option-box {
     height: 60px;
 }
-/* 
-.comment-option-box1 {
-    height: 35%;
-    min-height: 200px;
-} */
 
 .comment-text-div {
     width: 75%;
@@ -105,6 +98,7 @@
 .commentIns {
     width: 95%;
     height: 90%;
+    resize: none;
 }
 
 .commentIns-btn {
