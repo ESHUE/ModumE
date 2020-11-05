@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
 <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
 <link rel="stylesheet" href="/css/login.css?ver=27">
-<link rel="stylesheet" href="/css/join.css?ver=89">
+<link rel="stylesheet" href="/css/join.css?ver=8911">
 <link rel="stylesheet" href="/css/test.css?ver=5">
 
 <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
@@ -96,7 +96,7 @@
 	<script src="/js/boardList.js?ver=54"></script>
 	<script src="/js/boardRegMod.js?ver=45"></script>
 	<script src="/js/test.js?ver=13"></script>
-	<script src="/js/join.js?ver=33"></script>
+	<script src="/js/join.js?ver=33555"></script>
 	<script src="/js/boardDetail.js?ver=1"></script>
 
 	<script>

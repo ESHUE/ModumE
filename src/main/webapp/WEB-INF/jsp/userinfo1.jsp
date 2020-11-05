@@ -8,6 +8,6 @@
 <link rel="stylesheet" href="/css/userInfo.css">
 </head>
 <body>
-	<div></div>
+	<div>나는 1입니다.</div>
 </body>
 </html>
