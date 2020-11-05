@@ -14,47 +14,45 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.socket.WebSocketSession;
 
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Repository
 public class ChatRoomRepository {
 	private Map<String, ChatRoom> chatRoomMap;
 	@Getter
 	private Collection<ChatRoom> chatRooms;
-	public void CreateRoom(String roomName,HttpSession hs) {
+	public String CreateRoom(String roomName,HttpSession hs) {
 //		ChatRoom[] roomList = {ChatRoom.create("전체 채팅방"),ChatRoom.create("?????")};
 		ArrayList<Map> list = (ArrayList<Map>)hs.getAttribute("LiveStream");
-
-		ChatRoom[] roomList = null;
+		String JsonId = (String)hs.getAttribute("streamerID");
+		ChatRoom roomList = null;
 		if(list != null ) {
-			roomList = new ChatRoom[list.size()];
 			System.out.println(list.size());
 			for(int i=0; i<list.size(); i++) {
+				//방송하는 사람의 이름 + 닉네임
+				String userName = (String)list.get(i).get("user_name");
 				String url = (String)list.get(i).get("thumbnail_url");
-				String rooms = url.substring(url.indexOf("user_")+5, url.lastIndexOf("-{width}"));
-				roomList[i] = ChatRoom.create((String)list.get(i).get("user_name"),(String)list.get(i).get("user_id"));
-				System.out.println("roomList: " + rooms);
+				String streamerID = url.substring(url.indexOf("user_") + 5, url.lastIndexOf("-{width}"));
+				if(streamerID.equals(JsonId)) {
+					roomList= ChatRoom.create(streamerID,userName);
+				}
 			}
 		}
+		log.info("roomList:{}",roomList);
 		if( roomList != null ) {
 			chatRoomMap = Collections
 					.unmodifiableMap(Stream.of(roomList)
-							.collect(Collectors.toMap(ChatRoom::getId, Function.identity())));
+							.collect(Collectors.toMap(ChatRoom::getName, Function.identity())));
 			System.out.println(chatRoomMap);
 			chatRooms = Collections.unmodifiableCollection(chatRoomMap.values());
+			log.info("chatRooms:{}",chatRooms);
 		}
-//		System.out.println("roomName: "+roomName);
-//		ChatRoom roomList = ChatRoom.create(roomName);
-//		if(roomList != null) {
-//			chatRoomMap = Collections
-//					.unmodifiableMap(Stream.of(roomList)
-//							.collect(Collectors.toMap(ChatRoom::getId, Function.identity())));
-//			System.out.println(chatRoomMap);
-//			chatRooms = Collections.unmodifiableCollection(chatRoomMap.values());
-//		}
+		return JsonId;
 	}
 	
-	public ChatRoom getChatRoom(String id) {
-		return chatRoomMap.get(id);
+	public ChatRoom getChatRoom(String name) {
+		return chatRoomMap.get(name);
 	}
 
 	public void remove(WebSocketSession session) {

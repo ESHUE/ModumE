@@ -76,7 +76,7 @@
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 	<script src="https://embed.twitch.tv/embed/v1.js"></script>
 
-	<script src="/js/index.js?aaa=75009"></script>
+	<script src="/js/index.js?aaa=75092"></script>
 	<script src="/js/search.js?aa=afasef"></script>
 	<script src="/js/boardList.js?ver=54"></script>
 	<script src="/js/boardRegMod.js?ver=45"></script>
@@ -154,18 +154,19 @@
 							videoLink.id = "video-embed";
 							const url = videoLink.getAttribute("streamerURL");
 							const videoURL = "https://www.twitch.tv/" + url.substring(url.indexOf("user_") + 5, url.lastIndexOf("-1920x"));
-							roomId = url.substring(url.indexOf("user_") + 5, url.lastIndexOf("-1920x"));
-							
+							streamerID = url.substring(url.indexOf("user_") + 5, url.lastIndexOf("-1920x"));
 							member = '${member}';
-							console.log('temp:'+temp);
-							console.log('member:'+member);
+							/* streamerID 따로 저장 */
+							saveRoomId(streamerID);
 							console.log(videoURL);
 							reactPlayer(videoURL);
-							axios.get("/joinchat",{
+							axios.get("/autoJoin",{
 								params:{
-									roomId
+									streamerID
 								}
-							})							//Test(temp,member);
+							}).then(function(result){
+								
+							})
 						}
 						function reactPlayer(url) {
 							const container = document.getElementById('video-embed')

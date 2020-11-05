@@ -2,10 +2,6 @@ var sectionContainer = document.querySelector('.sectionContainer');
 var centralContainer = document.querySelector('.centralContainer');
 var centralMenu1_2 = document.querySelector('.centralMenu1_2');
 
-
-var roomId = null;
-var member = null;
-
 function findVideo(evt) {
    evt.preventDefault();
    const keyword = document.querySelector('#searchVideo').value;
@@ -92,6 +88,7 @@ var member = null;
 var message = null;
 
 function chatDetail(roomId, member) {
+   console.log(roomId)
    console.log('왜 들어와짐?')
 	$(function() {
 		var chatBox = $('.chat-box');
@@ -150,6 +147,10 @@ function TestDetail(roomId,member){
 			document.querySelector('#chatContainer').innerHTML = text;
 		})
 	})
+}
+
+function saveRoomId(tmp){
+   roomId = tmp;
 }
 
 function chatListDetail(temp, mem) {
