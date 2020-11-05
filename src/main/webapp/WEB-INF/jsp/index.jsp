@@ -5,16 +5,16 @@
 <sec:authorize var="isLogin" access="isAuthenticated()" />
 <html>
 
-<head>
+<head>  
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${title}</title>
 <link rel="icon" href="/img/favicon.png">
 <link rel="stylesheet" href="/css/index.css?ver=902244">
-<link rel="stylesheet" href="/css/boardList.css?ver=3">
-<link rel="stylesheet" href="/css/boardDetail.css?ver=4">
+<link rel="stylesheet" href="/css/boardList.css?ver=6">
+<link rel="stylesheet" href="/css/boardDetail.css?ver=7">
 <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
-<link rel="stylesheet" href="/css/comment.css?ver=4">
+<link rel="stylesheet" href="/css/comment.css?ver=8">
 <link rel="stylesheet" href="/css/login.css?ver=27">
 <link rel="stylesheet" href="/css/join.css?ver=89">
 <link rel="stylesheet" href="/css/test.css?ver=5">
@@ -78,13 +78,11 @@
 	<script src="/js/index.js?aaa=75092"></script>
 	<script src="/js/search.js?aa=afasef"></script>
 	<script src="/js/test.js?ver=13"></script>
-	
 	<script src="/js/boardRegMod.js?ver=45"></script>
 	<script src="/js/boardList.js?ver=80"></script>
 	<script src="/js/boardDetail.js?ver=1"></script>
 	<script src="/js/join.js?ver=33"></script>
-	<script src="/js/login.js?ver=1"></script>
-	<script src="/js/comment.js?ver=2"></script>
+	<script src="/js/comment.js?ver=3"></script>
 	<!-- 트위치 채널 긁어오기(채널지정) -->
 
 	<script>
