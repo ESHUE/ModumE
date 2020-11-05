@@ -2,7 +2,6 @@ var sectionContainer = document.querySelector('.sectionContainer');
 var centralContainer = document.querySelector('.centralContainer');
 var centralMenu1_2 = document.querySelector('.centralMenu1_2');
 
-
 function findVideo(evt) {
    evt.preventDefault();
    const keyword = document.querySelector('#searchVideo').value;
@@ -33,7 +32,6 @@ function findVideo(evt) {
       });
    })
 }
-
 function chatInit() {
     const chatContainer = document.querySelector('.chatContainer');
     const boardContainer = document.querySelector('.boardContainer');
@@ -41,7 +39,7 @@ function chatInit() {
         closeContainer(boardContainer);
     }
     if(chatContainer == null) {
-        chatList()
+      openChat()
     } else {
         closeContainer(chatContainer);
     }
@@ -68,6 +66,7 @@ function openChat() {
     const chatList = document.createElement('div');
     chatList.className = 'chatList';
     makeDiv.append(chatList)
+    TestDetail(roomId,member)
    /*채팅관련 창들 */
    
    console.log('chat화면 띄우기 완료')
@@ -88,6 +87,8 @@ var member = null;
 var message = null;
 
 function chatDetail(roomId, member) {
+   console.log(roomId)
+   console.log('왜 들어와짐?')
 	$(function() {
 		var chatBox = $('.chat-box');
 		var messageInput = $('input[name="message"]');
@@ -132,6 +133,23 @@ function chatDetail(roomId, member) {
          }
       });
 	});
+}
+
+function TestDetail(roomId,member){
+   var url = '/chat/rooms/' + roomId
+   console.log('roomId:'+roomId)
+   console.log('member:'+member)
+   console.log('url:'+url)
+   fetch(url).then(function(response) {
+		response.text().then(function(text) {
+			chatDetail(roomId, member)
+			document.querySelector('#chatContainer').innerHTML = text;
+		})
+	})
+}
+
+function saveRoomId(tmp){
+   roomId = tmp;
 }
 
 function chatListDetail(temp, mem) {
@@ -246,7 +264,7 @@ function openUserMenu(isLogin,temp) {
    const makeSpan2_2_2 = document.createElement('span');
    makeSpan2_2_2.classList.add('cursor');
    makeSpan2_2_2.innerText = '마이페이지';
-   makeSpan2_2_2.setAttribute('onclick', 'openUserInfo()');
+   makeSpan2_2_2.setAttribute('onclick', 'openUserInfo(0)');
    makeSpan2_2_2.style.position = 'relative';
    makeSpan2_2_2.style.top = '100px';
    makeSpan2_2_2.style.left = '0px';
@@ -256,7 +274,7 @@ function openUserMenu(isLogin,temp) {
    const makeSpan2_2_3 = document.createElement('span');
    makeSpan2_2_3.classList.add('cursor');
    makeSpan2_2_3.innerText = temp;
-   makeSpan2_2_3.setAttribute('onclick', 'openUserInfo()');
+   makeSpan2_2_3.setAttribute('onclick', 'openUserInfo(0)');
    makeSpan2_2_3.style.position = 'relative';
    makeSpan2_2_3.style.top = '90px';
    makeSpan2_2_3.style.left = '0px';
@@ -280,7 +298,9 @@ function openUserMenu(isLogin,temp) {
    makeSpan2_2_5.classList.add('cursor');
    makeSpan2_2_5.innerText = '계정 추가';
    makeSpan2_2_5.style.fontSize = '18px';
-   makeSpan2_2_4.setAttribute('onclick', 'openUserInfoPrivacy()');//userInfo3으로 바로가기로 바꿔야함
+   makeSpan2_2_4.addEventListener('click', ()=>{
+	openUserInfo(3);
+	});//userInfo3으로 바로가기로 바꿔야함
 
    //makeSpan2_2_1.style.display = ' block';
    //makeSpan2_2_2.style.display = ' block';
@@ -387,7 +407,7 @@ function makeJoin(){
 }
 
 
-function openUserInfo() {
+function openUserInfo(idx) {
    const body = document.querySelector('body');
    const makeDiv = document.createElement('div');
    makeDiv.classList.add('shadowWindow');
@@ -416,25 +436,27 @@ function openUserInfo() {
    fetch('/userinfo').then(function(response) {
       response.text().then(function(text){
          makeDiv2_2.innerHTML = text;
-      })
+      }).then(function () {openMyPageDetails(idx)});
    })
    
+	function openMyPageDetails(idx) { 
+		const tabBoxContainer = document.querySelector('.tabBoxContainer'); 
+		if(idx == 4) {
+			location.href = 'http://localhost:8080/logout'; 
+			return; 
+		} // jsp 파일 이름이 바뀌면 controller와 pageName이 변경되어야 한다. 
+		const pageName = '/userinfo' + idx; 
+		fetch(pageName).then(function(response) { 
+			response.text().then(function(text) { 
+				tabBoxContainer.innerHTML = text; 
+			}) 
+		})
+	}
+	
    makeDiv2_1.append(makeSpan2_1_1);
    myPageTabMenuContainer.append(makeDiv2_1);
    myPageTabMenuContainer.append(makeDiv2_2);
    makeDiv2.append(myPageTabMenuContainer);
    makeDiv.append(makeDiv2);
    body.prepend(makeDiv);
-}
-////////////////
-function openUserInfoPrivacy() {
-
-   fetch('/userinfo3').then(function(response) {
-      response.text().then(function(text) {
-         openUserInfo();
-         openMyPageDetails(3);
-         
-         document.querySelector('.loginPageContainer').innerHTML = text;
-      })
-   })
 }

@@ -18,6 +18,8 @@
     align-items: center;
     border-top: 1px solid rgb(220, 220, 220) ;
     border-bottom: 1px solid rgb(220, 220, 220) ;
+    background: white;
+    padding: 0px 10px;
 }
 
 .board-regMod__form .board-regMod-title .board-regMod-title__input {
@@ -33,7 +35,7 @@
 }
 
 .board-regMod__form .board-regMod-title .board-regMod-title__cnt {
-    color: rgb(220, 220, 220);
+     */
 }
 
 .board-regMod__form .board-regMod-ctnt {

@@ -1,14 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
 <link rel="stylesheet" href="/css/userInfo.css?ver=4546546">
-</head>
-<body>
+
+<div style="background:white">
 	<div>
 		<div>기본 정보</div>
 		<form action="">
@@ -35,5 +31,4 @@
 			</div>
 		</div>
 	</div>	
-</body>
-</html>
+</div>

@@ -44,6 +44,7 @@ public class ChatRoomController {
 
     @GetMapping("/rooms/{id}")
     public String room(@PathVariable String id, Model model, HttpSession hs) {
+    	id = repository.CreateRoom("",hs);
         ChatRoom room = repository.getChatRoom(id);
         model.addAttribute("room", room);
         //채팅방 들어갔을 때 닉네임으로 들고오기 

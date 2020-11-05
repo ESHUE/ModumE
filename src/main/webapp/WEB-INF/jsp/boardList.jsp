@@ -19,7 +19,7 @@
 		<div> 글을 등록해주세요 </div>
 	</c:if>
 	<c:forEach items="${list}" var="item">
-	    <table class="board-table cursor" onclick="goToDetail(${item.boardseq})">
+	    <table class="board-list-table board-table cursor" onclick="goToDetail(${item.boardseq})">
 	    <tr class="board-profile">
 	        <td rowspan="2" class="board-profile-td">
 	            <div class="board-profile__box flex-center">

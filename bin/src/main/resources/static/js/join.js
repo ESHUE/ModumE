@@ -40,8 +40,7 @@ const underline = document.getElementsByClassName('tabMenuBtn')
 		const profile = document.getElementById('profile');
 		fileName.value = profile.value;
 	}
-
-	//프로필 이미지 미리보기
+	
 	function profilePreview(event) {
 		const prevImg = document.querySelector('.imgPreview');
 	    if(prevImg != null) {
@@ -51,34 +50,11 @@ const underline = document.getElementsByClassName('tabMenuBtn')
 		reader.onload = function(event) { 
 			var img = document.createElement("img"); 
 			img.classList.add('imgPreview')
-			img.style.width= '70px';
-			img.style.height = '60px';
-			img.style.borderRadius = '50%';
+			img.style.width= '100px';
+			img.style.height = '80px';
 			
 			img.setAttribute("src", event.target.result); 
-			document.querySelector("label#profileIcon").appendChild(img);
-			//const imgPreview = document.querySelector('imgPreview');
-			img.style.position= 'relative';
-			img.style.top = '5px';
-			img.style.right= '7px'; 
-			
+			document.querySelector("div#image_container").appendChild(img); 
 		}; 
 		reader.readAsDataURL(event.target.files[0]); 
-		
 	}
-
-function chkId() {
-		const username = frm.username.value
-		axios.get('/IdChk', {
-			params:{
-				username
-			}
-		}).then(function(res) {
-			if(res.data == '2') { //아이디 없음
-				idChkResult.innerText = '사용할 수 있는 아이디입니다.'
-			} else if(res.data == '3') { //아이디 중복됨
-				idChkResult.innerText = '이미 사용중입니다.'
-			}
-		})
-    }
-
