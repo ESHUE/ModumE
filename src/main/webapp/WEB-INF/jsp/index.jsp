@@ -158,6 +158,13 @@
 							const videoURL = "https://www.twitch.tv/" + streamerID;
 							console.log(videoURL);
 							reactPlayer(videoURL);
+							axios.get("/autoJoin",{
+								params:{
+									streamerID
+								}
+							}).then(function(result){
+								
+							})
 						}
 						function reactPlayer(url) {
 							const container = document.getElementById('video-embed')
