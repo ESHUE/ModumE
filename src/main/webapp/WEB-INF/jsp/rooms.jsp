@@ -5,7 +5,7 @@
 <div class="streamList">
 	<ul>
 		<c:forEach items="${rooms}" var="item">
-			<li class="streamListDetail"><span onclick="chatListDetail('${item.id}','${member}')">${item.name}</span></li>
+			<li class="streamListDetail"><span class=cursor onclick="chatListDetail('${item.id}','${member}')">${item.name}</span></li>
 		</c:forEach>
 	</ul>
 </div>
