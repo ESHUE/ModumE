@@ -105,6 +105,11 @@ public class TestController {
 		userBoardRepository.deleteByBoardseq(param.getBoardseq());
 		return null;
 	}
+	
+	@RequestMapping(value = "/comment", method = RequestMethod.GET)
+	public String comment() {
+		return "/comment";
+	}
 
 	@GetMapping("/userinfo")
 	public String userInfo() {

@@ -18,14 +18,14 @@ import lombok.Setter;
 @Setter
 @Getter
 public class ChatRoom {
-	 	private String id;
+	 	//private String id;
 	    private String name;
 	    
 	    private Set<WebSocketSession> sessions = new HashSet<>();
 
-	    public static ChatRoom create(@NonNull String name, String id) {
+	    public static ChatRoom create(String name/*, String id*/) {
 	        ChatRoom created = new ChatRoom();
-	        created.id = id;
+	        //created.id = id;
 	        created.name = name;
 	        return created;
 	    }

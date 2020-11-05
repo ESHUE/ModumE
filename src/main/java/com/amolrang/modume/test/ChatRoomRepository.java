@@ -14,7 +14,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.socket.WebSocketSession;
 
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Repository
 public class ChatRoomRepository {
 	private Map<String, ChatRoom> chatRoomMap;
@@ -30,15 +32,15 @@ public class ChatRoomRepository {
 			System.out.println(list.size());
 			for(int i=0; i<list.size(); i++) {
 				String url = (String)list.get(i).get("thumbnail_url");
-				String rooms = url.substring(url.indexOf("user_")+5, url.lastIndexOf("-{width}"));
-				roomList[i] = ChatRoom.create((String)list.get(i).get("user_name"),(String)list.get(i).get("user_id"));
-				System.out.println("roomList: " + rooms);
+				String streamerID = url.substring(url.indexOf("user_") + 5, url.lastIndexOf("-{width}"));
+				roomList[i] = ChatRoom.create(streamerID);
+				System.out.println("roomList: " + roomList[i]);
 			}
 		}
 		if( roomList != null ) {
 			chatRoomMap = Collections
 					.unmodifiableMap(Stream.of(roomList)
-							.collect(Collectors.toMap(ChatRoom::getId, Function.identity())));
+							.collect(Collectors.toMap(ChatRoom::getName, Function.identity())));
 			System.out.println(chatRoomMap);
 			chatRooms = Collections.unmodifiableCollection(chatRoomMap.values());
 		}

@@ -14,13 +14,12 @@
 <link rel="stylesheet" href="/css/boardList.css?ver=3">
 <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
 <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
+<link rel="stylesheet" href="/css/comment.css?ver=5">
 <link rel="stylesheet" href="/css/login.css?ver=27">
 <link rel="stylesheet" href="/css/join.css?ver=89">
 <link rel="stylesheet" href="/css/test.css?ver=5">
 <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
-<!-- 아웃라인 material-icon 링크 추가 -->
 <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
-<!-- 위지윅 에디터 추가 -->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
 <script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
@@ -78,11 +77,13 @@
 
 	<script src="/js/index.js?aaa=75009"></script>
 	<script src="/js/search.js?aa=afasef"></script>
-	<script src="/js/boardList.js?ver=54"></script>
-	<script src="/js/boardRegMod.js?ver=45"></script>
 	<script src="/js/test.js?ver=13"></script>
-	<script src="/js/join.js?ver=33"></script>
+	<script src="/js/boardRegMod.js?ver=45"></script>
+	<script src="/js/boardList.js?ver=80"></script>
 	<script src="/js/boardDetail.js?ver=1"></script>
+	<script src="/js/join.js?ver=33"></script>
+	<script src="/js/comment.js?ver=2"></script>
+	<!-- 트위치 채널 긁어오기(채널지정) -->
 
 	<script>
 	function chkId() {
@@ -154,18 +155,20 @@
 							videoLink.id = "video-embed";
 							const url = videoLink.getAttribute("streamerURL");
 							const videoURL = "https://www.twitch.tv/" + url.substring(url.indexOf("user_") + 5, url.lastIndexOf("-1920x"));
-							roomId = url.substring(url.indexOf("user_") + 5, url.lastIndexOf("-1920x"));
+							streamerID = url.substring(url.indexOf("user_") + 5, url.lastIndexOf("-1920x"));
 							
 							member = '${member}';
 							console.log('temp:'+temp);
 							console.log('member:'+member);
 							console.log(videoURL);
 							reactPlayer(videoURL);
-							axios.get("/joinchat",{
+							axios.get("/autoJoin",{
 								params:{
-									roomId
+									streamerID
 								}
-							})							//Test(temp,member);
+							}).then(function(result){
+								
+							})
 						}
 						function reactPlayer(url) {
 							const container = document.getElementById('video-embed')

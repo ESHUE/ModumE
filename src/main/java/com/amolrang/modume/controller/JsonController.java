@@ -72,4 +72,9 @@ public class JsonController {
 	public String googleSearch(String keyword) {
 		return googleApi.searchYoutube(authorizedClientService, keyword);
 	}
+	
+	@RequestMapping(value = "/autoJoin",produces = "text/plain;charset=UTF-8")
+	public void autoJoin(String streamerID,HttpSession hs) {
+		hs.setAttribute("streamerID", streamerID);
+	}
 }
