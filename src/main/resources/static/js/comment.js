@@ -8,9 +8,15 @@ input.addEventListener("focusin",()=>{
     optionBox.style.minHeight ="200px";
 })
 
-input.addEventListener("focusout",()=>{
-    optionBox.style.height = "60px";
-    optionBox.style.minHeight = null;
+input.addEventListener("focusout",(e)=>{
+    const submitBtn = document.querySelector('.commentIns-btn');
+    console.log(submitBtn);
+    console.log(e.currentTarget);
+    //alert(e.target.classList.contains('commentIns-btn'));
+    if(e.target != submitBtn) {
+        optionBox.style.minHeight = null;
+        optionBox.style.height = "60px";
+    }
     
 })
 
@@ -116,5 +122,9 @@ showModDelBox();
 //     console.log(element);
 //     element.parentNode.removeChild(element)
 // }
+
+function aa() {
+    alert('aa입니당');
+}
 
 
