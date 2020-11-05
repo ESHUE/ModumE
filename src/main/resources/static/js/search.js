@@ -112,3 +112,5 @@ function loadReactPlayer(tag, url) {
   });
   document.querySelector('.slideContainer').append(tag);
 }
+
+document.addEventListener("click",closeSearch);
