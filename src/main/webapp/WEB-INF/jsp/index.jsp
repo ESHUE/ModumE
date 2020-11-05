@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${title}</title>
 <link rel="icon" href="/img/favicon.png">
-<link rel="stylesheet" href="/css/index.css?ver=902244">
+<link rel="stylesheet" href="/css/index.css?ver=9544">
 <link rel="stylesheet" href="/css/boardList.css?ver=3">
 <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
 <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
@@ -65,7 +65,7 @@
 					<span class="material-icons" onclick="boardInit()">assignment</span>
 				</div>
 				<div class="menus sidebarMenu1_2">
-					<span class="material-icons" onclick="chatInit()">chat</span>
+					<span class="material-icons" onclick="chatInit('${member}')">chat</span>
 				</div>
 			</aside>
 		</section>
@@ -91,7 +91,7 @@
 	<script src="/js/boardRegMod.js?ver=45"></script>
 	<script src="/js/boardList.js?ver=80"></script>
 	<script src="/js/boardDetail.js?ver=1"></script>
-	<script src="/js/join.js?ver=33"></script>
+	<script src="/js/join.js?ver=23"></script>
 	<script src="/js/comment.js?ver=3"></script>
 	<!-- 트위치 채널 긁어오기(채널지정) -->
 
@@ -121,7 +121,7 @@
 			<c:forEach items="${userDomain.sns}" var="item">
 				<c:if test="${item == 'twitch'}">
 				<script>
-				member = '${member}';	
+				/* member = '${member}'; */	
 				</script>
 					<script type="text/javascript" src="/js/twitch.js">
 					</script>

@@ -2,6 +2,11 @@ var sectionContainer = document.querySelector('.sectionContainer');
 var centralContainer = document.querySelector('.centralContainer');
 var centralMenu1_2 = document.querySelector('.centralMenu1_2');
 
+//채팅을 위한 전역변수들( 미리 초기화 )
+var roomId = null;
+var member = null;
+var message = null;
+
 function findVideo(evt) {
    evt.preventDefault();
    const keyword = document.querySelector('#searchVideo').value;
@@ -32,14 +37,16 @@ function findVideo(evt) {
       });
    })
 }
-function chatInit() {
+function chatInit(temp) {
+   member = temp;
+   console.log('값 체크:' + member)
     const chatContainer = document.querySelector('.chatContainer');
     const boardContainer = document.querySelector('.boardContainer');
     if(boardContainer != null) {
         closeContainer(boardContainer);
     }
     if(chatContainer == null) {
-      openChat()
+      openChat(temp)
     } else {
         closeContainer(chatContainer);
     }
@@ -58,7 +65,7 @@ function boardInit() {
     }
 }
 
-function openChat() {
+function openChat(member) {
     const makeDiv = document.createElement('div');
     makeDiv.className = 'chatContainer';
 	 makeDiv.setAttribute('id','chatContainer')
@@ -81,10 +88,7 @@ function chatList() {
    })
 }
 
-//채팅을 위한 전역변수들( 미리 초기화 )
-var roomId = null;
-var member = null;
-var message = null;
+
 
 function chatDetail(roomId, member) {
    console.log(roomId)
@@ -198,6 +202,7 @@ function closeContainer(ele) {
 
 
 function userMenuInit(isLogin,temp) {
+   member = temp;
     const userMenu = document.querySelector('.userMenu');
     const alertMenu = document.querySelector('.alertMenu');
     if(alertMenu != null) {
@@ -223,9 +228,7 @@ function alertMenuInit() {
    }
 }
 
-var nickname = null;
 function openUserMenu(isLogin,temp) {
-   nickname = temp;
     const makeDiv = document.createElement('div');
     makeDiv.className = 'userMenu';
     makeDiv.style.position = 'absolute';
