@@ -117,7 +117,6 @@
 
 	/* Profile  Eunjeong Start */
 	
-	
 	/* Eunjeong End */
 	
 	</script>
@@ -155,7 +154,8 @@
 							}
 							videoLink.id = "video-embed";
 							const url = videoLink.getAttribute("streamerURL");
-							const videoURL = "https://www.twitch.tv/" + url.substring(url.indexOf("user_") + 5, url.lastIndexOf("-1920x"));
+							const streamerID = url.substring(url.indexOf("user_") + 5, url.lastIndexOf("-1920x"))
+							const videoURL = "https://www.twitch.tv/" + streamerID;
 							console.log(videoURL);
 							reactPlayer(videoURL);
 						}

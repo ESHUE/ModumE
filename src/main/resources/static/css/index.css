@@ -264,11 +264,12 @@ body{
 
 .streamList > ul> .streamListDetail{
     padding-bottom: 7px;
+    color: seashell;
 }
 
 .view{
     text-align: center;
-    padding-left: 20px;
+    padding: 20px;
     margin: 10px auto;
     height: 85%;
     width: 90%;
@@ -280,7 +281,7 @@ body{
     text-align: center;
     margin: 5px auto;
     height: 90%;
-    width: 108%;
+    width: 98%;
     overflow-y: scroll;
     
 }
@@ -328,7 +329,7 @@ body{
     width: 30%;
     height: 68vh;
     margin: 3% 1% 0 0.5%;
-    background: #ffffff;
+    background-color: rgba(0, 0, 0, 0.6);
     border-radius: 5px;
     position: relative;
     display: flex;

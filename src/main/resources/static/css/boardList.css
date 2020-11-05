@@ -52,9 +52,14 @@
     line-height: 140%;
     border-radius: 5px;
 }
+
 .board-table:hover{
     background: mediumpurple;	
 }
+.board-detail-table:hover{
+	background:none;
+}
+
 .board-table:hover tr td{
     color: lavenderblush;
 }
@@ -66,6 +71,7 @@
     /* border: 1px solid black; */
     vertical-align: middle;
     padding: 3px 5px;
+    color: seashell;
 }
 
 .board-table .board-profile-td {
@@ -91,7 +97,7 @@
 .board-table .board-user-name {
     font-size: 0.8em;
     font-weight: bold;
-    color: rgb(73, 73, 73);
+    color: seashell;
     padding-bottom: 0;
 }
 
@@ -117,7 +123,7 @@
 
 .board-table .board-ctnt td {
     font-size: 1em;
-    color: rgb(129, 129, 129);
+    color: rgb(161, 161, 161);
 }
 
 .board-table .board__imgs {
@@ -182,11 +188,14 @@
 .board-table .board-foot td {
     padding-top: 10px;
 }
+.board-foot{
+	background: rgba(0,0,0,.1);
+}
 
 .board-table .board-foot .board-icons {
     display: flex;
     justify-content: space-around;
-    color: rgb(129, 129, 129);
+    color: seashell;
 }
 
 .board-table .board-foot .board-hits {
