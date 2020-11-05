@@ -1,15 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-<meta charset="UTF-8">
-  <title>Insert title here</title>
    <link rel="stylesheet" href="/css/userInfo.css">
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-</head>
-<body>
 <div class="userMenuContainer">
 	   <div class="tabMenuContainer">
 	     <button type="button" id="menu1" class="tabMenuBtn" onclick="temp(0)"><span class="material-icons">camera_alt</span></button>
@@ -21,5 +14,3 @@
 	  <div class="tabBoxContainer">
 	  </div>
 </div>
-</body>
-</html>

@@ -33,4 +33,37 @@ button {
 .myPageBox {
 	width: 500px;
 	height: 500px;
+	
 }
+.profileBox {
+	margin-top: 80px;
+}
+.userProfileHeader {
+	margin-bottom: 30px;
+}
+.userNickName {
+	font-size: 20px;
+	font-weight: bold;
+}
+.pImg {
+	width: 60px;
+	border-radius: 50%;
+}
+/*userInfo3*/
+.personalInformatin {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  
+}
+#modifyName {
+  align-items: center;
+  border: none;
+  border-bottom:1px solid #a07be5;
+  
+}
+.personalInformatin.privacyIcon {
+  font-size: 2em;
+  color: #a07be5;
+}
+

@@ -11,14 +11,17 @@
 <title>${title}</title>
 <link rel="icon" href="/img/favicon.png">
 <link rel="stylesheet" href="/css/index.css?ver=902244">
-<link rel="stylesheet" href="/css/boardList.css?ver=6">
-<link rel="stylesheet" href="/css/boardDetail.css?ver=7">
+<link rel="stylesheet" href="/css/boardList.css?ver=3">
+<link rel="stylesheet" href="/css/boardDetail.css?ver=4">
 <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
 <link rel="stylesheet" href="/css/comment.css?ver=8">
 <link rel="stylesheet" href="/css/login.css?ver=27">
 <link rel="stylesheet" href="/css/join.css?ver=89">
 <link rel="stylesheet" href="/css/test.css?ver=5">
+
 <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+
+<!-- 아웃라인 material-icon 링크 추가 -->
 <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
@@ -67,13 +70,20 @@
 			</aside>
 		</section>
 	</main>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script src="https://embed.twitch.tv/embed/v1.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-	<script src="https://embed.twitch.tv/embed/v1.js"></script>
 
 	<script src="/js/index.js?aaa=75092"></script>
 	<script src="/js/search.js?aa=afasef"></script>
@@ -86,45 +96,21 @@
 	<!-- 트위치 채널 긁어오기(채널지정) -->
 
 	<script>
-	function chkId() {
-		const username = frm.username.value
-		axios.get('/IdChk', {
-			params:{
-				username
-			}
-		}).then(function(res) {
-			if(res.data == '2') { //아이디 없음
-				idChkResult.innerText = '사용할 수 있는 아이디입니다.'
-			} else if(res.data == '3') { //아이디 중복됨
-				idChkResult.innerText = '이미 사용중입니다.'
-			}
-		})
-    }
 	
-	function openMyPageDetails(idx) { 
-		const tabBoxContainer = document.querySelector('.tabBoxContainer'); 
-		if(idx == 4) {
-			location.href = 'http://localhost:8080/logout'; 
-			return; 
-		} // jsp 파일 이름이 바뀌면 controller와 pageName이 변경되어야 한다. 
-		const pageName = '/userinfo' + idx; 
-		fetch(pageName).then(function(response) { 
-			response.text().then(function(text) { 
-				tabBoxContainer.innerHTML = text; 
-			}) 
-		})
-	}
+	
 
 	/* Profile  Eunjeong Start */
 	
 	/* Eunjeong End */
-	
 	</script>
+
 	<sec:authorize access="isAuthenticated()">
 	
 		<c:if test="${userInfo != null}">
+
 			<script>
 				//console.log('userInfo= ${userInfo}')
+
 			</script>
 		</c:if>
 		
@@ -134,52 +120,10 @@
 			</script>
 			<c:forEach items="${userDomain.sns}" var="item">
 				<c:if test="${item == 'twitch'}">
-					<script type="text/javascript">
-						axios.get('/getStreams', {}).then(function (res) {
-							res.data.data.forEach(function (item) {
-								loadTwitchFollowSwiper(item)
-							})
-							reloadPagination();
-						}).then(function () {
-							const playBtn = document.querySelectorAll(".playBtn");
-							for (var i = 0; i < playBtn.length; i++) {
-								playBtn[i].setAttribute("onclick", "videoLoad()");
-							}
-						})
-						function videoLoad() {
-							const videoLink = document.querySelector(".swiper-slide-active>.thumbnail");
-							const thumbnails = document.getElementsByClassName("thumbnail");
-							for (var i = 0; i < thumbnails.length; i++) {
-								thumbnails[i].id = "";
-							}
-							videoLink.id = "video-embed";
-							const url = videoLink.getAttribute("streamerURL");
-							const videoURL = "https://www.twitch.tv/" + url.substring(url.indexOf("user_") + 5, url.lastIndexOf("-1920x"));
-							streamerID = url.substring(url.indexOf("user_") + 5, url.lastIndexOf("-1920x"));
-							member = '${member}';
-							/* streamerID 따로 저장 */
-							saveRoomId(streamerID);
-							console.log(videoURL);
-							reactPlayer(videoURL);
-							axios.get("/autoJoin",{
-								params:{
-									streamerID
-								}
-							}).then(function(result){
-								
-							})
-						}
-						function reactPlayer(url) {
-							const container = document.getElementById('video-embed')
-							console.log(container)
-							renderReactPlayer(container, {
-								url,
-								playing: true,
-								controls: false,
-								width: "100%",
-								height: "100%"
-							})
-						}
+				<script>
+				member = '${member}';	
+				</script>
+					<script type="text/javascript" src="/js/twitch.js">
 					</script>
 				</c:if>
 			</c:forEach>
