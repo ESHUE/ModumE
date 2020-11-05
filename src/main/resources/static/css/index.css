@@ -2,7 +2,6 @@
 @import "reset.css";
 
 /* @Eunsil 전역 스타일 추가 */
-
 body{
 	overflow-y: hidden;
 }
@@ -248,6 +247,7 @@ body{
     border-radius: 5px;
     position: relative;
     min-width: 350px;
+    padding: 20px 0px;
 }
 .chatContainer > h1{
     font-size: 1.5em;
@@ -260,6 +260,7 @@ body{
     margin: 5px auto;
     width: 90%;
     height: 85%;
+    overflow-y: auto;
 }
 
 .streamList > ul> .streamListDetail{
@@ -271,9 +272,9 @@ body{
     text-align: center;
     padding: 20px;
     margin: 10px auto;
-    height: 85%;
+    height: 80%;
     width: 90%;
-    position: absolute;
+    position: relative;
     overflow: hidden;
 }
 
@@ -285,22 +286,23 @@ body{
     overflow-y: scroll;
     
 }
-.view #inputMessage{
-    width: 95%;
-    border-radius : 3px;
+#inputMessage{
+    border-radius: 3px;
     padding-left: 5px;
-    position: relative;
+    /* position: relative; */
     height: 35px;
     border: 0;
     opacity: 1;
+    flex-grow: 3;
 }
-.view #sendBtn{
-    position: absolute;
-    border-radius : 3px;
+#sendBtn{
+    /* position: relative; */
+    border-radius: 3px;
     margin-left: -50px;
     height: 35px;
     border: 0;
     opacity: 1;
+    flex-grow: 1;
 }
 .chat-box{
     width: 95%;
@@ -365,4 +367,17 @@ body{
     cursor: pointer;
     color: seashell;
     font-size: 4em;
+}
+/* 
+채팅관련
+ */
+ 
+ 
+.chatInputDiv{
+    position: absolute;
+    bottom: 0;
+    width: -webkit-fill-available;
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
 }
