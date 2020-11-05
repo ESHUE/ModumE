@@ -3,9 +3,6 @@
 <!DOCTYPE html>
 <jsp:useBean id="StringUtils"
 	class="com.amolrang.modume.utils.StringUtils" />
-<link rel="stylesheet" href="/css/join.css?ver=99987">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
 <html>
 <head>
 <meta charset="UTF-8">
@@ -55,3 +52,4 @@
 	</div>
 </body>
 </html>
+

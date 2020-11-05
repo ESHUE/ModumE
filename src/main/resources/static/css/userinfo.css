@@ -30,8 +30,6 @@ button {
 .underline:hover {
    color: #a07be5; 
 }
-
-/*userInfo0.css*/
 .myPageBox {
 	width: 500px;
 	height: 500px;
@@ -51,5 +49,3 @@ button {
 	width: 60px;
 	border-radius: 50%;
 }
-
-

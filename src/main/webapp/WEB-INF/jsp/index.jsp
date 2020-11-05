@@ -10,8 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${title}</title>
 <link rel="icon" href="/img/favicon.png">
-
-<link rel="stylesheet" href="/css/index.css?ver=9024">
+<link rel="stylesheet" href="/css/index.css?ver=902244">
 
 <link rel="stylesheet" href="/css/boardList.css?ver=3">
 <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
@@ -25,10 +24,7 @@
 <!-- 아웃라인 material-icon 링크 추가 -->
 <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 <!-- 위지윅 에디터 추가 -->
-
-<link rel="stylesheet"
-	href="https://unpkg.com/swiper/swiper-bundle.min.css">
-
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
 <script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
 </head>
@@ -94,106 +90,62 @@
 		src='https://unpkg.com/react-player/dist/ReactPlayer.standalone.js'></script>
 
 	<!-- 트위치 채널 긁어오기(채널지정) -->
-	<script src="/js/index.js?aaa=7"></script>
+
+	<script src="/js/index.js?aaa=79"></script>
 	<script src="/js/search.js?aa=afasef"></script>
 	<script src="/js/boardList.js?ver=54"></script>
 	<script src="/js/boardRegMod.js?ver=45"></script>
 	<script src="/js/test.js?ver=13"></script>
-	<script src="/js/join.js"></script>
-	<script src="https://embed.twitch.tv/embed/v1.js"></script>
+	<script src="/js/join.js?ver=33"></script>
+	<script src="/js/boardDetail.js?ver=1"></script>
+
 	<script>
 	function chkId() {
-	    const username = frm.username.value
-	    axios.get('/IdChk', {
-	        params: {
-	            username
-	        }
-	    }).then(function (res) {
-	        if (res.data == '2') { //아이디 없음
-	            idChkResult.innerText = '사용할 수 있는 아이디입니다.'
-	        } else if (res.data == '3') { //아이디 중복됨
-	            idChkResult.innerText = '이미 사용중입니다.'
-	        }
-	    })
-	}
-	/* Ukjun */
-	const underline = document.getElementsByClassName('tabMenuBtn')
-	function temp(idx) {
-	    openMyPageDetails(idx)
-	    addUnderLine(idx)
-	    //removeUnderLine(idx)
-	}
-	function addUnderLine(idx) {
-	    if (document.querySelector('.underline')) {
-	        const under_element = document.querySelector('.underline')
-	        under_element.classList.remove('underline')
-	    }
-	}
-	function openMyPageDetails(idx) {
-	    const tabBoxContainer = document.querySelector('.tabBoxContainer');
-	    if (idx == 4) {
-	        location.href = 'http://localhost:8080/logout';
-	        return;
-	    }
-	    const pageName = '/userinfo' + idx;
-	    fetch(pageName).then(function (response) {
-	        response.text().then(function (text) {
-	            tabBoxContainer.innerHTML = text;
-	        })
-	    })
-	}
+		const username = frm.username.value
+		axios.get('/IdChk', {
+			params:{
+				username
+			}
+		}).then(function(res) {
+			if(res.data == '2') { //아이디 없음
+				idChkResult.innerText = '사용할 수 있는 아이디입니다.'
+			} else if(res.data == '3') { //아이디 중복됨
+				idChkResult.innerText = '이미 사용중입니다.'
+			}
+		})
+    }
 	
-	function profileAddIconChange() {
-	    const personIcon = document.querySelector('.personIcon');
-	    const addIcon = document.querySelector('.addIconHidden');
-	    personIcon.style.display = 'none';
-	    personIcon.style.transition = '0.5s';
-	    addIcon.classList.remove('addIconHidden');
-	    const addIcon2 = document.querySelector('.addIcon');
-	    addIcon2.style.color = 'red';
+	function openMyPageDetails(idx) { 
+		const tabBoxContainer = document.querySelector('.tabBoxContainer'); 
+		if(idx == 4) {
+			location.href = 'http://localhost:8080/logout'; 
+			return; 
+		} // jsp 파일 이름이 바뀌면 controller와 pageName이 변경되어야 한다. 
+		const pageName = '/userinfo' + idx; 
+		fetch(pageName).then(function(response) { 
+			response.text().then(function(text) { 
+				tabBoxContainer.innerHTML = text; 
+			}) 
+		})
 	}
+
+	/* Profile  Eunjeong Start */
 	
-	function profilePersonIconChange() {
-	    const addIcon = document.querySelector('.addIcon');
-	    addIcon.classList.add('addIconHidden');
-	    const personIcon = document.querySelector('.personIcon');
-	    personIcon.style.removeProperty('display');
-	}
 	
-	function profileInfo(event) {
-	    profilePreview(event);
-	    fileNameMove();
-	}
+	/* Eunjeong End */
 	
-	function fileNameMove() {
-	    const fileName = document.getElementById('fileName');
-	    const profile = document.getElementById('profile');
-	    fileName.value = profile.value;
-	}
-	function profilePreview(event) {
-	    var reader = new FileReader();
-	    reader.onload = function (event) {
-	        var img = document.createElement("img");
-	        img.classList.add('imgPreview')
-	        img.style.width = '100px';
-	        img.style.height = '80px';
-	
-	        img.setAttribute("src", event.target.result);
-	        document.querySelector("div#image_container").appendChild(img);
-	    };
-	    reader.readAsDataURL(event.target.files[0]);
-	}
 	</script>
 
 	<sec:authorize access="isAuthenticated()">
+	
 		<c:if test="${userInfo != null}">
 
 			<script>
 				//console.log('userInfo= ${userInfo}')
 
 			</script>
-
 		</c:if>
+		
 		<c:if test="${userDomain != null}">
 			<script>
 				//console.log('userDomain = ${userDomain}')
