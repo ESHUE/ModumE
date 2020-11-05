@@ -91,7 +91,7 @@
 
 	<!-- 트위치 채널 긁어오기(채널지정) -->
 
-	<script src="/js/index.js?aaa=79"></script>
+	<script src="/js/index.js?aaa=79800d5123"></script>
 	<script src="/js/search.js?aa=afasef"></script>
 	<script src="/js/boardList.js?ver=54"></script>
 	<script src="/js/boardRegMod.js?ver=45"></script>

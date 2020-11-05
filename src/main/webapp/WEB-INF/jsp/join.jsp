@@ -23,7 +23,10 @@
 					<!-- <img alt="userProfile" src="#" id="imgPreview"> -->
 					<div id="image_container"></div>  
 					<input type="file" name="profile" id="profile" accept="image/*" onchange="profileInfo(event)"> 
-					
+					<input type="button" name="imgSubmit" value="올리기">
+				</div>
+				<div class="joinListContainer">
+					<input type="text" name="nickname" placeholder="이름" value="은찌리">
 				</div>
 				<div id="idChkResult" class="msg"></div>
 				<div class="joinListContainer">
@@ -35,9 +38,6 @@
 				</div>
 				<div class="joinListContainer">
 					<input type="password" name="password_re" placeholder="비밀번호 확인" value="123!456!">
-				</div>
-				<div class="joinListContainer">
-					<input type="text" name="nickname" placeholder="이름" value="은찌리">
 				</div>
 				<div class="joinSbm">
 					<input type="submit" value="sign up">

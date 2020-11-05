@@ -235,6 +235,11 @@ function openUserMenu(isLogin,temp) {
    makeSpan2_2_1.classList.add('cursor');
    makeSpan2_2_1.innerText = '로그아웃';
    makeSpan2_2_1.setAttribute('onclick',"location.href='/logout'");
+   makeSpan2_2_1.style.position = 'relative';
+   makeSpan2_2_1.style.top = '170px';
+   makeSpan2_2_1.style.left = '0px';
+   makeSpan2_2_1.style.display = 'flex';
+   makeSpan2_2_1.style.justifyContent = 'center';
    console.log(temp)
    console.log(isLogin)
 	
@@ -242,19 +247,51 @@ function openUserMenu(isLogin,temp) {
    makeSpan2_2_2.classList.add('cursor');
    makeSpan2_2_2.innerText = '마이페이지';
    makeSpan2_2_2.setAttribute('onclick', 'openUserInfo()');
+   makeSpan2_2_2.style.position = 'relative';
+   makeSpan2_2_2.style.top = '100px';
+   makeSpan2_2_2.style.left = '0px';
+   makeSpan2_2_2.style.display = 'flex';
+   makeSpan2_2_2.style.justifyContent = 'center';
    
    const makeSpan2_2_3 = document.createElement('span');
    makeSpan2_2_3.classList.add('cursor');
    makeSpan2_2_3.innerText = temp;
    makeSpan2_2_3.setAttribute('onclick', 'openUserInfo()');
+   makeSpan2_2_3.style.position = 'relative';
+   makeSpan2_2_3.style.top = '90px';
+   makeSpan2_2_3.style.left = '0px';
+   makeSpan2_2_3.style.display = 'flex';
+   makeSpan2_2_3.style.justifyContent = 'center';
 
-   makeSpan2_2_1.style.display = ' block';
-   makeSpan2_2_2.style.display = ' block';
+   const makeSpan2_2_4 = document.createElement('span');
+   makeSpan2_2_4.classList.add('material-icons');
+   makeSpan2_2_4.innerText = 'person_add';
+   makeSpan2_2_4.style.position = 'relative';
+   makeSpan2_2_4.style.top = '140px';
+   makeSpan2_2_4.style.left = '0px';
+   makeSpan2_2_4.style.display = 'flex';
+   makeSpan2_2_4.style.justifyContent = 'center';
+   makeSpan2_2_4.style.alignItems = 'center';
+   makeSpan2_2_4.style.fontSize = '1.8em';
+
+  
+
+   const makeSpan2_2_5 = document.createElement('span');
+   makeSpan2_2_5.classList.add('cursor');
+   makeSpan2_2_5.innerText = '계정 추가';
+   makeSpan2_2_5.style.fontSize = '18px';
+   makeSpan2_2_4.setAttribute('onclick', 'openUserInfoPrivacy()');//userInfo3으로 바로가기로 바꿔야함
+
+   //makeSpan2_2_1.style.display = ' block';
+   //makeSpan2_2_2.style.display = ' block';
+   //makeSpan2_2_4.style.display = ' block';
 
 
    if(isLogin) {
       makeDiv2.append(makeSpan2_2_3);
       makeDiv2.append(makeSpan2_2_2);
+      makeSpan2_2_4.append(makeSpan2_2_5);
+      makeDiv2.append(makeSpan2_2_4);
       makeDiv2.append(makeSpan2_2_1);
 	  
    } else {
@@ -346,8 +383,6 @@ function makeJoin(){
 		   makeLogin();
 		   document.querySelector('#loginWindow').innerHTML = text;
       })
-   }).then(function() {
-      alert('bb')
    })
 }
 
@@ -390,4 +425,16 @@ function openUserInfo() {
    makeDiv2.append(myPageTabMenuContainer);
    makeDiv.append(makeDiv2);
    body.prepend(makeDiv);
+}
+////////////////
+function openUserInfoPrivacy() {
+
+   fetch('/userinfo3').then(function(response) {
+      response.text().then(function(text) {
+         openUserInfo();
+         openMyPageDetails(3);
+         
+         document.querySelector('.loginPageContainer').innerHTML = text;
+      })
+   })
 }
