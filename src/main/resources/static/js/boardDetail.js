@@ -32,3 +32,11 @@ function deleteBoard(boardseq) {
 		})
 	})
 }
+
+function goToComment() {
+	fetch('/comment').then(function(response) {
+		response.text().then(function(text) {
+			document.querySelector('.boardContainer').innerHTML = text;
+			})
+		})
+}

@@ -1,0 +1,115 @@
+/* 나중에 userBoard 지울 때 comment 삭제 잊지 말기~~~! */
+@charset "UTF-8";
+.bold {
+    font-weight: bold;
+}
+
+.commentContainer {
+    font-size: .9em;
+}
+
+.commentContainer .comment-table {
+    margin: 5px 0;
+    border-bottom: 1px solid rgb(161, 161, 161);
+}
+
+
+.comment-menu {
+    width: 100%;
+    height: 60px;
+    min-height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comment-menu .comment-menu1 {
+    display: flex;
+    justify-content: space-around;
+    width: 40%;
+}
+
+.comment-menu .comment-menu2 {
+    display: flex;
+    justify-content: space-around;
+    width: 40%;
+}
+
+.commentContainer table:first-child {
+    margin-top: 10px;
+}
+
+.commentContainer table:last-child {
+    margin-bottom: 15px;
+}
+
+.commentContainer .comment-modDel-td {
+    width: 15%;
+    padding-right: 5px;
+    text-align: right;
+    position: relative;
+}
+
+.commentContainer .comment-modDel-td .comment-modDel-box {
+    position: absolute;
+    bottom: 6px;
+    right: 35px;
+    justify-content: space-around;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    background: rgba(255, 205, 209, .8);
+    color: #fff;
+    font-weight: bold;
+}
+
+.commentContainer .comment-modDel-td .material-icons {
+    background: none;
+    border: none;
+    color: rgba(161, 161, 161, .8);
+    font-size: 1em !important;
+}
+
+.comment-like {
+    justify-content: flex-end;
+    padding-bottom: 10px;
+    color: rgb(161, 161, 161);
+}
+
+.comment-like .material-icons-outlined {
+    font-size: 1.5em !important;
+    color: rgb(161, 161, 161);
+}
+
+
+#commentIns-form {
+    position: relative;
+}
+
+.comment-option-box {
+    height: 60px;
+}
+
+.comment-text-div {
+    width: 75%;
+    text-align: center;
+}
+
+.commentIns {
+    width: 95%;
+    height: 90%;
+    resize: none;
+}
+
+.commentIns-btn {
+    margin-right: 5px;
+}
+
+
+.comment-backTop-btns {
+    bottom: 100%;
+}
+
+
+
+/*  */
