@@ -56,14 +56,12 @@
 .board-table:hover{
     background: mediumpurple;	
 }
-.board-detail-table:hover{
-	background:none;
-}
 
-.board-table:hover tr td{
+
+.board-list-table:hover tr td{
     color: lavenderblush;
 }
-.board-table:hover tr td div div span{
+.board-list-table:hover tr td div div span{
     color: lavenderblush;
 }
 

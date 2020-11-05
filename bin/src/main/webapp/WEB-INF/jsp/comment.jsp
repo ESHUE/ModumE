@@ -11,7 +11,7 @@
     </div>
 </div>
 
-<div class="commentContents boardContents">
+<div class="comment boardContents">
     <!-- 테이블 시작!!!! -->
     <table class="comment-table board-table">
         <tr class="board-detail-profile">

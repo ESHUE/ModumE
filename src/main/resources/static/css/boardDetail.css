@@ -13,6 +13,10 @@
     position: relative;
 }
 
+.board-detail-table:hover{
+	background:none;
+}
+
 .board-detail .board-detail-modDel__btns {
     position: absolute;
     right: 15px;
