@@ -159,6 +159,10 @@
 	}
 	
 	function profilePreview(event) {
+		const prevImg = document.querySelector('.imgPreview');
+	    if(prevImg != null) {
+	        prevImg.remove();
+	    }
 		var reader = new FileReader(); 
 		reader.onload = function(event) { 
 			var img = document.createElement("img"); 
