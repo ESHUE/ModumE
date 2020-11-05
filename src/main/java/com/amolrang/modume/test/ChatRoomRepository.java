@@ -29,8 +29,10 @@ public class ChatRoomRepository {
 			roomList = new ChatRoom[list.size()];
 			System.out.println(list.size());
 			for(int i=0; i<list.size(); i++) {
+				String url = (String)list.get(i).get("thumbnail_url");
+				String rooms = url.substring(url.indexOf("user_")+5, url.lastIndexOf("-{width}"));
 				roomList[i] = ChatRoom.create((String)list.get(i).get("user_name"),(String)list.get(i).get("user_id"));
-				System.out.println("roomList: " + roomList[i]);
+				System.out.println("roomList: " + rooms);
 			}
 		}
 		if( roomList != null ) {
@@ -40,8 +42,16 @@ public class ChatRoomRepository {
 			System.out.println(chatRoomMap);
 			chatRooms = Collections.unmodifiableCollection(chatRoomMap.values());
 		}
+//		System.out.println("roomName: "+roomName);
+//		ChatRoom roomList = ChatRoom.create(roomName);
+//		if(roomList != null) {
+//			chatRoomMap = Collections
+//					.unmodifiableMap(Stream.of(roomList)
+//							.collect(Collectors.toMap(ChatRoom::getId, Function.identity())));
+//			System.out.println(chatRoomMap);
+//			chatRooms = Collections.unmodifiableCollection(chatRoomMap.values());
+//		}
 	}
-	
 	
 	public ChatRoom getChatRoom(String id) {
 		return chatRoomMap.get(id);

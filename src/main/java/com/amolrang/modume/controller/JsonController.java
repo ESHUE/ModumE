@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,7 +42,12 @@ public class JsonController {
 		}
 		return String.format("%s", result);
 	}
-
+	
+	@RequestMapping(value = "/joinChat", produces = "text/plain;charset=UTF-8")
+	public void joinChat(String roomId,Model model) {
+		(roomId, model);
+	}
+	
 	@RequestMapping(value = "/CallVideo", produces = "text/plain;charset=UTF-8")
 	public String callVideo(String follow,OAuth2AuthenticationToken authentication) {
 		return twitchApi.getTwtichVideo(follow,authentication, authorizedClientService);

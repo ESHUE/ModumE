@@ -3,6 +3,9 @@ var centralContainer = document.querySelector('.centralContainer');
 var centralMenu1_2 = document.querySelector('.centralMenu1_2');
 
 
+var roomId = null;
+var member = null;
+
 function findVideo(evt) {
    evt.preventDefault();
    const keyword = document.querySelector('#searchVideo').value;
@@ -41,7 +44,7 @@ function chatInit() {
         closeContainer(boardContainer);
     }
     if(chatContainer == null) {
-        chatList()
+      openChat()
     } else {
         closeContainer(chatContainer);
     }
@@ -68,6 +71,7 @@ function openChat() {
     const chatList = document.createElement('div');
     chatList.className = 'chatList';
     makeDiv.append(chatList)
+    TestDetail(roomId,member)
    /*채팅관련 창들 */
    
    console.log('chat화면 띄우기 완료')
@@ -88,6 +92,7 @@ var member = null;
 var message = null;
 
 function chatDetail(roomId, member) {
+   console.log('왜 들어와짐?')
 	$(function() {
 		var chatBox = $('.chat-box');
 		var messageInput = $('input[name="message"]');
@@ -132,6 +137,19 @@ function chatDetail(roomId, member) {
          }
       });
 	});
+}
+
+function TestDetail(roomId,member){
+   var url = '/chat/rooms/' + roomId
+   console.log('roomId:'+roomId)
+   console.log('member:'+member)
+   console.log('url:'+url)
+   fetch(url).then(function(response) {
+		response.text().then(function(text) {
+			chatDetail(roomId, member)
+			document.querySelector('#chatContainer').innerHTML = text;
+		})
+	})
 }
 
 function chatListDetail(temp, mem) {

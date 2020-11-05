@@ -123,6 +123,7 @@ public class AuthenticationController {
 		}
 		hs.setAttribute("userDomain", userDomain);
 		hs.setAttribute("userInfo", loginedUser);
+		hs.setAttribute("member", loginedUser.getUsername());
 		
 		return "redirect:/main";
 	}
