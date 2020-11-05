@@ -50,18 +50,27 @@
     min-width: 320px;
     margin: 15px 0;
     line-height: 140%;
+    border-radius: 5px;
 }
-
+.board-table:hover{
+    background: mediumpurple;	
+}
+.board-table:hover tr td{
+    color: lavenderblush;
+}
+.board-table:hover tr td div div span{
+    color: lavenderblush;
+}
 
 .board-table td {
     /* border: 1px solid black; */
     vertical-align: middle;
-    padding: 3px 0;
+    padding: 3px 5px;
 }
 
 .board-table .board-profile-td {
     width: 40px;
-    padding-right: 5px;
+    padding: 5px;
 }
 
 .board-table .board-profile__box {
@@ -99,7 +108,7 @@
 .board-table .board-title td {
     font-size: 1.3em;
     font-weight: bold;
-    padding: 15px 0;
+    padding: 15px 5px;
 }
 
 .board-table .board-ctnt {
