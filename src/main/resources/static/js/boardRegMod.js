@@ -45,8 +45,8 @@ function ajaxRegMod(boardseq, title, textarea, convertcontent) {
 	};
 	
 	axios.post(url, param).then(function(res) {
-		console.log(res.data); // 글 쓴 후 데이터
 		const boardseq = res.data;
+		alert('게시글이 등록되었습니다.');
 		goToDetail(boardseq);
 	})
 }

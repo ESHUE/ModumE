@@ -1,5 +1,6 @@
 /* 나중에 userBoard 지울 때 comment 삭제 잊지 말기~~~! */
 @charset "UTF-8";
+
 .bold {
     font-weight: bold;
 }
@@ -86,14 +87,13 @@
 
 #commentIns-form {
     position: relative;
-}
-
-.comment-option-box {
-    height: 60px;
+    height: 95px;
+    display: flex;
 }
 
 .comment-text-div {
     width: 75%;
+    height: 95%;
     text-align: center;
 }
 
@@ -107,9 +107,15 @@
     margin-right: 5px;
 }
 
-
 .comment-backTop-btns {
-    bottom: 100%;
+    bottom: 103%;
+}
+
+.submitCancle-btns {
+	height: 90%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
 }
 
 

@@ -81,7 +81,7 @@
 	                </div>
 	                <div class="board-comment flex-center">
 	                    <span class="material-icons-outlined mr5">comment</span>
-	                    <span>10</span>
+	                    <span>${item.comment_cnt }</span>
 	                </div>
 	                <div class="board-like flex-center">
 	                    <span class="material-icons-outlined mr5">thumb_up</span>

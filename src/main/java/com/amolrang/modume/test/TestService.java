@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,10 +24,12 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.amolrang.modume.model.BoardimgId_JPA;
 import com.amolrang.modume.model.Boardimg_JPA;
+import com.amolrang.modume.model.Comment_JPA;
 import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.model.UserboardModel;
 import com.amolrang.modume.model.Userboard_JPA;
 import com.amolrang.modume.repository.BoardImgRepository;
+import com.amolrang.modume.repository.CommentRepository;
 import com.amolrang.modume.repository.UserBoardRepository;
 import com.google.gson.JsonObject;
 
@@ -46,6 +49,9 @@ public class TestService {
 	
 	@Autowired
 	BoardImgRepository boardImgRepository;
+	
+	@Autowired
+	CommentRepository commentRepository;
 	
 	
 	public UserboardModel addImgListToParam(Userboard_JPA board) {
@@ -86,7 +92,7 @@ public class TestService {
 				edittedContent = (edittedContent.substring(0, (limitedLength - 1))) + "   ··· ";
 			}
 			param.setConvertcontent(edittedContent);
-			
+			param.setComment_cnt(testMapper.selCountComment(param));
 			edittedList.add(param);
 		}
 		return edittedList;
@@ -215,6 +221,77 @@ public class TestService {
 		// 여기까지
 		return boardseq;
 	}
+
+	public void commentRegModAction(Comment_JPA param) {
+		int commentseq = 0;
+		
+		Comment_JPA comment_jpa = new Comment_JPA();
+		
+		comment_jpa.setCommentcontent(param.getCommentcontent());
+		comment_jpa.setBoardseq(param.getBoardseq());
+		comment_jpa.setUserseq(param.getUserseq());
+		
+		System.out.println("댓쓴이 : " + param.getUserseq().getNickname());
+		System.out.println("댓내용 : " + param.getCommentcontent());
+		System.out.println("글번호 : " + param.getBoardseq().getBoardseq());
+		
+		// 댓 수정
+		if(param.getCommentseq() != 0) {
+			   commentseq = param.getCommentseq();
+			   comment_jpa.setCommentseq(commentseq);
+			   System.out.println("여긴가? commentseq 있는거 1");
+			   testMapper.updComment(comment_jpa);
+		   } else {
+			   System.out.println("여긴가? commentseq 없는거 2");
+			   commentRepository.save(comment_jpa);
+		   }
+		
+		
+		
+
+	}
+
+	public List<Comment_JPA> comment(Map<Object, Object> param, HttpSession hs) {
+		List<Comment_JPA> commentList = null;
+		
+		int boardseq = (int) param.get("boardseq");
+		Userboard_JPA userboard_jpa = new Userboard_JPA();
+		userboard_jpa.setBoardseq(boardseq);
+		
+		if(param.get("byWriter") == null) {
+			return commentRepository.findByBoardseq(userboard_jpa);
+		}
+		
+		boolean byWriter = (boolean) param.get("byWriter");
+		boolean orderBy = (boolean) param.get("orderBy");
+		
+		
+		User_JPA user_jpa = (User_JPA)hs.getAttribute("userInfo");
+		userboard_jpa.setUserseq(user_jpa);
+		
+		Comment_JPA comment_jpa = new Comment_JPA();
+		comment_jpa.setBoardseq(userboard_jpa);
+		comment_jpa.setUserseq(user_jpa);
+		
+		if(byWriter) {
+			if(orderBy) { //true, true -> 전체 조회, 오름차순
+				commentList = commentRepository.findByBoardseq(userboard_jpa);
+			} else { //true, false -> 전체 조회, 내림차순
+				commentList = commentRepository.findByBoardseqOrderByCommentseqDesc(userboard_jpa);
+			}
+		} else {
+			if(orderBy) { //false, true -> 내 댓글, 오름차순
+				commentList = commentRepository.findByUserseqAndBoardseq(user_jpa, userboard_jpa);
+			} else { //false, false -> 내 댓글, 내림차순
+				commentList = commentRepository.findByUserseqAndBoardseqOrderByCommentseqDesc(user_jpa, userboard_jpa);
+			}
+		}
+
+		
+		return commentList;
+	}
+
+
 	
 
 }
