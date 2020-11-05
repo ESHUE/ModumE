@@ -43,11 +43,6 @@ public class JsonController {
 		return String.format("%s", result);
 	}
 	
-	@RequestMapping(value = "/joinChat", produces = "text/plain;charset=UTF-8")
-	public void joinChat(String roomId,Model model) {
-		(roomId, model);
-	}
-	
 	@RequestMapping(value = "/CallVideo", produces = "text/plain;charset=UTF-8")
 	public String callVideo(String follow,OAuth2AuthenticationToken authentication) {
 		return twitchApi.getTwtichVideo(follow,authentication, authorizedClientService);
