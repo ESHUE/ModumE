@@ -7,7 +7,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-	<h1>${room.name}(${room.id})</h1>
+	<h1>${room.userName }(${room.name})</h1>
 	<div class="view">
 		<div class="content" id="content">
 			<ul class="chat-box"></ul>

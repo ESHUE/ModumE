@@ -116,6 +116,7 @@ public class AuthenticationController {
 		List<Social_JPA> social_JPA_List= socialRepository.findAllByUserseq(loginedUser);
 		if(social_JPA_List != null) {
 			userDomain = new UserModel();
+			userDomain.setUsername(social_JPA_List.get(0).getUsername());
 			for(Social_JPA sns : social_JPA_List) {
 				System.out.println(sns.getSns());
 				userDomain.getSns().add(new String(sns.getSns()));
@@ -123,7 +124,7 @@ public class AuthenticationController {
 		}
 		hs.setAttribute("userDomain", userDomain);
 		hs.setAttribute("userInfo", loginedUser);
-		hs.setAttribute("member", loginedUser.getUsername());
+		hs.setAttribute("member", userDomain.getUsername());
 		
 		return "redirect:/main";
 	}
@@ -148,6 +149,7 @@ public class AuthenticationController {
 		user.setEnabled(true);
 		user.setNickname(userJPA.getNickname());
 		user.setUsername(userJPA.getUsername());
+		user.setProfileImg(userJPA.getProfileImg());
 		user.setPassword(passwordEncoder.encode(userJPA.getPassword()));
 		userRepository.save(user);
 		

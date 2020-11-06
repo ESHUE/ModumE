@@ -40,7 +40,7 @@ const underline = document.getElementsByClassName('tabMenuBtn')
 		const profile = document.getElementById('profile');
 		fileName.value = profile.value;
 	}
-	
+	//프로필 이미지 미리보기
 	function profilePreview(event) {
 		const prevImg = document.querySelector('.imgPreview');
 	    if(prevImg != null) {
@@ -58,3 +58,17 @@ const underline = document.getElementsByClassName('tabMenuBtn')
 		}; 
 		reader.readAsDataURL(event.target.files[0]); 
 	}
+function chkId() {
+		const username = frm.username.value
+		axios.get('/IdChk', {
+			params:{
+				username
+			}
+		}).then(function(res) {
+			if(res.data == '2') { //아이디 없음
+				idChkResult.innerText = '사용할 수 있는 아이디입니다.'
+			} else if(res.data == '3') { //아이디 중복됨
+				idChkResult.innerText = '이미 사용중입니다.'
+			}
+		})
+    }
