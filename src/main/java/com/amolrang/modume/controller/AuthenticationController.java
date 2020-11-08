@@ -75,7 +75,7 @@ public class AuthenticationController {
 		}
 		hs.setAttribute("userDomain", userDomain);
 		hs.setAttribute("userInfo", UserInfoJson);
-		
+		hs.setAttribute("member", userDomain.getUsername());
 		return "redirect:/main";
 	}
 
@@ -124,8 +124,9 @@ public class AuthenticationController {
 		}
 		hs.setAttribute("userDomain", userDomain);
 		hs.setAttribute("userInfo", loginedUser);
-		hs.setAttribute("member", userDomain.getUsername());
-		
+		if(hs.getAttribute("member")==null) {
+			hs.setAttribute("member", userDomain.getUsername());
+		}
 		return "redirect:/main";
 	}
 
