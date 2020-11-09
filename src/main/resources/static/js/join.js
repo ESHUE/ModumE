@@ -4,7 +4,19 @@ const underline = document.getElementsByClassName('tabMenuBtn')
 		addUnderLine(idx) 
 		//removeUnderLine(idx) 
 	}
-	
+	/*function openMyPageDetails(idx) { 
+		const tabBoxContainer = document.querySelector('.tabBoxContainer'); 
+		if(idx == 4) {
+			location.href = 'http://localhost:8080/logout'; 
+			return; 
+		} // jsp 파일 이름이 바뀌면 controller와 pageName이 변경되어야 한다. 
+		const pageName = '/userinfo' + idx; 
+		fetch(pageName).then(function(response) { 
+			response.text().then(function(text) { 
+				tabBoxContainer.innerHTML = text; 
+			}) 
+		})
+	}*/
 	function addUnderLine(idx) {
 		if(document.querySelector('.underline')) { 
 		const under_element = document.querySelector('.underline') 
@@ -40,7 +52,6 @@ const underline = document.getElementsByClassName('tabMenuBtn')
 		const profile = document.getElementById('profile');
 		fileName.value = profile.value;
 	}
-
 	//프로필 이미지 미리보기
 	function profilePreview(event) {
 		const prevImg = document.querySelector('.imgPreview');
@@ -66,7 +77,6 @@ const underline = document.getElementsByClassName('tabMenuBtn')
 		reader.readAsDataURL(event.target.files[0]); 
 		
 	}
-
 function chkId() {
 		const username = frm.username.value
 		axios.get('/IdChk', {
