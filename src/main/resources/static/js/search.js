@@ -73,7 +73,7 @@ function showSearchList(res) {
         const youtubeUrl = 'https://www.youtube.com/watch?v=' + res.data.items[i].id.videoId;
         console.log(res.data.items[i].id.videoId);
         console.log(res.data.items[i].snippet.title);
-        axios.post('/getRoomId',{
+        axios.get('/getRoomId',{
           params : {
             roomId : res.data.items[i].id.videoId,
             title: res.data.items[i].snippet.title
