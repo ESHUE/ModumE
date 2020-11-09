@@ -1,4 +1,4 @@
-package com.amolrang.modume.test;
+package com.amolrang.modume.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -8,6 +8,9 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.amolrang.modume.model.ChatRoom;
+import com.amolrang.modume.repository.ChatRoomRepository;
+import com.amolrang.modume.type.ChatMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;

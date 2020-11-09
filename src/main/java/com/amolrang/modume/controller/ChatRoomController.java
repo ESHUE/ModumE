@@ -1,4 +1,4 @@
-package com.amolrang.modume.test;
+package com.amolrang.modume.controller;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.amolrang.modume.model.ChatRoom;
 import com.amolrang.modume.model.User_JPA;
+import com.amolrang.modume.repository.ChatRoomRepository;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
