@@ -145,6 +145,13 @@ function chatJoin(client,roomId,member,chatBox){
    });
 }
 
+function chatLeave(client, roomId, member){
+   client.send('/publish/chat/leave',{},JSON.stringify)({
+      chatRoomId : roomId,
+      writer : member
+   });
+}
+
 function TestDetail(roomId,member){
    var url = '/chat/rooms/' + roomId
    console.log('roomId:'+roomId)
@@ -415,7 +422,19 @@ function makeJoin(){
    })
 }
 
-
+function openMyPageDetails(idx) { 
+   const tabBoxContainer = document.querySelector('.tabBoxContainer'); 
+   if(idx == 4) {
+      location.href = 'http://localhost:8080/logout'; 
+      return; 
+   } // jsp 파일 이름이 바뀌면 controller와 pageName이 변경되어야 한다. 
+   const pageName = '/userinfo' + idx; 
+   fetch(pageName).then(function(response) { 
+      response.text().then(function(text) { 
+         tabBoxContainer.innerHTML = text; 
+      }) 
+   })
+}
 function openUserInfo(idx) {
    const body = document.querySelector('body');
    const makeDiv = document.createElement('div');
@@ -448,19 +467,7 @@ function openUserInfo(idx) {
       }).then(function () {openMyPageDetails(idx)});
    })
    
-	function openMyPageDetails(idx) { 
-		const tabBoxContainer = document.querySelector('.tabBoxContainer'); 
-		if(idx == 4) {
-			location.href = 'http://localhost:8080/logout'; 
-			return; 
-		} // jsp 파일 이름이 바뀌면 controller와 pageName이 변경되어야 한다. 
-		const pageName = '/userinfo' + idx; 
-		fetch(pageName).then(function(response) { 
-			response.text().then(function(text) { 
-				tabBoxContainer.innerHTML = text; 
-			}) 
-		})
-	}
+	
 	
    makeDiv2_1.append(makeSpan2_1_1);
    myPageTabMenuContainer.append(makeDiv2_1);

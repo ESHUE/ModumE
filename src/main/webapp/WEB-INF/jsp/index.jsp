@@ -86,7 +86,7 @@
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 	<script src="/js/index.js?aaa=75092"></script>
-	<script src="/js/search.js?aa=afasef"></script>
+	<script src="/js/search.js?aa=afasef24"></script>
 	<script src="/js/test.js?ver=13"></script>
 	<script src="/js/boardRegMod.js?ver=45"></script>
 	<script src="/js/boardList.js?ver=80"></script>

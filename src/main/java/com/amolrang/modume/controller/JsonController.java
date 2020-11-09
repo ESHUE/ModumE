@@ -96,4 +96,6 @@ public class JsonController {
 		log.info("member : {}",loginedUser);
 		return socialRepository.findBysocialusername(loginedUser.getSocialusername()).getUsername();
 	}
+	
+	
 }

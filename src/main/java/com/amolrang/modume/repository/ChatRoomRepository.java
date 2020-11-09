@@ -40,6 +40,8 @@ public class ChatRoomRepository {
 					roomList= ChatRoom.create(streamerID,userName);
 				}
 			}
+		}else {
+			roomList = ChatRoom.create("전체 채팅방", "TotalChatRoom");
 		}
 		log.info("roomList:{}",roomList);
 		if( roomList != null ) {
