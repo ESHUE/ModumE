@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
 <link rel="stylesheet" href="/css/comment.css?ver=8">
 <link rel="stylesheet" href="/css/login.css?ver=27">
-<link rel="stylesheet" href="/css/join.css?ver=8911">
+<link rel="stylesheet" href="/css/join.css?ver=89">
 <link rel="stylesheet" href="/css/test.css?ver=5">
 
 <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
@@ -65,7 +65,7 @@
 					<span class="material-icons" onclick="boardInit()">assignment</span>
 				</div>
 				<div class="menus sidebarMenu1_2">
-					<span class="material-icons" onclick="chatInit('${member}')">chat</span>
+					<span class="material-icons" onclick="chatInit()">chat</span>
 				</div>
 			</aside>
 		</section>
@@ -85,21 +85,19 @@
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-
-	<script src="/js/comment.js?ver=3"></script>
-
-
-	<script src="/js/index.js?aaa=79800d5123"></script>
+	<script src="/js/index.js?aaa=75092"></script>
 	<script src="/js/search.js?aa=afasef"></script>
-	<script src="/js/boardList.js?ver=54"></script>
-	<script src="/js/boardRegMod.js?ver=45"></script>
 	<script src="/js/test.js?ver=13"></script>
-	<script src="/js/join.js?ver=33555"></script>
+	<script src="/js/boardRegMod.js?ver=45"></script>
+	<script src="/js/boardList.js?ver=80"></script>
 	<script src="/js/boardDetail.js?ver=1"></script>
+	<script src="/js/join.js?ver=23"></script>
+	<script src="/js/comment.js?ver=3"></script>
+	<!-- 트위치 채널 긁어오기(채널지정) -->
+
 	<script>
 	
 	
-
 	/* Profile  Eunjeong Start */
 	
 	/* Eunjeong End */
@@ -111,7 +109,6 @@
 
 			<script>
 				//console.log('userInfo= ${userInfo}')
-
 			</script>
 		</c:if>
 		
