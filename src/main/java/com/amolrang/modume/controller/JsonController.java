@@ -96,6 +96,6 @@ public class JsonController {
 		log.info("principal : {}",principal);
 		User_JPA user = userRepository.findByUsername(principal.getName());
 		log.info("Username:{}",user == null ? socialRepository.findBysocialusername(principal.getName()).getUsername() : user.getUsername());
-		return user == null ? socialRepository.findBysocialusername(principal.getName()).getUsername() : user.getUsername();
+		return user == null ? socialRepository.findBysocialusername(principal.getName()).getUsername() : user.getNickname();
 	}
 }
