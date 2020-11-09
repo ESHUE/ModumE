@@ -41,10 +41,10 @@ public class ChatRoomRepository {
 					roomList= ChatRoom.create(streamerID,userName);
 				}
 			}
-		} /*
-			 * else { streamerID = (String)hs.getAttribute("youTubeRoomId"); roomList =
-			 * ChatRoom.create(streamerID,(String)hs.getAttribute("youTubeTitle")); }
-			 */
+		}else {
+			streamerID = (String)hs.getAttribute("youTubeRoomId");
+			roomList = ChatRoom.create(streamerID,(String)hs.getAttribute("youTubeTitle"));
+		}
 		log.info("roomList:{}",roomList);
 		if( roomList != null ) {
 			chatRoomMap = Collections

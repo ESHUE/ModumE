@@ -1,5 +1,8 @@
 package com.amolrang.modume.controller;
 
+import java.beans.Encoder;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.security.Principal;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +21,7 @@ import com.amolrang.modume.repository.AuthRepository;
 import com.amolrang.modume.repository.SocialRepository;
 import com.amolrang.modume.repository.UserRepository;
 import com.amolrang.modume.service.UserService;
+import com.sun.xml.bind.v2.runtime.output.Encoded;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -100,9 +104,10 @@ public class JsonController {
 		return user == null ? socialRepository.findBysocialusername(principal.getName()).getUsername() : user.getNickname();
 	}
 	@RequestMapping(value = "/getRoomId" ,produces = "text/plain;charset=UTF-8")
-	public void getRoomId(String roomId ,String title , HttpSession hs) {
+	public void getRoomId(String roomId ,String title , HttpSession hs) throws UnsupportedEncodingException {
 		log.info("youTubeRoomId:{}",roomId);
 		log.info("youTubeTitle:{}",title);
+		title = URLDecoder.decode(title,"UTF-8");
 		hs.setAttribute("youTubeRoomId", roomId);
 		hs.setAttribute("youTubeTitle", title);
 	}

@@ -76,7 +76,7 @@ function showSearchList(res) {
         axios.get('/getRoomId',{
           params : {
             roomId : res.data.items[i].id.videoId,
-            title: res.data.items[i].snippet.title
+            title: encodeURI(res.data.items[i].snippet.title)
           }
         })
         closeSearch();

@@ -85,8 +85,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-	<script src="/js/index.js?aaa=75092"></script>
-	<script src="/js/search.js?aa=afasef46"></script>
+	<script src="/js/index.js?aaa=750792"></script>
+	<script src="/js/search.js?aa=afasef6"></script>
 	<script src="/js/test.js?ver=13"></script>
 	<script src="/js/boardRegMod.js?ver=45"></script>
 	<script src="/js/boardList.js?ver=80"></script>
