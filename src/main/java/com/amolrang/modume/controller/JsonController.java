@@ -105,13 +105,11 @@ public class JsonController {
 		return user == null ? socialRepository.findBysocialusername(principal.getName()).getUsername() : user.getNickname();
 	}
 	@RequestMapping(value = "/getRoomId" ,produces = "text/plain;charset=UTF-8")
-	public void getRoomId(String roomId ,String title , HttpSession hs) throws UnsupportedEncodingException {
+	public void getRoomId(String roomId ,String title, HttpSession hs) throws UnsupportedEncodingException {
 		log.info("youTubeRoomId:{}",roomId);
 		log.info("youTubeTitle:{}",title);
 		title = URLDecoder.decode(title,"UTF-8");
 		hs.setAttribute("youTubeRoomId", roomId);
 		hs.setAttribute("youTubeTitle", title);
-		//임시적으로 트위치 , 유튜브 구분짓기위해 생성
-		hs.setAttribute("check", true);
 	}
 }
