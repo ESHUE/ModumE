@@ -5,6 +5,7 @@ import java.security.Principal;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -99,7 +100,7 @@ public class JsonController {
 		return user == null ? socialRepository.findBysocialusername(principal.getName()).getUsername() : user.getNickname();
 	}
 	@RequestMapping(value = "/getRoomId" ,produces = "text/plain;charset=UTF-8")
-	public void getRoomId(String roomId , String title , HttpSession hs) {
+	public void getRoomId(String roomId ,String title , HttpSession hs) {
 		log.info("youTubeRoomId:{}",roomId);
 		log.info("youTubeTitle:{}",title);
 		hs.setAttribute("youTubeRoomId", roomId);

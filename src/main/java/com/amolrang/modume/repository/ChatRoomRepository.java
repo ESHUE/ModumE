@@ -50,7 +50,7 @@ public class ChatRoomRepository {
 			chatRoomMap = Collections
 					.unmodifiableMap(Stream.of(roomList)
 							.collect(Collectors.toMap(ChatRoom::getName, Function.identity())));
-			System.out.println(chatRoomMap);
+			//System.out.println(chatRoomMap);
 			chatRooms = Collections.unmodifiableCollection(chatRoomMap.values());
 			log.info("chatRooms:{}",chatRooms);
 		}
