@@ -37,19 +37,21 @@ function findVideo(evt) {
       });
    })
 }
-function chatInit(temp) {
-   member = temp;
-   console.log('값 체크:' + member)
+function chatInit() {
+	axios.get("/curUserName",{}).then(function(res){
+		member = res.data;
+   console.log(res.data)
     const chatContainer = document.querySelector('.chatContainer');
     const boardContainer = document.querySelector('.boardContainer');
     if(boardContainer != null) {
         closeContainer(boardContainer);
     }
     if(chatContainer == null) {
-      openChat(temp)
+      openChat(member)
     } else {
         closeContainer(chatContainer);
     }
+	})
 }
 
 function boardInit() {
@@ -408,7 +410,19 @@ function makeJoin(){
       })
    })
 }
-
+function openMyPageDetails(idx) { 
+		const tabBoxContainer = document.querySelector('.tabBoxContainer'); 
+		if(idx == 4) {
+			location.href = 'http://localhost:8080/logout'; 
+			return; 
+		} // jsp 파일 이름이 바뀌면 controller와 pageName이 변경되어야 한다. 
+		const pageName = '/userinfo' + idx; 
+		fetch(pageName).then(function(response) { 
+			response.text().then(function(text) { 
+				tabBoxContainer.innerHTML = text; 
+			}) 
+		})
+	}
 
 function openUserInfo(idx) {
    const body = document.querySelector('body');
@@ -441,20 +455,6 @@ function openUserInfo(idx) {
          makeDiv2_2.innerHTML = text;
       }).then(function () {openMyPageDetails(idx)});
    })
-   
-	function openMyPageDetails(idx) { 
-		const tabBoxContainer = document.querySelector('.tabBoxContainer'); 
-		if(idx == 4) {
-			location.href = 'http://localhost:8080/logout'; 
-			return; 
-		} // jsp 파일 이름이 바뀌면 controller와 pageName이 변경되어야 한다. 
-		const pageName = '/userinfo' + idx; 
-		fetch(pageName).then(function(response) { 
-			response.text().then(function(text) { 
-				tabBoxContainer.innerHTML = text; 
-			}) 
-		})
-	}
 	
    makeDiv2_1.append(makeSpan2_1_1);
    myPageTabMenuContainer.append(makeDiv2_1);
