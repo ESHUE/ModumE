@@ -18,6 +18,7 @@ import com.amolrang.modume.api.GoogleAPI;
 import com.amolrang.modume.api.TwitchAPI;
 import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.repository.AuthRepository;
+import com.amolrang.modume.repository.ChatRoomRepository;
 import com.amolrang.modume.repository.SocialRepository;
 import com.amolrang.modume.repository.UserRepository;
 import com.amolrang.modume.service.UserService;
@@ -110,5 +111,7 @@ public class JsonController {
 		title = URLDecoder.decode(title,"UTF-8");
 		hs.setAttribute("youTubeRoomId", roomId);
 		hs.setAttribute("youTubeTitle", title);
+		//임시적으로 트위치 , 유튜브 구분짓기위해 생성
+		hs.setAttribute("check", true);
 	}
 }

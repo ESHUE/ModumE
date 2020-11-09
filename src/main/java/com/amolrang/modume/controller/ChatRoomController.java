@@ -44,13 +44,15 @@ public class ChatRoomController {
         return listViewName;
     }
 
-    @GetMapping("/rooms/{id}")
-    public String room(@PathVariable String id, Model model, HttpSession hs) {
-    	id = repository.CreateRoom("",hs);
-        ChatRoom room = repository.getChatRoom(id);
-        model.addAttribute("room", room);
-        //채팅방 들어갔을 때 닉네임으로 들고오기 
+    @GetMapping("/rooms/{name}")
+    public String room(@PathVariable String name, Model model, HttpSession hs) {
+    	name = repository.CreateRoom("",hs);
+    	log.info("name:{}",name);
+        ChatRoom room = repository.getChatRoom(name);
         log.info("room:{}",room);
+        //model.addAttribute("room", room);
+        //채팅방 들어갔을 때 닉네임으로 들고오기 
+        //log.info("room:{}",room);
         return detailViewName;
     }
 }

@@ -29,12 +29,15 @@ public class ChatRoom {
 	    public static ChatRoom create(String name,String userName/*, String id*/) {
 	        ChatRoom created = new ChatRoom();
 	        //created.id = id;
+	        System.out.println(name);
+	        System.out.println(userName);
 	        created.name = name;
 	        created.userName = userName;
 	        return created;
 	    }
 
 	    public void handleMessage(WebSocketSession session, ChatMessage chatMessage, ObjectMapper objectMapper) {
+	    	System.out.println(chatMessage.getType());
 	        if (chatMessage.getType() == MessageType.JOIN) {
 	            join(session);
 	            chatMessage.setMessage(chatMessage.getWriter() + "님이 입장했습니다.");

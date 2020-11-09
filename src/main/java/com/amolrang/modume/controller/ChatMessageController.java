@@ -42,4 +42,10 @@ public class ChatMessageController {
         chat.setUserName(message.getWriter());
         chatRepository.save(chat);
     }
+    
+    @MessageMapping("/chat/leave")
+    public void leave(ChatMessage message) {
+        message.setMessage(message.getWriter() + "님이 퇴장하셨습니다.");
+        template.convertAndSend("/subscribe/chat/room/" + message.getChatRoomId(), message);
+    }
 }

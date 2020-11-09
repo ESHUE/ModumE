@@ -30,7 +30,7 @@ public class ChatRoomRepository {
 		String JsonId = (String)hs.getAttribute("streamerID");
 		ChatRoom roomList = null;
 		String streamerID = null;
-		if(list != null ) {
+		if(list != null && (boolean)hs.getAttribute("check") != true) {
 			System.out.println(list.size());
 			for(int i=0; i<list.size(); i++) {
 				//방송하는 사람의 이름 + 닉네임
@@ -38,12 +38,16 @@ public class ChatRoomRepository {
 				String url = (String)list.get(i).get("thumbnail_url");
 				streamerID = url.substring(url.indexOf("user_") + 5, url.lastIndexOf("-{width}"));
 				if(streamerID.equals(JsonId)) {
+					streamerID = JsonId;
+					log.info("streamerID:{}",streamerID);
 					roomList= ChatRoom.create(streamerID,userName);
 				}
 			}
-		}else {
+		}else if((boolean)hs.getAttribute("check") == true){
 			streamerID = (String)hs.getAttribute("youTubeRoomId");
 			roomList = ChatRoom.create(streamerID,(String)hs.getAttribute("youTubeTitle"));
+		}else {
+			roomList = ChatRoom.create("", "전체채팅방");
 		}
 		log.info("roomList:{}",roomList);
 		if( roomList != null ) {
@@ -54,6 +58,7 @@ public class ChatRoomRepository {
 			chatRooms = Collections.unmodifiableCollection(chatRoomMap.values());
 			log.info("chatRooms:{}",chatRooms);
 		}
+		hs.setAttribute("room", roomList);
 		return streamerID;
 	}
 	

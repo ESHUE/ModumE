@@ -39,7 +39,7 @@ function findVideo(evt) {
 }
 function chatInit() {
 	axios.get("/curUserName",{}).then(function(res){
-		member = res.data;
+      member = res.data;
    console.log(res.data)
     const chatContainer = document.querySelector('.chatContainer');
     const boardContainer = document.querySelector('.boardContainer');
@@ -50,15 +50,18 @@ function chatInit() {
       openChat(member)
     } else {
         closeContainer(chatContainer);
+        chatLeave(client, roomId, member)
     }
 	})
 }
+ 
 
 function boardInit() {
     const boardContainer = document.querySelector('.boardContainer');
     const chatContainer = document.querySelector('.chatContainer');
     if(chatContainer != null) {
         closeContainer(chatContainer);
+        chatLeave(client, roomId, member)
     } 
     if(boardContainer == null) {
         openboard();
@@ -75,6 +78,9 @@ function openChat(member) {
     const chatList = document.createElement('div');
     chatList.className = 'chatList';
     makeDiv.append(chatList)
+   //  axios.get("getChatId",{}).then(function(res){
+   //     roomId = res.data
+   //  })
     TestDetail(roomId,member)
    /*채팅관련 창들 */
    
@@ -89,8 +95,7 @@ function chatList() {
       })
    })
 }
-
-
+var client = null;
 
 function chatDetail(roomId, member) {
    console.log(roomId)
@@ -99,9 +104,10 @@ function chatDetail(roomId, member) {
 		var chatBox = $('.chat-box');
 		var messageInput = $('input[name="message"]');
 		message = messageInput;
-		var sendBtn = $('.send');
+      var sendBtn = $('.send');
       var sock = new SockJS("/ws");
-		var client = Stomp.over(sock); // 1. SockJS를 내부에 들고 있는 client를 내어준다.
+      client = Stomp.over(sock); 
+      // 1. SockJS를 내부에 들고 있는 client를 내어준다.
 		// 2. connection이 맺어지면 실행된다.
 		client.connect({}, function() {
          // 3. send(path, header, message)로 메시지를 보낼 수 있다.
@@ -141,15 +147,11 @@ function chatDetail(roomId, member) {
 	});
 }
 
-function chatJoin(client,roomId,member,chatBox){
-   
-}
-
 function chatLeave(client, roomId, member){
-   client.send('/publish/chat/leave',{},JSON.stringify)({
+   client.send('/publish/chat/leave',{},JSON.stringify({
       chatRoomId : roomId,
       writer : member
-   });
+   }));
 }
 
 function TestDetail(roomId,member){
