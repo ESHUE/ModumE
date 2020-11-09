@@ -24,9 +24,9 @@ public class Userboard_JPA {
 	private int boardseq;
 	@Column(length = 128)
 	private String title;
-	@Column(length = 8000)
+	@Column(length = 5000)
 	private String content;
-	@Column(length = 8000)
+	@Column(length = 5000)
 	private String convertcontent;
 	@ColumnDefault("0")
 	private int hits;
@@ -34,7 +34,13 @@ public class Userboard_JPA {
 	private Timestamp rdate;
 	@CreationTimestamp
 	private Timestamp mdate;
+	@Column
+	private boolean quicklink;
+	@Column(length = 128)
+	private String quicklinkurl;
+	
 	@ManyToOne
 	@JoinColumn(name = "userseq")
 	private User_JPA userseq;
+	
 }
