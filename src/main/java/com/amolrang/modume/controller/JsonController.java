@@ -1,5 +1,7 @@
 package com.amolrang.modume.controller;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.amolrang.modume.api.GoogleAPI;
 import com.amolrang.modume.api.TwitchAPI;
-import com.amolrang.modume.model.Social_JPA;
 import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.repository.AuthRepository;
 import com.amolrang.modume.repository.SocialRepository;
@@ -91,11 +92,17 @@ public class JsonController {
 	}
 	
 	@RequestMapping(value = "/curUserName",produces = "text/plain;charset=UTF-8")
-	public String curUserName(HttpSession hs) {
-		Social_JPA loginedUser = (Social_JPA)hs.getAttribute("member");
-		log.info("member : {}",loginedUser);
-		return socialRepository.findBysocialusername(loginedUser.getSocialusername()).getUsername();
+	public String curUserName(Principal principal) {
+		log.info("principal : {}",principal);
+		User_JPA user = userRepository.findByUsername(principal.getName());
+		log.info("Username:{}",user == null ? socialRepository.findBysocialusername(principal.getName()).getUsername() : user.getUsername());
+		return user == null ? socialRepository.findBysocialusername(principal.getName()).getUsername() : user.getNickname();
 	}
-	
-	
+	@RequestMapping(value = "/getRoomId" ,produces = "text/plain;charset=UTF-8")
+	public void getRoomId(String roomId , String title , HttpSession hs) {
+		log.info("youTubeRoomId:{}",roomId);
+		log.info("youTubeTitle:{}",title);
+		hs.setAttribute("youTubeRoomId", roomId);
+		hs.setAttribute("youTubeTitle", title);
+	}
 }

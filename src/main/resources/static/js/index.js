@@ -423,18 +423,19 @@ function makeJoin(){
 }
 
 function openMyPageDetails(idx) { 
-   const tabBoxContainer = document.querySelector('.tabBoxContainer'); 
-   if(idx == 4) {
-      location.href = 'http://localhost:8080/logout'; 
-      return; 
-   } // jsp 파일 이름이 바뀌면 controller와 pageName이 변경되어야 한다. 
-   const pageName = '/userinfo' + idx; 
-   fetch(pageName).then(function(response) { 
-      response.text().then(function(text) { 
-         tabBoxContainer.innerHTML = text; 
-      }) 
-   })
-}
+		const tabBoxContainer = document.querySelector('.tabBoxContainer'); 
+		if(idx == 4) {
+			location.href = 'http://localhost:8080/logout'; 
+			return; 
+		} // jsp 파일 이름이 바뀌면 controller와 pageName이 변경되어야 한다. 
+		const pageName = '/userinfo' + idx; 
+		fetch(pageName).then(function(response) { 
+			response.text().then(function(text) { 
+				tabBoxContainer.innerHTML = text; 
+			}) 
+		})
+	}
+
 function openUserInfo(idx) {
    const body = document.querySelector('body');
    const makeDiv = document.createElement('div');
