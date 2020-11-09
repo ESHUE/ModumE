@@ -1,4 +1,4 @@
-package com.amolrang.modume.test;
+package com.amolrang.modume.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

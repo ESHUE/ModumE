@@ -1,4 +1,4 @@
-package com.amolrang.modume.test;
+package com.amolrang.modume.repository;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.web.socket.WebSocketSession;
+
+import com.amolrang.modume.model.ChatRoom;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.amolrang.modume.test;
+package com.amolrang.modume.controller;
 
 import java.sql.Date;
 
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.amolrang.modume.model.Chat_JPA;
 import com.amolrang.modume.repository.ChatRepository;
+import com.amolrang.modume.type.ChatMessage;
 
 import lombok.extern.slf4j.Slf4j;
 
