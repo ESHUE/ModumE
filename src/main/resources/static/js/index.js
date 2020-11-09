@@ -37,19 +37,21 @@ function findVideo(evt) {
       });
    })
 }
-function chatInit(temp) {
-   member = temp;
-   console.log('값 체크:' + member)
+function chatInit() {
+	axios.get("/curUserName",{}).then(function(res){
+		member = res.data;
+   console.log(res.data)
     const chatContainer = document.querySelector('.chatContainer');
     const boardContainer = document.querySelector('.boardContainer');
     if(boardContainer != null) {
         closeContainer(boardContainer);
     }
     if(chatContainer == null) {
-      openChat(temp)
+      openChat(member)
     } else {
         closeContainer(chatContainer);
     }
+	})
 }
 
 function boardInit() {

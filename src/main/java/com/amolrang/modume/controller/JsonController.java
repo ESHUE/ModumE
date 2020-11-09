@@ -5,13 +5,16 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.amolrang.modume.api.GoogleAPI;
 import com.amolrang.modume.api.TwitchAPI;
+import com.amolrang.modume.model.Social_JPA;
 import com.amolrang.modume.model.User_JPA;
+import com.amolrang.modume.repository.AuthRepository;
+import com.amolrang.modume.repository.SocialRepository;
+import com.amolrang.modume.repository.UserRepository;
 import com.amolrang.modume.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +25,15 @@ public class JsonController {
 	@Autowired
 	UserService userService;
 
+	@Autowired
+	UserRepository userRepository;
+	
+	@Autowired
+	AuthRepository authRepository;
+	
+	@Autowired
+	SocialRepository socialRepository;
+	
 	@Autowired
 	private OAuth2AuthorizedClientService authorizedClientService;
 
@@ -76,5 +88,12 @@ public class JsonController {
 	@RequestMapping(value = "/autoJoin",produces = "text/plain;charset=UTF-8")
 	public void autoJoin(String streamerID,HttpSession hs) {
 		hs.setAttribute("streamerID", streamerID);
+	}
+	
+	@RequestMapping(value = "/curUserName",produces = "text/plain;charset=UTF-8")
+	public String curUserName(HttpSession hs) {
+		Social_JPA loginedUser = (Social_JPA)hs.getAttribute("member");
+		log.info("member : {}",loginedUser);
+		return socialRepository.findBysocialusername(loginedUser.getSocialusername()).getUsername();
 	}
 }

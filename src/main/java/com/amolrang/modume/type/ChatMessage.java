@@ -1,6 +1,4 @@
-package com.amolrang.modume.test;
-
-import com.amolrang.modume.type.MessageType;
+package com.amolrang.modume.type;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
