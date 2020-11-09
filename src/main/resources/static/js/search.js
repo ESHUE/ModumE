@@ -71,7 +71,7 @@ function showSearchList(res) {
       });
       makeDiv11111.addEventListener("click", ()=>{
         const youtubeUrl = 'https://www.youtube.com/watch?v=' + res.data.items[i].id.videoId;
-        // console.log(youtubeUrl);
+         console.log(youtubeUrl);
         closeSearch();
         openYoutube(youtubeUrl);
       });

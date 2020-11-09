@@ -65,7 +65,7 @@
 					<span class="material-icons" onclick="boardInit()">assignment</span>
 				</div>
 				<div class="menus sidebarMenu1_2">
-					<span class="material-icons" onclick="chatInit('${member}')">chat</span>
+					<span class="material-icons" onclick="chatInit()">chat</span>
 				</div>
 			</aside>
 		</section>

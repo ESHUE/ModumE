@@ -10,7 +10,6 @@ public class ModumEApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ModumEApplication.class, args);
-		
 	}
 
 }

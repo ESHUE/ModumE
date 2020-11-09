@@ -125,7 +125,7 @@ public class AuthenticationController {
 		hs.setAttribute("userDomain", userDomain);
 		hs.setAttribute("userInfo", loginedUser);
 		if(hs.getAttribute("member")==null) {
-			hs.setAttribute("member", userDomain.getUsername());
+			hs.setAttribute("member", socialRepository.findBysocialusername(UserInfoJson.getSocialusername()));
 		}
 		return "redirect:/main";
 	}
