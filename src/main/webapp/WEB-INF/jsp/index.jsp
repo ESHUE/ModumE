@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${title}</title>
 <link rel="icon" href="/img/favicon.png">
-<link rel="stylesheet" href="/css/index.css?ver=9544">
+<link rel="stylesheet" href="/css/index.css?ver=955454">
 <link rel="stylesheet" href="/css/boardList.css?ver=3">
 <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
 <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
@@ -85,8 +85,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-	<script src="/js/index.js?aaa=75092"></script>
-	<script src="/js/search.js?aa=afasef46"></script>
+	<script src="/js/index.js?aaa=75"></script>
+	<script src="/js/notice.js?aaa=792"></script>
+	<script src="/js/search.js?aa=afa46"></script>
 	<script src="/js/test.js?ver=13"></script>
 	<script src="/js/boardRegMod.js?ver=45"></script>
 	<script src="/js/boardList.js?ver=80"></script>
@@ -123,7 +124,7 @@
 				<script>
 				/* member = '${member}'; */	
 				</script>
-					<script type="text/javascript" src="/js/twitch.js">
+					<script type="text/javascript" src="/js/twitch.js?ver=aaa">
 					</script>
 				</c:if>
 			</c:forEach>
