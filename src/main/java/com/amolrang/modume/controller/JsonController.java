@@ -1,14 +1,14 @@
 package com.amolrang.modume.controller;
 
-import java.beans.Encoder;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,11 +18,10 @@ import com.amolrang.modume.api.GoogleAPI;
 import com.amolrang.modume.api.TwitchAPI;
 import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.repository.AuthRepository;
-import com.amolrang.modume.repository.ChatRoomRepository;
 import com.amolrang.modume.repository.SocialRepository;
 import com.amolrang.modume.repository.UserRepository;
 import com.amolrang.modume.service.UserService;
-import com.sun.xml.bind.v2.runtime.output.Encoded;
+import com.google.gson.Gson;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -104,12 +103,29 @@ public class JsonController {
 		log.info("Username:{}",user == null ? socialRepository.findBysocialusername(principal.getName()).getUsername() : user.getUsername());
 		return user == null ? socialRepository.findBysocialusername(principal.getName()).getUsername() : user.getNickname();
 	}
-	@RequestMapping(value = "/getRoomId" ,produces = "text/plain;charset=UTF-8")
-	public void getRoomId(String roomId ,String title, HttpSession hs) throws UnsupportedEncodingException {
-		log.info("youTubeRoomId:{}",roomId);
-		log.info("youTubeTitle:{}",title);
+	@RequestMapping(value = "/setRoomId" ,produces = "text/plain;charset=UTF-8")
+	public void setRoomId(String roomId ,String title, HttpSession hs) throws UnsupportedEncodingException {
+		log.info("setyouTubeRoomId:{}",roomId);
+		log.info("setyouTubeTitle:{}",title);
 		title = URLDecoder.decode(title,"UTF-8");
 		hs.setAttribute("youTubeRoomId", roomId);
 		hs.setAttribute("youTubeTitle", title);
+		
+	}
+	
+	@RequestMapping(value = "/getRoomId" ,produces = "text/plain;charset=UTF-8")
+	public String getRoomId(HttpSession hs) throws UnsupportedEncodingException {
+		log.info("getyouTubeRoomId:{}",(String)hs.getAttribute("youTubeRoomId"));
+		log.info("getyouTubeTitle:{}",(String)hs.getAttribute("youTubeTitle"));
+		Map result = new HashMap();
+		if( hs.getAttribute("youTubeRoomId") != null ) {
+			result.put("youTubeRoomId", (String)hs.getAttribute("youTubeRoomId"));
+		}
+		if( hs.getAttribute("youTubeTitle") != null ) {
+			result.put("youTubeTitle", (String)hs.getAttribute("youTubeTitle"));
+		}
+		Gson gson = new Gson();
+		log.info("result:{}",result);
+		return gson.toJson(result);
 	}
 }
