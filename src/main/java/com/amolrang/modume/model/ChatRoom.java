@@ -38,12 +38,20 @@ public class ChatRoom {
 	        if (chatMessage.getType() == MessageType.JOIN) {
 	            join(session);
 	            chatMessage.setMessage(chatMessage.getWriter() + "님이 입장했습니다.");
+	        }else if(chatMessage.getType() == MessageType.LEAVE) {
+	        	leave(session);
+	        	chatMessage.setMessage(chatMessage.getWriter() + "님이 퇴장했습니다.");
 	        }
 	        
 	        send(chatMessage, objectMapper);
 	    }
 
-	    private void join(WebSocketSession session) {
+	    private void leave(WebSocketSession session) {
+			// TODO Auto-generated method stub
+	    	sessions.add(session);
+		}
+
+		private void join(WebSocketSession session) {
 	        sessions.add(session);
 	    }
 

@@ -103,26 +103,7 @@ function chatDetail(roomId, member) {
       var sock = new SockJS("/ws");
 		var client = Stomp.over(sock); // 1. SockJS를 내부에 들고 있는 client를 내어준다.
 		// 2. connection이 맺어지면 실행된다.
-		client.connect({}, function() {
-			// 3. send(path, header, message)로 메시지를 보낼 수 있다.
-			client.send('/publish/chat/join', {}, JSON.stringify({
-				chatRoomId : roomId,
-				writer : member
-			}));
-			// 4. subscribe(path, callback)로 메시지를 받을 수 있다. callback 첫번째 파라미터의 body로 메시지의 내용이 들어온다.
-			client.subscribe('/subscribe/chat/room/' + roomId, function(
-					chat) {
-            var content = JSON.parse(chat.body);
-            if(content.writer==member){
-               chatBox.append('<li class="myId"><span class="myMember">' + content.message + '</span>('
-						+ content.writer + ')</li>')
-            }else{
-               chatBox.append('<li class="otherId"><span class="otherMember">' + content.message + '</span>('
-						+ content.writer + ')</li>')
-            }
-				
-			});
-      });
+		chatJoin(client,roomId,message,member,chatBox);
       sendBtn.click(function() {
          var message = messageInput.val();
          console.log(message);
@@ -139,6 +120,36 @@ function chatDetail(roomId, member) {
          }
       });
 	});
+}
+
+function chatJoin(client,roomId,member,chatBox){
+   client.connect({}, function() {
+      // 3. send(path, header, message)로 메시지를 보낼 수 있다.
+      client.send('/publish/chat/join', {}, JSON.stringify({
+         chatRoomId : roomId,
+         writer : member
+      }));
+      // 4. subscribe(path, callback)로 메시지를 받을 수 있다. callback 첫번째 파라미터의 body로 메시지의 내용이 들어온다.
+      client.subscribe('/subscribe/chat/room/' + roomId, function(
+            chat) {
+         var content = JSON.parse(chat.body);
+         if(content.writer==member){
+            chatBox.append('<li class="myId"><span class="myMember">' + content.message + '</span>('
+               + content.writer + ')</li>')
+         }else{
+            chatBox.append('<li class="otherId"><span class="otherMember">' + content.message + '</span>('
+               + content.writer + ')</li>')
+         }
+         
+      });
+   });
+}
+
+function chatLeave(client, roomId, member){
+   client.send('/publish/chat/leave',{},JSON.stringify)({
+      chatRoomId : roomId,
+      writer : member
+   });
 }
 
 function TestDetail(roomId,member){
@@ -410,6 +421,7 @@ function makeJoin(){
       })
    })
 }
+
 function openMyPageDetails(idx) { 
 		const tabBoxContainer = document.querySelector('.tabBoxContainer'); 
 		if(idx == 4) {
@@ -455,6 +467,8 @@ function openUserInfo(idx) {
          makeDiv2_2.innerHTML = text;
       }).then(function () {openMyPageDetails(idx)});
    })
+   
+	
 	
    makeDiv2_1.append(makeSpan2_1_1);
    myPageTabMenuContainer.append(makeDiv2_1);
