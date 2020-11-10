@@ -124,13 +124,15 @@ function chatDetail(roomId, member) {
 							writer : member
 						}));
 							messageInput.val('');
-					}
+               }
+               
 				}
 			});
 		message = messageInput;
       var sendBtn = $('.send');
       var sock = new SockJS("/ws");
       client = Stomp.over(sock); 
+      var content_class = document.querySelector(".content");
       // 1. SockJS를 내부에 들고 있는 client를 내어준다.
 		// 2. connection이 맺어지면 실행된다.
 		client.connect({}, function() {
@@ -150,7 +152,7 @@ function chatDetail(roomId, member) {
                chatBox.append('<li class="otherId"><span class="otherMember">' + content.message + '</span>('
                   + content.writer + ')</li>')
             }
-            
+            content_class.scrollTop = content_class.scrollHeight;
          });
       });
       sendBtn.click(function() {
