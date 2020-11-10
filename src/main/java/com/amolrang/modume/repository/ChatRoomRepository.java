@@ -29,7 +29,7 @@ public class ChatRoomRepository {
 //		ChatRoom[] roomList = {ChatRoom.create("전체 채팅방"),ChatRoom.create("?????")};
 		ArrayList<Map> list = (ArrayList<Map>)hs.getAttribute("LiveStream");
 		String JsonId = (String)hs.getAttribute("streamerID");
-		ChatRoom roomList = ChatRoom.create("All", "전체채팅방");;
+		ChatRoom roomList = null;
 		String streamerID = null;
 		String check = "false";
 		if(list != null && (String)hs.getAttribute("youTubeRoomId") == null) {
@@ -44,17 +44,12 @@ public class ChatRoomRepository {
 				}
 			}
 			hs.setAttribute("check", check);
-		} else if ((Boolean)hs.getAttribute("check").equals(true)) {
-			log.info("test:{}","Youtube Check");
-			JsonId = (String) hs.getAttribute("youTubeRoomId");
-			roomList = ChatRoom.create(JsonId, (String) hs.getAttribute("youTubeTitle"));
-			log.info("JsonId:{}",JsonId);
-			log.info("roomList:{}",roomList);
-		}
-		else {
+		} else if((String)hs.getAttribute("youTubeRoomId") != null){
 			roomList = ChatRoom.create((String)hs.getAttribute("youTubeRoomId"), (String)hs.getAttribute("youTubeTitle"));
 			hs.setAttribute("youTubeTitle", null);
 			hs.setAttribute("youTubeRoomId", null);
+		} else {
+			roomList = ChatRoom.create("All", "전체채팅방");
 		}
 		log.info("roomList:{}", roomList);
 		if (roomList != null) {
