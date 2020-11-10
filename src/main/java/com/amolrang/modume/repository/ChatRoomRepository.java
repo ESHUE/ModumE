@@ -31,19 +31,26 @@ public class ChatRoomRepository {
 		String JsonId = (String)hs.getAttribute("streamerID");
 		ChatRoom roomList = null;
 		String streamerID = null;
-		String check = "false";
+		boolean check = false;
+		if(hs.getAttribute("bPlay") != null) {
+			check =(boolean)hs.getAttribute("bPlay");			
+		}
+		
 		if(list != null && (String)hs.getAttribute("youTubeRoomId") == null) {
-			System.out.println(list.size());
-			for (int i = 0; i < list.size(); i++) {
-				// 방송하는 사람의 이름 + 닉네임
-				String userName = (String) list.get(i).get("user_name");
-				String url = (String) list.get(i).get("thumbnail_url");
-				streamerID = url.substring(url.indexOf("user_") + 5, url.lastIndexOf("-{width}"));
-				if (streamerID.equals(JsonId)) {
-					roomList = ChatRoom.create(JsonId, userName);
+			if(check) {
+				System.out.println(list.size());
+				for (int i = 0; i < list.size(); i++) {
+					// 방송하는 사람의 이름 + 닉네임
+					String userName = (String) list.get(i).get("user_name");
+					String url = (String) list.get(i).get("thumbnail_url");
+					streamerID = url.substring(url.indexOf("user_") + 5, url.lastIndexOf("-{width}"));
+					if (streamerID.equals(JsonId)) {
+						roomList = ChatRoom.create(JsonId, userName);
+					}
 				}
+			}else {
+				roomList = ChatRoom.create("All", "전체채팅방");
 			}
-			hs.setAttribute("check", check);
 		} else if((String)hs.getAttribute("youTubeRoomId") != null){
 			roomList = ChatRoom.create((String)hs.getAttribute("youTubeRoomId"), (String)hs.getAttribute("youTubeTitle"));
 			hs.setAttribute("youTubeTitle", null);

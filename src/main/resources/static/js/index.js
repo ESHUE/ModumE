@@ -110,6 +110,23 @@ function chatDetail(roomId, member) {
 	$(function() {
 		var chatBox = $('.chat-box');
 		var messageInput = $('input[name="message"]');
+		messageInput.keypress(function(key){
+			console.log(key)
+			if( key.keyCode == 13 ){
+				var message = messageInput.val();
+				console.log(message);
+				if(message ==null || message==''){
+					alert('Please Enter Content')
+					}else{
+						client.send('/publish/chat/message', {}, JSON.stringify({
+							chatRoomId : roomId,
+							message : message,
+							writer : member
+						}));
+							messageInput.val('');
+					}
+				}
+			});
 		message = messageInput;
       var sendBtn = $('.send');
       var sock = new SockJS("/ws");

@@ -92,8 +92,10 @@ public class JsonController {
 	}
 	
 	@RequestMapping(value = "/autoJoin",produces = "text/plain;charset=UTF-8")
-	public void autoJoin(String streamerID,HttpSession hs) {
+	public void autoJoin(String streamerID,HttpSession hs, boolean bPlay) {
 		hs.setAttribute("streamerID", streamerID);
+		hs.setAttribute("bPlay", bPlay);
+		log.info("bPlay:{}",bPlay);
 	}
 	
 	@RequestMapping(value = "/curUserName",produces = "text/plain;charset=UTF-8")

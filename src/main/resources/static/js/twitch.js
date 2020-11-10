@@ -140,7 +140,8 @@ axios.get('/getStreams', {}).then(function (res) {
 							reactPlayer(videoURL);
 							axios.get("/autoJoin",{
 								params:{
-									streamerID
+									streamerID,
+									bPlay : true
 								}
 							}).then(function(result){
 								

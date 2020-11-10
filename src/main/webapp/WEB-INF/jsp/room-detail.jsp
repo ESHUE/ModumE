@@ -14,6 +14,6 @@
 		</div>
 	</div>
 		<div class="chatInputDiv">
-			<input name="message" id="inputMessage" placeholder="메세지를 입력하세요" >
+			<input name="message" id="inputMessage"  placeholder="메세지를 입력하세요" >
 			<button class="send" id="sendBtn">보내기</button>
 		</div>
