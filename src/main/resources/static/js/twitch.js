@@ -39,6 +39,11 @@ function newScrollbar() {
 }
 
 function loadTwitchFollowSwiper(item) {
+  const noticeContainer = document.querySelector('.noticeContainer');
+  if(noticeContainer != null) {
+    noticeContainer.remove();
+  }
+
   const slide = newSlider();
   const name = document.createElement("span");
   const title = document.createElement("span");

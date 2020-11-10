@@ -1,5 +1,5 @@
 function showSearchList(res) {
-    console.log(res)
+    // console.log(res)
     // console.log(res.data.items)
     // console.log(res.data.items.length)
     const centralSearch = document.querySelector('.centralSearch');
@@ -70,6 +70,10 @@ function showSearchList(res) {
         makeDiv11111.remove();
       });
       makeDiv11111.addEventListener("click", ()=>{
+        const noticeContainer = document.querySelector('.noticeContainer');
+        if(noticeContainer != null) {
+          noticeContainer.remove();
+        }
         const youtubeUrl = 'https://www.youtube.com/watch?v=' + res.data.items[i].id.videoId;
         console.log(res.data.items[i].id.videoId);
         console.log(res.data.items[i].snippet.title);
