@@ -40,7 +40,8 @@ function findVideo(evt) {
 function chatInit() {
 	axios.get("/curUserName",{}).then(function(res){
       member = res.data;
-   console.log(res.data)
+   console.log(res)
+
     const chatContainer = document.querySelector('.chatContainer');
     const boardContainer = document.querySelector('.boardContainer');
     if(boardContainer != null) {
@@ -55,6 +56,12 @@ function chatInit() {
 	})
 }
  
+function loadChatInfo(){
+	axios.get('/getRoomId',{}).then(function(res){
+		console.log(res);
+		roomId = res.data.youTubeRoomId;
+	})
+}
 
 function boardInit() {
     const boardContainer = document.querySelector('.boardContainer');

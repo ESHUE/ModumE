@@ -73,7 +73,7 @@ function showSearchList(res) {
         const youtubeUrl = 'https://www.youtube.com/watch?v=' + res.data.items[i].id.videoId;
         console.log(res.data.items[i].id.videoId);
         console.log(res.data.items[i].snippet.title);
-        axios.get('/getRoomId',{
+        axios.get('/setRoomId',{
           params : {
             roomId : res.data.items[i].id.videoId,
             title: encodeURI(res.data.items[i].snippet.title)
@@ -82,7 +82,7 @@ function showSearchList(res) {
         closeSearch();
         // 유튜브 제목 가져오기 수정중
         openYoutube(youtubeUrl);
-        
+		loadChatInfo()  
       });
     }
 }
@@ -121,5 +121,6 @@ function loadReactPlayer(tag, url) {
   });
   document.querySelector('.slideContainer').append(tag);
 }
+
 
 document.addEventListener("click",closeSearch);

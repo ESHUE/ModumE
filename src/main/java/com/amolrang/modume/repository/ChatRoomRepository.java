@@ -28,10 +28,10 @@ public class ChatRoomRepository {
 //		ChatRoom[] roomList = {ChatRoom.create("전체 채팅방"),ChatRoom.create("?????")};
 		ArrayList<Map> list = (ArrayList<Map>)hs.getAttribute("LiveStream");
 		String JsonId = (String)hs.getAttribute("streamerID");
-		ChatRoom roomList = null;
+		ChatRoom roomList = ChatRoom.create("All", "전체채팅방");;
 		String streamerID = null;
 		String check = "false";
-		if(list != null) {
+		if(list != null && (String)hs.getAttribute("youTubeRoomId") == null) {
 			System.out.println(list.size());
 			for(int i=0; i<list.size(); i++) {
 				//방송하는 사람의 이름 + 닉네임
@@ -48,7 +48,9 @@ public class ChatRoomRepository {
 			 * ChatRoom.create(JsonId,(String)hs.getAttribute("youTubeTitle")); }
 			 */
 		else {
-			roomList = ChatRoom.create("All", "전체채팅방");
+			roomList = ChatRoom.create((String)hs.getAttribute("youTubeRoomId"), (String)hs.getAttribute("youTubeTitle"));
+			hs.setAttribute("youTubeTitle", null);
+			hs.setAttribute("youTubeRoomId", null);
 		}
 		log.info("roomList:{}",roomList);
 		if( roomList != null ) {
