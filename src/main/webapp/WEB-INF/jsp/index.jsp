@@ -99,7 +99,6 @@
 	<script>
 	
 	
-
 	/* Profile  Eunjeong Start */
 	
 	/* Eunjeong End */
@@ -111,7 +110,6 @@
 
 			<script>
 				//console.log('userInfo= ${userInfo}')
-
 			</script>
 		</c:if>
 		

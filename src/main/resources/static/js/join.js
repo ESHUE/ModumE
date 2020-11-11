@@ -62,13 +62,20 @@ const underline = document.getElementsByClassName('tabMenuBtn')
 		reader.onload = function(event) { 
 			var img = document.createElement("img"); 
 			img.classList.add('imgPreview')
-			img.style.width= '100px';
-			img.style.height = '80px';
+			img.style.width= '70px';
+			img.style.height = '60px';
+			img.style.borderRadius = '50%';
 			
 			img.setAttribute("src", event.target.result); 
-			document.querySelector("div#image_container").appendChild(img); 
+			document.querySelector("label#profileIcon").appendChild(img);
+			//const imgPreview = document.querySelector('imgPreview');
+			img.style.position= 'relative';
+			img.style.top = '5px';
+			img.style.right= '7px'; 
+			
 		}; 
 		reader.readAsDataURL(event.target.files[0]); 
+		
 	}
 function chkId() {
 		const username = frm.username.value
@@ -84,3 +91,4 @@ function chkId() {
 			}
 		})
     }
+

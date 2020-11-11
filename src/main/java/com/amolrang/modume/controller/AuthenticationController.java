@@ -157,7 +157,7 @@ public class AuthenticationController {
 		user.setEnabled(true);
 		user.setNickname(userJPA.getNickname());
 		user.setUsername(userJPA.getUsername());
-		user.setProfileImg(userJPA.getProfileImg());
+		//user.setProfileImg(userJPA.getProfileImg());
 		user.setPassword(passwordEncoder.encode(userJPA.getPassword()));
 		userRepository.save(user);
 		
