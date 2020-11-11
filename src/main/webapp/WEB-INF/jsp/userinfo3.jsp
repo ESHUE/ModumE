@@ -12,7 +12,6 @@
 				<span class="material-icons privacyIcon">person</span>
 				<input type="text" name="nickname" placeholder="이름" id="modifyName" value="">
 			</div>
-
 		</form>
 	</div>
 	<div class="">

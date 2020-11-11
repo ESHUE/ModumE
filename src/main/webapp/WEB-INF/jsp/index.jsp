@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/css/boardList.css?ver=3">
 <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
 <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
-<link rel="stylesheet" href="/css/comment.css?ver=8">
+<link rel="stylesheet" href="/css/comment.css?ver=23">
 <link rel="stylesheet" href="/css/login.css?ver=27">
 <link rel="stylesheet" href="/css/join.css?ver=89">
 <link rel="stylesheet" href="/css/test.css?ver=5">
@@ -89,17 +89,15 @@
 	<script src="/js/notice.js?aaa=792"></script>
 	<script src="/js/search.js?aa=afa46"></script>
 	<script src="/js/test.js?ver=13"></script>
-	<script src="/js/boardRegMod.js?ver=45"></script>
+	<script src="/js/boardRegMod.js?ver=46"></script>
 	<script src="/js/boardList.js?ver=80"></script>
-	<script src="/js/boardDetail.js?ver=1"></script>
-	<script src="/js/join.js?ver=23"></script>
-	<script src="/js/comment.js?ver=3"></script>
-	<!-- 트위치 채널 긁어오기(채널지정) -->
+	<script src="/js/boardDetail.js?ver=2"></script>
+	<script src="/js/join.js?ver=33"></script>
+	<script src="/js/comment.js?ver=33"></script>
 
 	<script>
 	
 	
-
 	/* Profile  Eunjeong Start */
 	
 	/* Eunjeong End */
@@ -111,7 +109,6 @@
 
 			<script>
 				//console.log('userInfo= ${userInfo}')
-
 			</script>
 		</c:if>
 		

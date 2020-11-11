@@ -60,9 +60,9 @@
         <span class="material-icons-outlined mr5">remove_red_eye</span>
         <span>${boardDetail.hits }</span>
     </div>
-    <div class="board-comment cursor flex-center" onclick="goToComment()">
+    <div class="board-comment cursor flex-center" onclick="goToComment(${boardDetail.boardseq})">
         <span class="material-icons-outlined mr5">comment</span>
-        <span>10</span>
+        <span>${comment_cnt }</span>
     </div>
     <div class="board-like cursor flex-center">
         <span class="material-icons-outlined mr5">thumb_up</span>

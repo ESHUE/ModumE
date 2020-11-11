@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.amolrang.modume.model.Boardimg_JPA;
+import com.amolrang.modume.model.Comment_JPA;
 import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.model.Userboard_JPA;
 import com.amolrang.modume.repository.BoardImgRepository;
+import com.amolrang.modume.repository.CommentRepository;
 import com.amolrang.modume.repository.UserBoardRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -40,6 +42,12 @@ public class TestController {
 
 	@Autowired
 	BoardImgRepository boardImgRepository;
+	
+	@Autowired
+	CommentRepository commentRepository;
+	
+	@Autowired
+	TestMapper testMapper;
 	
 	@RequestMapping(value = "/test", produces = "text/plain;charset=UTF-8")
 	public String test(Principal principal, OAuth2AuthenticationToken authentication) {
@@ -59,8 +67,11 @@ public class TestController {
 	public String boardDetail(Model model, @RequestBody Map<String, Object> param, HttpSession hs) {
 		int boardseq = (int) param.get("boardseq");
 		User_JPA loginUser = (User_JPA)hs.getAttribute("userInfo");
-		System.out.println("로그인 : " + loginUser.getUserseq());
-		model.addAttribute("boardDetail", userBoardRepository.findByBoardseq(boardseq));
+		//System.out.println("로그인 : " + loginUser.getUserseq());
+		
+		Userboard_JPA userboard_jpa = userBoardRepository.findByBoardseq(boardseq);
+		model.addAttribute("boardDetail", userboard_jpa);
+		model.addAttribute("comment_cnt", testMapper.selCountComment(userboard_jpa));
 		model.addAttribute("loginUser", loginUser);
 		return "/boardDetail";
 	}
@@ -79,7 +90,6 @@ public class TestController {
 	public Userboard_JPA boardRegMod(@RequestBody Userboard_JPA param) {
 		System.out.println("오는거샤?? : " + param.getBoardseq());
 		Userboard_JPA ubModel = userBoardRepository.findByBoardseq(param.getBoardseq());
-		log.info("찍어보쟈 findByBoardseq:{}", ubModel);
 		return ubModel;
 	}
 	
@@ -102,13 +112,54 @@ public class TestController {
 	@ResponseBody
 	public String boardDel(Userboard_JPA param) {
 		boardImgRepository.deleteByBoardseq(param);
+		commentRepository.deleteByBoardseq(param);
 		userBoardRepository.deleteByBoardseq(param.getBoardseq());
 		return null;
 	}
 	
-	@RequestMapping(value = "/comment", method = RequestMethod.GET)
-	public String comment() {
+	@RequestMapping(value = "/comment", method = RequestMethod.POST)
+	public String comment(Model model, @RequestBody Map<Object, Object> param, HttpSession hs) {
+		List<Comment_JPA> commentList = service.comment(param, hs);
+		model.addAttribute("commentList", commentList);
+		model.addAttribute("boardseq", (int) param.get("boardseq"));
+		model.addAttribute("loginUser", (User_JPA)hs.getAttribute("userInfo"));
+		
 		return "/comment";
+	}
+	
+	@RequestMapping(value = "/commentRegModAction", method = RequestMethod.POST)
+	@ResponseBody
+	public int commentRegModAction(HttpSession hs, @RequestBody Map<String, Object> param) {
+		User_JPA user_jpa = (User_JPA)hs.getAttribute("userInfo");
+		if(user_jpa == null) {
+			return 0;
+		}
+		
+		int boardseq = (int) param.get("boardseq");
+		String commentcontent = (String) param.get("commentcontent");
+		// int commentseq = (int) param.get("commentseq");
+		int commentseq = Integer.parseInt((String) param.get("commentseq"));
+		
+		System.out.println("하하 boardseq : " + boardseq);
+		System.out.println("하하 commentcontent : " + commentcontent);
+		System.out.println("하하 commentseq : " + commentseq);
+		
+		
+		Comment_JPA comment_jpa = new Comment_JPA();
+		comment_jpa.setBoardseq(userBoardRepository.findByBoardseq(boardseq));
+		comment_jpa.setCommentcontent(commentcontent);
+		comment_jpa.setCommentseq(commentseq);
+		comment_jpa.setUserseq(user_jpa);
+		
+		service.commentRegModAction(comment_jpa);
+		return boardseq;			
+	}
+	
+	@RequestMapping(value = "/commentDel", method = RequestMethod.GET)
+	@ResponseBody
+	public String commentDel(Comment_JPA param) {
+		commentRepository.deleteByCommentseq(param.getCommentseq());
+		return null;
 	}
 
 	@GetMapping("/userinfo")
