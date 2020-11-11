@@ -50,9 +50,12 @@ button {
 	border-radius: 50%;
 }
 /*userInfo3*/
+.userInfo3Container {
+	width: 100%;
+	height: 550px;
+}
 .personalInformatin {
   display: flex;
-  justify-content: center;
   margin-top: 30px;
   
 }
@@ -66,4 +69,16 @@ button {
   font-size: 2em;
   color: #a07be5;
 }
-
+.userInfoSection1{
+	margin: 45px;
+}
+.userInfoSection2 {
+	margin-top: 25px;
+	margin-left: 45px;
+}
+.userInfoSection2 .userInfo3 {
+	margin-bottom: 30px;
+}
+.sns-modume-sign2 {
+	text-align: left;
+}
