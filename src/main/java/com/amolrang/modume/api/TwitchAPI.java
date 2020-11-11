@@ -56,12 +56,14 @@ public class TwitchAPI {
 				if(sns.getSns().equals("twitch")) {
 					token = sns.getToken();
 					clientId = sns.getClientid();
+					newHeader(clientId,authAuthorizedClientService,token);
 					break;
 				}
 			}
+		}else {
+			newHeader(authentication,authAuthorizedClientService);
 		}
-		
-		newHeader(clientId,authAuthorizedClientService,token);
+
 		restTemplateExchange(url, query);
 
 		LinkedHashMap data = (LinkedHashMap) response.getBody();
@@ -103,12 +105,13 @@ public class TwitchAPI {
 				if(sns.getSns().equals("twitch")) {
 					token = sns.getToken();
 					clientId = sns.getClientid();
+					newHeader(clientId,authAuthorizedClientService,token);
 					break;
 				}
 			}
+		}else {
+			newHeader(authentication,authAuthorizedClientService);
 		}
-		
-		newHeader(clientId,authAuthorizedClientService,token);
 		restTemplateExchange(url, query);
 
 		LinkedHashMap<?, ?> data = (LinkedHashMap<?, ?>) response.getBody();
