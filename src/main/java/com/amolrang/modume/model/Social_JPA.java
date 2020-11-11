@@ -23,4 +23,6 @@ public class Social_JPA {
 	private String socialusername;
 	private String username;
 	private String sns;
+	private String token;
+	private String clientid;
 }

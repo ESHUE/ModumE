@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
@@ -87,6 +88,12 @@ public class AuthenticationController {
 		
 		//SocialModel 정보 받아오기 (CallApi으로부터)
 		Social_JPA UserInfoJson = callApi.CallUserInfoToJson(authentication, authorizedClientService);
+		OAuth2AuthorizedClient client = authorizedClientService
+				.loadAuthorizedClient(authentication.getAuthorizedClientRegistrationId(), authentication.getName());
+		UserInfoJson.setToken(client.getAccessToken().getTokenValue());
+		UserInfoJson.setClientid(client.getClientRegistration().getClientId());
+		log.info("111. token:{}",UserInfoJson.getToken());
+		log.info("112. clientID:{}",UserInfoJson.getClientid());
 		log.info("123. Social_JPA: {}",UserInfoJson);
 		User_JPA loginedUser = (User_JPA)hs.getAttribute("userInfo");
 		log.info("132. User_JPA: {}", loginedUser);
@@ -118,7 +125,7 @@ public class AuthenticationController {
 			userDomain = new UserModel();
 			userDomain.setUsername(social_JPA_List.get(0).getUsername());
 			for(Social_JPA sns : social_JPA_List) {
-				System.out.println(sns.getSns());
+				//System.out.println(sns.getSns());
 				userDomain.getSns().add(new String(sns.getSns()));
 			}
 		}

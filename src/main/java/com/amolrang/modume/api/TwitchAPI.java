@@ -2,10 +2,12 @@ package com.amolrang.modume.api;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -16,6 +18,11 @@ import org.springframework.security.oauth2.client.authentication.OAuth2Authentic
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.amolrang.modume.model.Social_JPA;
+import com.amolrang.modume.model.UserModel;
+import com.amolrang.modume.model.User_JPA;
+import com.amolrang.modume.repository.SocialRepository;
+import com.amolrang.modume.repository.UserRepository;
 import com.google.gson.Gson;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +35,10 @@ public class TwitchAPI {
 	private ResponseEntity<Map> response = null;
 	private HttpHeaders headers = null;
 
+	@Autowired
+	private SocialRepository socialRepository;
+	@Autowired
+	UserRepository userRepository;
 	/**
 	 * 트위치 로그인 성공 -> 나의 팔로우 가져옴 -> 20개중 라이브 방송 필터링 -> 라이브 방송 목록 표시 + 추천 생방송 표시 = 20개
 	 */
@@ -36,8 +47,21 @@ public class TwitchAPI {
 			OAuth2AuthorizedClientService authAuthorizedClientService,HttpSession hs) {
 		String url = "https://api.twitch.tv/helix/users/follows";
 		String query = "?from_id="+authentication.getPrincipal().getName();
+		String token = null;
+		String clientId = null;
+		User_JPA loginedUser = (User_JPA)hs.getAttribute("userInfo");
+		List<Social_JPA> social_JPA_List= socialRepository.findAllByUserseq(loginedUser);
+		if(social_JPA_List != null) {
+			for(Social_JPA sns : social_JPA_List) {
+				if(sns.getSns().equals("twitch")) {
+					token = sns.getToken();
+					clientId = sns.getClientid();
+					break;
+				}
+			}
+		}
 		
-		newHeader(authentication,authAuthorizedClientService);
+		newHeader(clientId,authAuthorizedClientService,token);
 		restTemplateExchange(url, query);
 
 		LinkedHashMap data = (LinkedHashMap) response.getBody();
@@ -70,8 +94,21 @@ public class TwitchAPI {
 			OAuth2AuthorizedClientService authAuthorizedClientService,HttpSession hs) {
 		String url = "https://api.twitch.tv/helix/streams?language=ko";
 		String query = "";
+		String token = null;
+		String clientId = null;
+		User_JPA loginedUser = (User_JPA)hs.getAttribute("userInfo");
+		List<Social_JPA> social_JPA_List= socialRepository.findAllByUserseq(loginedUser);
+		if(social_JPA_List != null) {
+			for(Social_JPA sns : social_JPA_List) {
+				if(sns.getSns().equals("twitch")) {
+					token = sns.getToken();
+					clientId = sns.getClientid();
+					break;
+				}
+			}
+		}
 		
-		newHeader(authentication,authAuthorizedClientService);
+		newHeader(clientId,authAuthorizedClientService,token);
 		restTemplateExchange(url, query);
 
 		LinkedHashMap<?, ?> data = (LinkedHashMap<?, ?>) response.getBody();
@@ -110,8 +147,13 @@ public class TwitchAPI {
 		headers = new HttpHeaders();
 		OAuth2AuthorizedClient client = authAuthorizedClientService
 				.loadAuthorizedClient(authentication.getAuthorizedClientRegistrationId(), authentication.getName());
-		headers.add(HttpHeaders.AUTHORIZATION, "Bearer " + client.getAccessToken().getTokenValue());
-		headers.add("Client-Id", client.getClientRegistration().getClientId());
+		return newHeader(client.getClientRegistration().getClientId(),authAuthorizedClientService,client.getAccessToken().getTokenValue());
+	}
+	private HttpHeaders newHeader(String clientId,
+			OAuth2AuthorizedClientService authAuthorizedClientService,String Token) {
+		headers = new HttpHeaders();
+		headers.add(HttpHeaders.AUTHORIZATION, "Bearer " + Token);
+		headers.add("Client-Id", clientId);
 		return headers;
 	}
 }
