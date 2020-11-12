@@ -324,7 +324,6 @@ function openUserMenu(isLogin,temp) {
    makeSpan2_2_3.style.left = '0px';
    makeSpan2_2_3.style.display = 'flex';
    makeSpan2_2_3.style.justifyContent = 'center';
-   makeSpan2_2_3.style.fontSize = '1.2em';
 
    const makeSpan2_2_4 = document.createElement('span');
    makeSpan2_2_4.classList.add('material-icons');
