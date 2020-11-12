@@ -48,7 +48,7 @@ function loadTwitchFollowSwiper(item) {
   const name = document.createElement("span");
   const title = document.createElement("span");
   const thumbnail_url = document.createElement("div");
-  //console.log(item);
+  ////console.log(item);
   name.innerText = item.user_name;
   name.style.position = "absolute";
   name.style.margin = "1%";
@@ -75,7 +75,7 @@ function loadTwitchFollowSwiper(item) {
   //thumbnail_url.innerText = item.thumbnail_url;
   item.thumbnail_url = item.thumbnail_url.replace("{width}", "1920");
   item.thumbnail_url = item.thumbnail_url.replace("{height}", "1080");
-  console.log(item.thumbnail_url);
+  //console.log(item.thumbnail_url);
 
   thumbnail_url.style.backgroundImage = `url(${item.thumbnail_url})`;
   thumbnail_url.classList.add("thumbnail");
@@ -141,7 +141,7 @@ axios.get('/getStreams', {}).then(function (res) {
 							streamerID = url.substring(url.indexOf("user_") + 5, url.lastIndexOf("-1920x"));
 							/* streamerID 따로 저장 */
 							saveRoomId(streamerID);
-							console.log(videoURL);
+							//console.log(videoURL);
 							reactPlayer(videoURL);
 							axios.get("/autoJoin",{
 								params:{
@@ -154,7 +154,7 @@ axios.get('/getStreams', {}).then(function (res) {
 						}
 						function reactPlayer(url) {
 							const container = document.getElementById('video-embed')
-							console.log(container)
+							//console.log(container)
 							renderReactPlayer(container, {
 								url,
 								playing: true,

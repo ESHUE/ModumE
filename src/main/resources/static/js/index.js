@@ -10,13 +10,13 @@ var message = null;
 function findVideo(evt) {
    evt.preventDefault();
    const keyword = document.querySelector('#searchVideo').value;
-   // console.log(keyword);
+   // //console.log(keyword);
 	axios.get('/googleSearch', {
       params : {
          keyword
       }
    }).then(function(res) {
-      // console.log(res);
+      // //console.log(res);
       showSearchList(res);
    }).then(function() {
       var searchSwiper = new Swiper('.searchResultContainer>.swiper-container', {
@@ -40,7 +40,7 @@ function findVideo(evt) {
 function chatInit() {
 	axios.get("/curUserName",{}).then(function(res){
       member = res.data;
-   console.log(res)
+   //console.log(res)
 
     const chatContainer = document.querySelector('.chatContainer');
     const boardContainer = document.querySelector('.boardContainer');
@@ -58,7 +58,7 @@ function chatInit() {
  
 function loadChatInfo(){
 	axios.get('/getRoomId',{}).then(function(res){
-		console.log(res);
+		//console.log(res);
 		roomId = res.data.youTubeRoomId;
 	})
 }
@@ -91,7 +91,7 @@ function openChat(member) {
     TestDetail(roomId,member)
    /*채팅관련 창들 */
    
-   console.log('chat화면 띄우기 완료')
+   //console.log('chat화면 띄우기 완료')
 }
 
 function chatList() {
@@ -105,16 +105,16 @@ function chatList() {
 var client = null;
 
 function chatDetail(roomId, member) {
-   console.log(roomId)
-   console.log('왜 들어와짐?')
+   //console.log(roomId)
+   //console.log('왜 들어와짐?')
 	$(function() {
 		var chatBox = $('.chat-box');
 		var messageInput = $('input[name="message"]');
 		messageInput.keypress(function(key){
-			console.log(key)
+			//console.log(key)
 			if( key.keyCode == 13 ){
 				var message = messageInput.val();
-				console.log(message);
+				//console.log(message);
 				if(message ==null || message==''){
 					alert('Please Enter Content')
 					}else{
@@ -157,7 +157,7 @@ function chatDetail(roomId, member) {
       });
       sendBtn.click(function() {
          var message = messageInput.val();
-         console.log(message);
+         //console.log(message);
          if(message ==null || message==''){
             alert('Please Enter Content')
             
@@ -182,9 +182,9 @@ function chatLeave(client, roomId, member){
 
 function TestDetail(roomId,member){
    var url = '/chat/rooms/' + roomId
-   console.log('roomId:'+roomId)
-   console.log('member:'+member)
-   console.log('url:'+url)
+   //console.log('roomId:'+roomId)
+   //console.log('member:'+member)
+   //console.log('url:'+url)
    fetch(url).then(function(response) {
 		response.text().then(function(text) {
 			chatDetail(roomId, member)
@@ -201,7 +201,7 @@ function chatListDetail(temp, mem) {
 	roomId = temp;
 	member = mem;
 	var url = '/chat/rooms/' + temp
-	console.log(url)
+	//console.log(url)
 	fetch(url).then(function(response) {
 		response.text().then(function(text) {
 			chatDetail(roomId, mem)
@@ -302,8 +302,8 @@ function openUserMenu(isLogin,temp) {
    makeSpan2_2_1.style.left = '0px';
    makeSpan2_2_1.style.display = 'flex';
    makeSpan2_2_1.style.justifyContent = 'center';
-   console.log(temp)
-   console.log(isLogin)
+   //console.log(temp)
+   //console.log(isLogin)
 	
    const makeSpan2_2_2 = document.createElement('span');
    makeSpan2_2_2.classList.add('cursor');

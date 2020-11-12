@@ -71,16 +71,16 @@ function modifyComment(id, commentseq) {
 	const form = document.querySelector('#commentIns-form');
 	form.comment.value = commentContent;
 	form.commentseq.value = commentseq;
-	console.log(commentseq + '  ' + commentContent);	
+	//console.log(commentseq + '  ' + commentContent);	
 }
 
 function commentRegMod(boardseq) {
 	const form = document.querySelector('#commentIns-form');
 	const commentseq = form.commentseq.value;
 	const textarea = form.comment.value;
-	console.log("코멘트 시퀀스 : " + commentseq);
-	console.log('보드 시퀀스 : ' + boardseq);
-	console.log('텍스트 : ' + textarea);
+	//console.log("코멘트 시퀀스 : " + commentseq);
+	//console.log('보드 시퀀스 : ' + boardseq);
+	//console.log('텍스트 : ' + textarea);
 	ajaxCommentRegMod(commentseq, boardseq, textarea);
 	
 }

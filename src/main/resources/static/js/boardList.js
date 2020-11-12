@@ -26,7 +26,7 @@ function goToEditor(boardseq) {
 			};
 			
 			axios.post(url, param).then(function(res) {
-				console.log(res.data); 
+				//console.log(res.data); 
 				const boardDetail = res.data;
 				
 				const form = document.querySelector('#board-regMod__form');
