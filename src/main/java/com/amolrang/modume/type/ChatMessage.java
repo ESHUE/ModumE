@@ -10,6 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ChatMessage {
+	private String streamerId;
     private String chatRoomId;
     private String writer;
     private String message;

@@ -6,6 +6,7 @@ var centralMenu1_2 = document.querySelector('.centralMenu1_2');
 var roomId = null;
 var member = null;
 var message = null;
+var streamerId = null;
 
 function findVideo(evt) {
    evt.preventDefault();
@@ -48,7 +49,8 @@ function chatInit() {
         closeContainer(boardContainer);
     }
     if(chatContainer == null) {
-      openChat(member)
+      openChat(member);
+		loadStreamerIdInfo();
     } else {
         closeContainer(chatContainer);
         chatLeave(client, roomId, member)
@@ -60,6 +62,13 @@ function loadChatInfo(){
 	axios.get('/getRoomId',{}).then(function(res){
 		//console.log(res);
 		roomId = res.data.youTubeRoomId;
+	})
+}
+
+function loadStreamerIdInfo(){
+	axios.get('/getStreamerId',{}).then(function(res){
+		streamerId = res.data.streamerId;
+		console.log('streamerId: ' + streamerId)
 	})
 }
 
@@ -165,7 +174,8 @@ function chatDetail(roomId, member) {
             client.send('/publish/chat/message', {}, JSON.stringify({
                chatRoomId : roomId,
                message : message,
-               writer : member
+               writer : member,
+			   streamerId : streamerId
             }));
             messageInput.val('');
          }

@@ -42,7 +42,7 @@ public class ChatMessageController {
         chat.setCtnt(message.getMessage());
         chat.setStreamerId(message.getChatRoomId());
         chat.setUserName(message.getWriter());
-        //chat.setStreamerId((String)hs.getAttribute("streamerID"));
+        chat.setStreamerId(message.getStreamerId());
         chatRepository.save(chat);
     }
     
