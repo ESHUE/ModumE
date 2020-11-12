@@ -23,7 +23,7 @@ function chkSubmit() {
     const textarea = CKEDITOR.instances.boardRegModTexarea.getData();
 	const convertcontent = textarea.replace(/(<([^>]+)>)/ig, "");
 
-	console.log("보여줘 너의 보드시퀀스 : " + boardseq);
+	//console.log("보여줘 너의 보드시퀀스 : " + boardseq);
     if(title == '') {
         alert('제목을 입력해주세요!');
         return;

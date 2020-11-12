@@ -23,7 +23,7 @@ function deleteBoard(boardseq) {
 			boardseq: boardseq
 		}
 	}).then(function(res){
-		console.log(res)
+		//console.log(res)
 		
 		alert('게시글이 삭제되었습니다.');
 		fetch('/boardList').then(function(response) {

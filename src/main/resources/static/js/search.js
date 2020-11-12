@@ -1,7 +1,7 @@
 function showSearchList(res) {
-    // console.log(res)
-    // console.log(res.data.items)
-    // console.log(res.data.items.length)
+    // //console.log(res)
+    // //console.log(res.data.items)
+    // //console.log(res.data.items.length)
     const centralSearch = document.querySelector('.centralSearch');
     closeSearch();
  
@@ -34,7 +34,7 @@ function showSearchList(res) {
 
     // 스와이퍼 안에 들어갈 아이템들
     for(let i=0; i<res.data.items.length; i++) {
-      // console.log(res.data.items[i].snippet.thumbnails.medium);
+      // //console.log(res.data.items[i].snippet.thumbnails.medium);
       const makeDiv1111 = document.createElement('div');
       makeDiv1111.className = 'swiper-slide';
       makeDiv1111.style.position = 'relative';
@@ -75,8 +75,8 @@ function showSearchList(res) {
           noticeContainer.remove();
         }
         const youtubeUrl = 'https://www.youtube.com/watch?v=' + res.data.items[i].id.videoId;
-        console.log(res.data.items[i].id.videoId);
-        console.log(res.data.items[i].snippet.title);
+        //console.log(res.data.items[i].id.videoId);
+        //console.log(res.data.items[i].snippet.title);
         axios.get('/setRoomId',{
           params : {
             roomId : res.data.items[i].id.videoId,

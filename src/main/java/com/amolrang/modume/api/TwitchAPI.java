@@ -42,7 +42,7 @@ public class TwitchAPI {
 	/**
 	 * 트위치 로그인 성공 -> 나의 팔로우 가져옴 -> 20개중 라이브 방송 필터링 -> 라이브 방송 목록 표시 + 추천 생방송 표시 = 20개
 	 */
-	
+	//사용안함
 	public String getTwitchMyFollower(OAuth2AuthenticationToken authentication,
 			OAuth2AuthorizedClientService authAuthorizedClientService,HttpSession hs) {
 		String url = "https://api.twitch.tv/helix/users/follows";
@@ -75,7 +75,7 @@ public class TwitchAPI {
 //		log.info("FollowerTestLog:{}",test.size());
 		return gson.toJson(data);
 	}
-	
+	//사용안함
 	public String getTwtichVideo(String follow,OAuth2AuthenticationToken authentication,
 			OAuth2AuthorizedClientService authAuthorizedClientService) {
 		String url = "https://api.twitch.tv/helix/videos";
@@ -123,7 +123,7 @@ public class TwitchAPI {
 		hs.setAttribute("LiveStream", list);
 		return gson.toJson(data);
 	}
-	
+	//사용안함
 	public String getChatting(OAuth2AuthenticationToken authentication,
 			OAuth2AuthorizedClientService authAuthorizedClientService,HttpSession hs) {
 		String url = "https://www.twitch.tv/embed/43691/chat";
