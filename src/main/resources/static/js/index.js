@@ -60,7 +60,6 @@ function chatInit() {
  
 function loadChatInfo(){
 	axios.get('/getRoomId',{}).then(function(res){
-		//console.log(res);
 		roomId = res.data.youTubeRoomId;
 	})
 }
@@ -94,13 +93,7 @@ function openChat(member) {
     const chatList = document.createElement('div');
     chatList.className = 'chatList';
     makeDiv.append(chatList)
-   //  axios.get("getChatId",{}).then(function(res){
-   //     roomId = res.data
-   //  })
     TestDetail(roomId,member)
-   /*채팅관련 창들 */
-   
-   //console.log('chat화면 띄우기 완료')
 }
 
 function chatList() {
@@ -114,16 +107,12 @@ function chatList() {
 var client = null;
 
 function chatDetail(roomId, member) {
-   //console.log(roomId)
-   //console.log('왜 들어와짐?')
 	$(function() {
 		var chatBox = $('.chat-box');
 		var messageInput = $('input[name="message"]');
 		messageInput.keypress(function(key){
-			//console.log(key)
 			if( key.keyCode == 13 ){
 				var message = messageInput.val();
-				//console.log(message);
 				if(message ==null || message==''){
 					alert('Please Enter Content')
 					}else{
@@ -134,7 +123,6 @@ function chatDetail(roomId, member) {
 						}));
 							messageInput.val('');
                }
-               
 				}
 			});
 		message = messageInput;
@@ -166,7 +154,6 @@ function chatDetail(roomId, member) {
       });
       sendBtn.click(function() {
          var message = messageInput.val();
-         //console.log(message);
          if(message ==null || message==''){
             alert('Please Enter Content')
             
@@ -192,9 +179,6 @@ function chatLeave(client, roomId, member){
 
 function TestDetail(roomId,member){
    var url = '/chat/rooms/' + roomId
-   //console.log('roomId:'+roomId)
-   //console.log('member:'+member)
-   //console.log('url:'+url)
    fetch(url).then(function(response) {
 		response.text().then(function(text) {
 			chatDetail(roomId, member)
@@ -211,7 +195,6 @@ function chatListDetail(temp, mem) {
 	roomId = temp;
 	member = mem;
 	var url = '/chat/rooms/' + temp
-	//console.log(url)
 	fetch(url).then(function(response) {
 		response.text().then(function(text) {
 			chatDetail(roomId, mem)
@@ -234,7 +217,6 @@ function openboard() {
 
 function changeLocation(location) {
 	const boardContainer = document.querySelector('.boardContainer');
-	//fetchBoard(boardContainer, location);
 	fetchBoard(boardContainer, location);
 }
 
