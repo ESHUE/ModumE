@@ -2,6 +2,8 @@ package com.amolrang.modume.controller;
 
 import java.sql.Date;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -40,6 +42,7 @@ public class ChatMessageController {
         chat.setCtnt(message.getMessage());
         chat.setStreamerId(message.getChatRoomId());
         chat.setUserName(message.getWriter());
+        chat.setStreamerId(message.getStreamerId());
         chatRepository.save(chat);
     }
     

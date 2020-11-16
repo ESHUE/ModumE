@@ -6,6 +6,7 @@ var centralMenu1_2 = document.querySelector('.centralMenu1_2');
 var roomId = null;
 var member = null;
 var message = null;
+var streamerId = null;
 
 function findVideo(evt) {
    evt.preventDefault();
@@ -48,7 +49,8 @@ function chatInit() {
         closeContainer(boardContainer);
     }
     if(chatContainer == null) {
-      openChat(member)
+      openChat(member);
+		loadStreamerIdInfo();
     } else {
         closeContainer(chatContainer);
         chatLeave(client, roomId, member)
@@ -58,8 +60,14 @@ function chatInit() {
  
 function loadChatInfo(){
 	axios.get('/getRoomId',{}).then(function(res){
-		//console.log(res);
 		roomId = res.data.youTubeRoomId;
+	})
+}
+
+function loadStreamerIdInfo(){
+	axios.get('/getStreamerId',{}).then(function(res){
+		streamerId = res.data.streamerId;
+		console.log('streamerId: ' + streamerId)
 	})
 }
 
@@ -85,13 +93,7 @@ function openChat(member) {
     const chatList = document.createElement('div');
     chatList.className = 'chatList';
     makeDiv.append(chatList)
-   //  axios.get("getChatId",{}).then(function(res){
-   //     roomId = res.data
-   //  })
     TestDetail(roomId,member)
-   /*채팅관련 창들 */
-   
-   //console.log('chat화면 띄우기 완료')
 }
 
 function chatList() {
@@ -105,16 +107,12 @@ function chatList() {
 var client = null;
 
 function chatDetail(roomId, member) {
-   //console.log(roomId)
-   //console.log('왜 들어와짐?')
 	$(function() {
 		var chatBox = $('.chat-box');
 		var messageInput = $('input[name="message"]');
 		messageInput.keypress(function(key){
-			//console.log(key)
 			if( key.keyCode == 13 ){
 				var message = messageInput.val();
-				//console.log(message);
 				if(message ==null || message==''){
 					alert('Please Enter Content')
 					}else{
@@ -124,13 +122,14 @@ function chatDetail(roomId, member) {
 							writer : member
 						}));
 							messageInput.val('');
-					}
+               }
 				}
 			});
 		message = messageInput;
       var sendBtn = $('.send');
       var sock = new SockJS("/ws");
       client = Stomp.over(sock); 
+      var content_class = document.querySelector(".content");
       // 1. SockJS를 내부에 들고 있는 client를 내어준다.
 		// 2. connection이 맺어지면 실행된다.
 		client.connect({}, function() {
@@ -150,12 +149,11 @@ function chatDetail(roomId, member) {
                chatBox.append('<li class="otherId"><span class="otherMember">' + content.message + '</span>('
                   + content.writer + ')</li>')
             }
-            
+            content_class.scrollTop = content_class.scrollHeight;
          });
       });
       sendBtn.click(function() {
          var message = messageInput.val();
-         //console.log(message);
          if(message ==null || message==''){
             alert('Please Enter Content')
             
@@ -163,7 +161,8 @@ function chatDetail(roomId, member) {
             client.send('/publish/chat/message', {}, JSON.stringify({
                chatRoomId : roomId,
                message : message,
-               writer : member
+               writer : member,
+			   streamerId : streamerId
             }));
             messageInput.val('');
          }
@@ -180,9 +179,6 @@ function chatLeave(client, roomId, member){
 
 function TestDetail(roomId,member){
    var url = '/chat/rooms/' + roomId
-   //console.log('roomId:'+roomId)
-   //console.log('member:'+member)
-   //console.log('url:'+url)
    fetch(url).then(function(response) {
 		response.text().then(function(text) {
 			chatDetail(roomId, member)
@@ -199,7 +195,6 @@ function chatListDetail(temp, mem) {
 	roomId = temp;
 	member = mem;
 	var url = '/chat/rooms/' + temp
-	//console.log(url)
 	fetch(url).then(function(response) {
 		response.text().then(function(text) {
 			chatDetail(roomId, mem)
@@ -222,7 +217,6 @@ function openboard() {
 
 function changeLocation(location) {
 	const boardContainer = document.querySelector('.boardContainer');
-	//fetchBoard(boardContainer, location);
 	fetchBoard(boardContainer, location);
 }
 
@@ -322,7 +316,6 @@ function openUserMenu(isLogin,temp) {
    makeSpan2_2_3.style.left = '0px';
    makeSpan2_2_3.style.display = 'flex';
    makeSpan2_2_3.style.justifyContent = 'center';
-   makeSpan2_2_3.style.fontSize = '1.2em';
 
    const makeSpan2_2_4 = document.createElement('span');
    makeSpan2_2_4.classList.add('material-icons');
