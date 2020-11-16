@@ -130,4 +130,13 @@ public class JsonController {
 		log.info("result:{}",result);
 		return gson.toJson(result);
 	}
+	
+	@RequestMapping(value="/getStreamerId" ,produces = "text/plain;charset=UTF-8")
+	public String getStreamerId(HttpSession hs) {
+		Map<String, String> result = new HashMap();
+		result.put("streamerId", (String)hs.getAttribute("streamerID"));
+		Gson gson = new Gson();
+		log.info("result:{}",result);
+		return gson.toJson(result);
+	}
 }
