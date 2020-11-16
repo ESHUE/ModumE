@@ -133,7 +133,7 @@ public class JsonController {
 	
 	@RequestMapping(value="/getStreamerId" ,produces = "text/plain;charset=UTF-8")
 	public String getStreamerId(HttpSession hs) {
-		Map<String, String> result = new HashMap<String, String>();
+		Map<String, String> result = new HashMap();
 		result.put("streamerId", (String)hs.getAttribute("streamerID"));
 		Gson gson = new Gson();
 		log.info("result:{}",result);
