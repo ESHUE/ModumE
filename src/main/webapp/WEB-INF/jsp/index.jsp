@@ -71,10 +71,6 @@
 		</section>
 	</main>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-	<script src="https://embed.twitch.tv/embed/v1.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -101,19 +97,19 @@
 	</c:if>
 	<c:if test="${naverTokenIsExpired}">
 		<script>
-	// 트위치토큰 만료 여부확인
+	// 네이버토큰 만료 여부확인
 	alert("네이버 계정이 만료되었습니다. 다시 연동 해주세요.")
 	</script>
 	</c:if>
 	<c:if test="${googleTokenIsExpired}">
 		<script>
-	// 트위치토큰 만료 여부확인
+	// 구글토큰 만료 여부확인
 	alert("구글 계정이 만료되었습니다. 다시 연동 해주세요.")
 	</script>
 	</c:if>
 	<c:if test="${kakaoTokenIsExpired}">
 		<script>
-	// 트위치토큰 만료 여부확인
+	// 카카오토큰 만료 여부확인
 	alert("카카오 계정이 만료되었습니다. 다시 연동 해주세요.")
 	</script>
 	</c:if>
