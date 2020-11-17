@@ -6,11 +6,11 @@
 		<fieldset class="fld-login">
 			<legend class="legend">login</legend>
 			<div class="input-container focus">
-				<label class="move active" for="user_id"></label><input type="text" class="no-border active " id="user_id" name="user_id" placeholder="ID" options="{ updateOn: 'keyup blur' }" required value="abc111">
+				<label class="move active" for="user_id"></label><input type="text" class="no-border active " id="user_id" name="user_id" placeholder="ID" options="{ updateOn: 'keyup blur' }" required >
 			</div>
 			<div class="input-container focus">
 				<label class="move active" for="password"></label><input type="password" class="no-border active" id="password" name="password" placeholder="PASSWORD" autocomplete="off"
-					options="{ updateOn: 'keyup blur' }" required value="123!456!">
+					options="{ updateOn: 'keyup blur' }" required >
 			</div>
 		</fieldset>
 		<input class="loginSbm" type="submit" value="sign in"> <input name="${_csrf.parameterName}" type="hidden" value="${_crsf.token}">

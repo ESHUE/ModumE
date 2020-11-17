@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<link rel="stylesheet" href="/css/userInfo.css?ver=4546546">
+<link rel="stylesheet" href="/css/userinfo.css">
 
 <div style="background:white">
 	<div>

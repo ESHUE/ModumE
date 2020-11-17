@@ -25,18 +25,18 @@
 					<!--<input type="button" name="imgSubmit" value="올리기"> -->
 				</div>
 				<div class="joinListContainer">
-					<input type="text" name="nickname" placeholder="이름" value="은찌리">
+					<input type="text" name="nickname" placeholder="이름" >
 				</div>
 				<div class="joinListContainer">
-					<input type="text" name="username" placeholder="아이디" value="abc111">
+					<input type="text" name="username" placeholder="아이디" >
 					<button type="button" onclick="chkId()">아이디 중복체크</button>
 				</div>
 				<div id="idChkResult" class="msg"></div>
 				<div class="joinListContainer">
-					<input type="password" name="password" placeholder="비밀번호" value="123!456!">
+					<input type="password" name="password" placeholder="비밀번호" >
 				</div>
 				<div class="joinListContainer">
-					<input type="password" name="password_re" placeholder="비밀번호 확인" value="123!456!">
+					<input type="password" name="password_re" placeholder="비밀번호 확인" >
 				</div>
 				<div class="joinSbm">
 					<input type="submit" value="sign up">

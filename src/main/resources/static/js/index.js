@@ -445,7 +445,7 @@ function makeJoin(){
 function openMyPageDetails(idx) { 
 		const tabBoxContainer = document.querySelector('.tabBoxContainer'); 
 		if(idx == 4) {
-			location.href = 'http://localhost:8080/logout'; 
+			location.href = '/logout'; 
 			return; 
 		} // jsp 파일 이름이 바뀌면 controller와 pageName이 변경되어야 한다. 
 		const pageName = '/userinfo' + idx; 

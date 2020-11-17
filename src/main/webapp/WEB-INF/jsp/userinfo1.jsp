@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/css/userInfo.css">
+<link rel="stylesheet" href="/css/userinfo.css">
 </head>
 <body>
 	<div>나는 1입니다.</div>
