@@ -53,8 +53,10 @@ public class ChatRoomRepository {
 			}
 		} else if((String)hs.getAttribute("youTubeRoomId") != null){
 			roomList = ChatRoom.create((String)hs.getAttribute("youTubeRoomId"), (String)hs.getAttribute("youTubeTitle"));
+			JsonId = (String)hs.getAttribute("youTubeRoomId");
 			hs.setAttribute("youTubeTitle", null);
 			hs.setAttribute("youTubeRoomId", null);
+			log.info("JsonId:{}",JsonId);
 		} else {
 			roomList = ChatRoom.create("All", "전체채팅방");
 		}
