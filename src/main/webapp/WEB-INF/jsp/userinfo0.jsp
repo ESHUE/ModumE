@@ -12,10 +12,9 @@
 	<div class="profileBox">
 		
 		<div class="myPageBox">
-			<div class="userProfileHeader"><span class="userNickName">${userInfo.nickname }</span>님 프로필 사진 설정</div>
+			<div class="userProfileHeader"><span class="userNickName">${member.username}</span>님 프로필 사진 설정</div>
 			<div class="">
-				
-			
+				<p>서비스 준비중입니다 ( _ _ )</p>
 			</div>
 			<div>
 				<label for="profile"></label>

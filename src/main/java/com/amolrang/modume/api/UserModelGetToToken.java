@@ -51,6 +51,7 @@ public class UserModelGetToToken {
 
 			//유저 정보 추출
 			Map<?, ?> userInfo = response.getBody();
+			log.info("userInfo:{}",userInfo);
 			Map<Object, Object> userInfoMap = new HashMap<>();
 			
 			//뽑은 정보들 넣을 변수들
