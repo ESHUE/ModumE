@@ -6,37 +6,48 @@
 
 .boardContainer .board-detail-btn {
     position: absolute;
-    bottom: 68px;
+    bottom: 50px;
 }
 
-.boardContainer .board-detail-option-box {
-    width: 100%;
-    height: 220px;
-    background: #FFF;
-    color: rgb(129, 129, 129);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.boardContainer .board-detail {
+    position: relative;
+}
 
+.board-detail-table:hover{
+	background:none;
+}
+
+.board-detail .board-detail-modDel__btns {
+    position: absolute;
+    right: 15px;
+    top: 23px;
 }
 
 .board-detail-table .board-date {
     text-align: center;
 }
 
+.board-detail-table .board-detail-title {
+	word-break: break-all;
+}
+
 .board-detail .board-detail-ctnt {
-    color: rgb(50, 50, 50) !important;
+    color: seashell !important;
+    word-break: break-all;
 }
 
-.board-detail .board-detail-img__box {
-    width: 100%;
-    min-width: 320px;
-    padding: 0;
+.board-detail img {
+    max-width: 95%;
+    height: auto !important;
     margin: 5px 0;
-    text-align: center;
-    line-height: 0;
 }
 
-.board-detail .board-detail-img__box .board-detail__img {
-    width: 95%;
+.boardContainer .board-detail-option-box {
+    width: 100%;
+    height: 60px;
+    background: #FFF;
+    color: rgb(129, 129, 129);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }

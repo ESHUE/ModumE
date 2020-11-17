@@ -6,17 +6,18 @@ var centralMenu1_2 = document.querySelector('.centralMenu1_2');
 var roomId = null;
 var member = null;
 var message = null;
+var streamerId = null;
 
 function findVideo(evt) {
    evt.preventDefault();
    const keyword = document.querySelector('#searchVideo').value;
-   // console.log(keyword);
+   // //console.log(keyword);
 	axios.get('/googleSearch', {
       params : {
          keyword
       }
    }).then(function(res) {
-      // console.log(res);
+      // //console.log(res);
       showSearchList(res);
    }).then(function() {
       var searchSwiper = new Swiper('.searchResultContainer>.swiper-container', {
@@ -37,19 +38,37 @@ function findVideo(evt) {
       });
    })
 }
-function chatInit(temp) {
-   member = temp;
-   console.log('값 체크:' + member)
+function chatInit() {
+	axios.get("/curUserName",{}).then(function(res){
+      member = res.data;
+   //console.log(res)
+
     const chatContainer = document.querySelector('.chatContainer');
     const boardContainer = document.querySelector('.boardContainer');
     if(boardContainer != null) {
         closeContainer(boardContainer);
     }
     if(chatContainer == null) {
-      openChat(temp)
+      openChat(member);
+		loadStreamerIdInfo();
     } else {
         closeContainer(chatContainer);
+        chatLeave(client, roomId, member)
     }
+	})
+}
+ 
+function loadChatInfo(){
+	axios.get('/getRoomId',{}).then(function(res){
+		roomId = res.data.youTubeRoomId;
+	})
+}
+
+function loadStreamerIdInfo(){
+	axios.get('/getStreamerId',{}).then(function(res){
+		streamerId = res.data.streamerId;
+		console.log('streamerId: ' + streamerId)
+	})
 }
 
 function boardInit() {
@@ -57,6 +76,7 @@ function boardInit() {
     const chatContainer = document.querySelector('.chatContainer');
     if(chatContainer != null) {
         closeContainer(chatContainer);
+        chatLeave(client, roomId, member)
     } 
     if(boardContainer == null) {
         openboard();
@@ -74,9 +94,6 @@ function openChat(member) {
     chatList.className = 'chatList';
     makeDiv.append(chatList)
     TestDetail(roomId,member)
-   /*채팅관련 창들 */
-   
-   console.log('chat화면 띄우기 완료')
 }
 
 function chatList() {
@@ -87,43 +104,56 @@ function chatList() {
       })
    })
 }
-
-
+var client = null;
 
 function chatDetail(roomId, member) {
-   console.log(roomId)
-   console.log('왜 들어와짐?')
 	$(function() {
 		var chatBox = $('.chat-box');
 		var messageInput = $('input[name="message"]');
+		messageInput.keypress(function(key){
+			if( key.keyCode == 13 ){
+				var message = messageInput.val();
+				if(message ==null || message==''){
+					alert('Please Enter Content')
+					}else{
+						client.send('/publish/chat/message', {}, JSON.stringify({
+							chatRoomId : roomId,
+							message : message,
+							writer : member
+						}));
+							messageInput.val('');
+               }
+				}
+			});
 		message = messageInput;
-		var sendBtn = $('.send');
+      var sendBtn = $('.send');
       var sock = new SockJS("/ws");
-		var client = Stomp.over(sock); // 1. SockJS를 내부에 들고 있는 client를 내어준다.
+      client = Stomp.over(sock); 
+      var content_class = document.querySelector(".content");
+      // 1. SockJS를 내부에 들고 있는 client를 내어준다.
 		// 2. connection이 맺어지면 실행된다.
 		client.connect({}, function() {
-			// 3. send(path, header, message)로 메시지를 보낼 수 있다.
-			client.send('/publish/chat/join', {}, JSON.stringify({
-				chatRoomId : roomId,
-				writer : member
-			}));
-			// 4. subscribe(path, callback)로 메시지를 받을 수 있다. callback 첫번째 파라미터의 body로 메시지의 내용이 들어온다.
-			client.subscribe('/subscribe/chat/room/' + roomId, function(
-					chat) {
+         // 3. send(path, header, message)로 메시지를 보낼 수 있다.
+         client.send('/publish/chat/join', {}, JSON.stringify({
+            chatRoomId : roomId,
+            writer : member
+         }));
+         // 4. subscribe(path, callback)로 메시지를 받을 수 있다. callback 첫번째 파라미터의 body로 메시지의 내용이 들어온다.
+         client.subscribe('/subscribe/chat/room/' + roomId, function(
+               chat) {
             var content = JSON.parse(chat.body);
             if(content.writer==member){
                chatBox.append('<li class="myId"><span class="myMember">' + content.message + '</span>('
-						+ content.writer + ')</li>')
+                  + content.writer + ')</li>')
             }else{
                chatBox.append('<li class="otherId"><span class="otherMember">' + content.message + '</span>('
-						+ content.writer + ')</li>')
+                  + content.writer + ')</li>')
             }
-				
-			});
+            content_class.scrollTop = content_class.scrollHeight;
+         });
       });
       sendBtn.click(function() {
          var message = messageInput.val();
-         console.log(message);
          if(message ==null || message==''){
             alert('Please Enter Content')
             
@@ -131,7 +161,8 @@ function chatDetail(roomId, member) {
             client.send('/publish/chat/message', {}, JSON.stringify({
                chatRoomId : roomId,
                message : message,
-               writer : member
+               writer : member,
+			   streamerId : streamerId
             }));
             messageInput.val('');
          }
@@ -139,11 +170,15 @@ function chatDetail(roomId, member) {
 	});
 }
 
+function chatLeave(client, roomId, member){
+   client.send('/publish/chat/leave',{},JSON.stringify({
+      chatRoomId : roomId,
+      writer : member
+   }));
+}
+
 function TestDetail(roomId,member){
    var url = '/chat/rooms/' + roomId
-   console.log('roomId:'+roomId)
-   console.log('member:'+member)
-   console.log('url:'+url)
    fetch(url).then(function(response) {
 		response.text().then(function(text) {
 			chatDetail(roomId, member)
@@ -160,7 +195,6 @@ function chatListDetail(temp, mem) {
 	roomId = temp;
 	member = mem;
 	var url = '/chat/rooms/' + temp
-	console.log(url)
 	fetch(url).then(function(response) {
 		response.text().then(function(text) {
 			chatDetail(roomId, mem)
@@ -183,7 +217,6 @@ function openboard() {
 
 function changeLocation(location) {
 	const boardContainer = document.querySelector('.boardContainer');
-	//fetchBoard(boardContainer, location);
 	fetchBoard(boardContainer, location);
 }
 
@@ -261,8 +294,8 @@ function openUserMenu(isLogin,temp) {
    makeSpan2_2_1.style.left = '0px';
    makeSpan2_2_1.style.display = 'flex';
    makeSpan2_2_1.style.justifyContent = 'center';
-   console.log(temp)
-   console.log(isLogin)
+   //console.log(temp)
+   //console.log(isLogin)
 	
    const makeSpan2_2_2 = document.createElement('span');
    makeSpan2_2_2.classList.add('cursor');
@@ -409,6 +442,19 @@ function makeJoin(){
    })
 }
 
+function openMyPageDetails(idx) { 
+		const tabBoxContainer = document.querySelector('.tabBoxContainer'); 
+		if(idx == 4) {
+			location.href = '/logout'; 
+			return; 
+		} // jsp 파일 이름이 바뀌면 controller와 pageName이 변경되어야 한다. 
+		const pageName = '/userinfo' + idx; 
+		fetch(pageName).then(function(response) { 
+			response.text().then(function(text) { 
+				tabBoxContainer.innerHTML = text; 
+			}) 
+		})
+	}
 
 function openUserInfo(idx) {
    const body = document.querySelector('body');
@@ -442,19 +488,7 @@ function openUserInfo(idx) {
       }).then(function () {openMyPageDetails(idx)});
    })
    
-	function openMyPageDetails(idx) { 
-		const tabBoxContainer = document.querySelector('.tabBoxContainer'); 
-		if(idx == 4) {
-			location.href = 'http://localhost:8080/logout'; 
-			return; 
-		} // jsp 파일 이름이 바뀌면 controller와 pageName이 변경되어야 한다. 
-		const pageName = '/userinfo' + idx; 
-		fetch(pageName).then(function(response) { 
-			response.text().then(function(text) { 
-				tabBoxContainer.innerHTML = text; 
-			}) 
-		})
-	}
+	
 	
    makeDiv2_1.append(makeSpan2_1_1);
    myPageTabMenuContainer.append(makeDiv2_1);

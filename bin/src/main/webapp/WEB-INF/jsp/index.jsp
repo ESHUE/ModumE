@@ -5,16 +5,16 @@
 <sec:authorize var="isLogin" access="isAuthenticated()" />
 <html>
 
-<head>  
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${title}</title>
 <link rel="icon" href="/img/favicon.png">
-<link rel="stylesheet" href="/css/index.css?ver=9544">
+<link rel="stylesheet" href="/css/index.css?ver=955454">
 <link rel="stylesheet" href="/css/boardList.css?ver=3">
 <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
 <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
-<link rel="stylesheet" href="/css/comment.css?ver=8">
+<link rel="stylesheet" href="/css/comment.css?ver=23">
 <link rel="stylesheet" href="/css/login.css?ver=27">
 <link rel="stylesheet" href="/css/join.css?ver=89">
 <link rel="stylesheet" href="/css/test.css?ver=5">
@@ -65,19 +65,12 @@
 					<span class="material-icons" onclick="boardInit()">assignment</span>
 				</div>
 				<div class="menus sidebarMenu1_2">
-					<span class="material-icons" onclick="chatInit('${member}')">chat</span>
+					<span class="material-icons" onclick="chatInit()">chat</span>
 				</div>
 			</aside>
 		</section>
 	</main>
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-	<script src="https://embed.twitch.tv/embed/v1.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -85,43 +78,61 @@
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-	<script src="/js/index.js?aaa=75092"></script>
-	<script src="/js/search.js?aa=afasef"></script>
+	<script src="/js/index.js?aaa=7ab3"></script>
+	<script src="/js/notice.js?aaa=792"></script>
+	<script src="/js/search.js?aa=afa46"></script>
 	<script src="/js/test.js?ver=13"></script>
-	<script src="/js/boardRegMod.js?ver=45"></script>
+	<script src="/js/boardRegMod.js?ver=46"></script>
 	<script src="/js/boardList.js?ver=80"></script>
-	<script src="/js/boardDetail.js?ver=1"></script>
-	<script src="/js/join.js?ver=23"></script>
-	<script src="/js/comment.js?ver=3"></script>
-	<!-- 트위치 채널 긁어오기(채널지정) -->
+	<script src="/js/boardDetail.js?ver=2"></script>
+	<script src="/js/join.js?ver=33"></script>
+	<script src="/js/comment.js?ver=33"></script>
 
-	<script>
-	
-	
-	/* Profile  Eunjeong Start */
-	
-	/* Eunjeong End */
+
+	<c:if test="${twitchTokenIsExpired}">
+		<script>
+	// 트위치토큰 만료 여부확인
+	alert("트위치 계정이 만료되었습니다. 다시 연동 해주세요.")
 	</script>
+	</c:if>
+	<c:if test="${naverTokenIsExpired}">
+		<script>
+	// 네이버토큰 만료 여부확인
+	alert("네이버 계정이 만료되었습니다. 다시 연동 해주세요.")
+	</script>
+	</c:if>
+	<c:if test="${googleTokenIsExpired}">
+		<script>
+	// 구글토큰 만료 여부확인
+	alert("구글 계정이 만료되었습니다. 다시 연동 해주세요.")
+	</script>
+	</c:if>
+	<c:if test="${kakaoTokenIsExpired}">
+		<script>
+	// 카카오토큰 만료 여부확인
+	alert("카카오 계정이 만료되었습니다. 다시 연동 해주세요.")
+	</script>
+	</c:if>
 
 	<sec:authorize access="isAuthenticated()">
-	
+
 		<c:if test="${userInfo != null}">
 
 			<script>
 				//console.log('userInfo= ${userInfo}')
 			</script>
 		</c:if>
-		
+
 		<c:if test="${userDomain != null}">
 			<script>
 				//console.log('userDomain = ${userDomain}')
 			</script>
 			<c:forEach items="${userDomain.sns}" var="item">
 				<c:if test="${item == 'twitch'}">
-				<script>
+					<script>
 				/* member = '${member}'; */	
 				</script>
-					<script type="text/javascript" src="/js/twitch.js">
+					<script type="text/javascript" src="/js/twitch.js?ver=aaa">
 					</script>
 				</c:if>
 			</c:forEach>

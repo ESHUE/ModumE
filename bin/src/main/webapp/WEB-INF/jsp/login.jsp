@@ -6,18 +6,18 @@
 		<fieldset class="fld-login">
 			<legend class="legend">login</legend>
 			<div class="input-container focus">
-				<label class="move active" for="user_id"></label><input type="text" class="no-border active " id="user_id" name="user_id" placeholder="ID" options="{ updateOn: 'keyup blur' }" required>
+				<label class="move active" for="user_id"></label><input type="text" class="no-border active " id="user_id" name="user_id" placeholder="ID" options="{ updateOn: 'keyup blur' }" required >
 			</div>
 			<div class="input-container focus">
 				<label class="move active" for="password"></label><input type="password" class="no-border active" id="password" name="password" placeholder="PASSWORD" autocomplete="off"
-					options="{ updateOn: 'keyup blur' }" required>
+					options="{ updateOn: 'keyup blur' }" required >
 			</div>
 		</fieldset>
-		<input class="sbm-login" type="submit" value="sign in"> <input name="${_csrf.parameterName}" type="hidden" value="${_crsf.token}">
+		<input class="loginSbm" type="submit" value="sign in"> <input name="${_csrf.parameterName}" type="hidden" value="${_crsf.token}">
 	</form>
 	<div class="sns-modume-sign">
 		<div class="input-container focus sbm-join">
-			<a href="/join">ModeumE</a>
+			<span onclick="moveToJoin()">ModeumE</span>
 		</div>
 		<div class="input-container focus googleLogin">
 			<a href="/oauth2/authorization/google"><img src="/img/google_logo.svg" alt="google_logo"></a>

@@ -5,11 +5,14 @@ html, body {
 
 }
 #sectionContainerCenter {
-   	display: flex;
+    display: flex;
     justify-content: space-evenly;
     background-color: #fff;
-    padding-top: 50px;
-    padding-bottom: 30px;
+    width: 100%;
+    height: 600px;
+}
+.joinWindowContainer {
+   margin-top: 35px;
 }
 .joinHeader h1 {
    display: flex;
