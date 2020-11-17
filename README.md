@@ -15,13 +15,13 @@
 ◆ WebSocket</br>
 
 ### 프로세스
-[BACKEND] 
-전체 구성은 MVC 생성 패턴을 통한 웹 통신 
-Spring Security를 통한 웹페이지 접근 제어 및 로그인 구성 
-OAUTH2를 로그인을 통해 인증받은 Access Token으로 API를 호출하여 목표하는 코어 기능을 구현 
-Hibernate 메소드를 활용하여 Database 내부 테이블 및 쿼리를 자동으로 생성 
-WEBSOCKET을 활용하여 타 사용자와의 메세지 교환 기능 구성 
+[BACKEND] </br>
+전체 구성은 MVC 생성 패턴을 통한 웹 통신 </br>
+Spring Security를 통한 웹페이지 접근 제어 및 로그인 구성 </br>
+OAUTH2를 로그인을 통해 인증받은 Access Token으로 API를 호출하여 목표하는 코어 기능을 구현 </br>
+Hibernate 메소드를 활용하여 Database 내부 테이블 및 쿼리를 자동으로 생성 </br>
+WEBSOCKET을 활용하여 타 사용자와의 메세지 교환 기능 구성 </br>
 
-[FRONTEND] 
-JSP 템플릿 엔진, Ajax를 적극 활용한 비동기식 웹페이지를 구성 
-JavaScript를 활용하여 동적 메뉴를 구성, 웹페이지의 이동을 최소화
+[FRONTEND] </br>
+JSP 템플릿 엔진, Ajax를 적극 활용한 비동기식 웹페이지를 구성 </br>
+JavaScript를 활용하여 동적 메뉴를 구성, 웹페이지의 이동을 최소화 </br>
