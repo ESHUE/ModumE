@@ -5,14 +5,14 @@
 ### 예시 영상
 
 ### 사용된 의존성
-◆ Spring Security
-◆ Spring DATA JPA
-◆ Spring Dev Tools
-◆ Spring Web
-◆ Mybatis Framework
-◆ Lombok
-◆ MySQL Driver
-◆ WebSocket
+◆ Spring Security</br>
+◆ Spring DATA JPA</br>
+◆ Spring Dev Tools</br>
+◆ Spring Web</br>
+◆ Mybatis Framework</br>
+◆ Lombok</br>
+◆ MySQL Driver</br>
+◆ WebSocket</br>
 
 ### 프로세스
 [BACKEND] 
