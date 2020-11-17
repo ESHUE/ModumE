@@ -10,7 +10,7 @@
 <img src="https://postfiles.pstatic.net/MjAyMDExMTdfMjk3/MDAxNjA1NTk2NjE1MDc2.WqudnTYFel1UjiJ-j-N92CJqe7vwosXWrAdojP5ybYEg.BZYezIKfS1Tw5w7w9eFOdqkC6ZzXIxjRsYNEu3umSSMg.GIF.hyojin4588/2.gif?type=w966" alt="이미지 준비중"> </br>
 </br>
 ■ <b>생방송 리스트 표시</b> </br>
-<img src="https://postfiles.pstatic.net/MjAyMDExMTdfMjY3/MDAxNjA1NjAwNTQxNzQz._x9-sKxEFqyouRu2_IbWY777W3_q2_0HI3USSpBKyCgg.EufhHq2jX5I1PojBxK-10O4s7QUeBhPNhmCgzu7DbGQg.GIF.hyojin4588/5.gif?type=w966" width: 965px alt="이미지 준비중"> </br>
+<img src="https://postfiles.pstatic.net/MjAyMDExMTdfMjY3/MDAxNjA1NjAwNTQxNzQz._x9-sKxEFqyouRu2_IbWY777W3_q2_0HI3USSpBKyCgg.EufhHq2jX5I1PojBxK-10O4s7QUeBhPNhmCgzu7DbGQg.GIF.hyojin4588/5.gif?type=w966" width="965px" alt="이미지 준비중"> </br>
 </br>
 ■ <b>MODUME 채팅방</b> </br>
 <img src="https://postfiles.pstatic.net/MjAyMDExMTdfMjM4/MDAxNjA1NTk5Mzk3MjU4.DmE4eO4mQXp8h2Kocmou9ZEN7tC1wHHX84K4_Ml_4WUg.7Zbhi8QnnSzUxs39uo_CZsgr6TQng96vduHLX1fvEv0g.GIF.hyojin4588/3.gif?type=w966" alt="이미지 준비중"> </br>
