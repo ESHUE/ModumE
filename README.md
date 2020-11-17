@@ -3,6 +3,7 @@
 팀 이슈의 첫 번째 작품인 MODUME는 SPRING 기반의 방송 시청 플랫폼입니다. 여러 아이디를 통합하여 자신이 원하는 플랫폼의 방송과 영상을 시청할 수 있도록 제작했습니다.
 
 ### 예시 영상
+<img src="https://postfiles.pstatic.net/MjAyMDExMTdfOTMg/MDAxNjA1NTk2NjEwOTI2.ZN6HzN2XSTfKXuQ_zqmP_mrVeTXXsZpDYLy0l_6e3uog.mBWJnIZOahfM0FestWpNbHPd5IJTQNoL_rbGPxtUL9kg.GIF.hyojin4588/1.gif?type=w966"> </br>
 
 ### 사용된 의존성
 ◆ Spring Security</br>
