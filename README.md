@@ -16,7 +16,7 @@
 <img src="https://postfiles.pstatic.net/MjAyMDExMTdfMjM4/MDAxNjA1NTk5Mzk3MjU4.DmE4eO4mQXp8h2Kocmou9ZEN7tC1wHHX84K4_Ml_4WUg.7Zbhi8QnnSzUxs39uo_CZsgr6TQng96vduHLX1fvEv0g.GIF.hyojin4588/3.gif?type=w966" alt="이미지 준비중"> </br>
 </br>
 ■ <b>MODUME 게시판</b> </br>
-<img src="" alt="이미지 준비중"> </br>
+<img src="https://postfiles.pstatic.net/MjAyMDExMTdfMTM5/MDAxNjA1NTk5NzI0OTYw.rC1wBIrX3zorHVpHZ972MSOd0cVhLBCd8wS91n7yEmMg.ZyhU1zqWk9_ErNq7I7B4ldZtvdAWgsjWTK1_TKglffkg.GIF.hyojin4588/3.gif?type=w966" alt="이미지 준비중"> </br>
 </br>
 
 ### 사용된 의존성
