@@ -12,6 +12,7 @@
 	<groupId>com.amolrang</groupId>
 	<artifactId>ModumE</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>ModumE</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -144,7 +145,6 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.11</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
