@@ -13,7 +13,7 @@
 <img src="" alt="이미지 준비중"> </br>
 </br>
 ■ <b>MODUME 채팅방</b> </br>
-<img src="https://postfiles.pstatic.net/MjAyMDExMTdfMTM5/MDAxNjA1NTk5MDA5NjI0.-ieuXP8P1a_wOte-z9LGwmIF0q_waG7hiUuvXL8s_cQg.NDBRXtc_O-az1bpMofiDopMlCIk2DGk7NErXp58uuA4g.GIF.hyojin4588/3.gif?type=w966" alt="이미지 준비중"> </br>
+<img src="https://postfiles.pstatic.net/MjAyMDExMTdfMjM4/MDAxNjA1NTk5Mzk3MjU4.DmE4eO4mQXp8h2Kocmou9ZEN7tC1wHHX84K4_Ml_4WUg.7Zbhi8QnnSzUxs39uo_CZsgr6TQng96vduHLX1fvEv0g.GIF.hyojin4588/3.gif?type=w966" alt="이미지 준비중"> </br>
 </br>
 ■ <b>MODUME 게시판</b> </br>
 <img src="" alt="이미지 준비중"> </br>
