@@ -153,6 +153,7 @@ axios.get('/getStreams', {}).then(function (res) {
 							})
 						}
 						function reactPlayer(url) {
+							console.log('reactPlayer:'+url);
 							const container = document.getElementById('video-embed')
 							//console.log(container)
 							renderReactPlayer(container, {
@@ -160,6 +161,7 @@ axios.get('/getStreams', {}).then(function (res) {
 								playing: true,
 								controls: false,
 								width: "100%",
-								height: "100%"
+								height: "100%",
+								parent:['modume.online']
 							})
 						}
