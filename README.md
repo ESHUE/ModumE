@@ -3,15 +3,15 @@
 팀 이슈의 첫 번째 작품인 MODUME는 SPRING 기반의 방송 시청 플랫폼입니다. 여러 아이디를 통합하여 자신이 원하는 플랫폼의 방송과 영상을 시청할 수 있도록 제작했습니다.
 
 ### 예시 영상
-■ 회원가입 </br>
+■ <b>회원가입</b> </br>
 <img src="https://postfiles.pstatic.net/MjAyMDExMTdfOTMg/MDAxNjA1NTk2NjEwOTI2.ZN6HzN2XSTfKXuQ_zqmP_mrVeTXXsZpDYLy0l_6e3uog.mBWJnIZOahfM0FestWpNbHPd5IJTQNoL_rbGPxtUL9kg.GIF.hyojin4588/1.gif?type=w966"> </br>
-■ 동영상 검색 </br>
+■ <b>동영상 검색</b> </br>
 <img src="https://postfiles.pstatic.net/MjAyMDExMTdfMjk3/MDAxNjA1NTk2NjE1MDc2.WqudnTYFel1UjiJ-j-N92CJqe7vwosXWrAdojP5ybYEg.BZYezIKfS1Tw5w7w9eFOdqkC6ZzXIxjRsYNEu3umSSMg.GIF.hyojin4588/2.gif?type=w966" alt="이미지 준비중"> </br>
-■ 생방송 리스트 표시 </br>
-<img src="https://postfiles.pstatic.net/MjAyMDExMTdfMzcg/MDAxNjA1NTk2NjkyNzg5.HxrgPLemogWtg46iJo1ySzgffcZYujUFWbk6RjeE33Qg.VpzMocokL8nXI37bsar0715_vsieZIrtvBfK4cFFFJUg.GIF.hyojin4588/3.gif?type=w966" alt="이미지 준비중"> </br>
-■ MODUME 채팅방 </br>
-<img src="https://postfiles.pstatic.net/MjAyMDExMTdfMjM3/MDAxNjA1NTk2Njk0OTEx.yNMpjBoXKKNjlVIopEonuQU-_aoQCZzRTdn2Cut0b-Ag.53T4_dvb6mef55Mqxk1g5MvbOGtTn3h0a_VjZ7d3LCsg.GIF.hyojin4588/4.gif?type=w966" alt="이미지 준비중"> </br>
-■ MODUME 게시판 </br>
+■ <b>생방송 리스트 표시</b> </br>
+<img src="" alt="이미지 준비중"> </br>
+■ <b>MODUME 채팅방</b> </br>
+<img src="" alt="이미지 준비중"> </br>
+■ <b>MODUME 게시판</b> </br>
 <img src="" alt="이미지 준비중"> </br>
 
 ### 사용된 의존성
