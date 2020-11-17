@@ -22,6 +22,6 @@ OAUTH2를 로그인을 통해 인증받은 Access Token으로 API를 호출하�
 Hibernate 메소드를 활용하여 Database 내부 테이블 및 쿼리를 자동으로 생성 </br>
 WEBSOCKET을 활용하여 타 사용자와의 메세지 교환 기능 구성 </br>
 
-<b>[FRONTEND]<b> </br>
+<b>[FRONTEND]</b> </br>
 JSP 템플릿 엔진, Ajax를 적극 활용한 비동기식 웹페이지를 구성 </br>
 JavaScript를 활용하여 동적 메뉴를 구성, 웹페이지의 이동을 최소화 </br>
