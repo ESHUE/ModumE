@@ -22,6 +22,7 @@
 ### 사용된 의존성
 ◆ Spring Security</br>
 ◆ Spring DATA JPA</br>
+◆ OAuth2 Client</br>
 ◆ Spring Dev Tools</br>
 ◆ Spring Web</br>
 ◆ Mybatis Framework</br>
