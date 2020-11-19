@@ -137,7 +137,8 @@ function changeorderBy(boolean) {
 }
 
 function showComment(boardseq, element) {
-
+	const commentContents = document.querySelector('.commentContents');
+	
 	const param = {
 		'boardseq': boardseq,
 		'byWriter': byWriter,
@@ -155,9 +156,11 @@ function showComment(boardseq, element) {
 	// axios boardseq로 commentList 뽑아야 함
 	fetch('/comment', fetchOpt).then(function(response) {
 		response.text().then(function(text) {
-			document.querySelector('.boardContainer').innerHTML = text;
+			//boardContainer.innerHTML = text;
+			commentContents.innerHTML = text;
+			
 			}).then(function() {
-				toggleFontWeight(element)
+				toggleFontWeight(element);
 			})
 		})
 }
