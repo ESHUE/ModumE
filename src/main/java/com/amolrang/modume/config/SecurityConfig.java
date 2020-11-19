@@ -76,7 +76,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		// X-Frame-Options는 클릭 잭킹 공격을 막기 위해 거부되어 있으나 ckeditor로 파일 업로드 하기 위해 disable로 설정함 
 		http.headers().frameOptions().disable();
-		http.authorizeRequests().anyRequest().permitAll();
 	}
 	
 	// 패스워드 암호화

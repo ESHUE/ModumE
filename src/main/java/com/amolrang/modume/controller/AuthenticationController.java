@@ -115,8 +115,7 @@ public class AuthenticationController {
 			if (socialRepository.findBysocialusername(UserInfoJson.getSocialusername()) == null) {
 				socialRepository.save(UserInfoJson);
 			} else {
-				socialRepository.updateToMainseq(UserInfoJson);
-				socialRepository.updateToSnsToken(UserInfoJson);
+				socialRepository.updateToMainseqAndSns(UserInfoJson);
 			}
 		} else {
 			if (socialRepository.findBysocialusername(UserInfoJson.getSocialusername()) == null) {

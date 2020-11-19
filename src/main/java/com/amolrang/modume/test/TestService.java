@@ -114,7 +114,7 @@ public class TestService {
         	        	 //파일 이름 가져오기
         	            String fileName = file.getName();
         	            byte[] bytes = file.getBytes();
-        	            String uploadPath = request.getServletContext().getRealPath("") + "../resources/static/img";
+        	            String uploadPath = request.getServletContext().getRealPath("") + "/resources/static/img";
         	            File uploadFile = new File(uploadPath);
         	            System.out.println("getContextPath() : " + request.getContextPath());
         	            System.out.println(uploadPath);

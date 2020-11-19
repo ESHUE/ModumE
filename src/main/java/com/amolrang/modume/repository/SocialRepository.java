@@ -18,11 +18,6 @@ public interface SocialRepository extends JpaRepository<Social_JPA, Integer>{
 	List<Social_JPA> findAllByUserseq(User_JPA userseq);
 	@Modifying
 	@Transactional
-	@Query(value = "UPDATE Social_JPA SET userseq = :#{#social.userseq} WHERE socialusername = :#{#social.socialusername}")
-	void updateToMainseq(Social_JPA social);
-	
-	@Modifying
-	@Transactional
-	@Query(value = "UPDATE Social_JPA SET token = :#{#social.token} WHERE socialusername = :#{#social.socialusername}")
-	void updateToSnsToken(Social_JPA social);
+	@Query(value = "UPDATE Social_JPA SET userseq = :#{#social.userseq},token = :#{#social.token} WHERE socialusername = :#{#social.socialusername}")
+	void updateToMainseqAndSns(Social_JPA social);
 }
