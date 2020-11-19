@@ -8,6 +8,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript">
+	var url_1 = window.location;
+	var url_2 = "http://modume.online/";
+	if(url == url_2 ){
+		window.location = "https://modume.online/";
+	}
+	</script>
 <title>${title}</title>
 <link rel="icon" href="/img/favicon.png">
 <link rel="stylesheet" href="/css/index.css?ver=955454">
@@ -70,7 +77,7 @@
 			</aside>
 		</section>
 	</main>
-
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

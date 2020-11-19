@@ -2,17 +2,17 @@
 html, body {
    padding: 0;
    margin: 0;
-     width: 100%;
-   height: 100%;
+
 }
-#userInfoContainer {
-   width: 100%;
-   height: 100%;
-   padding-top: 50px;
+.userMenuContainer {
+	width: 100%;
+	height: 550px;
 }
 .tabMenuContainer {
-  display: flex;
-  justify-content: space-evenly;
+   display: flex;
+   justify-content: space-evenly;
+   margin-top: 25px;
+ 
 }
 button {
   background: none;
@@ -21,15 +21,52 @@ button {
   cursor:pointer;
 }
 .tabMenuBtn {
-  width: 85px;
-  height: 30px;
-  transition:0.3s all;
+  transition:0.2s all;
 }
 .tabMenuBtn a {
   text-decoration: none;
   font-weight: bold;
 }
-.underline {
-   display: block;
-     border-bottom: 2px solid #56373c;
+.underline:hover {
+   color: #a07be5; 
 }
+.myPageBox {
+	width: 500px;
+	height: 500px;
+	
+}
+.profileBox {
+	margin-top: 80px;
+}
+.userProfileHeader {
+	margin-bottom: 30px;
+}
+.userNickName {
+	font-size: 20px;
+	font-weight: bold;
+}
+.pImg {
+	width: 60px;
+	border-radius: 50%;
+}
+/*userInfo3*/
+.sns-modume-title{
+	text-align: center;
+}
+.personalInformatin {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  
+}
+#modifyName {
+  align-items: center;
+  border: none;
+  border-bottom:1px solid #a07be5;
+  
+}
+.personalInformatin.privacyIcon {
+  font-size: 2em;
+  color: #a07be5;
+}
+
