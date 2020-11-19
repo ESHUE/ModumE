@@ -4,6 +4,7 @@ function init() {
     .css('height', '85%')
     .css('border-radius', '5px')
     .css('color', 'seashell')
+	.css('position','absolute')
     .html(
         '<br><br>' + 
         "<div class='notice_title'>모두미에 오신 것을 환영합니다.<br><br></div>" + 

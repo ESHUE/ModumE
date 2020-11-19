@@ -12,7 +12,6 @@ SwiperContainer.style.height = "100%";
 SwiperContainer.style.marginLeft = "auto";
 SwiperContainer.style.overflow = "hidden";
 SwiperContainer.style.borderRadius = "5px";
-SwiperContainer.style.display = "contents";
 const Wrapper = document.createElement("div");
 
 function getWrapper() {
@@ -122,18 +121,12 @@ function reloadPagination() {
 axios
   .get("/getStreams", {})
   .then(function (res) {
-    if (res == null) {
-      return;
-    }
     res.data.data.forEach(function (item) {
       loadTwitchFollowSwiper(item);
     });
     reloadPagination();
   })
-  .then(function (res) {
-    if (res == null) {
-      return;
-    }
+  .then(function () {
     const playBtn = document.querySelectorAll(".playBtn");
     for (var i = 0; i < playBtn.length; i++) {
       playBtn[i].setAttribute("onclick", "videoLoad()");
@@ -170,9 +163,6 @@ function videoLoad() {
 }
 function reactPlayer(url) {
   //console.log("reactPlayer:" + url);
-  if(url == null){
-  	return;
-  }
   const container = document.getElementById("video-embed");
   //console.log(container)
   renderReactPlayer(container, {
