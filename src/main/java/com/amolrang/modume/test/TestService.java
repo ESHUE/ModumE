@@ -1,7 +1,9 @@
 package com.amolrang.modume.test;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -17,12 +19,13 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.amolrang.modume.model.BoardimgId_JPA;
 import com.amolrang.modume.model.Boardimg_JPA;
 import com.amolrang.modume.model.Comment_JPA;
 import com.amolrang.modume.model.User_JPA;
@@ -52,7 +55,6 @@ public class TestService {
 	
 	@Autowired
 	CommentRepository commentRepository;
-	
 	
 	public UserboardModel addImgListToParam(Userboard_JPA board) {
 			UserboardModel param = new UserboardModel();
@@ -97,7 +99,6 @@ public class TestService {
 		}
 		return edittedList;
 	}
-	
 	public void imageUpload(HttpServletRequest request, HttpServletResponse response, 
 			MultipartHttpServletRequest multiFile) throws Exception {      
 		
@@ -114,10 +115,11 @@ public class TestService {
         	        	 //파일 이름 가져오기
         	            String fileName = file.getName();
         	            byte[] bytes = file.getBytes();
-        	            String uploadPath = request.getServletContext().getRealPath("") + "/resources/static/img";
+        	            
+//        	            String uploadPath = this.getClass().getResource("/").getPath()+"static/"+"img";
+        	            String uploadPath = "./img";
         	            File uploadFile = new File(uploadPath);
-        	            System.out.println("getContextPath() : " + request.getContextPath());
-        	            System.out.println(uploadPath);
+        	            log.info("realpath:{}",uploadFile.getAbsolutePath());     
         	            if(!uploadFile.exists()) {
         	            	uploadFile.mkdirs();
         	            }
@@ -130,7 +132,7 @@ public class TestService {
         	            
         	            printWriter = response.getWriter();
         	            response.setContentType("text/html");
-        	            String fileUrl = request.getContextPath() + "/img/" + fileName;
+        	            String fileUrl = request.getContextPath() +"/upload/" + fileName;
         	            System.out.println("fileUrl : " + fileUrl);
         	            
                         json.addProperty("uploaded", 1);

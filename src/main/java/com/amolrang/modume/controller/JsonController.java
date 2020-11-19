@@ -73,12 +73,22 @@ public class JsonController {
 	
 	@RequestMapping(value = "/getStreams", produces = "text/plain;charset=UTF-8")
 	public String getStreams(OAuth2AuthenticationToken authentication, HttpSession hs) {
-		return twitchApi.getCurrentLiveStreamer(authentication, authorizedClientService, hs);
+		try {
+			return twitchApi.getCurrentLiveStreamer(authentication, authorizedClientService, hs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	@RequestMapping(value = "/getChat", produces = "text/plain;charset=UTF-8")
 	public String getChatting(OAuth2AuthenticationToken authentication, HttpSession hs) {
-		return twitchApi.getChatting(authentication, authorizedClientService, hs);
+		try {
+			return twitchApi.getChatting(authentication, authorizedClientService, hs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	@RequestMapping(value = "/getYoutubeFollower", produces = "text/plain;charset=UTF-8")

@@ -14,12 +14,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 // servlet-context.xml 역할을 함 
 
 public class MvcConfig implements WebMvcConfigurer {
-	
-	private String uploadPath;
-	
-	public void webPathConfig(@Value("${custom.path.upload-path}")String webPath) {
-		this.uploadPath = webPath;
-	}
 	// 설정 활성화 유무
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -42,8 +36,10 @@ public class MvcConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-		
-		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+		registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/").setCachePeriod(20);
+		registry.addResourceHandler("/img/**").addResourceLocations("classpath:/static/img/").setCachePeriod(20);
+		registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/").setCachePeriod(20);
+		registry.addResourceHandler("/upload/**").addResourceLocations("file:///usr/local/modume/img/").setCachePeriod(20);
 	}
 	
 	/*
