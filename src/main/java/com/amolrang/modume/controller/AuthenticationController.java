@@ -102,11 +102,11 @@ public class AuthenticationController {
 				.loadAuthorizedClient(authentication.getAuthorizedClientRegistrationId(), authentication.getName());
 		UserInfoJson.setToken(client.getAccessToken().getTokenValue());
 		UserInfoJson.setClientid(client.getClientRegistration().getClientId());
-		// log.info("111. token:{}",UserInfoJson.getToken());
-		// log.info("112. clientID:{}",UserInfoJson.getClientid());
-		// log.info("123. Social_JPA: {}",UserInfoJson);
+		//log.info("111. token:{}",UserInfoJson.getToken());
+		//log.info("112. clientID:{}",UserInfoJson.getClientid());
+		//log.info("123. Social_JPA: {}",UserInfoJson);
 		User_JPA loginedUser = (User_JPA) hs.getAttribute("userInfo");
-		// log.info("132. User_JPA: {}", loginedUser);
+		//  log.info("132. User_JPA: {}", loginedUser);
 
 		// 유저정보 업데이트
 		if (loginedUser != null) {
@@ -116,6 +116,7 @@ public class AuthenticationController {
 				socialRepository.save(UserInfoJson);
 			} else {
 				socialRepository.updateToMainseq(UserInfoJson);
+				socialRepository.updateToSnsToken(UserInfoJson);
 			}
 		} else {
 			if (socialRepository.findBysocialusername(UserInfoJson.getSocialusername()) == null) {
