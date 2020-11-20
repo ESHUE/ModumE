@@ -1,7 +1,20 @@
 function toggleFontWeight(element) {
+	
     const ele = element.parentNode.children;
     for(var i = 0 ; i < ele.length; i++){
         ele[i].classList.remove('bold');
+		//$(ele[i]).css('font-weight', 'normal');
+    }
+    element.classList.add('bold');
+	//$(element).css('font-weight', 'bold');
+	console.log(element)
+}
+
+function toggleFontWeight2() {
+	const ele = targetElement.parentNode.children;
+    for(var i = 0 ; i < ele.length; i++){
+        ele[i].classList.remove('bold');
+		//$(ele[i]).css('font-weight', 'normal');
     }
     element.classList.add('bold');
 }
@@ -136,9 +149,11 @@ function changeorderBy(boolean) {
 	orderBy = boolean;
 }
 
+
+
 function showComment(boardseq, element) {
 	const commentContents = document.querySelector('.commentContents');
-	
+
 	const param = {
 		'boardseq': boardseq,
 		'byWriter': byWriter,
@@ -161,6 +176,8 @@ function showComment(boardseq, element) {
 			
 			}).then(function() {
 				toggleFontWeight(element);
+			var bc = document.querySelector('.boardContainer');
+			bc.innerHTML = text
 			})
 		})
 }

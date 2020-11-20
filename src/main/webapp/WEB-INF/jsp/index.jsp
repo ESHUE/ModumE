@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/css/boardList.css?ver=3">
 <link rel="stylesheet" href="/css/boardDetail.css?ver=4">
 <link rel="stylesheet" href="/css/boardRegMod.css?ver=1">
-<link rel="stylesheet" href="/css/comment.css?ver=23">
+<link rel="stylesheet" href="/css/comment.css?ver=223">
 <link rel="stylesheet" href="/css/login.css?ver=27">
 <link rel="stylesheet" href="/css/join.css?ver=89">
 <link rel="stylesheet" href="/css/test.css?ver=5">
@@ -90,7 +90,12 @@
 	<script src="/js/boardList.js?ver=80"></script>
 	<script src="/js/boardDetail.js?ver=2"></script>
 	<script src="/js/join.js?ver=33"></script>
+<<<<<<< HEAD
 	<script src="/js/comment.js?ver=33"></script>
+=======
+	<script src="/js/comment.js?ver=www233333222"></script>
+	<!-- 트위치 채널 긁어오기(채널지정) -->
+>>>>>>> branch 'Eunsil' of https://github.com/ESHUE/ModumE.git
 
 
 	<c:if test="${twitchTokenIsExpired}">

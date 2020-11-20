@@ -1,8 +1,10 @@
 package com.amolrang.modume.service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +16,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.amolrang.modume.model.SocialModel;
 import com.amolrang.modume.model.UserModel;
@@ -113,6 +117,26 @@ public class UserService implements UserDetailsService {
 	public int findUser(String userName) {
 		log.info("test00:{}",userName);
 		return userDAO.findUser(userName);
+	}
+	
+	public String saveProfileFile(User_JPA userJPA, MultipartHttpServletRequest mr) {
+		MultipartFile file = mr.getFile("profile");
+		String uploadPath = mr.getServletContext().getRealPath("") + "../resources/static/img/";
+		String fileNm = null;
+		
+		if(file != null) {
+			String originFileNm = file.getOriginalFilename();
+			String ext = originFileNm.substring(originFileNm.lastIndexOf("."));
+			fileNm = UUID.randomUUID() + ext;
+			
+			try {
+				file.transferTo(new File(uploadPath + fileNm));
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return fileNm;
 	}
 
 }

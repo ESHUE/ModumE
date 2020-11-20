@@ -1,10 +1,6 @@
 /* 나중에 userBoard 지울 때 comment 삭제 잊지 말기~~~! */
 @charset "UTF-8";
 
-.bold {
-    font-weight: bold;
-}
-
 .commentContents {
     font-size: .9em;
 }
