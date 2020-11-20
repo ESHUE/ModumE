@@ -179,7 +179,7 @@ body{
 }
 
 .centralSearchFrm{
-    width: 500px;
+/*     width: 500px; */
     display: grid;
     grid-template-columns: 1fr 2em;
     margin-bottom: 0.8em;
@@ -352,7 +352,7 @@ body{
 
 .centralSidebar{
     position: fixed;
-    width: 12%;
+/*     width: 12%; */
     height: 8vh;
     right: 2%;
     bottom: 2%;
