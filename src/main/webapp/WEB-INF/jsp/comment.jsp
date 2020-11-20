@@ -9,7 +9,7 @@
         <div id="allComment" class="cursor bold" onclick="changeByWriter(true); showComment(${boardseq}, this)">전체</div>
         <div id="myComment" class="cursor" onclick="changeByWriter(false); showComment(${boardseq}, this)">내 댓글</div>
     </div>
-    <div class="comment-menu2">
+    <div class="comment-menu2" id="id_orderby">
         <div id="showASC" class="cursor bold" onclick="changeorderBy(true); showComment(${boardseq}, this)">오름차순</div>
         <div id="showDESC" class="cursor" onclick="changeorderBy(false); showComment(${boardseq}, this)">내림차순</div>
     </div>

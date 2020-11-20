@@ -1,7 +1,20 @@
 function toggleFontWeight(element) {
+	
     const ele = element.parentNode.children;
     for(var i = 0 ; i < ele.length; i++){
         ele[i].classList.remove('bold');
+		//$(ele[i]).css('font-weight', 'normal');
+    }
+    element.classList.add('bold');
+	//$(element).css('font-weight', 'bold');
+	console.log(element)
+}
+
+function toggleFontWeight2() {
+	const ele = targetElement.parentNode.children;
+    for(var i = 0 ; i < ele.length; i++){
+        ele[i].classList.remove('bold');
+		//$(ele[i]).css('font-weight', 'normal');
     }
     element.classList.add('bold');
 }
@@ -136,8 +149,13 @@ function changeorderBy(boolean) {
 	orderBy = boolean;
 }
 
+
+var targetElement;
+
 function showComment(boardseq, element) {
 
+	targetElement = element
+	
 	const param = {
 		'boardseq': boardseq,
 		'byWriter': byWriter,
@@ -155,10 +173,12 @@ function showComment(boardseq, element) {
 	// axios boardseq로 commentList 뽑아야 함
 	fetch('/comment', fetchOpt).then(function(response) {
 		response.text().then(function(text) {
-			document.querySelector('.boardContainer').innerHTML = text;
-			}).then(function() {
-				toggleFontWeight(element)
+			var bc = document.querySelector('.boardContainer');
+			bc.innerHTML = text
+			
 			})
+		}).then(function() {
+			//toggleFontWeight(element);
 		})
 }
 

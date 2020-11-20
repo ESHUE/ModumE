@@ -11,6 +11,9 @@ body{
 .cursor{
 	cursor: pointer;
 }
+.bold {
+    font-weight: bold;
+}
 .flex-center {
     display: flex;
     justify-content: center;

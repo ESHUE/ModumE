@@ -140,11 +140,6 @@ public class TestController {
 		// int commentseq = (int) param.get("commentseq");
 		int commentseq = Integer.parseInt((String) param.get("commentseq"));
 		
-		System.out.println("하하 boardseq : " + boardseq);
-		System.out.println("하하 commentcontent : " + commentcontent);
-		System.out.println("하하 commentseq : " + commentseq);
-		
-		
 		Comment_JPA comment_jpa = new Comment_JPA();
 		comment_jpa.setBoardseq(userBoardRepository.findByBoardseq(boardseq));
 		comment_jpa.setCommentcontent(commentcontent);
