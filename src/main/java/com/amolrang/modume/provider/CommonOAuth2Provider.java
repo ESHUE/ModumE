@@ -36,7 +36,7 @@ public enum CommonOAuth2Provider {
 			.userNameAttributeName(IdTokenClaimNames.SUB)
 			.clientName("twitch")
 			.clientId("nb7cdnmp6y4wuqcnfh31c92oh0k8l7")
-			.clientSecret("u3cpdd9wnlnrmkh1fh8ar4kr7iu12n");
+			.clientSecret("9lzffuqxm8b4ryyzgqvpag376ybf3r");
 	    }
 	};
 	

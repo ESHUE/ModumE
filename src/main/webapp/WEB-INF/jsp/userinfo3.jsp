@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<link rel="stylesheet" href="/css/userInfo.css?ver=4546546">
+<link rel="stylesheet" href="/css/userinfo.css">
 
 <div style="background:white">
 	<div>
-		<div>기본 정보</div>
+		<div class="sns-modume-title">기본 정보</div>
 		<form action="">
 			<div class="personalInformatin">
 				<span class="material-icons privacyIcon">person</span>
@@ -15,7 +15,7 @@
 		</form>
 	</div>
 	<div class="">
-		<div>계정추가</div>
+		<div class="sns-modume-title">계정추가</div>
 		<div class="sns-modume-sign">
 			<div class="input-container focus kakaoLogin">
 				<a href="/oauth2/authorization/kakao">Kakao</a>

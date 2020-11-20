@@ -7,6 +7,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
 }
 
 .board-btns {
@@ -49,18 +50,31 @@
     min-width: 320px;
     margin: 15px 0;
     line-height: 140%;
+    border-radius: 5px;
 }
 
+.board-table:hover{
+    background: mediumpurple;	
+}
+
+
+.board-list-table:hover tr td{
+    color: lavenderblush;
+}
+.board-list-table:hover tr td div div span{
+    color: lavenderblush;
+}
 
 .board-table td {
     /* border: 1px solid black; */
     vertical-align: middle;
-    padding: 3px 0;
+    padding: 3px 5px;
+    color: seashell;
 }
 
 .board-table .board-profile-td {
     width: 40px;
-    padding-right: 5px;
+    padding: 5px;
 }
 
 .board-table .board-profile__box {
@@ -81,7 +95,7 @@
 .board-table .board-user-name {
     font-size: 0.8em;
     font-weight: bold;
-    color: rgb(73, 73, 73);
+    color: seashell;
     padding-bottom: 0;
 }
 
@@ -92,22 +106,22 @@
 }
 
 .board-table .board-title {
-    
+	word-break: break-all;
 }
 
 .board-table .board-title td {
     font-size: 1.3em;
     font-weight: bold;
-    padding: 15px 0;
+    padding: 15px 5px;
 }
 
 .board-table .board-ctnt {
-    
+    word-break: break-all;
 }
 
 .board-table .board-ctnt td {
     font-size: 1em;
-    color: rgb(129, 129, 129);
+    color: rgb(161, 161, 161);
 }
 
 .board-table .board__imgs {
@@ -172,11 +186,14 @@
 .board-table .board-foot td {
     padding-top: 10px;
 }
+.board-foot{
+	background: rgba(0,0,0,.1);
+}
 
 .board-table .board-foot .board-icons {
     display: flex;
     justify-content: space-around;
-    color: rgb(129, 129, 129);
+    color: seashell;
 }
 
 .board-table .board-foot .board-hits {

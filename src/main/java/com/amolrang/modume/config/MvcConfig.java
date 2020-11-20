@@ -1,9 +1,7 @@
 package com.amolrang.modume.config;
 
-import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.multipart.MultipartResolver;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -16,7 +14,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 // servlet-context.xml 역할을 함 
 
 public class MvcConfig implements WebMvcConfigurer {
-	
 	// 설정 활성화 유무
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -39,8 +36,10 @@ public class MvcConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-		// 뒤에 classpath~~ 경로를 /** 이렇게만 써도 되도록(편리하게) 
-		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+		registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/").setCachePeriod(20);
+		registry.addResourceHandler("/img/**").addResourceLocations("classpath:/static/img/").setCachePeriod(20);
+		registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/").setCachePeriod(20);
+		registry.addResourceHandler("/upload/**").addResourceLocations("file:///usr/local/modume/img/").setCachePeriod(20);
 	}
 	
 	/*

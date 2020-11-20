@@ -5,8 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/css/userinfo.css">
 </head>
 <body>
-	<div>나는 1입니다.</div>
+	<div>서비스 준비중입니다.</div>
 </body>
 </html>

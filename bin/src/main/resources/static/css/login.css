@@ -81,7 +81,7 @@ body, fieldset, legend, form, input, a {
 
 .active:focus {
 	outline: 0;
-	border-color: #2ad4af;
+	border-color: #a07be5;
 	border-width: 2px;
 	color: #648170;
 }
@@ -90,43 +90,39 @@ body, fieldset, legend, form, input, a {
 	border: 0;
 }
 
-#frm>.sbm-login {
+#frm>.loginSbm {
 	border: 0;
 	margin-top: 10px;
 	margin-left: 20px;
 	padding: 20px 110px;
-	background-color: #b973a6;
+	background-color: #a07be5;
 	border-radius: 50px;
 	color: #fff;
 	text-align: center;
 	font-size: 1.3rem;
 }
 
-.sbm-login>a>input {
+.loginSbm>a>input {
 	position: relative;
 	top: 180px;
 	right: 220px;
 }
 
-#container>.sbm-join {
+#container>.loginSbm {
 	position: relative;
 	top: 180px;
 	right: 195px;
 }
 
-.sbm-join>a {
+.sbm-join>span {
 	text-decoration: none;
-	color: #7777FF;
+	color: #a07be5;
 	/* margin-left: 20px; */
 	text-align: center;
-	font-size: 1.25rem;
+	font-size: 17px;
+	font-weight: bold;
+	cursor: pointer;
 }
-
-.kakaoLogin img {
-	width: 35px;
-	height: 35px;
-}
-
 .kakaoLogin a {
 	font-weight: bold;
 	font-size: 18px;
@@ -139,9 +135,6 @@ body, fieldset, legend, form, input, a {
 }
 
 .twitchLogin img {
-	position: relative;
-	top: 0;
-	right: 4px;
 	width: 65px;
 	height: 25px;
 }
@@ -156,4 +149,5 @@ body, fieldset, legend, form, input, a {
 	text-align: center;
 	margin: 1%;
 	padding: 1%;
+	
 }

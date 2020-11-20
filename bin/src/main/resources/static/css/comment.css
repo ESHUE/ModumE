@@ -1,14 +1,15 @@
 /* 나중에 userBoard 지울 때 comment 삭제 잊지 말기~~~! */
 @charset "UTF-8";
+
 .bold {
     font-weight: bold;
 }
 
-.commentContainer {
+.commentContents {
     font-size: .9em;
 }
 
-.commentContainer .comment-table {
+.commentContents .comment-table {
     margin: 5px 0;
     border-bottom: 1px solid rgb(161, 161, 161);
 }
@@ -21,6 +22,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color:seashell;
 }
 
 .comment-menu .comment-menu1 {
@@ -33,24 +35,25 @@
     display: flex;
     justify-content: space-around;
     width: 40%;
+    margin-right:5px;
 }
 
-.commentContainer table:first-child {
+.commentContents table:first-child {
     margin-top: 10px;
 }
 
-.commentContainer table:last-child {
+.commentContents table:last-child {
     margin-bottom: 15px;
 }
 
-.commentContainer .comment-modDel-td {
+.commentContents .comment-modDel-td {
     width: 15%;
     padding-right: 5px;
     text-align: right;
     position: relative;
 }
 
-.commentContainer .comment-modDel-td .comment-modDel-box {
+.commentContents .comment-modDel-td .comment-modDel-box {
     position: absolute;
     bottom: 6px;
     right: 35px;
@@ -63,7 +66,7 @@
     font-weight: bold;
 }
 
-.commentContainer .comment-modDel-td .material-icons {
+.commentContents .comment-modDel-td .material-icons {
     background: none;
     border: none;
     color: rgba(161, 161, 161, .8);
@@ -84,14 +87,13 @@
 
 #commentIns-form {
     position: relative;
-}
-
-.comment-option-box {
-    height: 60px;
+    height: 95px;
+    display: flex;
 }
 
 .comment-text-div {
     width: 75%;
+    height: 95%;
     text-align: center;
 }
 
@@ -105,9 +107,15 @@
     margin-right: 5px;
 }
 
-
 .comment-backTop-btns {
-    bottom: 100%;
+    bottom: 103%;
+}
+
+.submitCancle-btns {
+	height: 90%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
 }
 
 

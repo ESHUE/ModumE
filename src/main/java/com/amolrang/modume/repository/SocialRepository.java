@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.apache.ibatis.annotations.Update;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -17,6 +18,6 @@ public interface SocialRepository extends JpaRepository<Social_JPA, Integer>{
 	List<Social_JPA> findAllByUserseq(User_JPA userseq);
 	@Modifying
 	@Transactional
-	@Query(value = "UPDATE Social_JPA SET userseq = :#{#social.userseq} WHERE socialusername = :#{#social.socialusername}")
-	void updateToMainseq(Social_JPA social);
+	@Query(value = "UPDATE Social_JPA SET userseq = :#{#social.userseq},token = :#{#social.token} WHERE socialusername = :#{#social.socialusername}")
+	void updateToMainseqAndSns(Social_JPA social);
 }

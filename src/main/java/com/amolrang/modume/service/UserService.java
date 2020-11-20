@@ -29,7 +29,6 @@ import com.amolrang.modume.test.TestModel;
 
 @Service
 public class UserService implements UserDetailsService {
-	Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	UserDAO userDAO;
@@ -46,11 +45,9 @@ public class UserService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User_JPA userModel = userRepository.findByUsername(username);
-		log.info("userServiceModel:{}",userModel);
 		
 		if(userModel == null) {return userModel;};
 		userModel.setAuthorities(getAuthorities(userModel));
-		log.info("userModel:{}",userModel);
 		return userModel;
 	}
 	
@@ -83,7 +80,6 @@ public class UserService implements UserDetailsService {
 		testModel.setSeq(userModel.getUserseq());
 		testModel.setId(userModel.getUsername());
 		testModel.setPassword(userModel.getPassword());
-		log.info("testModel:{}",testModel);
 		return userDAO.saveUser(testModel);
 	}
 
@@ -115,13 +111,12 @@ public class UserService implements UserDetailsService {
 	}
 	
 	public int findUser(String userName) {
-		log.info("test00:{}",userName);
 		return userDAO.findUser(userName);
 	}
 	
 	public String saveProfileFile(User_JPA userJPA, MultipartHttpServletRequest mr) {
 		MultipartFile file = mr.getFile("profile");
-		String uploadPath = mr.getServletContext().getRealPath("") + "../resources/static/img/";
+		String uploadPath = "./img";
 		String fileNm = null;
 		
 		if(file != null) {

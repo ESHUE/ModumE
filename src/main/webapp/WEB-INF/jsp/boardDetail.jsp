@@ -32,7 +32,7 @@
 		                <img class="board-profile__img" src="/img/test-profile.jpg" alt="프로필">
 	            	</c:if>
 	            	<c:if test="${boardDetail.userseq.profileImg != null }">
-		                <img class="board-profile__img" src="/img/${boardDetail.userseq.profileImg }" alt="프로필">
+		                <img class="board-profile__img" src="/upload/${boardDetail.userseq.profileImg }" alt="프로필">
 	            	</c:if>
                 </div>
             </td>

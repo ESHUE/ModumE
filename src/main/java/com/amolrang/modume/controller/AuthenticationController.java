@@ -61,8 +61,8 @@ public class AuthenticationController {
 	UserService userService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(Model model, Principal principal) {
-		log.info("로그인페이지 GET접근 :{}", principal);
+	public String login(Model model) {
+		//log.info("로그인페이지 GET접근 :{}", principal);
 		model.addAttribute(StringUtils.TitleKey(), "로그인페이지");
 		return StringUtils.LoginURLValue();
 	}
@@ -70,24 +70,36 @@ public class AuthenticationController {
 	@RequestMapping(value = "/loginAction", method = RequestMethod.GET)
 	public String login(HttpSession hs, Principal principal, RedirectAttributes ra) {
 		UserModel userDomain = null;
+		User_JPA UserInfoJson = null;
+		List<Social_JPA> social_JPA_List;
 		// 기존 데이터베이스에 있는 자료 들고오기
 		// ----------------------------------
 		// log.info(principal.getName());
 		// log.info("userInfo:{}",userRepository.findByUsername(principal.getName()));
-		User_JPA UserInfoJson = userRepository.findByUsername(principal.getName());
 		// ----------------------------------
 		// 가져온 db의 시퀀스 값으로 연동된 sns를 찾아온다.
-		List<Social_JPA> social_JPA_List = socialRepository.findAllByUserseq(UserInfoJson);
+		try {
+			UserInfoJson = userRepository.findByUsername(principal.getName());
+			social_JPA_List = socialRepository.findAllByUserseq(UserInfoJson);
+			if (social_JPA_List != null) {
+				userDomain = new UserModel();
+				for (Social_JPA sns : social_JPA_List) {
+					userDomain.getSns().add(sns.getSns());
+					// 토큰 쳌
+					try {
+						tokenCheck(ra, sns.getClientid(), sns.getToken(), sns.getSocialusername(),sns.getSns());
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 //		log.info("social_JPA_List:{}",social_JPA_List);
 //		System.out.println("social_JPA_List != null ? " + social_JPA_List != null);
-		if (social_JPA_List != null) {
-			userDomain = new UserModel();
-			for (Social_JPA sns : social_JPA_List) {
-				userDomain.getSns().add(sns.getSns());
-				// 토큰 쳌
-				tokenCheck(ra, sns.getClientid(), sns.getToken(), sns.getSocialusername(),sns.getSns());
-			}
-		}
+		
 		hs.setAttribute("userDomain", userDomain);
 		hs.setAttribute("userInfo", UserInfoJson);
 		hs.setAttribute("member", userDomain.getUsername());
@@ -107,11 +119,11 @@ public class AuthenticationController {
 				.loadAuthorizedClient(authentication.getAuthorizedClientRegistrationId(), authentication.getName());
 		UserInfoJson.setToken(client.getAccessToken().getTokenValue());
 		UserInfoJson.setClientid(client.getClientRegistration().getClientId());
-		// log.info("111. token:{}",UserInfoJson.getToken());
-		// log.info("112. clientID:{}",UserInfoJson.getClientid());
-		// log.info("123. Social_JPA: {}",UserInfoJson);
+		//log.info("111. token:{}",UserInfoJson.getToken());
+		//log.info("112. clientID:{}",UserInfoJson.getClientid());
+		//log.info("123. Social_JPA: {}",UserInfoJson);
 		User_JPA loginedUser = (User_JPA) hs.getAttribute("userInfo");
-		// log.info("132. User_JPA: {}", loginedUser);
+		//  log.info("132. User_JPA: {}", loginedUser);
 
 		// 유저정보 업데이트
 		if (loginedUser != null) {
@@ -120,7 +132,7 @@ public class AuthenticationController {
 			if (socialRepository.findBysocialusername(UserInfoJson.getSocialusername()) == null) {
 				socialRepository.save(UserInfoJson);
 			} else {
-				socialRepository.updateToMainseq(UserInfoJson);
+				socialRepository.updateToMainseqAndSns(UserInfoJson);
 			}
 		} else {
 			if (socialRepository.findBysocialusername(UserInfoJson.getSocialusername()) == null) {
@@ -143,7 +155,11 @@ public class AuthenticationController {
 				// System.out.println(sns.getSns());
 				userDomain.getSns().add(new String(sns.getSns()));
 				// 토큰 쳌
-				tokenCheck(ra, sns.getClientid(), sns.getToken(), sns.getSocialusername(),sns.getSns());
+				try {
+					tokenCheck(ra, sns.getClientid(), sns.getToken(), sns.getSocialusername(),sns.getSns());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		hs.setAttribute("userDomain", userDomain);

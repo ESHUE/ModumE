@@ -1,6 +1,7 @@
 /**
- * 
+ *
  */
+
 const slideContainer = document.querySelector(".slideContainer");
 const SwiperContainer = document.createElement("div");
 SwiperContainer.classList.add("swiper-container");
@@ -8,7 +9,7 @@ slideContainer.appendChild(SwiperContainer);
 slideContainer.style.overflow = "hidden";
 SwiperContainer.style.width = "100%";
 SwiperContainer.style.height = "100%";
-SwiperContainer.style.marginLeft = "auto"
+SwiperContainer.style.marginLeft = "auto";
 SwiperContainer.style.overflow = "hidden";
 SwiperContainer.style.borderRadius = "5px";
 const Wrapper = document.createElement("div");
@@ -39,8 +40,8 @@ function newScrollbar() {
 }
 
 function loadTwitchFollowSwiper(item) {
-  const noticeContainer = document.querySelector('.noticeContainer');
-  if(noticeContainer != null) {
+  const noticeContainer = document.querySelector(".noticeContainer");
+  if (noticeContainer != null) {
     noticeContainer.remove();
   }
 
@@ -58,7 +59,7 @@ function loadTwitchFollowSwiper(item) {
   name.style.background = "rgba(150,150,150,.5)";
   name.style.display = "inline-flex";
   name.style.borderRadius = "10px";
-  name.style.left= "0";
+  name.style.left = "0";
   name.classList.add("streamerName");
   title.innerText = item.title;
   title.style.position = "absolute";
@@ -86,7 +87,7 @@ function loadTwitchFollowSwiper(item) {
   thumbnail_url.style.height = "100%";
   thumbnail_url.style.display = "flex";
   thumbnail_url.style.flexFlow = "column-reverse";
-  thumbnail_url.setAttribute('streamerURL', item.thumbnail_url);
+  thumbnail_url.setAttribute("streamerURL", item.thumbnail_url);
   thumbnail_url.appendChild(name);
   thumbnail_url.appendChild(title);
 
@@ -111,55 +112,64 @@ function reloadPagination() {
       el: ".swiper-scrollbar",
       clickable: true,
       hide: true,
-      draggable:true,
-      clickable:true
+      draggable: true,
+      clickable: true,
     },
   });
 }
 
-axios.get('/getStreams', {}).then(function (res) {
-							res.data.data.forEach(function (item) {
-								loadTwitchFollowSwiper(item)
-							})
-							reloadPagination();
-						}).then(function () {
-							const playBtn = document.querySelectorAll(".playBtn");
-							for (var i = 0; i < playBtn.length; i++) {
-								playBtn[i].setAttribute("onclick", "videoLoad()");
-							}
-						})
-						
-						function videoLoad() {
-							const videoLink = document.querySelector(".swiper-slide-active>.thumbnail");
-							const thumbnails = document.getElementsByClassName("thumbnail");
-							for (var i = 0; i < thumbnails.length; i++) {
-								thumbnails[i].id = "";
-							}
-							videoLink.id = "video-embed";
-							const url = videoLink.getAttribute("streamerURL");
-							const videoURL = "https://www.twitch.tv/" + url.substring(url.indexOf("user_") + 5, url.lastIndexOf("-1920x"));
-							streamerID = url.substring(url.indexOf("user_") + 5, url.lastIndexOf("-1920x"));
-							/* streamerID 따로 저장 */
-							saveRoomId(streamerID);
-							//console.log(videoURL);
-							reactPlayer(videoURL);
-							axios.get("/autoJoin",{
-								params:{
-									streamerID,
-									bPlay : true
-								}
-							}).then(function(result){
-								
-							})
-						}
-						function reactPlayer(url) {
-							const container = document.getElementById('video-embed')
-							//console.log(container)
-							renderReactPlayer(container, {
-								url,
-								playing: true,
-								controls: false,
-								width: "100%",
-								height: "100%"
-							})
-						}
+axios
+  .get("/getStreams", {})
+  .then(function (res) {
+    res.data.data.forEach(function (item) {
+      loadTwitchFollowSwiper(item);
+    });
+    reloadPagination();
+  })
+  .then(function () {
+    const playBtn = document.querySelectorAll(".playBtn");
+    for (var i = 0; i < playBtn.length; i++) {
+      playBtn[i].setAttribute("onclick", "videoLoad()");
+    }
+  });
+
+function videoLoad() {
+  const videoLink = document.querySelector(".swiper-slide-active>.thumbnail");
+  const thumbnails = document.getElementsByClassName("thumbnail");
+  for (var i = 0; i < thumbnails.length; i++) {
+    thumbnails[i].id = "";
+  }
+  videoLink.id = "video-embed";
+  const url = videoLink.getAttribute("streamerURL");
+  const videoURL =
+    "https://www.twitch.tv/" +
+    url.substring(url.indexOf("user_") + 5, url.lastIndexOf("-1920x"));
+  streamerID = url.substring(
+    url.indexOf("user_") + 5,
+    url.lastIndexOf("-1920x")
+  );
+  /* streamerID 따로 저장 */
+  saveRoomId(streamerID);
+  //console.log(videoURL);
+  reactPlayer(videoURL);
+  axios
+    .get("/autoJoin", {
+      params: {
+        streamerID,
+        bPlay: true,
+      },
+    })
+    .then(function (result) {});
+}
+function reactPlayer(url) {
+  //console.log("reactPlayer:" + url);
+  const container = document.getElementById("video-embed");
+  //console.log(container)
+  renderReactPlayer(container, {
+    url,
+    playing: true,
+    controls: false,
+    width: "100%",
+    height: "100%",
+  });
+}

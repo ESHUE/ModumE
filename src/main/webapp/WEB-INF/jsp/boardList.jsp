@@ -27,7 +27,7 @@
 		                <img class="board-profile__img" src="/img/test-profile.jpg" alt="프로필">
 	            	</c:if>
 	            	<c:if test="${item.userseq.profileImg != null }">
-		                <img class="board-profile__img" src="/img/${item.userseq.profileImg }" alt="프로필">
+		                <img class="board-profile__img" src="/upload/${item.userseq.profileImg }" alt="프로필">
 	            	</c:if>
 	            </div>
 	        </td>

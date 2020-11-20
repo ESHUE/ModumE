@@ -50,6 +50,9 @@ button {
 	border-radius: 50%;
 }
 /*userInfo3*/
+.sns-modume-title{
+	text-align: center;
+}
 .personalInformatin {
   display: flex;
   justify-content: center;
