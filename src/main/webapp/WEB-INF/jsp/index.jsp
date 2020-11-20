@@ -90,7 +90,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
       </header>
       <section class="centralSection">
         <div class="sectionContainer">
-          <div class="slideContainer"></div>
+          <div class="slideContainer" style="position: relative;"></div>
         </div>
         <aside class="centralSidebar">
           <div class="menus sidebarMenu1_1">
