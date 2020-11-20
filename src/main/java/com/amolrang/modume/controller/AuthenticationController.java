@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.amolrang.modume.api.UserModelGetToToken;
 import com.amolrang.modume.model.Authorize_JPA;
@@ -22,6 +23,7 @@ import com.amolrang.modume.model.User_JPA;
 import com.amolrang.modume.repository.AuthRepository;
 import com.amolrang.modume.repository.SocialRepository;
 import com.amolrang.modume.repository.UserRepository;
+import com.amolrang.modume.service.UserService;
 import com.amolrang.modume.utils.StringUtils;
 
 import lombok.extern.slf4j.Slf4j;
@@ -46,6 +48,9 @@ public class AuthenticationController {
 	
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	UserService userService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model, Principal principal) {
@@ -138,7 +143,7 @@ public class AuthenticationController {
 	}
 
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String joinAction(Model model, User_JPA userJPA) {
+	public String joinAction(Model model, User_JPA userJPA, MultipartHttpServletRequest mr) {
 		log.info("회원가입 post 접근");
 		//user_JPA 값 넣기
 		//log.info(userJPA.getProfileImg());
@@ -151,6 +156,7 @@ public class AuthenticationController {
 		user.setUsername(userJPA.getUsername());
 		user.setProfileImg(userJPA.getProfileImg());
 		user.setPassword(passwordEncoder.encode(userJPA.getPassword()));
+		user.setProfileImg(userService.saveProfileFile(userJPA, mr));
 		userRepository.save(user);
 		
 		//Authorize_JPA 값 넣기

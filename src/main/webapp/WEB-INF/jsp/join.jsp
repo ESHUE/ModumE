@@ -23,7 +23,6 @@
 					<!-- <img alt="userProfile" src="#" id="imgPreview"> -->
 					<div id="image_container"></div>  
 					<input type="file" name="profile" id="profile" accept="image/*" onchange="profileInfo(event)"> 
-					<input type="button" name="imgSubmit" value="올리기">
 				</div>
 				<div class="joinListContainer">
 					<input type="text" name="nickname" placeholder="이름" value="은찌리">
